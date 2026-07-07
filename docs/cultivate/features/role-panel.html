@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>役職パネル - Cultivate ドキュメント</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body data-base="..">
+  <div data-include="include/sidebar"></div>
+
+  <main class="main-content">
+    <div data-include="include/topbar" data-title="役職パネル"></div>
+
+    <div class="content">
+      <div class="feature-hero">
+        <div class="feature-icon">👤</div>
+        <h1>役職パネル</h1>
+        <p>ユーザー自身がロールを選択・取得できるパネルを設置</p>
+      </div>
+
+      <h2>概要</h2>
+      <p>
+        役職パネル機能は、ユーザー自身がつけたいロールを選択して取得できる機能です。
+        管理者は設定次第で、ユーザーが複数のロールを取得できるようにしたり、1つのロールしか取得できないようにしたりできます。
+        また、剥奪専用や付与専用のパネルも作成可能です。
+      </p>
+
+      <h2>パネルの種類</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>種類</th>
+            <th>説明</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>付与専用</td>
+            <td>ユーザーがロールを取得できるパネル（剥奪不可）</td>
+          </tr>
+          <tr>
+            <td>取外専用</td>
+            <td>ユーザーがロールを剥奪できるパネル（付与不可）</td>
+          </tr>
+          <tr>
+            <td>許可</td>
+            <td>ユーザーが複数のロールを取得・剥奪できるパネル</td>
+          </tr>
+          <tr>
+            <td>禁止</td>
+            <td>ユーザーが1つのロールしか取得できないパネル（排他選択）</td>
+          </tr>
+          <tr>
+            <td>特殊</td>
+            <td>重複禁止で、ロールの取り外しが可能</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h2>コマンド</h2>
+
+      <h3>新規作成</h3>
+      <pre><code>/役職パネル作成 &lt;タイトル&gt; &lt;種類&gt; &lt;ロールA&gt; [&lt;説明&gt;] [&lt;ロールB&gt;]...</code></pre>
+      <table>
+        <thead>
+          <tr>
+            <th>引数</th>
+            <th>説明</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>タイトル</td>
+            <td>パネルのタイトル</td>
+          </tr>
+          <tr>
+            <td>種類</td>
+            <td>付与専用 / 取外専用 / 許可 / 禁止 / 特殊</td>
+          </tr>
+          <tr>
+            <td>ロールA, ロールB...</td>
+            <td>パネルに表示するロール（最大25個）</td>
+          </tr>
+          <tr>
+            <td>説明</td>
+            <td>パネルの説明（省略可能）</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3>編集</h3>
+      <ol class="steps">
+        <li>
+          <strong>パネルを選択</strong>
+          Bot が送信したパネルメッセージを右クリック（長押し）→「アプリ」→「役職パネル選択」を押下
+        </li>
+        <li>
+          <strong>編集コマンドを実行</strong>
+          <code>/役職パネル編集 &lt;種類&gt;</code> を実行
+          <br>
+          種類: タイトル / 説明 / 重複許可
+        </li>
+        <li>
+          <strong>値を変更</strong>
+          タイトルと説明は入力欄から変更。重複許可はセレクトボックスから選択
+        </li>
+      </ol>
+
+      <div class="alert alert-info">
+        <p><strong>💡 ヒント:</strong> 役職パネルは Bot からのメッセージとして送信されます。パネルを削除したい場合は、該当メッセージを削除してください。</p>
+      </div>
+
+      <div data-include="include/footer"></div>
+    </div>
+  </main>
+  <script src="../js/main.js"></script>
+</body>
+</html>

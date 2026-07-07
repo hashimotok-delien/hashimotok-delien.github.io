@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>コマンド一覧 - Cultivate ドキュメント</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-base=".">
+  <div data-include="include/sidebar"></div>
+
+  <main class="main-content">
+    <div data-include="include/topbar" data-title="コマンド一覧"></div>
+
+    <div class="content">
+      <h1>📜 コマンド一覧</h1>
+      <p>
+        Cultivate で使用できる全コマンドの一覧です。
+        <span class="tag tag-admin">管理者専用</span>
+        <span class="tag tag-user">ユーザー用</span>
+      </p>
+
+      <h2>コマンド</h2>
+
+      <h3>🔧 設定・管理</h3>
+
+      <div class="command-block">
+        <div class="cmd-name">/設定パネル</div>
+        <div class="cmd-desc">設定用パネルを表示します。Bot の各種機能の ON/OFF を切り替えられます。</div>
+        <div class="cmd-meta"><span class="tag tag-admin">管理者専用</span></div>
+      </div>
+
+      <div class="command-block">
+        <div class="cmd-name">/イベ鯖設定パネル</div>
+        <div class="cmd-desc">イベントサーバー用の設定パネルを表示します。</div>
+        <div class="cmd-meta"><span class="tag tag-admin">管理者専用</span></div>
+      </div>
+
+      <div class="command-block">
+        <div class="cmd-name">/bot管理</div>
+        <div class="cmd-desc">Bot の管理コマンド。導入サーバー一覧の表示や退出などが行えます。</div>
+        <div class="cmd-meta"><span class="tag tag-admin">Bot所有者専用</span></div>
+      </div>
+
+      <h3>👤 役職パネル</h3>
+
+      <div class="command-block">
+        <div class="cmd-name">/役職パネル作成 &lt;タイトル&gt; &lt;種類&gt; &lt;ロールA&gt; [&lt;説明&gt;] [&lt;ロールB&gt;]...</div>
+        <div class="cmd-desc">役職パネルを新規作成します。種類は「付与専用」「取外専用」「許可」「禁止」「特殊」から選択できます。最大25個のロールを設定可能です。</div>
+        <div class="cmd-meta"><span class="tag tag-admin">管理者専用</span></div>
+      </div>
+
+      <div class="command-block">
+        <div class="cmd-name">/役職パネル編集 &lt;種類&gt;</div>
+        <div class="cmd-desc">既存の役職パネルの設定を編集します。タイトル、説明、重複許可などを変更できます。</div>
+        <div class="cmd-meta"><span class="tag tag-admin">管理者専用</span></div>
+      </div>
+
+      <h3>🔒 裏2shot</h3>
+
+      <div class="command-block">
+        <div class="cmd-name">/裏2shot 新規作成 &lt;プリセット名&gt;</div>
+        <div class="cmd-desc">裏2shot の設定を新規作成します。複数のプリセットを作成できます。</div>
+        <div class="cmd-meta"><span class="tag tag-admin">管理者専用</span></div>
+      </div>
+
+      <div class="command-block">
+        <div class="cmd-name">/裏2shot 設定変更 &lt;プリセット名&gt;</div>
+        <div class="cmd-desc">既存の裏2shot 設定を変更します。プリセット名はオートコンプリートに対応。</div>
+        <div class="cmd-meta"><span class="tag tag-admin">管理者専用</span></div>
+      </div>
+
+      <div class="command-block">
+        <div class="cmd-name">/裏2shot パネル設置 &lt;プリセット名&gt;</div>
+        <div class="cmd-desc">裏2shot 作成パネルを現在のチャンネルに設置します。</div>
+        <div class="cmd-meta"><span class="tag tag-admin">管理者専用</span></div>
+      </div>
+
+      <h3>📌 スティッキー（吊下げメッセージ）</h3>
+
+      <div class="command-block">
+        <div class="cmd-name">!?sticky &lt;オプション&gt;</div>
+        <div class="cmd-desc">吊下げメッセージを設定します。各種埋め込みオプションに対応。</div>
+        <div class="cmd-meta"><span class="tag tag-admin">管理者専用</span></div>
+      </div>
+
+      <div class="command-block">
+        <div class="cmd-name">!?unsticky</div>
+        <div class="cmd-desc">指定チャンネルの吊下げメッセージを削除します。</div>
+        <div class="cmd-meta"><span class="tag tag-admin">管理者専用</span></div>
+      </div>
+
+      <div class="command-block">
+        <div class="cmd-name">/sticky list</div>
+        <div class="cmd-desc">サーバー内に設定されている全吊下げメッセージの一覧を表示します。</div>
+        <div class="cmd-meta"><span class="tag tag-admin">管理者専用</span></div>
+      </div>
+
+      <div class="command-block">
+        <div class="cmd-name">/sticky edit [&lt;チャンネル&gt;]</div>
+        <div class="cmd-desc">指定チャンネルの吊下げメッセージ設定を編集します。チャンネル省略時はコマンド実行チャンネルが対象です。</div>
+        <div class="cmd-meta"><span class="tag tag-admin">管理者専用</span></div>
+      </div>
+
+      <h3>🖼️ プロフィール</h3>
+
+      <div class="command-block">
+        <div class="cmd-name">/プロフィール保存 &lt;url&gt;</div>
+        <div class="cmd-desc">メッセージリンクを指定してプロフィールを保存します。保存したプロフィールは VC 内などで再表示できます。</div>
+        <div class="cmd-meta"><span class="tag tag-user">ユーザー用</span></div>
+      </div>
+
+      <div class="command-block">
+        <div class="cmd-name">/プロフィール再表示</div>
+        <div class="cmd-desc">VC 内のインチャに保存されているプロフィールを全員分再表示します。</div>
+        <div class="cmd-meta"><span class="tag tag-user">ユーザー用</span></div>
+      </div>
+
+      <h3>❤️ リアクション</h3>
+
+      <div class="command-block">
+        <div class="cmd-name">/プロフリアクション確認</div>
+        <div class="cmd-desc">自分のプロフィールに付いたリアクションを調べます。結果は DM で送信されます。</div>
+        <div class="cmd-meta"><span class="tag tag-user">ユーザー用</span></div>
+      </div>
+
+      <div class="command-block">
+        <div class="cmd-name">/プロフリアクション設定 &lt;モード&gt;</div>
+        <div class="cmd-desc">プロフリアクションに関する設定を行います。モード: 登録/確認/削除/計測</div>
+        <div class="cmd-meta"><span class="tag tag-admin">管理者専用</span></div>
+      </div>
+
+      <div class="command-block">
+        <div class="cmd-name">/メッセージ投稿時自動リアクション</div>
+        <div class="cmd-desc">メッセージ投稿時に自動でリアクションを追加する設定を行います。モード: 登録/設定</div>
+        <div class="cmd-meta"><span class="tag tag-admin">管理者専用</span></div>
+      </div>
+
+      <div class="command-block">
+        <div class="cmd-name">/自動リアクション設定</div>
+        <div class="cmd-desc">自動リアクションの詳細設定を行います。最大20個の絵文字を設定可能。</div>
+        <div class="cmd-meta"><span class="tag tag-admin">管理者専用</span></div>
+      </div>
+
+      <h3>📝 チャンネルロール</h3>
+
+      <div class="command-block">
+        <div class="cmd-name">/チャンネル投稿時ロール設定</div>
+        <div class="cmd-desc">特定チャンネルにメッセージを投稿した際に、自動でロールを付与/剥奪する設定を行います。</div>
+        <div class="cmd-meta"><span class="tag tag-admin">管理者専用</span></div>
+      </div>
+
+      <h3>📋 カテゴリ管理</h3>
+
+      <div class="command-block">
+        <div class="cmd-name">/カテゴリ権限コピー</div>
+        <div class="cmd-desc">あるカテゴリの権限設定を別のカテゴリにコピー（上書き）します。</div>
+        <div class="cmd-meta"><span class="tag tag-admin">manage_roles権限必要</span></div>
+      </div>
+
+      <h3>🎤 VC</h3>
+
+      <div class="command-block">
+        <div class="cmd-name">/join</div>
+        <div class="cmd-desc">現在自分がいる VC に Bot を呼びます。</div>
+        <div class="cmd-meta"><span class="tag tag-admin">管理者専用</span></div>
+      </div>
+
+      <div class="command-block">
+        <div class="cmd-name">/leave</div>
+        <div class="cmd-desc">現在 Bot がいる VC から切断します。</div>
+        <div class="cmd-meta"><span class="tag tag-admin">管理者専用</span></div>
+      </div>
+
+      <div class="command-block">
+        <div class="cmd-name">/呼び出しパネル</div>
+        <div class="cmd-desc">呼び出しボタンのパネルを設置します。</div>
+        <div class="cmd-meta"><span class="tag tag-admin">管理者専用</span></div>
+      </div>
+
+      <h3>🧠 MBTI</h3>
+
+      <div class="command-block">
+        <div class="cmd-name">/mbti新規開拓パネル設置</div>
+        <div class="cmd-desc">MBTI 新規開拓 VC 用のパネルを設置します。</div>
+        <div class="cmd-meta"><span class="tag tag-admin">管理者専用</span></div>
+      </div>
+
+      <div class="command-block">
+        <div class="cmd-name">/mbti診断パネル設置</div>
+        <div class="cmd-desc">MBTI 診断パネルを設置します。全員/異性/同性の診断ボタン付き。</div>
+        <div class="cmd-meta"><span class="tag tag-admin">管理者専用</span></div>
+      </div>
+
+      <h3>🎭 キャラクター</h3>
+
+      <div class="command-block">
+        <div class="cmd-name">/キャラクター設定</div>
+        <div class="cmd-desc">吊り下げメッセージなどで使用するキャラクター（名前・アイコン）を作成・管理します。</div>
+        <div class="cmd-meta"><span class="tag tag-admin">管理者専用</span></div>
+      </div>
+
+      <h3>📊 その他</h3>
+
+      <div class="command-block">
+        <div class="cmd-name">/analytics &lt;type&gt;</div>
+        <div class="cmd-desc">アナリティクスを表示します。現在は性別のみ対応。</div>
+        <div class="cmd-meta"><span class="tag tag-admin">管理者専用</span></div>
+      </div>
+
+      <div class="command-block">
+        <div class="cmd-name">/依頼</div>
+        <div class="cmd-desc">依頼サーバーで個人依頼を受ける用のカテゴリを複製します。</div>
+        <div class="cmd-meta"><span class="tag tag-admin">特定サーバー限定</span></div>
+      </div>
+
+      <div class="command-block">
+        <div class="cmd-name">/help</div>
+        <div class="cmd-desc">ヘルプコマンド。全てのコマンド一覧を表示します。</div>
+        <div class="cmd-meta"><span class="tag tag-user">ユーザー用</span></div>
+      </div>
+
+      <h2>コンテキストメニュー</h2>
+      <p>メッセージを右クリック（長押し）→「アプリ」から使用できるコマンドです。</p>
+
+      <div class="command-block">
+        <div class="cmd-name">管理者オプション</div>
+        <div class="cmd-desc">役職パネル設定やプロフィール関連のオプションを選択できます。</div>
+        <div class="cmd-meta"><span class="tag tag-admin">管理者専用</span></div>
+      </div>
+
+      <div class="command-block">
+        <div class="cmd-name">役職パネル選択</div>
+        <div class="cmd-desc">Bot のメッセージに対して役職パネルを選択します。</div>
+        <div class="cmd-meta"><span class="tag tag-admin">管理者専用</span></div>
+      </div>
+
+      <div data-include="include/footer"></div>
+    </div>
+  </main>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

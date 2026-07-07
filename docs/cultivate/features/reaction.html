@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>プロフリアクション - Cultivate ドキュメント</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body data-base="..">
+  <div data-include="include/sidebar"></div>
+
+  <main class="main-content">
+    <div data-include="include/topbar" data-title="プロフリアクション"></div>
+
+    <div class="content">
+      <div class="feature-hero">
+        <div class="feature-icon">❤️</div>
+        <h1>プロフリアクション</h1>
+        <p>プロフィールに付いたリアクションを確認</p>
+      </div>
+
+      <h2>概要</h2>
+      <p>
+        プロフリアクション機能は、自分のプロフィールメッセージに付いたリアクションを確認できる機能です。
+        誰がどのリアクションを押したかをチェックできます。
+      </p>
+
+      <h2>ユーザー用コマンド</h2>
+
+      <h3>リアクション確認</h3>
+      <pre><code>/プロフリアクション確認</code></pre>
+      <p>
+        自分のプロフィールに付いたリアクション情報を調べます。
+        結果は DM で送信されます。誰がリアクションしたか、どの絵文字が押されたかを確認できます。
+      </p>
+
+      <h2>管理者用コマンド</h2>
+
+      <h3>プロフリアクション設定</h3>
+      <pre><code>/プロフリアクション設定 &lt;モード&gt;</code></pre>
+      <table>
+        <thead>
+          <tr>
+            <th>モード</th>
+            <th>説明</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>登録</td>
+            <td>プロフィールに使用するリアクションの絵文字を登録</td>
+          </tr>
+          <tr>
+            <td>確認</td>
+            <td>登録されているリアクション設定を確認</td>
+          </tr>
+          <tr>
+            <td>削除</td>
+            <td>登録されているリアクション設定を削除</td>
+          </tr>
+          <tr>
+            <td>計測</td>
+            <td>リアクションの統計情報を計測・表示</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div data-include="include/footer"></div>
+    </div>
+  </main>
+  <script src="../js/main.js"></script>
+</body>
+</html>

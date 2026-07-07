@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>自動ロール付与 - Cultivate ドキュメント</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body data-base="..">
+  <div data-include="include/sidebar"></div>
+
+  <main class="main-content">
+    <div data-include="include/topbar" data-title="自動ロール付与"></div>
+
+    <div class="content">
+      <div class="feature-hero">
+        <div class="feature-icon">📝</div>
+        <h1>チャンネル投稿時ロール設定</h1>
+        <p>特定チャンネルへの投稿時にロールを自動付与・剥奪</p>
+      </div>
+
+      <h2>概要</h2>
+      <p>
+        この機能は、特定のチャンネルにメッセージを投稿した際に、自動でロールを付与または剥奪する機能です。
+        例えば、自己紹介チャンネルに投稿したら「自己紹介済み」ロールを付与する、などの使い方ができます。
+      </p>
+
+      <h2>コマンド</h2>
+      <pre><code>/チャンネル投稿時ロール設定</code></pre>
+
+      <p>
+        コマンドを実行すると、設定用のインターフェースが表示されます。
+        以下の設定が可能です。
+      </p>
+
+      <table>
+        <thead>
+          <tr>
+            <th>設定項目</th>
+            <th>説明</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>対象チャンネル</td>
+            <td>ロール付与/剥奪のトリガーとなるチャンネル</td>
+          </tr>
+          <tr>
+            <td>対象ロール</td>
+            <td>付与または剥奪するロール</td>
+          </tr>
+          <tr>
+            <td>動作</td>
+            <td>付与（メッセージ投稿時にロールを追加）/ 剥奪（メッセージ投稿時にロールを削除）</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="alert alert-info">
+        <p><strong>💡 活用例:</strong> 自己紹介チャンネルで「メンバー」ロールを付与、質問チャンネルで「質問者」ロールを付与するなど、サーバーの運用ルールに合わせて柔軟に設定できます。</p>
+      </div>
+
+      <div data-include="include/footer"></div>
+    </div>
+  </main>
+  <script src="../js/main.js"></script>
+</body>
+</html>

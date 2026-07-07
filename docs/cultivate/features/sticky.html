@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>吊下げメッセージ - Cultivate ドキュメント</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body data-base="..">
+  <div data-include="include/sidebar"></div>
+
+  <main class="main-content">
+    <div data-include="include/topbar" data-title="吊下げメッセージ"></div>
+
+    <div class="content">
+      <div class="feature-hero">
+        <div class="feature-icon">📌</div>
+        <h1>吊下げメッセージ（スティッキー）</h1>
+        <p>指定チャンネルに常時表示される固定メッセージ</p>
+      </div>
+
+      <h2>概要</h2>
+      <p>
+        吊下げメッセージ機能（スティッキーメッセージ）は、指定したチャンネルにおいて設定したメッセージを最下部に常に表示し続けることができる機能です。
+        新しいメッセージが送信されるたびに、自動的に最下部に再投稿されます。
+      </p>
+
+      <h2>制限事項</h2>
+      <ul>
+        <li>吊下げメッセージは <strong>1チャンネルにつき1つ</strong> まで設定可能</li>
+        <li>吊下げメッセージは Bot の再起動後も保持されます</li>
+        <li>吊下げメッセージは <strong>1サーバーにつき最大100個</strong> まで設定可能</li>
+      </ul>
+
+      <h2>コマンド</h2>
+
+      <h3>設定（プレフィックスコマンド）</h3>
+      <pre><code>!?sticky &count=5 &time=5 &name=送信者名 &icon=https://example.com/icon.png &content=本文 &embed_title=タイトル</code></pre>
+
+      <table>
+        <thead>
+          <tr>
+            <th>オプション</th>
+            <th>説明</th>
+            <th>デフォルト</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>&count</code></td>
+            <td>メッセージを送信するまでの通常メッセージ数</td>
+            <td>5</td>
+          </tr>
+          <tr>
+            <td><code>&time</code></td>
+            <td>メッセージを送信するまでの時間（秒）</td>
+            <td>5</td>
+          </tr>
+          <tr>
+            <td><code>&name</code></td>
+            <td>メッセージ送信者名（設定時はWebhook使用）</td>
+            <td>Cultivate</td>
+          </tr>
+          <tr>
+            <td><code>&icon</code></td>
+            <td>メッセージ送信者アイコンURL（設定時はWebhook使用）</td>
+            <td>Botアイコン</td>
+          </tr>
+          <tr>
+            <td><code>&content</code></td>
+            <td>メッセージ本文（改行や空白も可能）</td>
+            <td>-</td>
+          </tr>
+          <tr>
+            <td><code>&embed_title</code></td>
+            <td>埋め込みメッセージのタイトル</td>
+            <td>-</td>
+          </tr>
+          <tr>
+            <td><code>&embed_description</code></td>
+            <td>埋め込みメッセージの説明</td>
+            <td>-</td>
+          </tr>
+          <tr>
+            <td><code>&embed_color</code></td>
+            <td>埋め込みメッセージのカラー（#RRGGBB）</td>
+            <td>-</td>
+          </tr>
+          <tr>
+            <td><code>&embed_footer</code></td>
+            <td>埋め込みメッセージのフッター文</td>
+            <td>-</td>
+          </tr>
+          <tr>
+            <td><code>&embed_thumbnail</code></td>
+            <td>埋め込みメッセージのサムネイルURL</td>
+            <td>-</td>
+          </tr>
+          <tr>
+            <td><code>&embed_image</code></td>
+            <td>埋め込みメッセージの画像URL</td>
+            <td>-</td>
+          </tr>
+          <tr>
+            <td><code>&embed_author</code></td>
+            <td>埋め込みメッセージの著者名</td>
+            <td>-</td>
+          </tr>
+          <tr>
+            <td><code>&embed_url</code></td>
+            <td>埋め込みメッセージのURL（タイトルクリック時）</td>
+            <td>-</td>
+          </tr>
+          <tr>
+            <td><code>&embed_timestamp</code></td>
+            <td>埋め込みメッセージにタイムスタンプを追加</td>
+            <td>-</td>
+          </tr>
+          <tr>
+            <td><code>&silent</code></td>
+            <td>メッセージ送信時の通知を非表示（true/false）</td>
+            <td>false</td>
+          </tr>
+          <tr>
+            <td><code>&no_mention</code></td>
+            <td>メンション通知を送信しない（true/false）</td>
+            <td>false</td>
+          </tr>
+          <tr>
+            <td><code>&no_bot</code></td>
+            <td>Botのメッセージで更新しない（true/false）</td>
+            <td>false</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3>削除</h3>
+      <pre><code>!?unsticky</code></pre>
+      <p>指定チャンネルの吊下げメッセージを削除します。</p>
+
+      <h3>一覧表示</h3>
+      <pre><code>/sticky list</code></pre>
+      <p>サーバー内の全てのチャンネルの吊下げメッセージ設定を一覧表示します。</p>
+
+      <h3>編集</h3>
+      <pre><code>/sticky edit [&lt;チャンネル&gt;]</code></pre>
+      <p>指定チャンネルの吊下げメッセージ設定を編集します。チャンネルを省略した場合、コマンド実行チャンネルが対象となります。</p>
+
+      <div class="alert alert-info">
+        <p><strong>💡 ヒント:</strong> <code>&name</code> または <code>&icon</code> を設定した場合、Webhook を使用してメッセージが送信されます。カスタムキャラクター機能と組み合わせることで、見た目をさらにカスタマイズできます。</p>
+      </div>
+
+      <div data-include="include/footer"></div>
+    </div>
+  </main>
+  <script src="../js/main.js"></script>
+</body>
+</html>

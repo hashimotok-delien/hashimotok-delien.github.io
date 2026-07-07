@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VC制御 - Cultivate ドキュメント</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body data-base="..">
+  <div data-include="include/sidebar"></div>
+
+  <main class="main-content">
+    <div data-include="include/topbar" data-title="VC制御"></div>
+
+    <div class="content">
+      <div class="feature-hero">
+        <div class="feature-icon">🎤</div>
+        <h1>VC制御</h1>
+        <p>Bot の VC 入退室を制御し、快適な VC 環境を維持</p>
+      </div>
+
+      <h2>概要</h2>
+      <p>
+        VC制御機能は、Bot の VC への入退室管理や、人数制限の自動調整を行う機能です。
+      </p>
+
+      <h3>Bot 接続時自動人数調整</h3>
+      <p>
+        Bot が人数制限のある VC へ入退室した際に、VC の人数制限を自動で調整します。
+        Bot が入室したときは制限人数を +1 し、退室したときは -1 することで、
+        本来のユーザー収容数を維持します。
+      </p>
+
+      <h2>設定方法</h2>
+      <ol class="steps">
+        <li>
+          <strong>設定パネルを開く</strong>
+          <code>/設定パネル</code> を実行
+        </li>
+        <li>
+          <strong>機能を ON にする</strong>
+          「Bot接続時自動人数調整」を ON に設定
+        </li>
+      </ol>
+
+      <h2>VC入退室コマンド</h2>
+
+      <div class="command-block">
+        <div class="cmd-name">/join</div>
+        <div class="cmd-desc">現在自分がいる VC に Bot を呼びます。</div>
+        <div class="cmd-meta"><span class="tag tag-admin">管理者専用</span></div>
+      </div>
+
+      <div class="command-block">
+        <div class="cmd-name">/leave</div>
+        <div class="cmd-desc">現在 Bot がいる VC から切断します。</div>
+        <div class="cmd-meta"><span class="tag tag-admin">管理者専用</span></div>
+      </div>
+
+      <h3>空VC自動削除</h3>
+      <p>
+        Bot は VC から全員が切断された際に、自動で空の VC を削除する処理を行います。
+        これにより、不要な VC が残り続けることを防ぎます。
+      </p>
+
+      <div class="alert alert-info">
+        <p><strong>💡 ヒント:</strong> 自動人数調整機能は、裏2shot の VC やイベント用 VC など、人数制限が重要なシーンで特に役立ちます。</p>
+      </div>
+
+      <div data-include="include/footer"></div>
+    </div>
+  </main>
+  <script src="../js/main.js"></script>
+</body>
+</html>

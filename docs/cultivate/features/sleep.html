@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>寝落ち送り - Cultivate ドキュメント</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body data-base="..">
+  <div data-include="include/sidebar"></div>
+
+  <main class="main-content">
+    <div data-include="include/topbar" data-title="寝落ち送り"></div>
+
+    <div class="content">
+      <div class="feature-hero">
+        <div class="feature-icon">💤</div>
+        <h1>寝落ち送り</h1>
+        <p>VC で寝落ちしたメンバーを自動的に移動</p>
+      </div>
+
+      <h2>概要</h2>
+      <p>
+        寝落ち送り機能は、VC で寝落ち（長時間の無音・無反応状態）したメンバーを
+        専用の「寝落ち部屋」VC に自動的に移動させる機能です。
+      </p>
+
+      <h2>事前準備</h2>
+      <ol class="steps">
+        <li>
+          <strong>機能を有効化</strong>
+          設定パネルから寝落ち送り機能を ON にします。<br>
+          <code>/設定パネル</code> → 寝落ち送り機能を ON
+        </li>
+        <li>
+          <strong>「寝落ち部屋」VC を作成</strong>
+          寝落ちしたメンバーを移動させる VC を作成します（必須）
+        </li>
+        <li>
+          <strong>「寝落ち送り」テキストチャンネルを作成</strong>
+          寝落ち送りを実行するためのテキストチャンネルを作成します（必須）<br>
+          ※ VC とテキストチャンネルは <strong>同じカテゴリ</strong> 内に設置してください
+        </li>
+        <li>
+          <strong>「寝落ち切断」ロールを追加（任意）</strong>
+          このロールを持っているユーザーを寝落ち送りしようとすると、切断されます
+        </li>
+      </ol>
+
+      <h2>使い方</h2>
+      <ol class="steps">
+        <li>
+          <strong>テキストチャンネルでメンション</strong>
+          TC「寝落ち送り」で寝落ちしているメンバーをメンションするだけで実行されます
+        </li>
+        <li>
+          <strong>自動移動</strong>
+          メンションされたメンバーが「寝落ち部屋」VC に移動します
+        </li>
+      </ol>
+
+      <div class="alert alert-info">
+        <p><strong>💡 ヒント:</strong> 複数メンバーの同時メンションにも対応しています。</p>
+      </div>
+
+      <div class="alert alert-warning">
+        <p><strong>⚠️ 注意:</strong> 「寝落ち切断」ロールが設定されている場合、そのロールを持つメンバーを寝落ち送りしようとすると強制切断されます。運営メンバーなどに設定することを推奨します。</p>
+      </div>
+
+      <div data-include="include/footer"></div>
+    </div>
+  </main>
+  <script src="../js/main.js"></script>
+</body>
+</html>

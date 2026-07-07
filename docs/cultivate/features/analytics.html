@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>アナリティクス - Cultivate ドキュメント</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body data-base="..">
+  <div data-include="include/sidebar"></div>
+
+  <main class="main-content">
+    <div data-include="include/topbar" data-title="アナリティクス"></div>
+
+    <div class="content">
+      <div class="feature-hero">
+        <div class="feature-icon">📊</div>
+        <h1>アナリティクス</h1>
+        <p>サーバーのデータをグラフで可視化</p>
+      </div>
+
+      <h2>概要</h2>
+      <p>
+        アナリティクス機能は、サーバーの各種データをグラフで表示する機能です。
+        現在は性別比率の表示に対応しています。
+      </p>
+
+      <h2>コマンド</h2>
+      <pre><code>/analytics &lt;type&gt;</code></pre>
+
+      <table>
+        <thead>
+          <tr>
+            <th>引数</th>
+            <th>説明</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>type</td>
+            <td>表示する項目（現在は「性別」のみ対応）</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="alert alert-info">
+        <p><strong>💡 情報:</strong> この機能は拡張予定です。今後のアップデートでより多くのデータ指標に対応する予定です。</p>
+      </div>
+
+      <div data-include="include/footer"></div>
+    </div>
+  </main>
+  <script src="../js/main.js"></script>
+</body>
+</html>

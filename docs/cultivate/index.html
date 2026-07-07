@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cultivate ドキュメント</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-base=".">
+
+  <div data-include="include/sidebar"></div>
+
+  <!-- Main Content -->
+  <main class="main-content">
+    <div data-include="include/topbar" data-title="トップ"></div>
+
+    <div class="content">
+      <!-- Hero -->
+      <div class="feature-hero">
+        <div class="feature-icon">🌱</div>
+        <h1>Cultivate ドキュメント</h1>
+        <p>これ1つで"運営が回る"界隈サーバーを構築</p>
+        <a href="getting-started.html" class="btn" style="margin-top: 20px;">導入する</a>
+      </div>
+
+      <!-- About -->
+      <h2>Cultivate とは</h2>
+      <p>
+        Cultivate は、Discord サーバーの運営を自動化・効率化するために開発された多機能 Bot です。
+        役職パネル、吊下げメッセージ、VC 管理、プロフィール保存、自動リアクションなど、
+        界隈サーバー運営に必要な機能を1つにまとめて提供します。
+      </p>
+      <p>
+        バージョン <strong>1.0.0</strong> ／ モジュール: <strong>discord.py</strong>
+      </p>
+
+      <!-- Features Grid -->
+      <h2>機能一覧</h2>
+      <div class="card-grid">
+
+        <!-- <div class="card">
+          <h3>👤 役職パネル</h3>
+          <p>ユーザー自身がロールを選択・取得できるパネルを設置。複数選択や単一選択、付与専用・剥奪専用など細かな設定が可能です。</p>
+          <a href="features/role-panel.html">詳しく見る →</a>
+        </div> -->
+
+        <div class="card">
+          <h3>📌 吊下げメッセージ</h3>
+          <p>指定チャンネルに常時表示されるメッセージを設定。埋め込みやWebhookにも対応し、情報掲示に最適です。</p>
+          <a href="features/sticky.html">詳しく見る →</a>
+        </div>
+
+        <div class="card">
+          <h3>🔒 裏2shot</h3>
+          <p>性別ロールに基づいたプライベート VC を作成。ノック機能で安全なコミュニケーションを実現します。</p>
+          <a href="features/back-2shot.html">詳しく見る →</a>
+        </div>
+
+        <div class="card">
+          <h3>⚙️ 設定パネル</h3>
+          <p>Bot の各種設定を一元的に管理できるパネル。寝落ち送りやスポイラー判定などの ON/OFF を切り替えられます。</p>
+          <a href="features/settings.html">詳しく見る →</a>
+        </div>
+
+        <div class="card">
+          <h3>💤 寝落ち送り</h3>
+          <p>VC で寝落ちしたメンバーを専用の VC に移動させます。切断ロールの設定も可能。</p>
+          <a href="features/sleep.html">詳しく見る →</a>
+        </div>
+
+        <div class="card">
+          <h3>🎤 VC制御</h3>
+          <p>Bot の VC 入退室時に自動で人数制限を調整。快適な VC 環境を維持します。</p>
+          <a href="features/vc-control.html">詳しく見る →</a>
+        </div>
+
+        <div class="card">
+          <h3>🖼️ プロフィール</h3>
+          <p>メッセージリンクからプロフィールを保存・再表示。VC 内での交流をスムーズにします。</p>
+          <a href="features/profile.html">詳しく見る →</a>
+        </div>
+
+        <div class="card">
+          <h3>❤️ プロフリアクション</h3>
+          <p>プロフィールに付いたリアクションを確認できる機能。誰がリアクションしたかをチェックできます。</p>
+          <a href="features/reaction.html">詳しく見る →</a>
+        </div>
+
+        <div class="card">
+          <h3>📝 自動ロール付与</h3>
+          <p>特定チャンネルへの投稿時に自動でロールを付与・剥奪。運営の手間を削減します。</p>
+          <a href="features/ch-role.html">詳しく見る →</a>
+        </div>
+
+        <div class="card">
+          <h3>😊 自動リアクション</h3>
+          <p>メッセージ投稿時に自動でリアクションを追加。コミュニケーションを活性化します。</p>
+          <a href="features/auto-reaction.html">詳しく見る →</a>
+        </div>
+
+        <div class="card">
+          <h3>🔞 スポイラー判定</h3>
+          <p>指定チャンネルでのスポイラーなし画像投稿を禁止し、自動で削除します。</p>
+          <a href="features/spoiler-check.html">詳しく見る →</a>
+        </div>
+
+        <!-- <div class="card">
+          <h3>📊 アナリティクス</h3>
+          <p>サーバーの性別比率などをグラフ表示。データに基づいた運営をサポートします。</p>
+          <a href="features/analytics.html">詳しく見る →</a>
+        </div> -->
+
+        <div class="card">
+          <h3>🧠 MBTI機能</h3>
+          <p>MBTI診断パネルや新規開拓VCパネルを設置。コミュニティの交流を促進します。</p>
+          <a href="features/mbti.html">詳しく見る →</a>
+        </div>
+
+        <!-- <div class="card">
+          <h3>🎭 キャラクター設定</h3>
+          <p>吊り下げメッセージなどで使用するキャラクター（名前・アイコン）を作成・管理できます。</p>
+          <a href="features/character.html">詳しく見る →</a>
+        </div> -->
+
+        <div class="card">
+          <h3>📋 カテゴリ権限同期</h3>
+          <p>カテゴリの権限設定を別のカテゴリにコピー。サーバー構成を一貫して管理できます。</p>
+          <a href="features/category-sync.html">詳しく見る →</a>
+        </div>
+
+      </div>
+
+      <!-- Support -->
+      <h2>サポート</h2>
+      <p>
+        ご質問や不具合の報告は、サポートサーバーまでお気軽にお越しください。
+      </p>
+      <a href="https://discord.gg/AmMkFhhD2D" class="btn btn-outline" target="_blank">💬 サポートサーバーに参加</a>
+
+      <div data-include="include/footer"></div>
+    </div>
+  </main>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,17 @@
+name: Blog Post
+description: 新しい記事を書く
+title: "[POST] "
+body:
+  - type: input
+    id: title
+    attributes:
+      label: タイトル
+  - type: input
+    id: tags
+    attributes:
+      label: タグ（"aaa,bbb" 形式）
+      description: ダブルクォートで囲んでカンマ区切り
+  - type: textarea
+    id: content
+    attributes:
+      label: 本文

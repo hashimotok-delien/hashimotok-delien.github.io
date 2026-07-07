@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>キャラクター設定 - Cultivate ドキュメント</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body data-base="..">
+  <div data-include="include/sidebar"></div>
+
+  <main class="main-content">
+    <div data-include="include/topbar" data-title="キャラクター設定"></div>
+
+    <div class="content">
+      <div class="feature-hero">
+        <div class="feature-icon">🎭</div>
+        <h1>キャラクター設定</h1>
+        <p>吊り下げメッセージなどで使用するキャラクターを作成・管理</p>
+      </div>
+
+      <h2>概要</h2>
+      <p>
+        キャラクター設定機能は、吊り下げメッセージ（スティッキー）などで使用する
+        キャラクター（名前・アイコン）を作成・管理できる機能です。
+        キャラクターを設定することで、用途に応じた表示名やアイコンでメッセージを送信できます。
+      </p>
+
+      <h2>コマンド</h2>
+      <pre><code>/キャラクター設定</code></pre>
+
+      <p>
+        コマンドを実行すると、現在登録されているキャラクターの一覧が表示されます。
+        以下の操作が可能です。
+      </p>
+
+      <table>
+        <thead>
+          <tr>
+            <th>操作</th>
+            <th>説明</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>➕ 新規作成</td>
+            <td>新しいキャラクターを作成します</td>
+          </tr>
+          <tr>
+            <td>名前</td>
+            <td>キャラクターの名前を設定（未設定時は Bot の名前）</td>
+          </tr>
+          <tr>
+            <td>アイコン</td>
+            <td>キャラクターのアイコンを設定（未設定時は Bot のアイコン）</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <p>
+        作成したキャラクターは、吊り下げメッセージの Webhook 送信時に
+        名前やアイコンとして使用できます。
+      </p>
+
+      <div class="alert alert-info">
+        <p><strong>💡 ヒント:</strong> キャラクターを活用することで、運営からのお知らせやイベント案内など、用途に応じた見た目でメッセージを送信できます。</p>
+      </div>
+
+      <div data-include="include/footer"></div>
+    </div>
+  </main>
+  <script src="../js/main.js"></script>
+</body>
+</html>

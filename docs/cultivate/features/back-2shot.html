@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>裏2shot - Cultivate ドキュメント</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body data-base="..">
+  <div data-include="include/sidebar"></div>
+
+  <main class="main-content">
+    <div data-include="include/topbar" data-title="裏2shot"></div>
+
+    <div class="content">
+      <div class="feature-hero">
+        <div class="feature-icon">🔒</div>
+        <h1>裏2shot</h1>
+        <p>性別ロールに基づいたプライベート VC を作成</p>
+      </div>
+
+      <h2>概要</h2>
+      <p>
+        裏2shot機能は、性別ロールに基づいてプライベートな VC（ボイスチャンネル）を作成できる機能です。
+        作成者にしか見えない待機 VC が作成され、その中に入室すると、マッチング相手にだけ見える VC が現れます。
+        ノック機能により、安全なコミュニケーションを実現します。
+      </p>
+
+      <h2>設定方法</h2>
+
+      <h3>新規作成</h3>
+      <ol class="steps">
+        <li>
+          <strong>プリセットを作成</strong>
+          <code>/裏2shot 新規作成 &lt;プリセット名&gt;</code>
+          <br>複数のパターンを作成できるので、用途に応じた名前を設定してください。
+        </li>
+        <li>
+          <strong>設定パネルを開く</strong>
+          コマンド実行後に表示されるパネルから各種設定を行います。
+        </li>
+      </ol>
+
+      <h3>既存設定の変更</h3>
+      <ol class="steps">
+        <li>
+          <strong>設定変更コマンド</strong>
+          <code>/裏2shot 設定変更 &lt;プリセット名&gt;</code>
+          <br>プリセット名はオートコンプリートに対応しています。
+        </li>
+        <li>
+          <strong>パネルから設定</strong>
+          表示されたパネルから各項目を変更します。
+        </li>
+      </ol>
+
+      <h2>設定項目</h2>
+
+      <table>
+        <thead>
+          <tr>
+            <th>設定項目</th>
+            <th>必須</th>
+            <th>説明</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>プリセット名変更</td>
+            <td>任意</td>
+            <td>コマンド使用時のプリセット名を変更</td>
+          </tr>
+          <tr>
+            <td>ベースロール登録</td>
+            <td><strong>必須</strong></td>
+            <td>対象となる性別ロールなどを指定（複数可）</td>
+          </tr>
+          <tr>
+            <td>ベース付属必須ロール</td>
+            <td>任意</td>
+            <td>裏2shot作成に必要な追加ロール（本メンバー等）</td>
+          </tr>
+          <tr>
+            <td>マッチングロール設定</td>
+            <td><strong>必須</strong></td>
+            <td>マッチング相手のロールを指定</td>
+          </tr>
+          <tr>
+            <td>パネル名</td>
+            <td>任意</td>
+            <td>埋め込みタイトル（デフォルト: 裏2shot 作成パネル）</td>
+          </tr>
+          <tr>
+            <td>パネル説明</td>
+            <td>任意</td>
+            <td>埋め込み説明文</td>
+          </tr>
+          <tr>
+            <td>パネル色</td>
+            <td>任意</td>
+            <td>埋め込み色（#RRGGBB形式）</td>
+          </tr>
+          <tr>
+            <td>カテゴリ指定</td>
+            <td>任意</td>
+            <td>VCを作成するカテゴリ（複数可）</td>
+          </tr>
+          <tr>
+            <td>生成VC名</td>
+            <td>任意</td>
+            <td>作成されるVCの名前（プレースホルダ使用可）</td>
+          </tr>
+          <tr>
+            <td>生成VC名（ロール名）</td>
+            <td>任意</td>
+            <td>正規表現を使った高度なVC名設定</td>
+          </tr>
+          <tr>
+            <td>生成VC名正規表現（ロール名）</td>
+            <td>任意</td>
+            <td>ロール名を正規表現でパースする設定</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3>VC名に使えるプレースホルダ</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>プレースホルダ</th>
+            <th>置き換え内容</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>&(name)</code></td>
+            <td>作成者のユーザー名</td>
+          </tr>
+          <tr>
+            <td><code>&(display_name)</code></td>
+            <td>作成者のサーバー内表示名</td>
+          </tr>
+          <tr>
+            <td><code>&(role_name)</code></td>
+            <td>作成者の持つベースロール名</td>
+          </tr>
+          <tr>
+            <td><code>&(数字)</code></td>
+            <td>正規表現の各パーツ（高度設定）</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h2>パネル設置</h2>
+      <ol class="steps">
+        <li>
+          <strong>設置コマンドを実行</strong>
+          <code>/裏2shot パネル設置 &lt;プリセット名&gt;</code>
+        </li>
+        <li>
+          <strong>パネルが設置される</strong>
+          実行したチャンネルに裏2shot作成パネルが設置されます。
+        </li>
+      </ol>
+
+      <h2>ユーザーの使い方</h2>
+
+      <h3>VC の作成</h3>
+      <ol class="steps">
+        <li>パネルの <strong>[作成]</strong> ボタンを押下</li>
+        <li>自分にしか見えない裏2shot待機 VC が作成される</li>
+        <li>待機 VC に入室すると、マッチング相手にだけ見える VC が現れる</li>
+      </ol>
+
+      <h3>入室方法（ノック機能）</h3>
+      <ol class="steps">
+        <li>入りたい裏2shot VC のインチャを開く</li>
+        <li><strong>[ノック]</strong> ボタンを押下</li>
+        <li>30秒間入室可能になるので、その間に VC に入室</li>
+      </ol>
+
+      <div class="alert alert-info">
+        <p><strong>💡 ヒント:</strong> VC名のプレースホルダを活用することで、作成者やロールに応じた動的な VC 名を設定できます。</p>
+      </div>
+
+      <div class="alert alert-warning">
+        <p><strong>⚠️ 注意:</strong> 正規表現を使った高度な VC 名設定は、正規表現にある程度慣れている方向けです。正規表現に関するサポートは行えない場合があります。</p>
+      </div>
+
+      <div data-include="include/footer"></div>
+    </div>
+  </main>
+  <script src="../js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>設定パネル - Cultivate ドキュメント</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body data-base="..">
+  <div data-include="include/sidebar"></div>
+
+  <main class="main-content">
+    <div data-include="include/topbar" data-title="設定パネル"></div>
+
+    <div class="content">
+      <div class="feature-hero">
+        <div class="feature-icon">⚙️</div>
+        <h1>設定パネル</h1>
+        <p>Bot の各種設定を一元的に管理</p>
+      </div>
+
+      <h2>概要</h2>
+      <p>
+        設定パネルは、Cultivate のあらゆる設定が可能な管理パネルです。
+        管理者用パネルのため、パネルを設置するチャンネルは一般ユーザーには見えない場所に設定してください。
+      </p>
+
+      <div class="alert alert-warning">
+        <p><strong>⚠️ 重要:</strong> パネルの設置には管理者権限が必要ですが、パネルの操作自体には管理者権限が不要です。そのため一般ユーザーでもパネルを使用して設定を変更できる可能性があるため、パネルの設置場所には十分注意してください。</p>
+      </div>
+
+      <h2>使い方</h2>
+      <ol class="steps">
+        <li>
+          <strong>コマンドを実行</strong>
+          <code>/設定パネル</code> を管理者権限で実行
+        </li>
+        <li>
+          <strong>パネルから設定</strong>
+          表示されたパネルから各種設定を切り替え
+        </li>
+      </ol>
+
+      <h2>設定できる項目</h2>
+
+      <table>
+        <thead>
+          <tr>
+            <th>設定項目</th>
+            <th>説明</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>💤 寝落ち送り機能</td>
+            <td>VC で寝落ちしたメンバーを専用 VC に移動する機能の ON/OFF</td>
+          </tr>
+          <tr>
+            <td>👥 Bot接続時自動人数調整</td>
+            <td>Bot が VC へ入退室した際に人数制限を自動調整する機能の ON/OFF</td>
+          </tr>
+          <tr>
+            <td>🔞 画像投稿スポイラー判定</td>
+            <td>画像投稿時のスポイラー判定機能の ON/OFF</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h2>各機能の詳細</h2>
+      <div class="card-grid">
+        <div class="card">
+          <h3>💤 寝落ち送り</h3>
+          <p>VC 寝落ちメンバーを自動的に専用 VC へ移動します。</p>
+          <a href="sleep.html">詳細を見る →</a>
+        </div>
+        <div class="card">
+          <h3>👥 Bot VC人数調整</h3>
+          <p>Bot の入退室に合わせて VC の人数制限を調整します。</p>
+          <a href="vc-control.html">詳細を見る →</a>
+        </div>
+        <div class="card">
+          <h3>🔞 スポイラー判定</h3>
+          <p>指定チャンネルでスポイラーなし画像を自動削除します。</p>
+          <a href="spoiler-check.html">詳細を見る →</a>
+        </div>
+      </div>
+
+      <div data-include="include/footer"></div>
+    </div>
+  </main>
+  <script src="../js/main.js"></script>
+</body>
+</html>
