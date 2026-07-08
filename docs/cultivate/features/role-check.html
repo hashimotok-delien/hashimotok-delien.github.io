@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>必須ロール確認 - Cultivate ドキュメント</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body data-base="..">
+  <div data-include="include/sidebar"></div>
+
+  <main class="main-content">
+    <div data-include="include/topbar" data-title="必須ロール確認"></div>
+
+    <div class="content">
+      <div class="feature-hero">
+        <div class="feature-icon">🛂</div>
+        <h1>必須ロール確認</h1>
+        <p>指定したロールを保持しているかどうかを確認できるパネル</p>
+      </div>
+
+      <h2>概要</h2>
+      <p>
+        必須ロール確認機能は、サーバー参加者に対して特定のロールを保持しているかを
+        確認するためのパネルを設置できる機能です。「本男」「本女」などのロールを
+        1つ以上保持しているかどうかをグループ単位でチェックし、不足している場合は
+        その旨を通知します。
+      </p>
+
+      <div class="alert alert-info">
+        <p><strong>💡 ユースケース:</strong> 性別ロール・年齢ロール・居住地域ロールなど、
+        サーバー参加時に最低限必要なロールの確認に利用できます。</p>
+      </div>
+
+      <h2>機能詳細</h2>
+
+      <h3>ロールグループ</h3>
+      <p>
+        複数のロールを「グループ」としてまとめて管理します。グループ内のロールを
+        <strong>いずれか1つ</strong> 保持していれば、そのグループは満たされたと判定されます。
+        判定は <strong>全グループ</strong> に対して行われ、すべてのグループを満たした場合に
+        「合格」となります。
+      </p>
+      <ul>
+        <li>グループごとに任意の数のロールを設定可能</li>
+        <li>グループごとに名前を設定可能（例: 性別ロール、年齢確認ロール）</li>
+        <li>グループごとに案内メッセージリンクを設定可能</li>
+      </ul>
+
+      <h3>合格時ロール操作</h3>
+      <p>
+        すべての必須ロールグループを満たしていた場合に、自動でロールの
+        <strong>付与・剥奪</strong> を行うことができます。
+        設定ごとに任意のロールを指定可能です。
+      </p>
+      <ul>
+        <li>付与ロール: 合格時に自動で付与（未所持の場合のみ）</li>
+        <li>剥奪ロール: 合格時に自動で剥奪（所持している場合のみ）</li>
+      </ul>
+
+      <h3>確認パネル</h3>
+      <p>
+        設定した内容をもとに、任意のテキストチャンネルに確認パネルを送信できます。
+        パネルには確認ボタンが配置され、ユーザーがボタンを押すとロール保持状況が
+        判定されます。
+      </p>
+      <ul>
+        <li>Embed のタイトル・説明文・色を自由にカスタマイズ可能</li>
+        <li>ボタンのラベル・色も自由に変更可能</li>
+        <li>パネル送信後も内容を更新可能（🔄 パネル更新）</li>
+      </ul>
+
+      <h2>設定手順</h2>
+
+      <ol class="steps">
+        <li>
+          <strong>設定パネルを開く</strong>
+          <code>/必須ロール確認設定</code> を実行（管理者専用）
+        </li>
+        <li>
+          <strong>新規作成</strong>
+          「➕ 新規作成」ボタンで設定を作成
+        </li>
+        <li>
+          <strong>設定名を変更</strong>
+          「📛 設定名変更」で管理しやすい名前を設定
+        </li>
+        <li>
+          <strong>Embed を設定</strong>
+          「🖼️ Embed設定」でパネルのタイトル・説明文・色を設定
+        </li>
+        <li>
+          <strong>ボタンを設定</strong>
+          「🔘 ボタン設定」で確認ボタンのラベル・色を設定
+        </li>
+        <li>
+          <strong>ロールグループを追加</strong>
+          「👥 ロールグループ」→「➕ グループ追加」で必須ロールグループを作成<br>
+          <span class="tag tag-info">グループ名</span>
+          <span class="tag tag-info">必須ロール（複数選択可）</span>
+          <span class="tag tag-info">案内メッセージリンク（任意）</span>
+        </li>
+        <li>
+          <strong>合格時ロール操作を設定（任意）</strong>
+          「🎁 合格時ロール操作」で合格時に付与・剥奪するロールを設定
+        </li>
+        <li>
+          <strong>パネルを送信</strong>
+          「📨 パネル送信」で確認パネルを任意のチャンネルに設置
+        </li>
+        <li>
+          <strong>保存</strong>
+          忘れずに「💾 保存」をクリック
+        </li>
+      </ol>
+
+      <h2>ユーザーの操作フロー</h2>
+
+      <ol class="steps">
+        <li>
+          <strong>パネルのボタンをクリック</strong>
+          設置された確認パネルの「✅ ロールを確認」ボタンを押す
+        </li>
+        <li>
+          <strong>結果を確認</strong>
+          <ul>
+            <li><strong>合格:</strong> 「すべての必須ロールグループを満たしています！」と表示され、
+            設定されていれば自動でロールの付与・剥奪が行われます。</li>
+            <li><strong>不足あり:</strong> 不足しているロールグループと、各グループの
+            <strong>必須ロール一覧</strong> が表示されます。案内メッセージリンクが設定されている場合は
+            「案内メッセージへ」のリンクが表示されます。</li>
+          </ul>
+        </li>
+      </ol>
+
+      <h2>コマンド</h2>
+
+      <div class="command-block">
+        <div class="cmd-name">/必須ロール確認設定</div>
+        <div class="cmd-desc">必須ロール確認パネルの設定を管理します</div>
+        <div class="cmd-meta"><span class="tag tag-admin">管理者専用</span></div>
+      </div>
+
+      <h2>設定項目一覧</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>項目</th>
+            <th>説明</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>設定名</td>
+            <td>管理用の設定名（ユーザーには非表示）</td>
+          </tr>
+          <tr>
+            <td>Embed タイトル</td>
+            <td>パネルのタイトル</td>
+          </tr>
+          <tr>
+            <td>Embed 説明</td>
+            <td>パネルの説明文（サーバー管理者が自由に記述）</td>
+          </tr>
+          <tr>
+            <td>Embed 色</td>
+            <td>パネルのアクセントカラー（#RRGGBB 形式）</td>
+          </tr>
+          <tr>
+            <td>ボタンラベル</td>
+            <td>確認ボタンに表示するテキスト</td>
+          </tr>
+          <tr>
+            <td>ボタン色</td>
+            <td>確認ボタンの色（緑・赤・青・グレー）</td>
+          </tr>
+          <tr>
+            <td>ロールグループ</td>
+            <td>必須ロールのグループ（グループ名・ロール・案内リンク）</td>
+          </tr>
+          <tr>
+            <td>合格時付与ロール</td>
+            <td>合格時に自動付与するロール（複数可）</td>
+          </tr>
+          <tr>
+            <td>合格時剥奪ロール</td>
+            <td>合格時に自動剥奪するロール（複数可）</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h2>判定ロジック</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>条件</th>
+            <th>判定</th>
+            <th>動作</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>すべてのグループを満たす</td>
+            <td><span style="color:#2ECC71;">✅ 合格</span></td>
+            <td>付与ロールの追加 / 剥奪ロールの削除</td>
+          </tr>
+          <tr>
+            <td>いずれかのグループを未満たす</td>
+            <td><span style="color:#E74C3C;">❌ 不足</span></td>
+            <td>不足グループ・必須ロールを表示</td>
+          </tr>
+        </tbody>
+      </table>
+      <ul>
+        <li>グループ内: <strong>OR</strong>（いずれか1つのロールでOK）</li>
+        <li>グループ間: <strong>AND</strong>（すべてのグループを満たす必要あり）</li>
+      </ul>
+
+      <div class="alert alert-warning">
+        <p><strong>⚠️ 注意:</strong> Bot の再起動後も設定は保持されますが、パネル更新が必要な場合は
+        「🔄 パネル更新」を実行してください。</p>
+      </div>
+
+      <div data-include="include/footer"></div>
+    </div>
+  </main>
+  <script src="../js/main.js"></script>
+</body>
+</html>
