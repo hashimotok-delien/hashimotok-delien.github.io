@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>スレッド管理 - まごのであります ドキュメント</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body data-base="..">
+  <div data-include="include/sidebar"></div>
+
+  <main class="main-content">
+    <div data-include="include/topbar" data-title="スレッド管理"></div>
+
+    <div class="content">
+      <div class="feature-hero">
+        <div class="feature-icon">🧵</div>
+        <h1>スレッド管理</h1>
+        <p>スレッド作成時に自動で管理UIを設置</p>
+      </div>
+
+      <h2>概要</h2>
+      <p>
+        スレッド管理機能は、特定のチャンネルでスレッドが作成されたときに、
+        自動的に削除・名称変更・招待の3つのボタンを設置する機能です。
+        スレッドの管理を簡素化し、運営の手間を削減します。
+      </p>
+
+      <h2>設定</h2>
+      <p>
+        <code>config.yml</code> の <code>thread_channels</code> セクションで、
+        管理対象とするチャンネルIDをリストで指定します。
+      </p>
+
+      <pre><code>thread_channels:
+  - チャンネルID1
+  - チャンネルID2
+  - チャンネルID3</code></pre>
+
+      <h2>自動設置されるボタン</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>ボタン</th>
+            <th>機能</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="tag" style="background:#e74c3c;color:#fff;">削除</span></td>
+            <td>スレッドを削除します</td>
+          </tr>
+          <tr>
+            <td><span class="tag" style="background:#e74c3c;color:#fff;">名称変更</span></td>
+            <td>スレッド名を変更します</td>
+          </tr>
+          <tr>
+            <td><span class="tag" style="background:#e74c3c;color:#fff;">招待</span></td>
+            <td>メンバーをスレッドに招待します</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="alert alert-info">
+        <p><strong>💡 ヒント:</strong> ボタンはスレッドの最初のメッセージとしてピン留めされた状態で投稿されます。</p>
+      </div>
+
+      <h2>自動チャンネルメッセージ</h2>
+      <p>
+        スレッド作成時に、設定に基づいて自動メッセージを投稿することもできます。
+        詳細は <a href="auto-channel-message.html">自動チャンネルメッセージ</a> のページを参照してください。
+      </p>
+
+      <div data-include="include/footer"></div>
+    </div>
+  </main>
+
+  <script src="../js/main.js"></script>
+</body>
+</html>

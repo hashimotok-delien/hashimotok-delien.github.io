@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ロールメンション切替 - まごのであります ドキュメント</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body data-base="..">
+  <div data-include="include/sidebar"></div>
+
+  <main class="main-content">
+    <div data-include="include/topbar" data-title="ロールメンション切替"></div>
+
+    <div class="content">
+      <div class="feature-hero">
+        <div class="feature-icon">🔔</div>
+        <h1>ロールメンション切替</h1>
+        <p>昼夜の特定時刻にロールのメンション可否を自動切替</p>
+      </div>
+
+      <h2>概要</h2>
+      <p>
+        ロールメンション切替機能は、特定の時刻になるとロールのメンション可否を
+        自動で切り替える機能です。例えば、昼の12時にあるロールのメンションを有効にし、
+        夜の24時に無効にする、といった設定が可能です。
+      </p>
+
+      <h2>設定</h2>
+      <p>
+        <code>config.yml</code> の <code>role_mention_setting</code> セクションで設定します。
+      </p>
+
+      <pre><code>role_mention_setting:
+  サーバーID:
+    noon_time: "12:00"
+    night_time: "24:00"
+    noon_role:
+      - 昼にメンション可能にするロールID
+    night_role:
+      - 夜にメンション可能にするロールID</code></pre>
+
+      <table>
+        <thead>
+          <tr>
+            <th>項目</th>
+            <th>説明</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>サーバーID</code></td>
+            <td>サーバーID</td>
+          </tr>
+          <tr>
+            <td><code>noon_time</code></td>
+            <td>昼の切替時刻（例: "12:00"）</td>
+          </tr>
+          <tr>
+            <td><code>night_time</code></td>
+            <td>夜の切替時刻（例: "24:00"）</td>
+          </tr>
+          <tr>
+            <td><code>noon_role</code></td>
+            <td>昼にメンション可能にするロールIDのリスト</td>
+          </tr>
+          <tr>
+            <td><code>night_role</code></td>
+            <td>夜にメンション可能にするロールIDのリスト</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="alert alert-info">
+        <p><strong>💡 ヒント:</strong> この機能は1分ごとに実行され、時刻が設定値と一致した場合にロールのメンション設定を切り替えます。</p>
+      </div>
+
+      <div data-include="include/footer"></div>
+    </div>
+  </main>
+
+  <script src="../js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>導入方法 - まごのであります ドキュメント</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-base=".">
+  <div data-include="include/sidebar"></div>
+
+  <main class="main-content">
+    <div data-include="include/topbar" data-title="導入方法"></div>
+
+    <div class="content">
+      <h1>🚀 導入方法</h1>
+      <p>
+        まごのであります をサーバーに導入する手順を説明します。
+      </p>
+
+      <h2>必要環境</h2>
+      <ul>
+        <li>Python 3.10 以上</li>
+        <li>discord.py 2.3 以上</li>
+        <li>サーバーの管理者権限</li>
+      </ul>
+
+      <h2>導入手順</h2>
+      <ol class="steps">
+        <li>
+          <strong>リポジトリをクローン</strong>
+          <pre><code>git clone https://github.com/hashimotok-mp/magonote-bot.git
+cd magonote-bot</code></pre>
+        </li>
+        <li>
+          <strong>依存パッケージをインストール</strong>
+          <pre><code>pip install -r requirements.txt</code></pre>
+        </li>
+        <li>
+          <strong>設定ファイルを準備</strong>
+          <code>config.yml</code> を編集し、各機能の設定を行います。
+          設定項目の詳細は各機能のドキュメントを参照してください。
+        </li>
+        <li>
+          <strong>Bot トークンを設定</strong>
+          <code>SecretVar.py</code> に Discord Developer Portal で発行した Bot トークンを設定します。
+        </li>
+        <li>
+          <strong>Bot を起動</strong>
+          <pre><code>python magonote_main.py</code></pre>
+        </li>
+      </ol>
+
+      <div class="alert alert-info">
+        <p><strong>💡 注意:</strong> Bot の稼働には Python 環境と Bot トークンが必要です。自己ホスト型の Bot ですので、稼働サーバーは別途ご用意ください。</p>
+      </div>
+
+      <h2>初期設定</h2>
+      <p>Bot が起動したら、以下の設定を行ってください。</p>
+
+      <h3>config.yml の編集</h3>
+      <p>
+        <code>config.yml</code> で各機能の設定を行います。主な設定項目は以下の通りです。
+      </p>
+
+      <table>
+        <thead>
+          <tr>
+            <th>設定項目</th>
+            <th>説明</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>nagara</code></td>
+            <td>ながらバッチのボタン設定</td>
+          </tr>
+          <tr>
+            <td><code>emoji</code></td>
+            <td>自動リアクションの設定</td>
+          </tr>
+          <tr>
+            <td><code>keyword_role</code></td>
+            <td>キーワードロールの設定</td>
+          </tr>
+          <tr>
+            <td><code>random_msg</code></td>
+            <td>ランダム転載チャンネルの設定</td>
+          </tr>
+          <tr>
+            <td><code>role_filter</code></td>
+            <td>ロールフィルターの設定</td>
+          </tr>
+          <tr>
+            <td><code>template</code></td>
+            <td>定型文テンプレートの設定</td>
+          </tr>
+          <tr>
+            <td><code>auto_channel_message</code></td>
+            <td>自動チャンネルメッセージの設定</td>
+          </tr>
+          <tr>
+            <td><code>vc_edit_panel</code></td>
+            <td>VC編集パネルのカテゴリ設定</td>
+          </tr>
+          <tr>
+            <td><code>vc_connect_auto_permission</code></td>
+            <td>VC接続時権限自動追加の設定</td>
+          </tr>
+          <tr>
+            <td><code>role_mention_setting</code></td>
+            <td>ロールメンション昼夜切替の設定</td>
+          </tr>
+          <tr>
+            <td><code>vc_start_notice</code></td>
+            <td>VC開始通知の設定</td>
+          </tr>
+          <tr>
+            <td><code>vc_permission_setting</code></td>
+            <td>VC権限昼夜切替の設定</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3>スラッシュコマンドの同期</h3>
+      <p>
+        Bot 起動後、自動的にスラッシュコマンドが同期されます。
+        反映には数分かかる場合があります。管理者は <code>/sync</code> コマンドで手動同期も可能です。
+      </p>
+
+      <div class="card-grid" style="margin-top: 32px;">
+        <div class="card">
+          <h3>🏷️ ながらバッチ</h3>
+          <p>VCでの活動状態をニックネームに表示。</p>
+          <a href="features/nagara.html">設定方法 →</a>
+        </div>
+        <div class="card">
+          <h3>🚪 ノックパネル</h3>
+          <p>VCへの安全な入室リクエスト機能。</p>
+          <a href="features/knock-panel.html">設定方法 →</a>
+        </div>
+        <div class="card">
+          <h3>✅ 取得ロール確認</h3>
+          <p>自分のロール一覧を表示。</p>
+          <a href="features/role-check.html">設定方法 →</a>
+        </div>
+      </div>
+
+      <div data-include="include/footer"></div>
+    </div>
+  </main>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

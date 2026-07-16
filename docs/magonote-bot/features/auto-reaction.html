@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>自動リアクション - まごのであります ドキュメント</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body data-base="..">
+  <div data-include="include/sidebar"></div>
+
+  <main class="main-content">
+    <div data-include="include/topbar" data-title="自動リアクション"></div>
+
+    <div class="content">
+      <div class="feature-hero">
+        <div class="feature-icon">😊</div>
+        <h1>自動リアクション</h1>
+        <p>メッセージ投稿時に自動でリアクション</p>
+      </div>
+
+      <h2>概要</h2>
+      <p>
+        自動リアクション機能は、特定のチャンネルにメッセージが投稿されたときに、
+        自動で指定された絵文字リアクションを追加する機能です。
+        コミュニケーションの活性化や、特定の投稿への反応を自動化できます。
+      </p>
+
+      <h2>設定</h2>
+      <p>
+        <code>config.yml</code> の <code>emoji</code> セクションで設定します。
+      </p>
+
+      <pre><code>emoji:
+  0:
+    guild_id: サーバーID
+    channel_id: チャンネルID
+    bot: "false"
+    reactions:
+      - "👍"
+      - "❤️"
+      - "😊"</code></pre>
+
+      <table>
+        <thead>
+          <tr>
+            <th>項目</th>
+            <th>説明</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>guild_id</code></td>
+            <td>サーバーID</td>
+          </tr>
+          <tr>
+            <td><code>channel_id</code></td>
+            <td>自動リアクションを付けるチャンネルID</td>
+          </tr>
+          <tr>
+            <td><code>bot</code></td>
+            <td>Botの投稿にもリアクションを付けるか（"true"/"false"）</td>
+          </tr>
+          <tr>
+            <td><code>reactions</code></td>
+            <td>追加するリアクションの一覧（絵文字またはカスタム絵文字ID）</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="alert alert-info">
+        <p><strong>💡 ヒント:</strong> カスタム絵文字を使用する場合は、絵文字ID（数値）を指定します。Unicode絵文字はそのまま文字列で指定可能です。</p>
+      </div>
+
+      <div data-include="include/footer"></div>
+    </div>
+  </main>
+
+  <script src="../js/main.js"></script>
+</body>
+</html>

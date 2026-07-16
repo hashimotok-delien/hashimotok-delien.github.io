@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FAQ - まごのであります ドキュメント</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-base=".">
+  <div data-include="include/sidebar"></div>
+
+  <main class="main-content">
+    <div data-include="include/topbar" data-title="FAQ"></div>
+
+    <div class="content">
+      <h1>❓ FAQ</h1>
+      <p>よくある質問とその回答をまとめています。</p>
+
+      <h2>導入について</h2>
+
+      <h3>Q. まごのであります は無料で使えますか？</h3>
+      <p>
+        <strong>A.</strong> はい、無料で利用できます。オープンソースの自己ホスト型 Bot です。
+      </p>
+
+      <h3>Q. 導入には何が必要ですか？</h3>
+      <p>
+        <strong>A.</strong> Python 3.10 以上の実行環境、Discord Bot トークン、サーバーの管理者権限が必要です。
+      </p>
+
+      <h3>Q. 複数のサーバーで使用できますか？</h3>
+      <p>
+        <strong>A.</strong> はい、1つの Bot インスタンスで複数のサーバーを管理できます。設定ファイルでサーバーごとの設定が可能です。
+      </p>
+
+      <h2>機能について</h2>
+
+      <h3>Q. ながらバッチのボタンはカスタマイズできますか？</h3>
+      <p>
+        <strong>A.</strong> はい、<code>config.yml</code> の <code>nagara</code> セクションでサーバーごとに自由に設定できます。
+      </p>
+
+      <h3>Q. 自動リアクションにはいくつの絵文字を設定できますか？</h3>
+      <p>
+        <strong>A.</strong> 設定ファイルで自由に設定できます。上限は特に設けていませんが、Discord の API 制限に準じます。
+      </p>
+
+      <h3>Q. キーワードロールで複数のキーワードを設定できますか？</h3>
+      <p>
+        <strong>A.</strong> はい、1つの設定に複数のキーワードを設定できます。全てのキーワードが含まれている場合にロールが付与されます（AND条件）。
+      </p>
+
+      <h3>Q. VC接続時権限自動追加で特定のVCを除外できますか？</h3>
+      <p>
+        <strong>A.</strong> はい、<code>disable_vc</code> リストに除外したいVCのIDを指定することで、特定のVCを対象外にできます。
+      </p>
+
+      <h2>トラブルシューティング</h2>
+
+      <h3>Q. Bot が反応しません</h3>
+      <p>
+        <strong>A.</strong> 以下の点をご確認ください。
+      </p>
+      <ul>
+        <li>Bot がオンラインになっているか</li>
+        <li>コマンドを実行するチャンネルで Bot の権限が適切に設定されているか</li>
+        <li>必要な権限（メッセージ管理、ロール管理など）が付与されているか</li>
+        <li>スラッシュコマンドが同期されているか（<code>/sync</code> を試す）</li>
+      </ul>
+
+      <h3>Q. スラッシュコマンドが表示されません</h3>
+      <p>
+        <strong>A.</strong> Bot 起動後、スラッシュコマンドの同期に時間がかかる場合があります。
+        管理者は <code>/sync</code> コマンドで手動同期を試してください。
+      </p>
+
+      <h3>Q. エラーが発生した場合の対処法は？</h3>
+      <p>
+        <strong>A.</strong> コンソールに出力されるエラーログを確認してください。
+        Bot は各種ログを <code>logs/</code> ディレクトリに出力します。
+        解決しない場合は、サポートサーバーまでエラー内容をご報告ください。
+      </p>
+
+      <h2>開発について</h2>
+
+      <h3>Q. 機能のリクエストはできますか？</h3>
+      <p>
+        <strong>A.</strong> GitHub の Issue またはサポートサーバーにて機能リクエストを受け付けています。
+      </p>
+
+      <h3>Q. バグ報告はどこにすればいいですか？</h3>
+      <p>
+        <strong>A.</strong> GitHub の Issue またはサポートサーバーまでご連絡ください。
+        可能であれば、発生した状況やエラーログを添付していただけると助かります。
+      </p>
+
+      <h3>Q. 自分で機能を追加したいです</h3>
+      <p>
+        <strong>A.</strong> オープンソースですので、自由にフォークして機能追加が可能です。
+         Pull Request も歓迎しています。
+      </p>
+
+      <div data-include="include/footer"></div>
+    </div>
+  </main>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

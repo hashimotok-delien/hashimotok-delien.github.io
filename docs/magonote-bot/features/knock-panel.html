@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ノックパネル - まごのであります ドキュメント</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body data-base="..">
+  <div data-include="include/sidebar"></div>
+
+  <main class="main-content">
+    <div data-include="include/topbar" data-title="ノックパネル"></div>
+
+    <div class="content">
+      <div class="feature-hero">
+        <div class="feature-icon">🚪</div>
+        <h1>ノックパネル</h1>
+        <p>VC への安全な入室リクエスト</p>
+      </div>
+
+      <h2>概要</h2>
+      <p>
+        ノックパネル機能は、VC に入室したいメンバーが「ノック（入室リクエスト）」を送信し、
+        相手の許可を得てから入室できる仕組みを提供します。
+        プライベートな VC でのコミュニケーションを安全に行うために使用します。
+      </p>
+
+      <h2>使い方</h2>
+
+      <h3>パネルの設置</h3>
+      <p>
+        管理者が <code>/ノックパネル作成</code> コマンドを実行すると、ノックパネルが設置されます。
+      </p>
+
+      <h3>ノックする</h3>
+      <ol>
+        <li>パネルの「ノック」ボタンを押す</li>
+        <li>入りたい VC に接続しているメンバーを選択</li>
+        <li>Bot から相手に DM でノック通知が届く</li>
+        <li>相手が DM 内の「許可」ボタンを押すと入室できる</li>
+      </ol>
+
+      <h3>招待する</h3>
+      <p>
+        「招待」ボタンを使うと、相手がノックする前に招待を送ることもできます。
+      </p>
+
+      <div class="alert alert-info">
+        <p><strong>💡 ヒント:</strong> ノック機能は、特定の VC に参加したいが、相手に直接声をかけづらい場合などに便利です。</p>
+      </div>
+
+      <div data-include="include/footer"></div>
+    </div>
+  </main>
+
+  <script src="../js/main.js"></script>
+</body>
+</html>

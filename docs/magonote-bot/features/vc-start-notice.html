@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VC開始通知 - まごのであります ドキュメント</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body data-base="..">
+  <div data-include="include/sidebar"></div>
+
+  <main class="main-content">
+    <div data-include="include/topbar" data-title="VC開始通知"></div>
+
+    <div class="content">
+      <div class="feature-hero">
+        <div class="feature-icon">📢</div>
+        <h1>VC開始通知</h1>
+        <p>VC 参加時に自動で通知メッセージ</p>
+      </div>
+
+      <h2>概要</h2>
+      <p>
+        VC開始通知機能は、メンバーが VC に参加したときや、VC 間を移動したときに、
+        指定されたチャンネルに通知メッセージを送信する機能です。
+        「新着除外」ロールを持っているメンバーは通知の対象外となります。
+      </p>
+
+      <h2>設定</h2>
+      <p>
+        <code>config.yml</code> の <code>vc_start_notice</code> セクションで設定します。
+      </p>
+
+      <pre><code>vc_start_notice:
+  サーバーID:
+    設定内容</code></pre>
+
+      <div class="alert alert-info">
+        <p><strong>💡 ヒント:</strong> 「新着除外」ロールを特定のメンバーに付与することで、VC 参加時の通知を抑制できます。</p>
+      </div>
+
+      <div data-include="include/footer"></div>
+    </div>
+  </main>
+
+  <script src="../js/main.js"></script>
+</body>
+</html>

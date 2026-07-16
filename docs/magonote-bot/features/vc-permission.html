@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VC権限昼夜切替 - まごのであります ドキュメント</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body data-base="..">
+  <div data-include="include/sidebar"></div>
+
+  <main class="main-content">
+    <div data-include="include/topbar" data-title="VC権限昼夜切替"></div>
+
+    <div class="content">
+      <div class="feature-hero">
+        <div class="feature-icon">🕐</div>
+        <h1>VC権限昼夜切替</h1>
+        <p>時刻に応じてVCやチャンネルの権限を自動切替</p>
+      </div>
+
+      <h2>概要</h2>
+      <p>
+        VC権限昼夜切替機能は、設定された時刻に応じて、VCやチャンネルの
+        権限設定を自動で切り替える機能です。昼用と夜用の権限設定をそれぞれ定義し、
+        指定時刻になると自動で権限が変更されます。
+      </p>
+
+      <h2>設定</h2>
+      <p>
+        <code>config.yml</code> の <code>vc_permission_setting</code> セクションで設定します。
+      </p>
+
+      <pre><code>vc_permission_setting:
+  サーバーID:
+    VCまたはチャンネルID:
+      noon_times:
+        - "08:00"
+      night_times:
+        - "22:00"
+      noon_permission:
+        view_channel: true
+        connect: true
+        send_message: true
+        send_thread: true
+      night_permission:
+        view_channel: false
+        connect: false
+        send_message: false
+        send_thread: false</code></pre>
+
+      <table>
+        <thead>
+          <tr>
+            <th>項目</th>
+            <th>説明</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>noon_times</code></td>
+            <td>昼の権限に切り替える時刻（複数設定可能）</td>
+          </tr>
+          <tr>
+            <td><code>night_times</code></td>
+            <td>夜の権限に切り替える時刻（複数設定可能）</td>
+          </tr>
+          <tr>
+            <td><code>noon_permission</code></td>
+            <td>昼間の権限設定</td>
+          </tr>
+          <tr>
+            <td><code>night_permission</code></td>
+            <td>夜間の権限設定</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div data-include="include/footer"></div>
+    </div>
+  </main>
+
+  <script src="../js/main.js"></script>
+</body>
+</html>

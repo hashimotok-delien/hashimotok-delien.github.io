@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ながらバッチ - まごのであります ドキュメント</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body data-base="..">
+  <div data-include="include/sidebar"></div>
+
+  <main class="main-content">
+    <div data-include="include/topbar" data-title="ながらバッチ"></div>
+
+    <div class="content">
+      <div class="feature-hero">
+        <div class="feature-icon">🏷️</div>
+        <h1>ながらバッチ</h1>
+        <p>VC で「何をしているか」をニックネームで共有</p>
+      </div>
+
+      <h2>概要</h2>
+      <p>
+        ながらバッチ機能は、VC に参加中に自分の活動状態をサーバーニックネームの先頭に表示できる機能です。
+        「作業中」「ゲーム中」「動画視聴中」など、ボタンを押すだけで簡単に状態を切り替えられます。
+      </p>
+
+      <h2>使い方</h2>
+
+      <h3>1. パネルを表示</h3>
+      <p>
+        <code>/ながら</code> コマンドを実行すると、ながらバッチパネルが表示されます。
+      </p>
+
+      <h3>2. 状態を選択</h3>
+      <p>
+        パネルに表示されたボタン（例: 「作業」「ゲーム」「動画」など）を押すと、
+        サーバーニックネームの先頭にその状態を示す文字が追加されます。
+      </p>
+
+      <h3>3. リセット</h3>
+      <p>
+        「サーバーネーム」ボタンでニックネームをリセットできます。
+        「表示名」ボタンでDiscordの表示名に戻せます。
+      </p>
+
+      <h2>設定</h2>
+      <p>
+        <code>config.yml</code> の <code>nagara</code> セクションで設定します。
+      </p>
+
+      <pre><code>nagara:
+  サーバーID:
+    buttons:
+      - "作業"
+      - "ゲーム"
+      - "動画"
+      - "麻雀"
+      - "仕事"
+      - "家事"
+      - "食事"
+      - "運転"
+      - "外出"
+      - "子育て"
+      - "猥談"
+      - "🔞️"
+      - "眠気"
+      - "フラグ"
+      - "ミュート"
+      - "静か"</code></pre>
+
+      <table>
+        <thead>
+          <tr>
+            <th>項目</th>
+            <th>説明</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>サーバーID</code></td>
+            <td>Discord サーバーの ID</td>
+          </tr>
+          <tr>
+            <td><code>buttons</code></td>
+            <td>表示するボタンのラベル一覧。最大25個まで。</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="alert alert-info">
+        <p><strong>💡 ヒント:</strong> サーバーごとに異なるボタン設定が可能です。サーバーの雰囲気に合わせてカスタマイズしてください。</p>
+      </div>
+
+      <div data-include="include/footer"></div>
+    </div>
+  </main>
+
+  <script src="../js/main.js"></script>
+</body>
+</html>

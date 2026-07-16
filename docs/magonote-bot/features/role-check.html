@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>取得ロール確認 - まごのであります ドキュメント</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body data-base="..">
+  <div data-include="include/sidebar"></div>
+
+  <main class="main-content">
+    <div data-include="include/topbar" data-title="取得ロール確認"></div>
+
+    <div class="content">
+      <div class="feature-hero">
+        <div class="feature-icon">✅</div>
+        <h1>取得ロール確認</h1>
+        <p>自分に付与されているロールを確認</p>
+      </div>
+
+      <h2>概要</h2>
+      <p>
+        取得ロール確認機能は、自分に付与されているロールの一覧を
+        エフェメラル（自分だけに見える）メッセージで表示するパネルを提供します。
+      </p>
+
+      <h2>使い方</h2>
+
+      <h3>パネルの設置</h3>
+      <p>
+        管理者が <code>/取得ロール確認パネル</code> コマンドを実行すると確認パネルが設置されます。
+      </p>
+
+      <h3>ロールを確認</h3>
+      <p>
+        パネルの「ロール確認」ボタンを押すと、自分に付与されているロール一覧が
+        エフェメラルメッセージで表示されます。
+      </p>
+
+      <div class="alert alert-info">
+        <p><strong>💡 ヒント:</strong> 結果は自分にしか見えないエフェメラルメッセージで表示されるため、他のメンバーに見られる心配はありません。</p>
+      </div>
+
+      <div data-include="include/footer"></div>
+    </div>
+  </main>
+
+  <script src="../js/main.js"></script>
+</body>
+</html>

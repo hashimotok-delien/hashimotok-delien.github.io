@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>chリアクションロール - まごのであります ドキュメント</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body data-base="..">
+  <div data-include="include/sidebar"></div>
+
+  <main class="main-content">
+    <div data-include="include/topbar" data-title="chリアクションロール"></div>
+
+    <div class="content">
+      <div class="feature-hero">
+        <div class="feature-icon">👍</div>
+        <h1>チャンネルリアクションロール付与</h1>
+        <p>リアクションを付けたユーザーにロールを一括付与</p>
+      </div>
+
+      <h2>概要</h2>
+      <p>
+        chリアクションロール付与機能は、指定したチャンネルのメッセージに
+        リアクションを付けたユーザーに対して、指定のロールを一括で付与するコマンドです。
+        既存のメッセージのリアクションを元に、事後的にロールを付与したい場合に使用します。
+      </p>
+
+      <h2>使い方</h2>
+
+      <pre><code>/chリアクションロール付与 channel:チャンネル role:ロール [emoji:絵文字]</code></pre>
+
+      <table>
+        <thead>
+          <tr>
+            <th>引数</th>
+            <th>必須</th>
+            <th>説明</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>channel</code></td>
+            <td>必須</td>
+            <td>対象チャンネル</td>
+          </tr>
+          <tr>
+            <td><code>role</code></td>
+            <td>必須</td>
+            <td>付与するロール</td>
+          </tr>
+          <tr>
+            <td><code>emoji</code></td>
+            <td>任意</td>
+            <td>特定の絵文字のみを対象にする場合に指定</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="alert alert-warning">
+        <p><strong>⚠ 注意:</strong> チャンネル内の最大1000件のメッセージをスキャンします。大量のメンバーにロールを付与する場合、処理に時間がかかることがあります。</p>
+      </div>
+
+      <div data-include="include/footer"></div>
+    </div>
+  </main>
+
+  <script src="../js/main.js"></script>
+</body>
+</html>

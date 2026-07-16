@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>自動チャンネルメッセージ - まごのであります ドキュメント</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body data-base="..">
+  <div data-include="include/sidebar"></div>
+
+  <main class="main-content">
+    <div data-include="include/topbar" data-title="自動チャンネルメッセージ"></div>
+
+    <div class="content">
+      <div class="feature-hero">
+        <div class="feature-icon">🤖</div>
+        <h1>自動チャンネルメッセージ</h1>
+        <p>チャンネル/スレッド作成時に自動でメッセージを投稿</p>
+      </div>
+
+      <h2>概要</h2>
+      <p>
+        自動チャンネルメッセージ機能は、新しいチャンネル（テキスト/VC）や
+        スレッドが作成されたときに、自動で設定されたメッセージを投稿する機能です。
+        ルール説明や注意事項などを自動掲載することで、運営の手間を削減します。
+      </p>
+
+      <h2>設定</h2>
+      <p>
+        <code>config.yml</code> の <code>auto_channel_message</code> セクションで設定します。
+      </p>
+
+      <pre><code>auto_channel_message:
+  0:
+    guild: サーバーID
+    category: true
+    id: カテゴリIDまたはチャンネルID
+    vcpanel: false
+    notes:
+      content: null
+      embed: null
+    messages:
+      0:
+        content: "メッセージ本文"
+        embed: "埋め込みテキスト"</code></pre>
+
+      <table>
+        <thead>
+          <tr>
+            <th>項目</th>
+            <th>説明</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>guild</code></td>
+            <td>サーバーID</td>
+          </tr>
+          <tr>
+            <td><code>category</code></td>
+            <td><code>true</code> の場合はカテゴリ内のチャンネル作成時、<code>false</code> の場合は特定チャンネルのスレッド作成時に発動</td>
+          </tr>
+          <tr>
+            <td><code>id</code></td>
+            <td>カテゴリID または チャンネルID</td>
+          </tr>
+          <tr>
+            <td><code>vcpanel</code></td>
+            <td>VC作成時にVC操作パネルも自動設置するか</td>
+          </tr>
+          <tr>
+            <td><code>messages</code></td>
+            <td>自動投稿するメッセージのリスト（content/embed を指定）</td>
+          </tr>
+          <tr>
+            <td><code>notes</code></td>
+            <td>メッセージ投稿後に追加で送信するノート</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="alert alert-info">
+        <p><strong>💡 ヒント:</strong> category を <code>true</code> にすると、そのカテゴリ内に新しいチャンネルが作成されるたびに自動メッセージが投稿されます。<code>false</code> の場合は、そのチャンネル内にスレッドが作成されたときに発動します。</p>
+      </div>
+
+      <div data-include="include/footer"></div>
+    </div>
+  </main>
+
+  <script src="../js/main.js"></script>
+</body>
+</html>

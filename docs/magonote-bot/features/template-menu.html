@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>定型文テンプレート - まごのであります ドキュメント</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body data-base="..">
+  <div data-include="include/sidebar"></div>
+
+  <main class="main-content">
+    <div data-include="include/topbar" data-title="定型文テンプレート"></div>
+
+    <div class="content">
+      <div class="feature-hero">
+        <div class="feature-icon">📋</div>
+        <h1>定型文テンプレート</h1>
+        <p>コンテキストメニューからワンクリックで定型文を送信</p>
+      </div>
+
+      <h2>概要</h2>
+      <p>
+        定型文テンプレート機能は、ユーザーを右クリック → アプリ → 定型文テンプレート
+        のコンテキストメニューから、事前に設定した定型文を DM で送信できる機能です。
+        定型文は設定ファイルで自由にカスタマイズでき、複数のテンプレートを
+        サーバーごとに設定できます。
+      </p>
+
+      <h2>設定</h2>
+      <p>
+        <code>config.yml</code> の <code>template</code> セクションで設定します。
+      </p>
+
+      <pre><code>template:
+  0:
+    menu_title: "テンプレート名"
+    setting:
+      サーバーID:
+        message_link: "https://discord.com/channels/..."
+        templates:
+          - "定型文1"
+          - "定型文2"</code></pre>
+
+      <table>
+        <thead>
+          <tr>
+            <th>項目</th>
+            <th>説明</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>menu_title</code></td>
+            <td>コンテキストメニューに表示される名前</td>
+          </tr>
+          <tr>
+            <td><code>message_link</code></td>
+            <td>テンプレートの説明が書かれたメッセージへのリンク</td>
+          </tr>
+          <tr>
+            <td><code>templates</code></td>
+            <td>送信する定型文のリスト（Embed形式で送信）</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h2>使い方</h2>
+      <ol>
+        <li>サーバー内の任意のユーザーを右クリック</li>
+        <li>「アプリ」→ テンプレート名 を選択</li>
+        <li>送信者と受信者の両方に確認のDMが送信される</li>
+      </ol>
+
+      <div class="alert alert-info">
+        <p><strong>💡 ヒント:</strong> 挨拶文や注意文、ウェルカムメッセージなど、よく使う文章をテンプレート化しておくと便利です。</p>
+      </div>
+
+      <div data-include="include/footer"></div>
+    </div>
+  </main>
+
+  <script src="../js/main.js"></script>
+</body>
+</html>

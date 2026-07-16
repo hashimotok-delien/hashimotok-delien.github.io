@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ロールメンバー検索 - まごのであります ドキュメント</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body data-base="..">
+  <div data-include="include/sidebar"></div>
+
+  <main class="main-content">
+    <div data-include="include/topbar" data-title="ロールメンバー検索"></div>
+
+    <div class="content">
+      <div class="feature-hero">
+        <div class="feature-icon">👥</div>
+        <h1>ロールメンバー検索</h1>
+        <p>ロールの保持状況に基づいてメンバーを検索</p>
+      </div>
+
+      <h2>概要</h2>
+      <p>
+        ロールメンバー検索機能は、指定した条件に基づいてサーバーメンバーを
+        フィルタリングし、一覧表示するコマンドです。特定のロールを持つメンバーや
+        持たないメンバーを素早く確認できます。
+      </p>
+
+      <h2>使い方</h2>
+
+      <pre><code>/ロールメンバー type:タイプ role_a:ロールA [role_b:ロールB]</code></pre>
+
+      <h3>検索タイプ</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>タイプ</th>
+            <th>説明</th>
+            <th>ロールB</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Aが付いている</td>
+            <td>ロールAを持つメンバーを表示</td>
+            <td>不要</td>
+          </tr>
+          <tr>
+            <td>Aが付いていない</td>
+            <td>ロールAを持たないメンバーを表示</td>
+            <td>不要</td>
+          </tr>
+          <tr>
+            <td>AB両方付いてる</td>
+            <td>ロールAとロールBの両方を持つメンバーを表示</td>
+            <td>必須</td>
+          </tr>
+          <tr>
+            <td>AB両方付いていない</td>
+            <td>ロールAとロールBの両方を持たないメンバーを表示</td>
+            <td>必須</td>
+          </tr>
+          <tr>
+            <td>Aの中でBが付いていない</td>
+            <td>ロールAを持つメンバーのうちロールBを持たないメンバーを表示</td>
+            <td>必須</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div data-include="include/footer"></div>
+    </div>
+  </main>
+
+  <script src="../js/main.js"></script>
+</body>
+</html>

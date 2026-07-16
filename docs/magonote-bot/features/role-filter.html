@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ロールフィルター - まごのであります ドキュメント</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body data-base="..">
+  <div data-include="include/sidebar"></div>
+
+  <main class="main-content">
+    <div data-include="include/topbar" data-title="ロールフィルター"></div>
+
+    <div class="content">
+      <div class="feature-hero">
+        <div class="feature-icon">🔍</div>
+        <h1>ロールフィルター</h1>
+        <p>性別ロールなどをフィルタリングするパネル</p>
+      </div>
+
+      <h2>概要</h2>
+      <p>
+        ロールフィルター機能は、性別ロール（例: 本男 / 本女）などのベースロールを
+        選択・フィルタリングするためのパネルを設置できる機能です。
+        特定のロールをベースに、サーバーのメンバーをフィルタリングできます。
+      </p>
+
+      <h2>設定</h2>
+      <p>
+        <code>config.yml</code> の <code>role_filter</code> セクションで設定します。
+      </p>
+
+      <pre><code>role_filter:
+  0:
+    guild: サーバーID
+    name: "フィルター名"
+    description: "パネルの説明文"
+    base_role1: ロールID1
+    base_role2: ロールID2
+    button_name1: "ボタン名1"
+    button_name2: "ボタン名2"
+    search_channel1: 検索チャンネルID1
+    search_channel2: 検索チャンネルID2
+    filter_roles:
+      - フィルターロールID</code></pre>
+
+      <table>
+        <thead>
+          <tr>
+            <th>項目</th>
+            <th>説明</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>guild</code></td>
+            <td>サーバーID</td>
+          </tr>
+          <tr>
+            <td><code>name</code></td>
+            <td>パネル名（オートコンプリートに表示）</td>
+          </tr>
+          <tr>
+            <td><code>description</code></td>
+            <td>パネルの説明文</td>
+          </tr>
+          <tr>
+            <td><code>base_role1/2</code></td>
+            <td>フィルタリングの基準となるロール（例: 性別ロール）</td>
+          </tr>
+          <tr>
+            <td><code>button_name1/2</code></td>
+            <td>パネルに表示するボタン名</td>
+          </tr>
+          <tr>
+            <td><code>search_channel1/2</code></td>
+            <td>メンバーを検索するチャンネル</td>
+          </tr>
+          <tr>
+            <td><code>filter_roles</code></td>
+            <td>フィルタリング対象のロール一覧</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h2>使い方</h2>
+      <ol>
+        <li><code>/ロールフィルターパネル作成</code> コマンドを実行</li>
+        <li>パネル名を選択（設定ファイルで定義した名前が候補に表示）</li>
+        <li>表示されたパネルのボタンでフィルタリングを実行</li>
+      </ol>
+
+      <div data-include="include/footer"></div>
+    </div>
+  </main>
+
+  <script src="../js/main.js"></script>
+</body>
+</html>

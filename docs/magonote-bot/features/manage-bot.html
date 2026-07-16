@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bot管理 - まごのであります ドキュメント</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body data-base="..">
+  <div data-include="include/sidebar"></div>
+
+  <main class="main-content">
+    <div data-include="include/topbar" data-title="Bot管理"></div>
+
+    <div class="content">
+      <div class="feature-hero">
+        <div class="feature-icon">⚙️</div>
+        <h1>Bot管理パネル</h1>
+        <p>導入サーバーの管理とBotの操作</p>
+      </div>
+
+      <h2>概要</h2>
+      <p>
+        Bot管理パネルは、Botが導入されているサーバーの一覧表示や、
+        Botをサーバーから退出させる操作を行うことができる管理用パネルです。
+        Botオーナーのみが使用できます。
+      </p>
+
+      <h2>使い方</h2>
+
+      <p>
+        <code>/管理パネル</code> コマンドを実行すると、管理パネルが表示されます。
+      </p>
+
+      <h3>サーバー一覧</h3>
+      <p>
+        導入サーバーがページ送りで一覧表示されます。
+        サーバーを選択すると、そのサーバーの管理画面に移動します。
+      </p>
+
+      <h3>サーバー管理画面</h3>
+      <p>
+        管理画面では以下の操作が行えます。
+      </p>
+      <table>
+        <thead>
+          <tr>
+            <th>操作</th>
+            <th>説明</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>サーバー情報の表示</td>
+            <td>サーバーIDなどの基本情報を表示</td>
+          </tr>
+          <tr>
+            <td>Bot退出</td>
+            <td>Bot をサーバーから退出させる</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="alert alert-warning">
+        <p><strong>⚠ 注意:</strong> Bot管理パネルはオーナーのみが使用可能です。Botをサーバーから退出させると、そのサーバーでのすべての機能が停止します。</p>
+      </div>
+
+      <div data-include="include/footer"></div>
+    </div>
+  </main>
+
+  <script src="../js/main.js"></script>
+</body>
+</html>

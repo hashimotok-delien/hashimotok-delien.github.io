@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>リアクション計測 - まごのであります ドキュメント</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body data-base="..">
+  <div data-include="include/sidebar"></div>
+
+  <main class="main-content">
+    <div data-include="include/topbar" data-title="リアクション計測"></div>
+
+    <div class="content">
+      <div class="feature-hero">
+        <div class="feature-icon">📊</div>
+        <h1>リアクション計測</h1>
+        <p>メッセージのリアクションを集計・ランキング表示</p>
+      </div>
+
+      <h2>概要</h2>
+      <p>
+        リアクション計測機能は、指定したチャンネルのメッセージに対するリアクションを
+        集計し、ランキング形式で表示する機能です。全リアクションまたは指定した絵文字の
+        リアクションのみを対象に、上位ランキングを表示できます。
+      </p>
+
+      <h2>使い方</h2>
+
+      <h3>コマンド</h3>
+      <pre><code>/リアクション計測 channel:チャンネル type:全リアクション|指定リアクション count:上位件数 [emoji:絵文字]</code></pre>
+
+      <table>
+        <thead>
+          <tr>
+            <th>引数</th>
+            <th>必須</th>
+            <th>説明</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>channel</code></td>
+            <td>必須</td>
+            <td>計測対象のチャンネル</td>
+          </tr>
+          <tr>
+            <td><code>type</code></td>
+            <td>必須</td>
+            <td>"全リアクション" または "指定リアクション"</td>
+          </tr>
+          <tr>
+            <td><code>count</code></td>
+            <td>必須</td>
+            <td>表示する上位件数</td>
+          </tr>
+          <tr>
+            <td><code>emoji</code></td>
+            <td>任意</td>
+            <td>指定リアクションの場合に計測する絵文字</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="alert alert-warning">
+        <p><strong>⚠ 注意:</strong> 大量のメッセージをスキャンする場合、処理に時間がかかることがあります。</p>
+      </div>
+
+      <div data-include="include/footer"></div>
+    </div>
+  </main>
+
+  <script src="../js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VC操作パネル - まごのであります ドキュメント</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body data-base="..">
+  <div data-include="include/sidebar"></div>
+
+  <main class="main-content">
+    <div data-include="include/topbar" data-title="VC操作パネル"></div>
+
+    <div class="content">
+      <div class="feature-hero">
+        <div class="feature-icon">🎛️</div>
+        <h1>VC操作パネル</h1>
+        <p>ボタン一つで VC の各種設定を操作</p>
+      </div>
+
+      <h2>概要</h2>
+      <p>
+        VC操作パネルは、自分が接続している VC のルーム名・人数制限・ステータス・ビットレートなどを
+        ボタン操作で簡単に変更できるパネルです。ルームに接続している全員が操作できます。
+      </p>
+
+      <h2>使い方</h2>
+
+      <h3>パネルの表示</h3>
+      <p>
+        <code>/vc操作パネル作成</code> コマンドを実行すると、VC操作パネルが表示されます。
+      </p>
+
+      <h3>操作ボタン</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>ボタン</th>
+            <th>機能</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="tag" style="background:#2ecc71;color:#000;">ルーム名</span></td>
+            <td>VC のルーム名を変更</td>
+          </tr>
+          <tr>
+            <td><span class="tag" style="background:#2ecc71;color:#000;">人数</span></td>
+            <td>VC の最大人数を変更</td>
+          </tr>
+          <tr>
+            <td><span class="tag" style="background:#2ecc71;color:#000;">ステータス</span></td>
+            <td>VC のステータスを変更</td>
+          </tr>
+          <tr>
+            <td><span class="tag" style="background:#2ecc71;color:#000;">ビットレート</span></td>
+            <td>VC のビットレートを変更</td>
+          </tr>
+          <tr>
+            <td><span class="tag" style="background:#e74c3c;color:#fff;">全体から隠す</span></td>
+            <td>VC を全員から見えないようにする</td>
+          </tr>
+          <tr>
+            <td><span class="tag" style="background:#e74c3c;color:#fff;">個人から隠す</span></td>
+            <td>特定のメンバーから VC を隠す</td>
+          </tr>
+          <tr>
+            <td><span class="tag" style="background:#5865f2;color:#fff;">招待</span></td>
+            <td>メンバーを VC に招待</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h2>設定</h2>
+      <p>
+        <code>config.yml</code> の <code>vc_edit_panel</code> セクションで、
+        操作パネルを表示するカテゴリと権限ロールを設定できます。
+      </p>
+
+      <pre><code>vc_edit_panel:
+  サーバーID:
+    categories:
+      - カテゴリID
+    roles:
+      - ロールID</code></pre>
+
+      <div data-include="include/footer"></div>
+    </div>
+  </main>
+
+  <script src="../js/main.js"></script>
+</body>
+</html>

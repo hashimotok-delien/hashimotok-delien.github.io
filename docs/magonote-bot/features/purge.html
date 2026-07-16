@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>メッセージ一括削除 - まごのであります ドキュメント</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body data-base="..">
+  <div data-include="include/sidebar"></div>
+
+  <main class="main-content">
+    <div data-include="include/topbar" data-title="メッセージ一括削除"></div>
+
+    <div class="content">
+      <div class="feature-hero">
+        <div class="feature-icon">🗑️</div>
+        <h1>メッセージ一括削除（Purge）</h1>
+        <p>指定した範囲のメッセージを一括削除</p>
+      </div>
+
+      <h2>概要</h2>
+      <p>
+        メッセージ一括削除機能は、指定したチャンネル内の2つのメッセージIDの間にある
+        メッセージを一括で削除します。テキストチャンネル、VC（テキスト部分）、スレッドに対応しています。
+      </p>
+
+      <h2>使い方</h2>
+
+      <pre><code>/purge channel:チャンネル message_id1:メッセージID1 message_id2:メッセージID2</code></pre>
+
+      <table>
+        <thead>
+          <tr>
+            <th>引数</th>
+            <th>必須</th>
+            <th>説明</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>channel</code></td>
+            <td>必須</td>
+            <td>削除対象のチャンネル（テキスト/VC/スレッド）</td>
+          </tr>
+          <tr>
+            <td><code>message_id1</code></td>
+            <td>必須</td>
+            <td>削除範囲の開始メッセージID</td>
+          </tr>
+          <tr>
+            <td><code>message_id2</code></td>
+            <td>必須</td>
+            <td>削除範囲の終了メッセージID</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="alert alert-danger">
+        <p><strong>⚠ 注意:</strong> このコマンドはサーバーの管理者権限が必要です。削除したメッセージは復元できませんので、十分注意して実行してください。</p>
+      </div>
+
+      <div data-include="include/footer"></div>
+    </div>
+  </main>
+
+  <script src="../js/main.js"></script>
+</body>
+</html>

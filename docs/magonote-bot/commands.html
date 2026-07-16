@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>コマンド一覧 - まごのであります ドキュメント</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-base=".">
+  <div data-include="include/sidebar"></div>
+
+  <main class="main-content">
+    <div data-include="include/topbar" data-title="コマンド一覧"></div>
+
+    <div class="content">
+      <h1>📜 コマンド一覧</h1>
+      <p>まごのであります で使用できるスラッシュコマンドの一覧です。</p>
+
+      <h2>VC系コマンド</h2>
+
+      <div class="command-block">
+        <div class="cmd-name">/ながら</div>
+        <div class="cmd-desc">ながらバッチパネルを表示。VCでの活動状態をニックネームに設定できます。</div>
+        <div class="cmd-meta">
+          <span class="tag tag-user">一般</span>
+        </div>
+      </div>
+
+      <div class="command-block">
+        <div class="cmd-name">/満室</div>
+        <div class="cmd-desc">自分が接続しているVCのルーム名の先頭に 🈵 を付けます。</div>
+        <div class="cmd-meta">
+          <span class="tag tag-user">一般</span>
+        </div>
+      </div>
+
+      <div class="command-block">
+        <div class="cmd-name">/満室解除</div>
+        <div class="cmd-desc">自分が接続しているVCのルーム名から 🈵 を外します。</div>
+        <div class="cmd-meta">
+          <span class="tag tag-user">一般</span>
+        </div>
+      </div>
+
+      <div class="command-block">
+        <div class="cmd-name">/ノックパネル作成</div>
+        <div class="cmd-desc">VCへのノック（入室リクエスト）パネルを作成します。</div>
+        <div class="cmd-meta">
+          <span class="tag tag-admin">管理者</span>
+        </div>
+      </div>
+
+      <div class="command-block">
+        <div class="cmd-name">/vc操作パネル作成</div>
+        <div class="cmd-desc">VCのルーム名・人数制限・ステータス・ビットレートなどを操作できるパネルを作成します。</div>
+        <div class="cmd-meta">
+          <span class="tag tag-user">一般</span>
+        </div>
+      </div>
+
+      <h2>ロール管理コマンド</h2>
+
+      <div class="command-block">
+        <div class="cmd-name">/取得ロール確認パネル</div>
+        <div class="cmd-desc">自分に付与されているロール一覧を表示するパネルを作成します。</div>
+        <div class="cmd-meta">
+          <span class="tag tag-admin">管理者</span>
+        </div>
+      </div>
+
+      <div class="command-block">
+        <div class="cmd-name">/ロールフィルターパネル作成</div>
+        <div class="cmd-desc">性別ロールなどをフィルタリングするパネルを作成します。パネル名は設定ファイルで定義。</div>
+        <div class="cmd-meta">
+          <span class="tag tag-admin">管理者</span>
+        </div>
+      </div>
+
+      <div class="command-block">
+        <div class="cmd-name">/chリアクションロール付与</div>
+        <div class="cmd-desc">指定チャンネルのメッセージにリアクションを付けたユーザーにロールを付与します。</div>
+        <div class="cmd-meta">
+          <span class="tag tag-admin">管理者</span>
+          <span class="tag tag-info">引数: channel / role / emoji(任意)</span>
+        </div>
+      </div>
+
+      <div class="command-block">
+        <div class="cmd-name">/ロールメンバー</div>
+        <div class="cmd-desc">指定した条件に合致するメンバー一覧を表示します。タイプ: Aが付いている / Aが付いていない / AB両方付いてる / AB両方付いていない / Aの中でBが付いていない</div>
+        <div class="cmd-meta">
+          <span class="tag tag-admin">管理者</span>
+          <span class="tag tag-info">引数: type / role_a / role_b(任意)</span>
+        </div>
+      </div>
+
+      <h2>メッセージ管理コマンド</h2>
+
+      <div class="command-block">
+        <div class="cmd-name">/ランダム</div>
+        <div class="cmd-desc">指定チャンネルからランダムにメッセージを転載して表示します。</div>
+        <div class="cmd-meta">
+          <span class="tag tag-user">一般</span>
+          <span class="tag tag-info">引数: チャンネル選択</span>
+        </div>
+      </div>
+
+      <div class="command-block">
+        <div class="cmd-name">/リアクション計測</div>
+        <div class="cmd-desc">指定チャンネルのメッセージリアクションを集計し、ランキングを表示します。</div>
+        <div class="cmd-meta">
+          <span class="tag tag-admin">管理者</span>
+          <span class="tag tag-info">引数: channel / type / count / emoji(任意)</span>
+        </div>
+      </div>
+
+      <div class="command-block">
+        <div class="cmd-name">/purge</div>
+        <div class="cmd-desc">指定した2つのメッセージIDの間のメッセージを一括削除します。</div>
+        <div class="cmd-meta">
+          <span class="tag tag-admin">管理者</span>
+          <span class="tag tag-info">引数: channel / message_id1 / message_id2</span>
+        </div>
+      </div>
+
+      <h2>管理コマンド</h2>
+
+      <div class="command-block">
+        <div class="cmd-name">/自動キック</div>
+        <div class="cmd-desc">指定したロールを持たないメンバーを一括キックします。最大10ロールまで指定可能。</div>
+        <div class="cmd-meta">
+          <span class="tag tag-admin">管理者</span>
+          <span class="tag tag-info">引数: role1 ~ role10</span>
+        </div>
+      </div>
+
+      <div class="command-block">
+        <div class="cmd-name">/カテメンバーパネル作成</div>
+        <div class="cmd-desc">カテゴリごとにメンバーの閲覧・接続権限を管理するパネルを作成します。</div>
+        <div class="cmd-meta">
+          <span class="tag tag-admin">管理者</span>
+        </div>
+      </div>
+
+      <div class="command-block">
+        <div class="cmd-name">/sync</div>
+        <div class="cmd-desc">スラッシュコマンドを手動同期します（オーナー専用）。タイプ: global / guild / all_guild</div>
+        <div class="cmd-meta">
+          <span class="tag tag-admin">管理者</span>
+          <span class="tag tag-info">引数: type_code</span>
+        </div>
+      </div>
+
+      <h2>コンテキストメニュー</h2>
+
+      <div class="command-block">
+        <div class="cmd-name">定型文テンプレート（コンテキストメニュー）</div>
+        <div class="cmd-desc">ユーザーを右クリック → アプリ → 定型文テンプレート で定型文をDM送信できます。設定ファイルで自由にカスタマイズ可能。</div>
+        <div class="cmd-meta">
+          <span class="tag tag-admin">管理者</span>
+        </div>
+      </div>
+
+      <h2>自動実行機能（コマンド不要）</h2>
+
+      <table>
+        <thead>
+          <tr>
+            <th>機能</th>
+            <th>説明</th>
+            <th>トリガー</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>自動リアクション</td>
+            <td>特定チャンネルへの投稿に自動でリアクション</td>
+            <td>メッセージ送信</td>
+          </tr>
+          <tr>
+            <td>キーワードロール</td>
+            <td>キーワードを含む投稿でロール付与・剥奪</td>
+            <td>メッセージ送信</td>
+          </tr>
+          <tr>
+            <td>VC接続時権限自動追加</td>
+            <td>VC参加時に権限を自動付与</td>
+            <td>VC参加</td>
+          </tr>
+          <tr>
+            <td>VC開始通知</td>
+            <td>VC参加時に通知メッセージを送信</td>
+            <td>VC参加</td>
+          </tr>
+          <tr>
+            <td>スレッド管理ボタン</td>
+            <td>スレッド作成時に管理ボタンを自動設置</td>
+            <td>スレッド作成</td>
+          </tr>
+          <tr>
+            <td>自動チャンネルメッセージ</td>
+            <td>チャンネル作成時に自動でメッセージを投稿</td>
+            <td>チャンネル作成</td>
+          </tr>
+          <tr>
+            <td>ロールメンション切替</td>
+            <td>昼夜の特定時刻にロールのメンション可否を切替</td>
+            <td>定時実行（1分ごと）</td>
+          </tr>
+          <tr>
+            <td>VC権限昼夜切替</td>
+            <td>昼夜の特定時刻にVC/チャンネルの権限を切替</td>
+            <td>定時実行（1分ごと）</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div data-include="include/footer"></div>
+    </div>
+  </main>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
