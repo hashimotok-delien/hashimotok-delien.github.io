@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>プロフテンプレートチェック - Cultivate ドキュメント</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body data-base="..">
+  <div data-include="include/sidebar"></div>
+
+  <main class="main-content">
+    <div data-include="include/topbar" data-title="プロフテンプレートチェック"></div>
+
+    <div class="content">
+      <div class="feature-hero">
+        <div class="feature-icon">📝</div>
+        <h1>プロフテンプレートチェック</h1>
+        <p>メッセージが定型フォーマットに沿っているかを自動検証</p>
+      </div>
+
+      <div class="alert alert-info">
+        <p><strong>💡 テンプレートチェックとは？</strong>
+        ユーザーが送信したメッセージがあらかじめ定義された
+        <strong>テンプレート（定型フォーマット）</strong>に従っているかを
+        自動検証するシステムです。結果に応じてロールの付与・剥奪を
+        自動実行できます。</p>
+      </div>
+
+      <h2>概要</h2>
+      <p>
+        テンプレートチェック機能は、指定された形式でメッセージを書いた
+        メンバーを自動で判定し、<strong>ロールの付与・剥奪</strong>を
+        行います。例えば「自己紹介テンプレート」を設定しておけば、
+        必須項目をすべて埋めたメンバーに自動でロールを付与できます。
+      </p>
+
+      <h2>ユースケース</h2>
+      <div class="table-wrapper"><table>
+        <thead>
+          <tr>
+            <th>シナリオ</th>
+            <th>説明</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>自己紹介テンプレ</td>
+            <td>決められた項目（名前・趣味・ひとこと等）をすべて埋めた
+            メンバーにロールを付与</td>
+          </tr>
+          <tr>
+            <td>チケット形式</td>
+            <td>報告フォーマットに沿っているかをチェックし、
+            違反時は注意ロールを付与</td>
+          </tr>
+          <tr>
+            <td>申請フォーム</td>
+            <td>必須項目の漏れを自動検出、完了者に承認ロールを付与</td>
+          </tr>
+          <tr>
+            <td>定時チェック</td>
+            <td>タイマー機能を使い、定期的にメンバーのメッセージを検証</td>
+          </tr>
+        </tbody>
+      </table></div>
+
+      <h2>設定の開き方</h2>
+
+      <h3>スラッシュコマンド</h3>
+      <p>管理者権限を持つメンバーは以下のコマンドを実行します：</p>
+      <pre><code>/プロフィールv2設定</code></pre>
+      <p>
+        表示されたメニューから「🔍 テンプレチェック」ボタンを
+        クリックすると、テンプレートチェック設定の一覧が表示されます。
+      </p>
+
+      <h3>オーナーパネル</h3>
+      <p>サーバー管理者はオーナーパネルからも設定できます：</p>
+      <ol class="steps">
+        <li>オーナーパネルを開く</li>
+        <li>「プロフィール設定」ボタンをクリック</li>
+        <li>「テンプレチェック」セクションの「設定」ボタンをクリック</li>
+      </ol>
+
+      <h2>テンプレートの記法</h2>
+      <p>
+        テンプレートは、検証したい <strong>項目名</strong> と
+        <strong>制御構文</strong> で構成されます。
+      </p>
+
+      <h3>基本構造</h3>
+      <pre><code>名前
+&amp;{required}
+趣味
+&amp;{required}
+ひとこと
+&amp;{required}</code></pre>
+      <p>上記の場合、以下のチェックが行われます：</p>
+      <ul>
+        <li>「名前」「趣味」「ひとこと」の
+        <strong>3項目がすべて存在すること</strong></li>
+        <li>各項目に <strong>内容が記入されていること</strong>
+        （<code>&amp;{required}</code>）</li>
+        <li>項目の <strong>順番</strong> がテンプレート通りであること</li>
+      </ul>
+
+      <h3>制御構文一覧</h3>
+      <div class="table-wrapper"><table>
+        <thead>
+          <tr>
+            <th>制御構文</th>
+            <th>説明</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>&amp;{required}</code></td>
+            <td>その項目の記入が必須</td>
+          </tr>
+          <tr>
+            <td><code>&amp;{min=N}</code></td>
+            <td>最小 N 文字以上の記入が必要</td>
+          </tr>
+          <tr>
+            <td><code>&amp;{max=N}</code></td>
+            <td>最大 N 文字以内</td>
+          </tr>
+          <tr>
+            <td><code>&amp;{min=N,max=M}</code></td>
+            <td>N 文字以上 M 文字以内</td>
+          </tr>
+          <tr>
+            <td><code>&amp;{regex=/パターン/}</code></td>
+            <td>正規表現にマッチする必要がある</td>
+          </tr>
+          <tr>
+            <td><code>&amp;{option}</code></td>
+            <td>項目の記入は任意（存在すればチェック）</td>
+          </tr>
+        </tbody>
+      </table></div>
+
+      <h3>記入例</h3>
+      <pre><code>名前
+&amp;{required}
+年齢
+&amp;{required,min=1,max=3}
+誕生日
+&amp;{required,regex=/(\d{4})年(\d{1,2})月(\d{1,2})日/}
+趣味
+&amp;{option}
+ひとこと
+&amp;{required}</code></pre>
+      <p>このテンプレートの場合：</p>
+      <ul>
+        <li><strong>名前</strong>: 記入必須</li>
+        <li><strong>年齢</strong>: 記入必須、1〜3文字</li>
+        <li><strong>誕生日</strong>: 記入必須、
+        <code>2026年7月18日</code> のような形式にマッチ</li>
+        <li><strong>趣味</strong>: 任意（書いても書かなくてもOK）</li>
+        <li><strong>ひとこと</strong>: 記入必須</li>
+      </ul>
+
+      <h2>設定項目一覧</h2>
+
+      <h3>基本設定</h3>
+      <div class="table-wrapper"><table>
+        <thead>
+          <tr>
+            <th>項目</th>
+            <th>説明</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>有効/無効</td>
+            <td>テンプレートチェックのON/OFF</td>
+          </tr>
+          <tr>
+            <td>名前</td>
+            <td>設定の名前（管理用）</td>
+          </tr>
+          <tr>
+            <td>テンプレート</td>
+            <td>チェックに使用するテンプレート本文</td>
+          </tr>
+          <tr>
+            <td>プロフィール設定</td>
+            <td>チェックに関連付けるプロフィールv2設定（紐付けは任意）</td>
+          </tr>
+        </tbody>
+      </table></div>
+
+      <h3>ロール設定</h3>
+      <div class="table-wrapper"><table>
+        <thead>
+          <tr>
+            <th>項目</th>
+            <th>説明</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>合格付与ロール</td>
+            <td>テンプレートに適合したメンバーに付与するロール</td>
+          </tr>
+          <tr>
+            <td>合格剥奪ロール</td>
+            <td>テンプレートに適合したメンバーから剥奪するロール</td>
+          </tr>
+          <tr>
+            <td>違反ロール</td>
+            <td>テンプレートに適合しなかったメンバーに付与するロール</td>
+          </tr>
+          <tr>
+            <td>対象ロール</td>
+            <td>このロールを持つメンバーのみチェック対象にする
+            （省略時は全員）</td>
+          </tr>
+          <tr>
+            <td>非対象ロール</td>
+            <td>このロールを持つメンバーをチェック対象から除外する</td>
+          </tr>
+        </tbody>
+      </table></div>
+
+      <h3>通知設定</h3>
+      <div class="table-wrapper"><table>
+        <thead>
+          <tr>
+            <th>項目</th>
+            <th>説明</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>通知方法</td>
+            <td>違反時の通知方法
+            （なし / スレッド作成 / DM / DM→スレッドフォールバック）</td>
+          </tr>
+          <tr>
+            <td>ログメッセージ</td>
+            <td>通知時に表示するカスタムメッセージ
+            （プレースホルダー使用可能）</td>
+          </tr>
+        </tbody>
+      </table></div>
+
+      <h3>タイマー設定</h3>
+      <div class="table-wrapper"><table>
+        <thead>
+          <tr>
+            <th>項目</th>
+            <th>説明</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>開始時刻</td>
+            <td>タイマーチェックの開始時間（時:分）</td>
+          </tr>
+          <tr>
+            <td>チェック間隔</td>
+            <td>チェックを繰り返す間隔（時間単位）。
+            未設定の場合は1回のみ</td>
+          </tr>
+        </tbody>
+      </table></div>
+
+      <h2>検証ルール</h2>
+      <p>テンプレートチェックエンジンは以下のルールで検証を行います：</p>
+
+      <h3>1. 項目の存在チェック</h3>
+      <p>
+        テンプレートに書かれた項目名がメッセージ内に存在するか確認します。
+        項目名は行頭にあるものとして検出されます。
+      </p>
+
+      <h3>2. 順番チェック</h3>
+      <p>
+        項目はテンプレートに書かれた順番通りに並んでいる必要があります。
+        順番が異なる場合はエラーとなります。
+      </p>
+
+      <h3>3. 記入内容チェック</h3>
+      <p>
+        各項目の右側に続く内容と、次の項目までのブロックを内容として抽出し、
+        <code>&amp;{required}</code> や <code>&amp;{min=N}</code> などの
+        制約に従って検証します。
+      </p>
+
+      <h3>4. 複数設定の評価</h3>
+      <p>
+        複数のテンプレート設定が有効な場合、すべての設定でチェックを実行し、
+        最もマッチ率の高い結果を採用します。同率の場合はエラーが少ない方が
+        優先されます。
+      </p>
+
+      <h2>処理フロー</h2>
+      <ol class="steps">
+        <li>メンバーがメッセージを送信</li>
+        <li>サーバーの全テンプレート設定を検索</li>
+        <li>ロールフィルター（対象/非対象ロール）で対象者を絞り込み</li>
+        <li>各設定のテンプレートを使ってメッセージ内容を検証</li>
+        <li>最もマッチ率の高い結果を選択</li>
+        <li>判定に応じてロールを付与/剥奪</li>
+        <li>違反時は設定に応じて通知（スレッド/DM）</li>
+        <li>タイマー設定がある場合は指定間隔で定期チェックを実行</li>
+      </ol>
+
+      <div class="alert alert-warning">
+        <p><strong>⚠️ 注意:</strong> テンプレートチェックは
+        メッセージの内容のみを検証します。添付ファイルや埋め込みコンテンツは
+        チェック対象外です。また、Bot のメッセージはチェック対象外です。</p>
+      </div>
+
+      <div data-include="include/footer"></div>
+    </div>
+  </main>
+  <script src="../js/main.js"></script>
+</body>
+</html>
