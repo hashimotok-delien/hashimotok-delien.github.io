@@ -366,10 +366,31 @@ blockquote p {
 }
 
 /* ===== Tables ===== */
+.table-wrapper {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  margin-bottom: 24px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+}
+
+.table-wrapper table {
+  margin-bottom: 0;
+  min-width: 600px;
+}
+
+.table-wrapper::-webkit-scrollbar {
+  height: 4px;
+}
+
+.table-wrapper::-webkit-scrollbar-thumb {
+  background: var(--text-muted);
+  border-radius: 2px;
+}
+
 table {
   width: 100%;
   border-collapse: collapse;
-  margin-bottom: 24px;
   font-size: 0.9rem;
 }
 
@@ -377,13 +398,17 @@ th, td {
   padding: 10px 14px;
   text-align: left;
   border-bottom: 1px solid var(--border);
+  white-space: nowrap;
 }
 
 th {
   background: var(--bg-card);
   color: var(--accent);
   font-weight: 600;
-  white-space: nowrap;
+}
+
+tr:last-child td {
+  border-bottom: none;
 }
 
 tr:hover td {

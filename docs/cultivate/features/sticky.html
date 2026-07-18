@@ -24,133 +24,292 @@
 
       <h2>概要</h2>
       <p>
-        吊下げメッセージ機能（スティッキーメッセージ）は、指定したチャンネルにおいて設定したメッセージを最下部に常に表示し続けることができる機能です。
-        新しいメッセージが送信されるたびに、自動的に最下部に再投稿されます。
+        吊下げメッセージ機能（スティッキーメッセージ）は、指定した
+        チャンネルにおいて設定したメッセージを最下部に常に表示し
+        続けることができる機能です。新しいメッセージが送信される
+        たびに、自動的に最下部に再投稿されます。
       </p>
 
       <h2>制限事項</h2>
       <ul>
-        <li>吊下げメッセージは <strong>1チャンネルにつき1つ</strong> まで設定可能</li>
-        <li>吊下げメッセージは Bot の再起動後も保持されます</li>
-        <li>吊下げメッセージは <strong>1サーバーにつき最大100個</strong> まで設定可能</li>
+        <li>吊下げメッセージは <strong>1チャンネルにつき1つ</strong>
+        まで設定可能</li>
+        <li>設定は Bot の再起動後も保持されます</li>
+        <li><strong>1サーバーにつき最大100個</strong> まで設定可能</li>
+        <li>Webhook を使用する場合（<code>&amp;name</code> /
+        <code>&amp;icon</code> 設定時）、ボタンは使用できません</li>
       </ul>
 
       <h2>コマンド</h2>
 
       <h3>設定（プレフィックスコマンド）</h3>
-      <pre><code>!?sticky &count=5 &time=5 &name=送信者名 &icon=https://example.com/icon.png &content=本文 &embed_title=タイトル</code></pre>
+      <pre><code>!?sticky &amp;count=5 &amp;time=5 &amp;name=送信者名
+&amp;icon=https://example.com/icon.png
+&amp;content=本文 &amp;embed_title=タイトル</code></pre>
 
+      <h3>削除（プレフィックスコマンド）</h3>
+      <pre><code>!?unsticky</code></pre>
+
+      <h3>一覧表示（スラッシュコマンド）</h3>
+      <pre><code>/sticky list</code></pre>
+
+      <h3>編集（スラッシュコマンド）</h3>
+      <pre><code>/sticky edit [&lt;チャンネル&gt;]</code></pre>
+      <p>チャンネルを省略した場合、コマンド実行チャンネルが
+      対象となります。</p>
+
+      <h2>設定オプション一覧</h2>
+      <div class="table-wrapper">
       <table>
         <thead>
           <tr>
             <th>オプション</th>
             <th>説明</th>
-            <th>デフォルト</th>
+            <th>デフォルト値</th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td><code>&count</code></td>
+            <td><code>&amp;count</code></td>
             <td>メッセージを送信するまでの通常メッセージ数</td>
-            <td>5</td>
+            <td><code>5</code></td>
           </tr>
           <tr>
-            <td><code>&time</code></td>
+            <td><code>&amp;time</code></td>
             <td>メッセージを送信するまでの時間（秒）</td>
-            <td>5</td>
+            <td><code>5</code></td>
           </tr>
           <tr>
-            <td><code>&name</code></td>
+            <td><code>&amp;name</code></td>
             <td>メッセージ送信者名（設定時はWebhook使用）</td>
-            <td>Cultivate</td>
+            <td><code>Cultivate</code></td>
           </tr>
           <tr>
-            <td><code>&icon</code></td>
+            <td><code>&amp;icon</code></td>
             <td>メッセージ送信者アイコンURL（設定時はWebhook使用）</td>
             <td>Botアイコン</td>
           </tr>
           <tr>
-            <td><code>&content</code></td>
+            <td><code>&amp;content</code></td>
             <td>メッセージ本文（改行や空白も可能）</td>
             <td>-</td>
           </tr>
           <tr>
-            <td><code>&embed_title</code></td>
+            <td><code>&amp;embed_title</code></td>
             <td>埋め込みメッセージのタイトル</td>
             <td>-</td>
           </tr>
           <tr>
-            <td><code>&embed_description</code></td>
-            <td>埋め込みメッセージの説明</td>
+            <td><code>&amp;embed_description</code></td>
+            <td>埋め込みメッセージの説明文</td>
             <td>-</td>
           </tr>
           <tr>
-            <td><code>&embed_color</code></td>
-            <td>埋め込みメッセージのカラー（#RRGGBB）</td>
-            <td>-</td>
+            <td><code>&amp;embed_color</code></td>
+            <td>埋め込みメッセージのカラー
+            （<code>#RRGGBB</code> 形式）</td>
+            <td><code>#000000</code></td>
           </tr>
           <tr>
-            <td><code>&embed_footer</code></td>
+            <td><code>&amp;embed_footer</code></td>
             <td>埋め込みメッセージのフッター文</td>
             <td>-</td>
           </tr>
           <tr>
-            <td><code>&embed_thumbnail</code></td>
+            <td><code>&amp;embed_thumbnail</code></td>
             <td>埋め込みメッセージのサムネイルURL</td>
             <td>-</td>
           </tr>
           <tr>
-            <td><code>&embed_image</code></td>
+            <td><code>&amp;embed_image</code></td>
             <td>埋め込みメッセージの画像URL</td>
             <td>-</td>
           </tr>
           <tr>
-            <td><code>&embed_author</code></td>
+            <td><code>&amp;embed_author</code></td>
             <td>埋め込みメッセージの著者名</td>
             <td>-</td>
           </tr>
           <tr>
-            <td><code>&embed_url</code></td>
+            <td><code>&amp;embed_url</code></td>
             <td>埋め込みメッセージのURL（タイトルクリック時）</td>
             <td>-</td>
           </tr>
           <tr>
-            <td><code>&embed_timestamp</code></td>
+            <td><code>&amp;embed_timestamp</code></td>
             <td>埋め込みメッセージにタイムスタンプを追加</td>
             <td>-</td>
           </tr>
           <tr>
-            <td><code>&silent</code></td>
-            <td>メッセージ送信時の通知を非表示（true/false）</td>
-            <td>false</td>
+            <td><code>&amp;silent</code></td>
+            <td>メッセージ送信時の通知を非表示
+            （<code>true</code>/<code>false</code>）</td>
+            <td><code>false</code></td>
           </tr>
           <tr>
-            <td><code>&no_mention</code></td>
-            <td>メンション通知を送信しない（true/false）</td>
-            <td>false</td>
+            <td><code>&amp;no_mention</code></td>
+            <td>メンション通知を送信しない
+            （<code>true</code>/<code>false</code>）</td>
+            <td><code>false</code></td>
           </tr>
           <tr>
-            <td><code>&no_bot</code></td>
-            <td>Botのメッセージで更新しない（true/false）</td>
-            <td>false</td>
+            <td><code>&amp;no_bot</code></td>
+            <td>Botのメッセージで更新しない
+            （<code>true</code>/<code>false</code>）</td>
+            <td><code>false</code></td>
+          </tr>
+          <tr>
+            <td><code>&amp;profile_toc</code></td>
+            <td>プロフィールv2の目次を自動生成
+            （<code>true</code>/<code>false</code>）</td>
+            <td><code>false</code></td>
+          </tr>
+          <tr>
+            <td><code>&amp;show_my_profile</code></td>
+            <td>自分のプロフィールを取得するボタンを表示
+            （<code>true</code>/<code>false</code>）</td>
+            <td><code>false</code></td>
+          </tr>
+          <tr>
+            <td><code>&amp;show_profile_search</code></td>
+            <td>プロフィール検索ボタンを表示
+            （<code>true</code>/<code>false</code>）</td>
+            <td><code>false</code></td>
           </tr>
         </tbody>
       </table>
-
-      <h3>削除</h3>
-      <pre><code>!?unsticky</code></pre>
-      <p>指定チャンネルの吊下げメッセージを削除します。</p>
-
-      <h3>一覧表示</h3>
-      <pre><code>/sticky list</code></pre>
-      <p>サーバー内の全てのチャンネルの吊下げメッセージ設定を一覧表示します。</p>
-
-      <h3>編集</h3>
-      <pre><code>/sticky edit [&lt;チャンネル&gt;]</code></pre>
-      <p>指定チャンネルの吊下げメッセージ設定を編集します。チャンネルを省略した場合、コマンド実行チャンネルが対象となります。</p>
+      </div>
 
       <div class="alert alert-info">
-        <p><strong>💡 ヒント:</strong> <code>&name</code> または <code>&icon</code> を設定した場合、Webhook を使用してメッセージが送信されます。カスタムキャラクター機能と組み合わせることで、見た目をさらにカスタマイズできます。</p>
+        <p><strong>💡 ヒント:</strong> <code>&amp;name</code> または
+        <code>&amp;icon</code> を設定した場合、Webhook を使用して
+        メッセージが送信されます。カスタムキャラクター機能と
+        組み合わせることで、見た目をさらにカスタマイズできます。
+        ただし、Webhook モードではプロフィールボタンは使用できません。</p>
+      </div>
+
+      <h2>編集 UI（設定パネル）</h2>
+      <p><code>/sticky edit</code> を実行すると、ボタン形式の設定
+      パネルが表示されます。</p>
+
+      <h3>編集画面の操作</h3>
+      <div class="table-wrapper">
+      <table>
+        <thead>
+          <tr>
+            <th>ボタン</th>
+            <th>説明</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>📝 投稿条件</td>
+            <td>更新メッセージ回数・更新秒数を設定</td>
+          </tr>
+          <tr>
+            <td>✏️ 投稿設定</td>
+            <td>投稿者名・アイコンURL・メッセージ本文を設定</td>
+          </tr>
+          <tr>
+            <td>👤 投稿者設定</td>
+            <td>埋め込みタイトル・説明・色・フッター・著者名を設定</td>
+          </tr>
+          <tr>
+            <td>📎 埋め込みURL等</td>
+            <td>埋め込みURL・画像・サムネイル・タイムスタンプを設定</td>
+          </tr>
+          <tr>
+            <td>⚙️ 機能設定</td>
+            <td>通知OFF・メンションOFF・Bot反応OFF・
+            プロフ目次・プロフボタンのON/OFFを設定</td>
+          </tr>
+          <tr>
+            <td>🔄 再投稿</td>
+            <td>現在の設定でメッセージを手動で再投稿</td>
+          </tr>
+          <tr>
+            <td>🔁 有効/無効</td>
+            <td>吊下げメッセージのON/OFFを切り替え</td>
+          </tr>
+          <tr>
+            <td>🗑️ 削除</td>
+            <td>吊下げメッセージ設定を削除</td>
+          </tr>
+        </tbody>
+      </table>
+      </div>
+
+      <h3>機能設定の詳細</h3>
+      <p>「⚙️ 機能設定」ボタンを押すと、チェックボックス形式で
+      以下の項目を個別にON/OFFできます：</p>
+
+      <div class="table-wrapper">
+      <table>
+        <thead>
+          <tr>
+            <th>項目</th>
+            <th>説明</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>通知OFF</td>
+            <td>メッセージ送信時の通知を非表示にする</td>
+          </tr>
+          <tr>
+            <td>メンション通知OFF</td>
+            <td>メッセージ内のメンション通知を抑制する</td>
+          </tr>
+          <tr>
+            <td>Bot反応OFF</td>
+            <td>Botのメッセージによる更新を無視する</td>
+          </tr>
+          <tr>
+            <td>プロフ目次</td>
+            <td>プロフィールv2のメッセージ一覧リンクを
+            自動生成して追記する</td>
+          </tr>
+          <tr>
+            <td>自分のプロフ取得ボタン</td>
+            <td>各ユーザーがワンクリックで自分のプロフィールを
+            取得できるボタンを表示</td>
+          </tr>
+          <tr>
+            <td>プロフ検索ボタン</td>
+            <td>名前やIDからプロフィールを検索できるボタンを表示</td>
+          </tr>
+        </tbody>
+      </table>
+      </div>
+
+      <h2>プロフィールボタン</h2>
+      <p>吊り下げメッセージにプロフィール関連のボタンを
+      追加できます。</p>
+
+      <h3>自分のプロフィールボタン 👤</h3>
+      <ul>
+        <li>メッセージ下部に「自分のプロフィールを見る」
+        ボタンが表示されます</li>
+        <li>クリックするとプロフィールv2またはv1のカードが
+        表示されます</li>
+        <li>Botメッセージとして送信されるため、他人に
+        見られる心配はありません</li>
+      </ul>
+
+      <h3>プロフィール検索ボタン 🔍</h3>
+      <ul>
+        <li>メッセージ下部に「プロフィールを検索」
+        ボタンが表示されます</li>
+        <li>クリックするとモーダルが開き、ユーザー選択
+        または名前での検索が可能です</li>
+        <li>部分一致検索に対応し、複数候補がある場合は
+        一覧から選択できます</li>
+      </ul>
+
+      <div class="alert alert-warning">
+        <p><strong>⚠️ 注意:</strong> プロフィールボタンは
+        Webhook を使用したメッセージでは表示されません。
+        Bot として直接送信されるメッセージでのみ利用可能です。</p>
       </div>
 
       <div data-include="include/footer"></div>
