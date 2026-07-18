@@ -141,6 +141,14 @@
             <td><code>&amp;{option}</code></td>
             <td>項目の記入は任意（存在すればチェック）</td>
           </tr>
+          <tr>
+            <td><code>&amp;{no_empty_line}</code></td>
+            <td>項目内に空行があるとエラー</td>
+          </tr>
+          <tr>
+            <td><code>&amp;{line}</code></td>
+            <td>項目ブロック間に正確に1行を強制</td>
+          </tr>
         </tbody>
       </table></div>
 
@@ -164,6 +172,70 @@
         <li><strong>趣味</strong>: 任意（書いても書かなくてもOK）</li>
         <li><strong>ひとこと</strong>: 記入必須</li>
       </ul>
+
+      <h3>空行制御（<code>&amp;{no_empty_line}</code>）</h3>
+      <p>
+        項目内に空行が含まれているとエラーにする制御です。
+        名前や年齢のように <strong>1行で完結すべき項目</strong>
+        に使います。
+      </p>
+      <pre><code>【名前】&amp;{no_empty_line}
+【年齢】&amp;{no_empty_line}
+【詳細】</code></pre>
+      <p><strong>✅ 合格例：</strong></p>
+      <pre><code>【名前】John
+【年齢】25
+【詳細】
+Hello! I'm John.
+I like programming.</code></pre>
+      <p><strong>❌ 不合格例（名前の後に空行がある）：</strong></p>
+      <pre><code>【名前】John
+
+【年齢】25
+【詳細】
+Hello! I'm John.
+I like programming.</code></pre>
+      <p><strong>❌ 不合格例（年齢の行の後ろに空行がある）：</strong></p>
+      <pre><code>【名前】John
+【年齢】25
+
+【詳細】
+Hello! I'm John.</code></pre>
+
+      <h3>行間制御（<code>&amp;{line}</code>）</h3>
+      <p>
+        <code>&amp;{line}</code> は<strong>項目間の制御行</strong>として使い、
+        前後の項目ブロックの間に<strong>正確に1行</strong>
+        （空行でも区切り線でも可）があることを強制します。
+      </p>
+      <pre><code>【名前】
+【年齢】
+&amp;{line}
+【自己紹介】</code></pre>
+      <p><strong>✅ OK（空行で区切る）：</strong></p>
+      <pre><code>【名前】けい
+【年齢】23
+
+【自己紹介】
+よろしく！</code></pre>
+      <p><strong>✅ OK（区切り線で区切る）：</strong></p>
+      <pre><code>【名前】けい
+【年齢】23
+----------
+【自己紹介】
+よろしく！</code></pre>
+      <p><strong>❌ NG（区切りなし）：</strong></p>
+      <pre><code>【名前】けい
+【年齢】23
+【自己紹介】
+よろしく！</code></pre>
+      <p><strong>❌ NG（2行空き）：</strong></p>
+      <pre><code>【名前】けい
+【年齢】23
+
+
+【自己紹介】
+よろしく！</code></pre>
 
       <h2>設定項目一覧</h2>
 
@@ -293,7 +365,25 @@
         制約に従って検証します。
       </p>
 
-      <h3>4. 複数設定の評価</h3>
+      <h3>4. 空行チェック</h3>
+      <p>
+        <code>&amp;{no_empty_line}</code> が設定された項目では、
+        次の項目までの間に空行が含まれていないか検証します。
+        空行がある場合はエラーとなります。
+        これは名前や年齢など <strong>1行で完結すべき項目</strong>
+        に空行が入るのを防ぎます。
+      </p>
+
+      <h3>5. 行間チェック</h3>
+      <p>
+        <code>&amp;{line}</code> がテンプレートの項目間に書かれている場合、
+        実際のメッセージでその2つの項目の間に
+        <strong>ちょうど1行</strong>あるか検証します。
+        1行は空行でも良いですし <code>----------</code> のような
+        区切り線でも構いません。0行（密着）や2行以上はエラーとなります。
+      </p>
+
+      <h3>6. 複数設定の評価</h3>
       <p>
         複数のテンプレート設定が有効な場合、すべての設定でチェックを実行し、
         最もマッチ率の高い結果を採用します。同率の場合はエラーが少ない方が
