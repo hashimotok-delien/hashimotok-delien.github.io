@@ -372,11 +372,11 @@ blockquote p {
   margin-bottom: 24px;
   border: 1px solid var(--border);
   border-radius: var(--radius);
+  max-width: 100%;
 }
 
 .table-wrapper table {
   margin-bottom: 0;
-  min-width: 600px;
 }
 
 .table-wrapper::-webkit-scrollbar {
@@ -398,13 +398,18 @@ th, td {
   padding: 10px 14px;
   text-align: left;
   border-bottom: 1px solid var(--border);
-  white-space: nowrap;
 }
 
 th {
   background: var(--bg-card);
   color: var(--accent);
   font-weight: 600;
+}
+
+th code, td code {
+  word-break: break-word;
+  overflow-wrap: break-word;
+  white-space: normal;
 }
 
 tr:last-child td {
