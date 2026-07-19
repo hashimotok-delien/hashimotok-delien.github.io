@@ -27,6 +27,12 @@
         メッセージ送信やVC接続時間に応じて<strong>経験値（XP）</strong>を
         獲得し、レベルアップしていくシステムです。
         サーバーごとに自由に成長曲線を設計できます。</p>
+        <p><strong>🎯 設計思想:</strong>
+        レベルは常にXPから<strong>その場計算</strong>されます。
+        保存されるのは生のXP値のみで、
+        ランク表示時に設定に応じて加算してレベルを算出します。
+        そのため、成長曲線を変更すると過去のXPから
+        新しいレベルが自動的に再計算されます。</p>
       </div>
 
       <h2>概要</h2>
@@ -204,9 +210,9 @@
             <td><code>combined</code></td>
             <td>🔄 全体</td>
             <td><code>chat_exp</code></td>
-            <td><code>vc_exp</code>（記録のみ）</td>
+            <td><code>vc_exp</code></td>
             <td><code>chat_exp</code></td>
-            <td><code>chat_level</code>（単一）</td>
+            <td><code>chat_exp + vc_exp</code>（合算）</td>
           </tr>
           <tr>
             <td><code>separate</code></td>
@@ -214,7 +220,7 @@
             <td><code>chat_exp</code></td>
             <td><code>vc_exp</code></td>
             <td><code>chat_exp</code></td>
-            <td><code>chat_level</code> + <code>vc_level</code></td>
+            <td>各XPから独立（2系統）</td>
           </tr>
           <tr>
             <td><code>inchat</code></td>
@@ -222,29 +228,30 @@
             <td><code>chat_exp</code></td>
             <td><code>vc_exp</code></td>
             <td><code>inchat_exp</code>（独立）</td>
-            <td><code>chat_level</code> + <code>vc_level</code> + <code>inchat.level</code></td>
+            <td>各XPから独立（3系統）</td>
           </tr>
         </tbody>
       </table></div>
       <ul>
         <li><strong>全体 (combined)</strong>:
-          チャットXPは <code>chat_exp</code>、VC XPは
-          <code>vc_exp</code> に記録されます。
-          レベルは <strong><code>chat_level</code></strong>
-          のみで管理され、チャット活動がメインの成長要因です。
-          <code>vc_exp</code> は記録のみでレベルには影響しません。</li>
+          <code>chat_exp</code> と <code>vc_exp</code> を
+          <strong>合算</strong>して単一レベルを計算します。
+          チャットとVCの両方の活動が同じレベルに貢献するシンプルな方式です。</li>
         <li><strong>VC/チャット (separate)</strong>:
-          チャットXP → <code>chat_exp</code> / <code>chat_level</code>、
-          VC XP → <code>vc_exp</code> / <code>vc_level</code> として
-          独立したレベルを持ちます。
-          チャットとVCの両方でレベルアップが可能です。</li>
+          チャットXP → <code>chat_exp</code>、
+          VC XP → <code>vc_exp</code> として別々に記録し、
+          それぞれから独立したレベルを計算します。
+          チャットとVCで別々にレベルアップが可能です。</li>
         <li><strong>VC/チャット/インチャット (inchat)</strong>:
           separate と同様にチャット・VCで独立したレベルを持ちつつ、
           VCチャンネル内のテキストチャットやステージチャンネルでの
           発言のみが別テーブル <code>inchat_exp</code> に記録され、
-          <strong>3つ目の独立したレベル</strong>として表示されます。
-          充実したVC内チャットを評価したい場合に最適です。</li>
+          <strong>3つ目の独立したレベル</strong>として表示されます。</li>
       </ul>
+      <p><strong>🔑 重要な設計:</strong>
+      レベルは保存されず、全ての表示でXPからその場計算されます。
+      そのため成長曲線の変更が過去のデータに即座に反映され、
+      レベルがずれる心配はありません。</p>
 
       <h2>ランダムEXPシステム</h2>
       <p>
@@ -576,7 +583,7 @@ max(100, 50 * L ** 1.5)
         <div class="cmd-name">/rank [@ユーザー]</div>
         <div class="cmd-desc">
           自分または指定ユーザーのランクを表示します。<br>
-          <strong>全体モード</strong>: チャットレベル（chat_level）表示<br>
+          <strong>全体モード</strong>: chat_exp + vc_exp の合算レベル表示<br>
           <strong>VC/チャットモード</strong>: チャットXP・VC XPを個別表示<br>
           <strong>インチャットモード</strong>: 通常チャットとVC内チャットの
           レベルを別々に表示
