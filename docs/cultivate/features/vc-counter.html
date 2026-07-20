@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VCカウンター - Cultivate ドキュメント</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body data-base="..">
+  <div data-include="include/sidebar"></div>
+
+  <main class="main-content">
+    <div data-include="include/topbar" data-title="VCカウンター"></div>
+
+    <div class="content">
+      <div class="feature-hero">
+        <div class="feature-icon">📊</div>
+        <h1>VCカウンター</h1>
+        <p>サーバー統計情報をVC名で自動表示</p>
+      </div>
+
+      <div class="alert alert-info">
+        <p><strong>💡 VCカウンターとは？</strong>
+        メンバー数やロール数、チャンネル数などのサーバー統計情報を
+        <strong>VCチャンネル名</strong>に自動反映する機能です。
+        10分間隔で自動更新され、サーバーの状況をひと目で把握できます。</p>
+      </div>
+
+      <h2>概要</h2>
+      <p>
+        VCカウンターは、指定したVCチャンネルの名前を
+        設定したテンプレートに従って自動更新します。
+        メンバー数・オンライン数・ロール数など多彩なプレースホルダーが
+        利用可能で、四則演算によるカスタム計算もサポートします。
+      </p>
+
+      <h2>機能一覧</h2>
+      <div class="table-wrapper"><table>
+        <thead>
+          <tr>
+            <th>機能</th>
+            <th>説明</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>グローバルカウンター</td>
+            <td>サーバー全体の統計情報をVC名に表示</td>
+          </tr>
+          <tr>
+            <td>ロールカウンター</td>
+            <td>特定ロールを保持しているメンバー数を表示（AND/OR）</td>
+          </tr>
+          <tr>
+            <td>計算式カウンター</td>
+            <td>複数の値を四則演算で組み合わせた結果を表示</td>
+          </tr>
+          <tr>
+            <td>自動更新</td>
+            <td>10分間隔でVC名を自動更新（429回避機能付き）</td>
+          </tr>
+          <tr>
+            <td>日時フォーマット</td>
+            <td>yyyy/mm/dd HH:MM:SS などの日時表示に対応</td>
+          </tr>
+          <tr>
+            <td>レート制限回避</td>
+            <td>Discord APIの429エラー発生時は30分クールダウン</td>
+          </tr>
+        </tbody>
+      </table></div>
+
+      <h2>プリセット機能</h2>
+      <p>
+        複数のカウンター設定（プリセット）を作成できます。
+        各プリセットには以下の設定項目があります。
+      </p>
+      <ul>
+        <li><strong>名前</strong>: プリセット名（管理用）</li>
+        <li><strong>有効/無効</strong>: カウンターの動作ON/OFF</li>
+        <li><strong>対象VC</strong>: 名前を更新するVCチャンネル</li>
+        <li><strong>VC名テンプレート</strong>: VC名のフォーマット（プレースホルダー使用可）</li>
+      </ul>
+
+      <h2>プレースホルダー一覧</h2>
+
+      <h3>グローバルカウンター</h3>
+      <div class="table-wrapper"><table>
+        <thead>
+          <tr>
+            <th>プレースホルダー</th>
+            <th>説明</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>{member_count}</code></td>
+            <td>総メンバー数</td>
+          </tr>
+          <tr>
+            <td><code>{bot_count}</code></td>
+            <td>Bot数</td>
+          </tr>
+          <tr>
+            <td><code>{online_count}</code></td>
+            <td>オンラインメンバー数</td>
+          </tr>
+          <tr>
+            <td><code>{vc_count}</code></td>
+            <td>VCチャンネル数</td>
+          </tr>
+          <tr>
+            <td><code>{role_count}</code></td>
+            <td>ロール数</td>
+          </tr>
+          <tr>
+            <td><code>{channel_count}</code></td>
+            <td>全チャンネル数</td>
+          </tr>
+          <tr>
+            <td><code>{tc_count}</code></td>
+            <td>テキストチャンネル数</td>
+          </tr>
+          <tr>
+            <td><code>{thread_count}</code></td>
+            <td>スレッド数</td>
+          </tr>
+          <tr>
+            <td><code>{forum_count}</code></td>
+            <td>フォーラム数</td>
+          </tr>
+          <tr>
+            <td><code>{category_count}</code></td>
+            <td>カテゴリ数</td>
+          </tr>
+          <tr>
+            <td><code>{stage_channel_count}</code></td>
+            <td>ステージチャンネル数</td>
+          </tr>
+          <tr>
+            <td><code>{total_thread_count}</code></td>
+            <td>総スレッド数（概算）</td>
+          </tr>
+          <tr>
+            <td><code>{open_thread_count}</code></td>
+            <td>オープンスレッド数</td>
+          </tr>
+          <tr>
+            <td><code>{current_date}</code></td>
+            <td>現在の日時</td>
+          </tr>
+          <tr>
+            <td><code>{last_updated}</code></td>
+            <td>最終更新日時</td>
+          </tr>
+        </tbody>
+      </table></div>
+
+      <h3>ロールカウンター</h3>
+      <div class="table-wrapper"><table>
+        <thead>
+          <tr>
+            <th>モード</th>
+            <th>説明</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>すべて保持 (AND)</td>
+            <td>指定した全ロールを持つメンバー数をカウント</td>
+          </tr>
+          <tr>
+            <td>いずれか保持 (OR)</td>
+            <td>指定したロールのいずれかを持つメンバー数をカウント</td>
+          </tr>
+        </tbody>
+      </table></div>
+
+      <h2>日時フォーマット</h2>
+      <p>
+        <code>{current_date}</code> や <code>{last_updated}</code> では
+        以下のトークンを使用して日時表示をカスタマイズできます。
+      </p>
+      <div class="table-wrapper"><table>
+        <thead>
+          <tr>
+            <th>トークン</th>
+            <th>説明</th>
+            <th>例</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>yyyy</code></td>
+            <td>4桁年</td>
+            <td>2026</td>
+          </tr>
+          <tr>
+            <td><code>yy</code></td>
+            <td>2桁年</td>
+            <td>26</td>
+          </tr>
+          <tr>
+            <td><code>mm</code></td>
+            <td>月（2桁）</td>
+            <td>07</td>
+          </tr>
+          <tr>
+            <td><code>dd</code></td>
+            <td>日（2桁）</td>
+            <td>20</td>
+          </tr>
+          <tr>
+            <td><code>HH</code></td>
+            <td>時（24時間・2桁）</td>
+            <td>14</td>
+          </tr>
+          <tr>
+            <td><code>hh</code></td>
+            <td>時（12時間・2桁）</td>
+            <td>02</td>
+          </tr>
+          <tr>
+            <td><code>MM</code></td>
+            <td>分（2桁）</td>
+            <td>05</td>
+          </tr>
+          <tr>
+            <td><code>SS</code></td>
+            <td>秒（2桁）</td>
+            <td>09</td>
+          </tr>
+        </tbody>
+      </table></div>
+
+      <h2>計算式（四則演算）</h2>
+      <p>
+        複数のプレースホルダーを組み合わせた計算結果をVC名に表示できます。
+        以下のように <code>computed</code> タイプのプレースホルダーで使用します。
+      </p>
+      <pre><code># オンライン率（%）を表示
+{ {online_count} * 100 // {member_count} }%
+
+# メンバー - Bot = 実際のユーザー数
+{ {member_count} - {bot_count} }
+
+# TC + VC + フォーラムの合計
+{ {tc_count} + {vc_count} + {forum_count} }</code></pre>
+      <div class="alert alert-warning">
+        <p><strong>⚠️ 注意:</strong>
+        計算式内で使用するプレースホルダーは事前に解決されている必要があります。
+        未解決のプレースホルダーが残っているとエラーになります。</p>
+      </div>
+
+      <h2>コマンド一覧</h2>
+
+      <div class="command-block">
+        <div class="cmd-name">/サーバーカウンター設定</div>
+        <div class="cmd-desc">
+          サーバーカウンター設定パネルを開きます。
+          プリセットの作成・編集・削除が行えます。
+        </div>
+        <div class="cmd-meta"><span class="tag tag-admin">管理者専用</span></div>
+      </div>
+
+      <h2>注意事項</h2>
+      <ul>
+        <li>VC名の更新は10分間隔で行われます（即時反映ではありません）</li>
+        <li>Discord APIのレート制限（429）が発生した場合、該当VCは30分間更新が停止します</li>
+        <li>対象VCはBotが名前を変更できる権限を持つ必要があります</li>
+        <li>プレースホルダー名は <code>{キー名}</code> の形式で記述します</li>
+        <li>計算式の結果は整数に丸められます</li>
+      </ul>
+
+      <div data-include="include/footer"></div>
+    </div>
+  </main>
+  <script src="../js/main.js"></script>
+</body>
+</html>

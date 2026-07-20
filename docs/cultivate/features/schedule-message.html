@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>予約投稿 - Cultivate ドキュメント</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body data-base="..">
+  <div data-include="include/sidebar"></div>
+
+  <main class="main-content">
+    <div data-include="include/topbar" data-title="予約投稿"></div>
+
+    <div class="content">
+      <div class="feature-hero">
+        <div class="feature-icon">📅</div>
+        <h1>予約投稿</h1>
+        <p>メッセージを指定日時に自動投稿</p>
+      </div>
+
+      <div class="alert alert-info">
+        <p><strong>💡 予約投稿とは？</strong>
+         Discordのメッセージリンクを登録し、指定した日時に
+         <strong>自動で再投稿</strong>する機能です。
+         お知らせやイベント告知などを事前に準備しておけます。</p>
+      </div>
+
+      <h2>概要</h2>
+      <p>
+        予約投稿機能は、メッセージリンクを設定に登録し、
+        指定した日時になると自動的に指定チャンネルに投稿します。
+        投稿にはWebhookを使用することも可能で、
+        名前やアイコンをカスタマイズして送信できます。
+      </p>
+      <p>
+        バックグラウンドループが30秒ごとに動作し、
+        投稿時刻を過ぎた設定を自動で処理します。
+      </p>
+
+      <h2>機能一覧</h2>
+      <div class="table-wrapper"><table>
+        <thead>
+          <tr>
+            <th>機能</th>
+            <th>説明</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>メッセージリンク登録</td>
+            <td>既存のメッセージリンクから内容を取得して予約</td>
+          </tr>
+          <tr>
+            <td>日時指定投稿</td>
+            <td>特定の日時に自動投稿（秒単位で指定可能）</td>
+          </tr>
+          <tr>
+            <td>チャンネル指定</td>
+            <td>投稿先チャンネルを個別に設定</td>
+          </tr>
+          <tr>
+            <td>Webhook投稿</td>
+            <td>Webhookを使用して名前・アイコンをカスタマイズ</td>
+          </tr>
+          <tr>
+            <td>有効/無効切替</td>
+            <td>個別の予約設定を一時的に無効化可能</td>
+          </tr>
+          <tr>
+            <td>ステータス管理</td>
+            <td>pending / posted / cancelled の状態管理</td>
+          </tr>
+          <tr>
+            <td>自動ループ</td>
+            <td>30秒間隔で投稿チェック＆自動実行</td>
+          </tr>
+        </tbody>
+      </table></div>
+
+      <h2>設定項目</h2>
+      <div class="table-wrapper"><table>
+        <thead>
+          <tr>
+            <th>項目</th>
+            <th>説明</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>名前</td>
+            <td>設定の管理名</td>
+          </tr>
+          <tr>
+            <td>メッセージリンク</td>
+            <td>予約するメッセージのURL
+              （<code>https://discord.com/channels/...</code> 形式）</td>
+          </tr>
+          <tr>
+            <td>投稿チャンネル</td>
+            <td>メッセージを投稿する先のチャンネル</td>
+          </tr>
+          <tr>
+            <td>投稿日時</td>
+            <td>投稿を実行する日時（秒単位で指定）</td>
+          </tr>
+          <tr>
+            <td>Webhook名</td>
+            <td>Webhook使用時の投稿者名（省略可）</td>
+          </tr>
+          <tr>
+            <td>Webhookアイコン</td>
+            <td>Webhook使用時のアイコンURL（省略可）</td>
+          </tr>
+          <tr>
+            <td>有効/無効</td>
+            <td>この予約設定を有効にするかどうか</td>
+          </tr>
+        </tbody>
+      </table></div>
+
+      <h2>使い方の流れ</h2>
+      <ol class="steps">
+        <li>
+          <strong>メッセージを準備</strong>
+          予約したい内容のメッセージを任意のチャンネルに投稿します。
+        </li>
+        <li>
+          <strong>メッセージリンクをコピー</strong>
+          投稿したメッセージのリンクをコピーします
+          （Shift+右クリック → 「メッセージリンクをコピー」）。
+        </li>
+        <li>
+          <strong>/予約投稿設定 を実行</strong>
+          設定パネルを開き、新規作成から予約設定を登録します。
+          メッセージリンク、投稿先チャンネル、投稿日時を入力します。
+        </li>
+        <li>
+          <strong>自動投稿</strong>
+          指定日時になると自動で投稿されます。
+        </li>
+      </ol>
+
+      <h2>コマンド一覧</h2>
+
+      <div class="command-block">
+        <div class="cmd-name">/予約投稿設定</div>
+        <div class="cmd-desc">
+          予約投稿設定パネルを開きます。
+          予約設定の作成・編集・削除・一覧表示が行えます。
+        </div>
+        <div class="cmd-meta"><span class="tag tag-admin">管理者専用</span></div>
+      </div>
+
+      <h2>注意事項</h2>
+      <ul>
+        <li>メッセージリンクは同じサーバー内のメッセージである必要があります</li>
+        <li>Botがメッセージを取得するには、元のメッセージが存在し、かつBotがそのチャンネルを閲覧できる必要があります</li>
+        <li>投稿後も設定は削除されず、ステータスが <code>posted</code> に変わります（再度有効化して再利用可能）</li>
+        <li>Webhookを使用する場合、BotにWebhook管理権限が必要です</li>
+        <li>投稿チャンネルはテキストチャンネルである必要があります</li>
+        <li>既に投稿済みの設定を再有効化すると、同じ内容が再度投稿されます</li>
+      </ul>
+
+      <div data-include="include/footer"></div>
+    </div>
+  </main>
+  <script src="../js/main.js"></script>
+</body>
+</html>

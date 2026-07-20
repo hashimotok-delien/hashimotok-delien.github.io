@@ -583,6 +583,8 @@ max(100, 50 * L ** 1.5)
         <div class="cmd-name">/rank [@ユーザー]</div>
         <div class="cmd-desc">
           自分または指定ユーザーのランクを表示します。<br>
+          <strong>表示対象:</strong> ⭐ メイン設定されたプリセットのみ表示<br>
+          メイン設定がない場合はエラーメッセージが表示されます。<br>
           <strong>全体モード</strong>: chat_exp + vc_exp の合算レベル表示<br>
           <strong>VC/チャットモード</strong>: チャットXP・VC XPを個別表示<br>
           <strong>インチャットモード</strong>: 通常チャットとVC内チャットの
@@ -592,11 +594,13 @@ max(100, 50 * L ** 1.5)
       </div>
 
       <div class="command-block">
-        <div class="cmd-name">/ranking type_ [period]</div>
+        <div class="cmd-name">/ranking [period]</div>
         <div class="cmd-desc">
           サーバー内のXPランキングTOP10を表示します。<br>
-          種別: 総合 / チャット / VC<br>
-          期間: 週間 / 月間（省略時は全期間）
+          プリセット一覧がページネーションで表示され、
+          ✅ 選択ボタンでランキングの種別と期間を設定して実行します。<br>
+          種別: 全て / チャット / VC / インチャット<br>
+          期間: 週間 / 月間（省略時は全期間、Modal内で変更可能）
         </div>
         <div class="cmd-meta"><span class="tag tag-user">全員</span></div>
       </div>
@@ -612,78 +616,53 @@ max(100, 50 * L ** 1.5)
       <h2>設定パネル項目一覧</h2>
       <p>
         <code>/rank設定</code> で開く設定パネルでは、
-        以下の項目を設定できます（管理者のみ）。
+        2つのSelectメニューとアクションボタンで設定を変更できます。<br>
+        <strong>左のSelect</strong>: 設定カテゴリを選択<br>
+        <strong>右のSelect</strong>: 各カテゴリ内の項目を選択<br>
+        設定項目を選ぶとModalが開くか、直接値が切り替わります。
       </p>
+      <p>以下が設定可能な全項目です：</p>
 
-      <h3>基本設定 (Row 0)</h3>
       <div class="table-wrapper"><table>
         <thead>
           <tr>
-            <th>ボタン</th>
+            <th>項目</th>
             <th>説明</th>
           </tr>
         </thead>
         <tbody>
           <tr>
             <td>🟢 有効/無効</td>
-            <td>ランクシステム全体のON/OFF</td>
+            <td>プリセットのアクティブ状態を切り替え</td>
           </tr>
           <tr>
-            <td>チャット計測</td>
+            <td>📝 名前</td>
+            <td>プリセット名を設定（Modal）</td>
+          </tr>
+          <tr>
+            <td>⭐ メイン設定</td>
+            <td>このプリセットをメインに設定。ONにすると他プリセットのメインは自動OFFに</td>
+          </tr>
+          <tr>
+            <td>💬 チャット計測</td>
             <td>チャットXPの計測ON/OFF</td>
           </tr>
           <tr>
-            <td>VC計測</td>
+            <td>🎤 VC計測</td>
             <td>VC XPの計測ON/OFF</td>
           </tr>
           <tr>
             <td>🔀 XP集計モード</td>
             <td>クリックで combined/separate/inchat を循環</td>
           </tr>
-        </tbody>
-      </table></div>
-
-      <h3>XP設定 (Row 1)</h3>
-      <div class="table-wrapper"><table>
-        <thead>
           <tr>
-            <th>ボタン</th>
-            <th>説明</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>💬 チャットXP設定</td>
-            <td>基本XP・倍率を設定（Modal）</td>
-          </tr>
-          <tr>
-            <td>🎤 VC XP設定</td>
-            <td>VC XP/分・倍率を設定（Modal）</td>
-          </tr>
-          <tr>
-            <td>🎲 切替</td>
+            <td>🎲 ランダム切替</td>
             <td>ランダムEXPモードを 0→1→2→3→0 で循環</td>
-          </tr>
-          <tr>
-            <td>🎲 範囲設定</td>
-            <td>ランダムEXPの上下限を設定（Modal）</td>
           </tr>
           <tr>
             <td>⏱️ クールダウン</td>
             <td>連続XP付与の間隔を設定（Modal）</td>
           </tr>
-        </tbody>
-      </table></div>
-
-      <h3>高度設定 (Row 2)</h3>
-      <div class="table-wrapper"><table>
-        <thead>
-          <tr>
-            <th>ボタン</th>
-            <th>説明</th>
-          </tr>
-        </thead>
-        <tbody>
           <tr>
             <td>📋 成長テンプレート</td>
             <td>4種のテンプレートから選択（Select）</td>
@@ -696,62 +675,50 @@ max(100, 50 * L ** 1.5)
             <td>📢 通知CH</td>
             <td>レベルアップ通知の送信先CHを設定（Modal）</td>
           </tr>
-        </tbody>
-      </table></div>
-
-      <h3>その他設定 (Row 3)</h3>
-      <div class="table-wrapper"><table>
-        <thead>
-          <tr>
-            <th>ボタン</th>
-            <th>説明</th>
-          </tr>
-        </thead>
-        <tbody>
           <tr>
             <td>🔝 上限Lv</td>
             <td>最大到達レベルを設定（Modal）</td>
           </tr>
+          <tr>
+            <td>📋 ログ設定</td>
+            <td>ログ出力先をカテゴリ別に設定。下記参照</td>
+          </tr>
         </tbody>
       </table></div>
 
-      <h3>拡張設定 (Row 4)</h3>
+      <h3>拡張機能設定</h3>
+      <p>
+        拡張機能は別のSelectメニューからアクセスします。
+        各機能のON/OFFと詳細設定が行えます。
+      </p>
       <div class="table-wrapper"><table>
         <thead>
           <tr>
-            <th>ボタン</th>
+            <th>機能</th>
             <th>説明</th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td>#️⃣ チャンネル設定</td>
+            <td>#️⃣ チャットWH/BL設定</td>
             <td>テキストCH/カテゴリの許可/拒否を設定（Modal）</td>
           </tr>
           <tr>
-            <td>🎤 VC CH設定</td>
+            <td>🎤 VC WH/BL設定</td>
             <td>VC CH/カテゴリの許可/拒否を設定（Modal）</td>
           </tr>
           <tr>
-            <td>📅 XPキャップ</td>
+            <td>📅 XPキャップ設定</td>
             <td>日次・週次の獲得XP上限を設定（Modal）</td>
           </tr>
           <tr>
             <td>📝 ボーナス設定</td>
             <td>文字数・添付・スタンプのボーナスXPを設定（Modal）</td>
           </tr>
-        </tbody>
-      </table></div>
-
-      <h3>イベント設定 (Row 5)</h3>
-      <div class="table-wrapper"><table>
-        <thead>
           <tr>
-            <th>ボタン</th>
-            <th>説明</th>
+            <td>🎤 VC条件設定</td>
+            <td>VCの必要人数やロール制限を設定（Modal）</td>
           </tr>
-        </thead>
-        <tbody>
           <tr>
             <td>🚀 ブースト設定</td>
             <td>イベントブーストのON/OFF・倍率・期間を設定（Modal）</td>
@@ -760,8 +727,135 @@ max(100, 50 * L ** 1.5)
             <td>🟢 有効期間</td>
             <td>ランク計測の有効期間を設定（Modal）</td>
           </tr>
+          <tr>
+            <td>🎭 ランクロール制御設定</td>
+            <td>レベル到達時のロール付与/剥奪を設定（Modal）</td>
+          </tr>
+          <tr>
+            <td>🎭 ランクロール高度制御設定</td>
+            <td>複数ロールの段階的付与など高度設定（Modal）</td>
+          </tr>
+          <tr>
+            <td>💬 カスタムメッセージ設定</td>
+            <td>レベルアップ時のカスタム通知メッセージを設定（Modal）</td>
+          </tr>
         </tbody>
       </table></div>
+
+      <h2>⭐ メイン設定</h2>
+      <p>
+        複数のプリセットを作成できるランクシステムでは、
+        <strong>メイン設定</strong>機能で
+        <code>/rank</code> コマンドの表示対象を1つに絞れます。
+      </p>
+      <div class="alert alert-info">
+        <p><strong>💡 仕組み:</strong></p>
+        <ul>
+          <li>各プリセットのエディタ項目から「⭐ メイン設定」をONにできます</li>
+          <li>メインをONにすると、他の全プリセットのメイン設定が自動的にOFFになります</li>
+          <li><code>/rank</code> コマンドはメイン設定されたプリセットのみ表示します</li>
+          <li>メイン設定が1つもない場合、<code>/rank</code> はエラーメッセージを表示します</li>
+          <li>設定パネル上ではメイン設定のプリセットに ⭐ アイコンが表示されます</li>
+          <li><code>/ranking</code> やXP計測はメイン設定に関係なく全プリセットが動作します</li>
+        </ul>
+      </div>
+
+      <h2>📋 ログ設定</h2>
+      <p>
+        ランクシステムの各イベントを特定のチャンネルにログ出力できます。
+        <strong>5つのカテゴリ</strong>に分かれており、それぞれ個別に
+        出力先チャンネルを設定可能です。
+        設定されていないカテゴリはグローバル設定にフォールバックします。
+      </p>
+
+      <h3>ログカテゴリ一覧</h3>
+      <div class="table-wrapper"><table>
+        <thead>
+          <tr>
+            <th>カテゴリ</th>
+            <th>設定項目</th>
+            <th>説明</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td rowspan="1">🌐 グローバル</td>
+            <td>グローバルCH</td>
+            <td>他カテゴリ未設定時のフォールバック先</td>
+          </tr>
+          <tr>
+            <td rowspan="3">📊 レベル</td>
+            <td>レベルアップ</td>
+            <td>レベルが上がったときのログ</td>
+          </tr>
+          <tr>
+            <td>レベルダウン</td>
+            <td>レベルが下がったときのログ</td>
+          </tr>
+          <tr>
+            <td>レベルキャップ</td>
+            <td>最大レベル到達時のログ</td>
+          </tr>
+          <tr>
+            <td rowspan="4">🎭 ロール</td>
+            <td>ロール付与</td>
+            <td>ランクロールが付与されたときのログ</td>
+          </tr>
+          <tr>
+            <td>ロール剥奪</td>
+            <td>ランクロールが剥奪されたときのログ</td>
+          </tr>
+          <tr>
+            <td>高度付与</td>
+            <td>高度制御によるロール付与のログ</td>
+          </tr>
+          <tr>
+            <td>高度剥奪</td>
+            <td>高度制御によるロール剥奪のログ</td>
+          </tr>
+          <tr>
+            <td rowspan="2">⚡ XP</td>
+            <td>XPキャップ</td>
+            <td>XPキャップに達したときのログ</td>
+          </tr>
+          <tr>
+            <td>VC条件</td>
+            <td>VC条件不適合でXP不付与のログ</td>
+          </tr>
+          <tr>
+            <td rowspan="4">⚙️ システム</td>
+            <td>プリセット切替</td>
+            <td>メイン設定が切り替えられたときのログ</td>
+          </tr>
+          <tr>
+            <td>設定変更</td>
+            <td>プリセット設定が変更されたときのログ</td>
+          </tr>
+          <tr>
+            <td>エラー</td>
+            <td>ランクシステム内部でエラーが発生したときのログ</td>
+          </tr>
+          <tr>
+            <td>警告</td>
+            <td>ランクシステムの警告事項のログ</td>
+          </tr>
+        </tbody>
+      </table></div>
+
+      <h3>設定方法</h3>
+      <ol>
+        <li><code>/rank設定</code> を実行</li>
+        <li>プリセットのエディタを開く</li>
+        <li>左のSelectで「📋 ログ設定」を選択</li>
+        <li>ログ設定Viewでカテゴリを選択</li>
+        <li>Modal内のChannelSelectで出力先チャンネルを選択（テキストCH / 公開スレッド / プライベートスレッドから選択可能）</li>
+        <li>未設定のカテゴリはグローバルCHにフォールバックします</li>
+        <li>全て未設定の場合はログは出力されません</li>
+      </ol>
+      <p>
+        Modal内のChannelSelectは <code>min_values=0</code> に設定されているため、
+        選択を全て解除（クリア）することでそのカテゴリの設定を無効化できます。
+      </p>
 
       <h2>ランク表示の例</h2>
       <pre><code>┌─────────────────────────────┐
