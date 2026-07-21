@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>更新履歴 - Cultivate ドキュメント</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-base=".">
+  <div data-include="include/sidebar"></div>
+
+  <main class="main-content">
+    <div data-include="include/topbar" data-title="更新履歴"></div>
+
+    <div class="content">
+      <div class="feature-hero">
+        <div class="feature-icon">📋</div>
+        <h1>更新履歴</h1>
+        <p>Cultivate のアップデート情報</p>
+      </div>
+
+      <!-- ========================================================= -->
+      <!-- v1.0.x（開発中） -->
+      <!-- ========================================================= -->
+
+      <div class="update-version">
+        <div class="version-badge">✏️ 開発中</div>
+        <p class="version-date">2026年7月</p>
+      </div>
+
+      <div class="update-card">
+        <div class="update-icon">🏆</div>
+        <div class="update-body">
+          <div class="update-title">
+            期間ランキングの改善
+            <span class="tag tag-feature">機能改善</span>
+          </div>
+          <ul>
+            <li>
+              週間・月間ランキングのログ出力機能を追加
+              <span class="tag tag-rank">ランク</span>
+            </li>
+            <li>
+              期間テーブルに <code>chat_exp</code> /
+              <code>inchat_exp</code> / <code>vc_exp</code> を
+              個別保存するように変更
+              <span class="tag tag-rank">ランク</span>
+            </li>
+            <li>
+              週終わり・月終わりに自動でログチャンネルへ
+              ランキングTOP10を出力後、該当期間のデータを自動掃除
+              <span class="tag tag-rank">ランク</span>
+            </li>
+            <li>
+              期間ランキングのログ出力先チャンネルを
+              設定パネルから個別設定可能に
+              <span class="tag tag-rank">ランク</span>
+            </li>
+            <li>
+              「全て」ランキングが
+              <code>chat_exp + inchat_exp + vc_exp</code>
+              の合算値で正しくソート・表示されるように修正
+              <span class="tag tag-rank">ランク</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="update-card">
+        <div class="update-icon">🔄</div>
+        <div class="update-body">
+          <div class="update-title">
+            VC整合性チェックの追加
+            <span class="tag tag-feature">新機能</span>
+          </div>
+          <ul>
+            <li>
+              Bot起動時および5分おきにVCセッションの
+              整合性を自動チェック
+              <span class="tag tag-rank">ランク</span>
+            </li>
+            <li>
+              Bot停止中にVCから抜けた人：セッションのみ削除
+              （XP追加なし）
+              <span class="tag tag-rank">ランク</span>
+            </li>
+            <li>
+              Bot停止中もVCに居続けた人：タイマーをリセットし
+              再開後からのXPのみ計測（過去分は切り捨て）
+              <span class="tag tag-rank">ランク</span>
+            </li>
+            <li>
+              Bot停止中にVCに入った人：今から新規計測開始
+              <span class="tag tag-rank">ランク</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="update-card">
+        <div class="update-icon">🖼️</div>
+        <div class="update-body">
+          <div class="update-title">
+            VCインチャプロフの不具合修正
+            <span class="tag tag-bug">バグ修正</span>
+          </div>
+          <ul>
+            <li>
+              VC退出時にプロフィールカードが消えない問題を修正
+              <span class="tag tag-profile">プロフィール</span>
+            </li>
+            <li>
+              メッセージをDBに永続化し、再起動後も
+              正しく削除できるように改善
+              <span class="tag tag-profile">プロフィール</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- ========================================================= -->
+      <!-- 凡例 -->
+      <!-- ========================================================= -->
+
+      <div class="legend-box">
+        <strong>🏷️ タグ凡例</strong>
+        <span class="tag tag-feature">機能改善</span>
+        <span class="tag tag-bug">バグ修正</span>
+        <span class="tag tag-rank">ランク</span>
+        <span class="tag tag-profile">プロフィール</span>
+      </div>
+
+      <div data-include="include/footer"></div>
+    </div>
+  </main>
+  <script src="js/main.js"></script>
+</body>
+</html>
