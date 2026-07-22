@@ -76,6 +76,51 @@ function initPage() {
     });
   });
 
+  // --- Update filter bar (tag-based sorting) ---
+  const filterBar = document.querySelector('.filter-bar');
+  if (filterBar) {
+    const filterBtns = filterBar.querySelectorAll('.filter-tag');
+    const updateCards = document.querySelectorAll('.update-card');
+    const versionSections = document.querySelectorAll('.update-version');
+
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const filter = btn.dataset.filter;
+
+        // Toggle active state
+        filterBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+
+        // Show/hide cards based on tag match
+        updateCards.forEach(card => {
+          const tags = card.dataset.tags || '';
+          if (filter === 'all' || tags.split(' ').includes(filter)) {
+            card.classList.remove('hidden-by-filter');
+          } else {
+            card.classList.add('hidden-by-filter');
+          }
+        });
+
+        // Hide version section headers when all cards are hidden
+        versionSections.forEach(section => {
+          let next = section.nextElementSibling;
+          let hasVisible = false;
+          while (next && !next.classList.contains('update-version')) {
+            if (
+              next.classList.contains('update-card') &&
+              !next.classList.contains('hidden-by-filter')
+            ) {
+              hasVisible = true;
+              break;
+            }
+            next = next.nextElementSibling;
+          }
+          section.style.display = hasVisible ? '' : 'none';
+        });
+      });
+    });
+  }
+
   // --- Copy code blocks ---
   document.querySelectorAll('pre code').forEach(block => {
     const btn = document.createElement('button');

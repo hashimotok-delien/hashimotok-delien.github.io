@@ -23,88 +23,111 @@
       </div>
 
       <!-- ========================================================= -->
-      <!-- v1.0.x（開発中） -->
+      <!-- フィルター -->
+      <!-- ========================================================= -->
+
+      <div class="filter-bar">
+        <span class="filter-label">🔍 絞り込み：</span>
+        <button class="filter-tag active" data-filter="all">すべて</button>
+        <button class="filter-tag" data-filter="feature">
+          <span class="tag tag-feature">新機能 / 機能改善</span>
+        </button>
+        <button class="filter-tag" data-filter="bug">
+          <span class="tag tag-bug">バグ修正</span>
+        </button>
+        <button class="filter-tag" data-filter="rank">
+          <span class="tag tag-rank">ランク</span>
+        </button>
+        <button class="filter-tag" data-filter="profile">
+          <span class="tag tag-profile">プロフィール</span>
+        </button>
+        <button class="filter-tag" data-filter="info">
+          <span class="tag tag-info">システム</span>
+        </button>
+      </div>
+
+      <!-- ========================================================= -->
+      <!-- v1.5.x — コミュニティ機能拡充 -->
       <!-- ========================================================= -->
 
       <div class="update-version">
-        <div class="version-badge">✏️ 開発中</div>
-        <p class="version-date">2026年7月</p>
+        <div class="version-badge">v1.5</div>
+        <p class="version-date">2026年6月 〜 7月</p>
       </div>
 
-      <div class="update-card">
-        <div class="update-icon">🏆</div>
+      <div class="update-card" data-tags="bug rank profile">
+        <div class="update-icon">🐛</div>
         <div class="update-body">
           <div class="update-title">
-            期間ランキングの改善
+            v1.5.9 — 各種バグ修正
+            <span class="update-date">2026/07/23</span>
+            <span class="tag tag-bug">バグ修正</span>
+          </div>
+          <ul>
+            <li>
+              ランク設定画面で設定名を変更できない問題を修正
+              <span class="tag tag-rank">ランク</span>
+            </li>
+            <li>
+              ログ機能の設定後、他の設定が操作できなくなる問題を修正
+              <span class="tag tag-rank">ランク</span>
+            </li>
+            <li>
+              ログ設定画面から戻ったあとに保存ボタンが
+              反応しなくなる問題を修正
+              <span class="tag tag-rank">ランク</span>
+            </li>
+            <li>
+              プロフ審査の「説明会開始」ボタンが
+              正常に動作しない問題を修正
+              <span class="tag tag-profile">プロフィール</span>
+            </li>
+            <li>
+              ランクのドキュメントに成長曲線グラフを追加
+              <span class="tag tag-rank">ランク</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="update-card" data-tags="feature rank info">
+        <div class="update-icon">🔄</div>
+        <div class="update-body">
+          <div class="update-title">
+            v1.5.8 — VC整合性チェック
+            <span class="update-date">2026/07/22</span>
             <span class="tag tag-feature">機能改善</span>
           </div>
           <ul>
             <li>
-              週間・月間ランキングのログ出力機能を追加
+              Bot起動時と5分おきに、VCセッションの
+              整合性を自動チェックするように
               <span class="tag tag-rank">ランク</span>
             </li>
             <li>
-              期間テーブルに <code>chat_exp</code> /
-              <code>inchat_exp</code> / <code>vc_exp</code> を
-              個別保存するように変更
+              Bot停止中にVCから抜けた人：
+              XPを追加せずセッションのみ正しく削除
               <span class="tag tag-rank">ランク</span>
             </li>
             <li>
-              週終わり・月終わりに自動でログチャンネルへ
-              ランキングTOP10を出力後、該当期間のデータを自動掃除
+              Bot停止中もVCに残っていた人：
+              再開後のXPのみ正しく計測
               <span class="tag tag-rank">ランク</span>
             </li>
             <li>
-              期間ランキングのログ出力先チャンネルを
-              設定パネルから個別設定可能に
-              <span class="tag tag-rank">ランク</span>
-            </li>
-            <li>
-              「全て」ランキングが
-              <code>chat_exp + inchat_exp + vc_exp</code>
-              の合算値で正しくソート・表示されるように修正
-              <span class="tag tag-rank">ランク</span>
+              バージョン表記を改善
+              <span class="tag tag-info">システム</span>
             </li>
           </ul>
         </div>
       </div>
 
-      <div class="update-card">
-        <div class="update-icon">🔄</div>
+      <div class="update-card" data-tags="bug profile rank">
+        <div class="update-icon">🐛</div>
         <div class="update-body">
           <div class="update-title">
-            VC整合性チェックの追加
-            <span class="tag tag-feature">新機能</span>
-          </div>
-          <ul>
-            <li>
-              Bot起動時および5分おきにVCセッションの
-              整合性を自動チェック
-              <span class="tag tag-rank">ランク</span>
-            </li>
-            <li>
-              Bot停止中にVCから抜けた人：セッションのみ削除
-              （XP追加なし）
-              <span class="tag tag-rank">ランク</span>
-            </li>
-            <li>
-              Bot停止中もVCに居続けた人：タイマーをリセットし
-              再開後からのXPのみ計測（過去分は切り捨て）
-              <span class="tag tag-rank">ランク</span>
-            </li>
-            <li>
-              Bot停止中にVCに入った人：今から新規計測開始
-              <span class="tag tag-rank">ランク</span>
-            </li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="update-card">
-        <div class="update-icon">🖼️</div>
-        <div class="update-body">
-          <div class="update-title">
-            VCインチャプロフの不具合修正
+            v1.5.7 — バグ修正
+            <span class="update-date">2026/07/21</span>
             <span class="tag tag-bug">バグ修正</span>
           </div>
           <ul>
@@ -113,9 +136,613 @@
               <span class="tag tag-profile">プロフィール</span>
             </li>
             <li>
-              メッセージをDBに永続化し、再起動後も
-              正しく削除できるように改善
+              メッセージ情報を保存し、
+              Bot再起動後も正しく削除できるように改善
               <span class="tag tag-profile">プロフィール</span>
+            </li>
+            <li>
+              「全て」ランキングが3種のXP合算で
+              正しくソートされるように修正
+              <span class="tag tag-rank">ランク</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="update-card" data-tags="feature rank">
+        <div class="update-icon">🏆</div>
+        <div class="update-body">
+          <div class="update-title">
+            v1.5.6 — ランクチャンネルフィルタ改善
+            <span class="update-date">2026/07/20</span>
+            <span class="tag tag-feature">機能改善</span>
+          </div>
+          <ul>
+            <li>
+              チャンネル除外設定を
+              ホワイトリスト / ブラックリスト方式に変更
+              <span class="tag tag-rank">ランク</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="update-card" data-tags="feature info">
+        <div class="update-icon">⚙️</div>
+        <div class="update-body">
+          <div class="update-title">
+            v1.5.5 — バージョン表記
+            <span class="update-date">2026/07/17</span>
+            <span class="tag tag-feature">機能改善</span>
+          </div>
+          <ul>
+            <li>
+              Botの現在バージョンを表示する機能を追加
+              <span class="tag tag-info">システム</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="update-card" data-tags="feature info">
+        <div class="update-icon">🔌</div>
+        <div class="update-body">
+          <div class="update-title">
+            v1.5.4 — Bot再起動機能
+            <span class="update-date">2026/07/16</span>
+            <span class="tag tag-feature">新機能</span>
+          </div>
+          <ul>
+            <li>
+              管理パネルからBotを安全に再起動できるように
+              <span class="tag tag-info">システム</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="update-card" data-tags="feature info">
+        <div class="update-icon">📚</div>
+        <div class="update-body">
+          <div class="update-title">
+            v1.5.3 — ドキュメント拡充
+            <span class="update-date">2026/07/09</span>
+            <span class="tag tag-feature">機能改善</span>
+          </div>
+          <ul>
+            <li>
+              プロフィールv2、ランクシステムなどの
+              ヘルプページを大幅追加
+              <span class="tag tag-info">システム</span>
+            </li>
+            <li>
+              API制限（レート制限）への対策を強化
+              <span class="tag tag-info">システム</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="update-card" data-tags="feature">
+        <div class="update-icon">📊</div>
+        <div class="update-body">
+          <div class="update-title">
+            v1.5.2 — VCカウンター機能
+            <span class="update-date">2026/07/05</span>
+            <span class="tag tag-feature">新機能</span>
+          </div>
+          <ul>
+            <li>
+              VC名にメンバー数や役職数などを自動表示する
+              カウンター機能を追加
+            </li>
+            <li>
+              プレースホルダー機能で
+              様々な統計値をVC名に表示可能に
+            </li>
+            <li>
+              スレッド数・ステージチャンネル数にも対応
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="update-card" data-tags="feature info">
+        <div class="update-icon">⚙️</div>
+        <div class="update-body">
+          <div class="update-title">
+            v1.5.1 — 設定管理の刷新
+            <span class="update-date">2026/06/18</span>
+            <span class="tag tag-feature">機能改善</span>
+          </div>
+          <ul>
+            <li>
+              内部の設定管理の仕組みを刷新し安定性を向上
+              <span class="tag tag-info">システム</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="update-card" data-tags="feature profile">
+        <div class="update-icon">🧑‍⚖️</div>
+        <div class="update-body">
+          <div class="update-title">
+            v1.5.0 — プロフ審査 v2
+            <span class="update-date">2026/06/16</span>
+            <span class="tag tag-feature">新機能</span>
+          </div>
+          <ul>
+            <li>
+              プロフィール審査機能を全面刷新
+              <span class="tag tag-profile">プロフィール</span>
+            </li>
+            <li>
+              審査フォームのUIと内部ロジックを改善
+              <span class="tag tag-profile">プロフィール</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- ========================================================= -->
+      <!-- v1.4.x — 安定化・機能統合 -->
+      <!-- ========================================================= -->
+
+      <div class="update-version">
+        <div class="version-badge">v1.4</div>
+        <p class="version-date">2026年5月 〜 6月</p>
+      </div>
+
+      <div class="update-card" data-tags="feature profile">
+        <div class="update-icon">🖼️</div>
+        <div class="update-body">
+          <div class="update-title">
+            v1.4.5 — プロフィールv1改善
+            <span class="update-date">2026/06/19</span>
+            <span class="tag tag-feature">機能改善</span>
+          </div>
+          <ul>
+            <li>
+              プロフィールv1に使用中設定の表示機能を追加
+              <span class="tag tag-profile">プロフィール</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="update-card" data-tags="feature">
+        <div class="update-icon">💬</div>
+        <div class="update-body">
+          <div class="update-title">
+            v1.4.4 — 自動リアクション機能
+            <span class="update-date">2026/06/13</span>
+            <span class="tag tag-feature">新機能</span>
+          </div>
+          <ul>
+            <li>
+              メッセージ投稿時に自動で
+              リアクションをつける機能を追加
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="update-card" data-tags="feature info">
+        <div class="update-icon">📋</div>
+        <div class="update-body">
+          <div class="update-title">
+            v1.4.3 — ログシステム刷新
+            <span class="update-date">2026/06/06</span>
+            <span class="tag tag-feature">機能改善</span>
+          </div>
+          <ul>
+            <li>
+              統合ロガーを導入し、
+              エラー検知と通知の信頼性を向上
+              <span class="tag tag-info">システム</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="update-card" data-tags="bug">
+        <div class="update-icon">🐛</div>
+        <div class="update-body">
+          <div class="update-title">
+            v1.4.2 — スティッキー表示バグ修正
+            <span class="update-date">2026/05/11</span>
+            <span class="tag tag-bug">バグ修正</span>
+          </div>
+          <ul>
+            <li>
+              スティッキーメッセージの編集画面で
+              親チャンネル未設定時に「none」と
+              表示される問題を修正
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="update-card" data-tags="feature">
+        <div class="update-icon">🎉</div>
+        <div class="update-body">
+          <div class="update-title">
+            v1.4.1 — キリ番通知機能
+            <span class="update-date">2026/05/09</span>
+            <span class="tag tag-feature">新機能</span>
+          </div>
+          <ul>
+            <li>
+              サーバーのメンバー数がキリ番（例: 100人）に
+              達したときに通知する機能を追加
+            </li>
+            <li>
+              各種ドキュメントを更新
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="update-card" data-tags="feature">
+        <div class="update-icon">📌</div>
+        <div class="update-body">
+          <div class="update-title">
+            v1.4.0 — スティッキー機能 安定版統合
+            <span class="update-date">2026/05/04</span>
+            <span class="tag tag-feature">機能改善</span>
+          </div>
+          <ul>
+            <li>
+              開発版のスティッキーメッセージ機能を
+              安定版に統合
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- ========================================================= -->
+      <!-- v1.3.x — システム統合 -->
+      <!-- ========================================================= -->
+
+      <div class="update-version">
+        <div class="version-badge">v1.3</div>
+        <p class="version-date">2026年3月 〜 4月</p>
+      </div>
+
+      <div class="update-card" data-tags="feature profile">
+        <div class="update-icon">🖼️</div>
+        <div class="update-body">
+          <div class="update-title">
+            v1.3.5 — プロフィールシステム基盤
+            <span class="update-date">2026/04/24</span>
+            <span class="tag tag-feature">機能改善</span>
+          </div>
+          <ul>
+            <li>
+              新プロフィールシステムの
+              選択UIとテンプレート登録機能を追加
+              <span class="tag tag-profile">プロフィール</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="update-card" data-tags="feature profile">
+        <div class="update-icon">🖼️</div>
+        <div class="update-body">
+          <div class="update-title">
+            v1.3.4 — プロフィールv2追加
+            <span class="update-date">2026/04/22</span>
+            <span class="tag tag-feature">新機能</span>
+          </div>
+          <ul>
+            <li>
+              プロフィールv2システムを追加
+              <span class="tag tag-profile">プロフィール</span>
+            </li>
+            <li>
+              より柔軟なカスタマイズが可能に
+              <span class="tag tag-profile">プロフィール</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="update-card" data-tags="feature info">
+        <div class="update-icon">🤖</div>
+        <div class="update-body">
+          <div class="update-title">
+            v1.3.3 — Botステータス表示
+            <span class="update-date">2026/04/19</span>
+            <span class="tag tag-feature">新機能</span>
+          </div>
+          <ul>
+            <li>
+              Botの稼働状況を表示するステータス機能を追加
+              <span class="tag tag-info">システム</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="update-card" data-tags="feature">
+        <div class="update-icon">💤</div>
+        <div class="update-body">
+          <div class="update-title">
+            v1.3.1 — 寝落ち送りv2
+            <span class="update-date">2026/03/14</span>
+            <span class="tag tag-feature">機能改善</span>
+          </div>
+          <ul>
+            <li>
+              寝落ち送り機能の改良版を開発開始
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="update-card" data-tags="feature">
+        <div class="update-icon">🔀</div>
+        <div class="update-body">
+          <div class="update-title">
+            v1.3.0 — カテゴリ権限同期
+            <span class="update-date">2026/03/10</span>
+            <span class="tag tag-feature">新機能</span>
+          </div>
+          <ul>
+            <li>
+              カテゴリ内のチャンネル権限を一括で同期する
+              コマンドを追加
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- ========================================================= -->
+      <!-- v1.2.x — プロフィール機能拡充 -->
+      <!-- ========================================================= -->
+
+      <div class="update-version">
+        <div class="version-badge">v1.2</div>
+        <p class="version-date">2026年1月 〜 2月</p>
+      </div>
+
+      <div class="update-card" data-tags="feature profile bug info">
+        <div class="update-icon">🖼️</div>
+        <div class="update-body">
+          <div class="update-title">
+            v1.2.3 〜 v1.2.8 — プロフィール機能拡充
+            <span class="update-date">2026/01/18 〜 2026/02/09</span>
+            <span class="tag tag-feature">機能改善</span>
+          </div>
+          <ul>
+            <li>
+              プロフィールの保存・リンク再送機能を追加
+              <span class="tag tag-profile">プロフィール</span>
+            </li>
+            <li>
+              VCクライアント制御コマンドを追加
+            </li>
+            <li>
+              裏2shot VC移動時のプロフィール表示問題を修正
+              <span class="tag tag-bug">バグ修正</span>
+            </li>
+            <li>
+              ドキュメントページを大幅追加
+            </li>
+            <li>
+              Bot管理用コマンドを追加
+              <span class="tag tag-info">システム</span>
+            </li>
+            <li>
+              コード品質チェックを導入し安定性を向上
+              <span class="tag tag-info">システム</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- ========================================================= -->
+      <!-- v1.1.x — コミュニティ機能拡充 -->
+      <!-- ========================================================= -->
+
+      <div class="update-version">
+        <div class="version-badge">v1.1</div>
+        <p class="version-date">2025年11月 〜 12月</p>
+      </div>
+
+      <div class="update-card" data-tags="feature">
+        <div class="update-icon">🧠</div>
+        <div class="update-body">
+          <div class="update-title">
+            v1.1.6 — MBTI相性診断
+            <span class="update-date">2025/11/21</span>
+            <span class="tag tag-feature">新機能</span>
+          </div>
+          <ul>
+            <li>
+              MBTIタイプをもとにした相性診断機能を追加
+            </li>
+            <li>
+              メッセージ表示を改善
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="update-card" data-tags="feature">
+        <div class="update-icon">📢</div>
+        <div class="update-body">
+          <div class="update-title">
+            v1.1.4 〜 v1.1.5 — BUMP通知・プレビュー
+            <span class="update-date">2025/11/15 〜 2025/11/20</span>
+            <span class="tag tag-feature">新機能</span>
+          </div>
+          <ul>
+            <li>
+              DISBOARDのBUMP通知を設定できるように
+            </li>
+            <li>
+              設定変更時のプレビュー表示機能を追加
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="update-card" data-tags="feature">
+        <div class="update-icon">🎭</div>
+        <div class="update-body">
+          <div class="update-title">
+            v1.1.0 〜 v1.1.3 — 役職パネル・UI改善
+            <span class="update-date">2025/11/05 〜 2025/11/13</span>
+            <span class="tag tag-feature">新機能</span>
+          </div>
+          <ul>
+            <li>
+              役職パネルに管理者向けオプションを追加
+            </li>
+            <li>
+              スティッキーメッセージに
+              ボタンを追加できるように
+            </li>
+            <li>
+              コマンドの入力補完を改善
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="update-card" data-tags="feature profile">
+        <div class="update-icon">📅</div>
+        <div class="update-body">
+          <div class="update-title">
+            v1.1.7 〜 v1.1.10 — カレンダーキック・プロフィール
+            <span class="update-date">2025/11/23 〜 2025/12/18</span>
+            <span class="tag tag-feature">機能改善</span>
+          </div>
+          <ul>
+            <li>
+              指定時刻にVCメンバーを自動キックする機能を追加
+            </li>
+            <li>
+              エラー発生時にユーザーへ分かりやすい
+              メッセージを表示するように改善
+            </li>
+            <li>
+              設定パネルの項目構成を改善
+            </li>
+            <li>
+              プロフィールをスティッキーメッセージに
+              表示する機能を追加
+              <span class="tag tag-profile">プロフィール</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- ========================================================= -->
+      <!-- v1.0.x — 初回リリース -->
+      <!-- ========================================================= -->
+
+      <div class="update-version">
+        <div class="version-badge">v1.0</div>
+        <p class="version-date">2025年10月</p>
+      </div>
+
+      <div class="update-card" data-tags="feature">
+        <div class="update-icon">📌</div>
+        <div class="update-body">
+          <div class="update-title">
+            v1.0.5 — スティッキーメッセージ改良
+            <span class="update-date">2025/10/28</span>
+            <span class="tag tag-feature">機能改善</span>
+          </div>
+          <ul>
+            <li>
+              Bot再起動後もスティッキーメッセージが
+              正しく復元されるように改善
+            </li>
+            <li>
+              メッセージ表示を改善
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="update-card" data-tags="feature">
+        <div class="update-icon">🔒</div>
+        <div class="update-body">
+          <div class="update-title">
+            v1.0.2 〜 v1.0.4 — 裏2shot機能
+            <span class="update-date">2025/10/17 〜 2025/10/25</span>
+            <span class="tag tag-feature">新機能</span>
+          </div>
+          <ul>
+            <li>
+              性別ロールに応じたプライベートVCを自動作成
+            </li>
+            <li>
+              ノック（参加リクエスト）ボタン機能を追加
+            </li>
+            <li>
+              不要になったVCを自動削除
+            </li>
+            <li>
+              裏2shotの使い方ドキュメントを追加
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="update-card" data-tags="feature">
+        <div class="update-icon">📌</div>
+        <div class="update-body">
+          <div class="update-title">
+            v1.0.0 〜 v1.0.1 — 初回リリース
+            <span class="update-date">2025/10/10 〜 2025/10/13</span>
+            <span class="tag tag-feature">新機能</span>
+          </div>
+          <ul>
+            <li>
+              <strong>スティッキーメッセージ機能</strong> —
+              指定チャンネルの最下部に常にメッセージを表示
+            </li>
+            <li>
+              ドキュメントページ（トップページ・機能一覧）を公開
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- ========================================================= -->
+      <!-- 開発準備期 -->
+      <!-- ========================================================= -->
+
+      <div class="update-version">
+        <div class="version-badge">🏗️ 開発準備期</div>
+        <p class="version-date">2025年7月 〜 9月</p>
+      </div>
+
+      <div class="update-card" data-tags="wip">
+        <div class="update-icon">🚀</div>
+        <div class="update-body">
+          <div class="update-title">
+            プロジェクト始動 〜 初回リリース前夜
+            <span class="update-date">2025/07/30 〜 2025/09/30</span>
+            <span class="tag tag-wip">開発中</span>
+          </div>
+          <ul>
+            <li>
+              2025年7月30日 — Cultivate Bot プロジェクト始動
+            </li>
+            <li>
+              <strong>寝落ち送り機能</strong> —
+              VCで寝落ちしたメンバーを専用VCに自動移動
+            </li>
+            <li>
+              <strong>設定パネル</strong> —
+              Bot設定を一元管理できる管理者パネルを追加
             </li>
           </ul>
         </div>
@@ -127,10 +754,11 @@
 
       <div class="legend-box">
         <strong>🏷️ タグ凡例</strong>
-        <span class="tag tag-feature">機能改善</span>
+        <span class="tag tag-feature">新機能 / 機能改善</span>
         <span class="tag tag-bug">バグ修正</span>
         <span class="tag tag-rank">ランク</span>
         <span class="tag tag-profile">プロフィール</span>
+        <span class="tag tag-info">システム</span>
       </div>
 
       <div data-include="include/footer"></div>
