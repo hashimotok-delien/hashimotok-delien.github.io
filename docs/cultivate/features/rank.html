@@ -35,6 +35,9 @@
         新しいレベルが自動的に再計算されます。</p>
       </div>
 
+      <!-- ============================================================ -->
+      <!-- 概要 -->
+      <!-- ============================================================ -->
       <h2>概要</h2>
       <p>
         ランクシステムは、ユーザーのDiscord活動量を可視化する機能です。
@@ -46,66 +49,37 @@
         また、テキストチャットとインチャットを別々に計測する設定も可能です。
       </p>
 
+      <!-- ============================================================ -->
+      <!-- 機能一覧 -->
+      <!-- ============================================================ -->
       <h2>機能一覧</h2>
       <div class="table-wrapper"><table>
         <thead>
-          <tr>
-            <th>機能</th>
-            <th>説明</th>
-          </tr>
+          <tr><th>機能</th><th>説明</th></tr>
         </thead>
         <tbody>
-          <tr>
-            <td>経験値計測</td>
-            <td>メッセージ送信・VC接続時間に応じてXPを付与</td>
-          </tr>
-          <tr>
-            <td>レベルアップ</td>
-            <td>累積XPがしきい値を超えると自動でレベルアップ</td>
-          </tr>
-          <tr>
-            <td>ランク付与</td>
-            <td>特定レベル到達でロールを自動付与（任意設定）</td>
-          </tr>
-          <tr>
-            <td>ランキング</td>
-            <td>サーバー内のXPランキングTOP10を表示</td>
-          </tr>
-          <tr>
-            <td>期間ランキング</td>
-            <td>週間・月間のランキングを表示</td>
-          </tr>
-          <tr>
-            <td>XP集計モード</td>
-            <td>全体・VC/チャット・VC/チャット/インチャットの3モード</td>
-          </tr>
-          <tr>
-            <td>ランダムEXP</td>
-            <td>固定値・一様ランダム・三角分布・カスタム数式から選択可能</td>
-          </tr>
-          <tr>
-            <td>チャンネルフィルター</td>
-            <td>特定のCH/カテゴリのみXP計測（許可/拒否）</td>
-          </tr>
-          <tr>
-            <td>XPキャップ</td>
-            <td>日次・週次で獲得XPに上限を設定</td>
-          </tr>
-          <tr>
-            <td>メッセージボーナス</td>
-            <td>文字数・添付・スタンプに応じたボーナスXP</td>
-          </tr>
-          <tr>
-            <td>イベントブースト</td>
-            <td>期間限定でXP獲得量を増加</td>
-          </tr>
-          <tr>
-            <td>有効期間</td>
-            <td>ランク計測を特定の期間だけ有効化</td>
-          </tr>
+          <tr><td>経験値計測</td><td>メッセージ送信・VC接続時間に応じてXPを付与</td></tr>
+          <tr><td>レベルアップ</td><td>累積XPがしきい値を超えると自動でレベルアップ</td></tr>
+          <tr><td>ランク付与</td><td>特定レベル到達でロールを自動付与（任意設定）</td></tr>
+          <tr><td>ランキング</td><td>サーバー内のXPランキングTOP10を表示（0XP除外）</td></tr>
+          <tr><td>期間ランキング</td><td>週間・月間のランキングを表示</td></tr>
+          <tr><td>XP集計モード</td><td>全体・VC/チャット・VC/チャット/インチャットの3モード</td></tr>
+          <tr><td>ランダムEXP</td><td>固定値・一様ランダム・三角分布・カスタム数式から選択可能</td></tr>
+          <tr><td>チャンネルフィルター</td><td>特定のCH/カテゴリのみXP計測（許可/拒否）</td></tr>
+          <tr><td>XPキャップ</td><td>日次・週次で獲得XPに上限を設定</td></tr>
+          <tr><td>メッセージボーナス</td><td>文字数・添付・スタンプに応じたボーナスXP</td></tr>
+          <tr><td>イベントブースト</td><td>期間限定でXP獲得量を増加</td></tr>
+          <tr><td>有効期間</td><td>ランク計測を特定の期間だけ有効化</td></tr>
+          <tr><td>VC条件</td><td>最小人数・ロール要件（自分/同席者）</td></tr>
+          <tr><td>VC最小接続時間</td><td>指定分数未満のVC接続ではXP不付与（分単位、デフォルト1分）</td></tr>
+          <tr><td>チャット/インチャットロール制限</td><td>特定ロール未所持でチャット・インチャットXP不付与</td></tr>
+          <tr><td>VC切断時比例計算</td><td>接続秒数に比例したXP付与（端数も計算）</td></tr>
         </tbody>
       </table></div>
 
+      <!-- ============================================================ -->
+      <!-- 経験値の獲得方法 -->
+      <!-- ============================================================ -->
       <h2>経験値の獲得方法</h2>
 
       <h3>チャット経験値</h3>
@@ -119,67 +93,56 @@
         <li>クールダウン期間中の連続送信（デフォルト60秒）</li>
         <li>有効期間外（active_start / active_end が設定されている場合）</li>
         <li>チャンネルフィルターで拒否されているチャンネル</li>
+        <li><strong>チャット獲得ロール</strong>が設定されている場合、そのロールを1つも持っていない</li>
       </ul>
 
       <h4>チャットXPの計算フロー</h4>
-      <pre><code>1. 基本XP = _calc_random_exp(chat=True)
+      <pre><code>1. チャット/インチャット ロール要件チェック
+   └── ロール未所持 → 付与なし
+
+2. 基本XP = _calc_random_exp(chat=True)
    ├── モード0（固定値）: chat_exp × chat_multiplier
    ├── モード1（一様）: random.uniform(min, max)
    ├── モード2（三角）: random.triangular(min, max)
    └── モード3（カスタム）: ユーザー定義式 (lo, hi, R 利用可)
 
-2. + メッセージボーナス
+3. + メッセージボーナス
    ├── 文字数ボーナス（設定文字数以上で加算）
    ├── 添付ファイルボーナス（1添付ごとに加算）
    └── スタンプボーナス（1スタンプごとに加算）
 
-3. × イベントブースト倍率（boost_chat_mult）
+4. × イベントブースト倍率（boost_chat_mult）
 
-4. XPキャップ適用（日次上限を超過しないよう調整）</code></pre>
+5. XPキャップ適用（日次上限を超過しないよう調整）</code></pre>
 
       <h4>メッセージボーナス</h4>
-      <p>
-        メッセージの質に応じて追加XPが付与されます。
-        管理者が各項目を個別に設定できます。
-      </p>
+      <p>メッセージの質に応じて追加XPが付与されます。管理者が各項目を個別に設定できます。</p>
       <div class="table-wrapper"><table>
-        <thead>
-          <tr>
-            <th>ボーナス種別</th>
-            <th>条件</th>
-            <th>加算量</th>
-          </tr>
-        </thead>
+        <thead><tr><th>ボーナス種別</th><th>条件</th><th>加算量</th></tr></thead>
         <tbody>
-          <tr>
-            <td>📝 文字数ボーナス</td>
-            <td>設定文字数以上（例: 100文字）</td>
-            <td>設定値（例: +5 XP）</td>
-          </tr>
-          <tr>
-            <td>📎 添付ファイル</td>
-            <td>メッセージにファイル添付</td>
-            <td>設定値 × 添付数（例: +3 × 2）</td>
-          </tr>
-          <tr>
-            <td>🏷️ スタンプ</td>
-            <td>メッセージにスタンプ</td>
-            <td>設定値 × スタンプ数（例: +2 × 1）</td>
-          </tr>
+          <tr><td>📝 文字数ボーナス</td><td>設定文字数以上（例: 50文字）</td><td>設定値（例: +5 XP）</td></tr>
+          <tr><td>📎 添付ファイル</td><td>メッセージにファイル添付</td><td>設定値 × 添付数（例: +10 × 2）</td></tr>
+          <tr><td>🏷️ スタンプ</td><td>メッセージにスタンプ</td><td>設定値 × スタンプ数（例: +3 × 1）</td></tr>
         </tbody>
       </table></div>
 
+      <!-- ============================================================ -->
+      <!-- VC経験値 -->
+      <!-- ============================================================ -->
       <h3>VC経験値</h3>
       <p>
-        VCに接続している間、一定間隔でXPが付与されます。
+        VCに接続している間、XPが付与されます。
+        切断時に接続時間に応じて一括計算されます。
       </p>
       <ul>
-        <li>1分ごとにXPを獲得</li>
+        <li>VC切断時に接続開始時からの経過秒数で比例計算</li>
+        <li>1分あたりのXP × (経過秒数 / 60) で計算（端数あり）</li>
         <li>2人以上が接続している場合のみ有効</li>
         <li>ミュート中でもXPが獲得可能</li>
         <li>1人VCでは獲得できません</li>
         <li>VC CHフィルターで拒否されているVCでは付与されません</li>
-        <li>VC切断時に接続開始時からの経過時間に応じて一括計算されます</li>
+        <li><strong>VC最小接続時間</strong>未満の接続では一切XPが付与されません</li>
+        <li>VC自分ロール・同席者ロールの要件を満たさない場合は付与されません</li>
       </ul>
 
       <div class="alert alert-warning">
@@ -188,6 +151,64 @@
         一括で計算されて加算されます。</p>
       </div>
 
+      <!-- ============================================================ -->
+      <!-- VC最小接続時間 -->
+      <!-- ============================================================ -->
+      <h3>⏳ VC最小接続時間</h3>
+      <p>
+        VC接続後、<strong>指定分数未満</strong>の接続ではXPが一切付与されません。
+        デフォルトは<strong>1分</strong>で、1分未満のVC接続はXPなしになります。
+      </p>
+      <div class="table-wrapper"><table>
+        <thead>
+          <tr><th>設定値</th><th>経過時間</th><th>結果</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><code>1</code>（デフォルト）</td><td>30秒</td><td>❌ 付与なし（1分未満）</td></tr>
+          <tr><td><code>1</code>（デフォルト）</td><td>90秒</td><td>✅ 1.5分分のXP</td></tr>
+          <tr><td><code>0</code>（比例計算）</td><td>30秒</td><td>✅ 0.5分分のXP（比例）</td></tr>
+          <tr><td><code>3</code></td><td>150秒</td><td>✅ 2.5分分のXP</td></tr>
+          <tr><td><code>3</code></td><td>120秒</td><td>❌ 付与なし（3分未満）</td></tr>
+        </tbody>
+      </table></div>
+      <ul>
+        <li><strong>0に設定</strong>: 最小接続時間の制限がなくなり、1秒から比例計算でXPが付与されます</li>
+        <li><strong>1以上</strong>: 指定分数を超えた場合のみXP付与。超えた分は端数まで比例計算（例: 90秒 = 1.5分分）</li>
+        <li>設定は「⏱️ クールダウン設定」Modalから行います（チャットクールダウンと同時設定）</li>
+      </ul>
+
+      <!-- ============================================================ -->
+      <!-- チャット/インチャット ロール要件 -->
+      <!-- ============================================================ -->
+      <h3>💬🎙️ チャット・インチャット ロール要件 <span class="tag tag-new">NEW</span></h3>
+      <p>
+        チャット・インチャットそれぞれに<strong>獲得に必要なロール</strong>を設定できます。
+        設定されたロールを1つも持っていないユーザーは、
+        そのトラックでXPを一切獲得できません。
+      </p>
+      <div class="table-wrapper"><table>
+        <thead>
+          <tr><th>設定項目</th><th>対象</th><th>空の場合</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>💬 チャット獲得ロール</td><td>通常のテキストチャット</td><td>全員がXP獲得可能</td></tr>
+          <tr><td>🎙️ インチャット獲得ロール</td><td>VC/ステージ内のテキストチャット</td><td>全員がXP獲得可能</td></tr>
+          <tr><td>🎤 VC自分ロール</td><td>VC接続</td><td>全員がXP獲得可能</td></tr>
+        </tbody>
+      </table></div>
+      <p>
+        これらの設定は「🎤 VC/チャット条件設定」Modalで一括管理できます。
+      </p>
+      <div class="alert alert-info">
+        <p><strong>💡 ユースケース:</strong>
+        例えば「認証済み」ロールを持っている人のみチャットXPを獲得できるようにしたり、
+        VC常連ロールを持っている人のみインチャットXPを獲得できるようにするなど、
+        活動の質を担保するために使用できます。</p>
+      </div>
+
+      <!-- ============================================================ -->
+      <!-- XP集計モード -->
+      <!-- ============================================================ -->
       <h3>XP集計モード</h3>
       <p>
         プリセットごとに<strong>XP集計モード</strong>を選択できます。
@@ -196,52 +217,23 @@
       </p>
       <div class="table-wrapper"><table>
         <thead>
-          <tr>
-            <th>モード</th>
-            <th>表示名</th>
-            <th>チャットXPの記録先</th>
-            <th>VC XPの記録先</th>
-            <th>VC/Stage内チャット</th>
-            <th>レベル判定</th>
-          </tr>
+          <tr><th>モード</th><th>表示名</th><th>チャットXPの記録先</th><th>VC XPの記録先</th><th>VC/Stage内チャット</th><th>レベル判定</th></tr>
         </thead>
         <tbody>
-          <tr>
-            <td><code>combined</code></td>
-            <td>🔄 全体</td>
-            <td><code>chat_exp</code></td>
-            <td><code>vc_exp</code></td>
-            <td><code>chat_exp</code></td>
-            <td><code>chat_exp + vc_exp</code>（合算）</td>
-          </tr>
-          <tr>
-            <td><code>separate</code></td>
-            <td>🔀 VC/チャット</td>
-            <td><code>chat_exp</code></td>
-            <td><code>vc_exp</code></td>
-            <td><code>chat_exp</code></td>
-            <td>各XPから独立（2系統）</td>
-          </tr>
-          <tr>
-            <td><code>inchat</code></td>
-            <td>🎙️ VC/チャット/インチャット</td>
-            <td><code>chat_exp</code></td>
-            <td><code>vc_exp</code></td>
-            <td><code>inchat_exp</code>（独立）</td>
-            <td>各XPから独立（3系統）</td>
-          </tr>
+          <tr><td><code>combined</code></td><td>🔄 全体</td><td><code>chat_exp</code></td><td><code>vc_exp</code></td><td><code>chat_exp</code></td><td><code>chat_exp + inchat_exp + vc_exp</code>（合算）</td></tr>
+          <tr><td><code>separate</code></td><td>🔀 VC/チャット</td><td><code>chat_exp</code></td><td><code>vc_exp</code></td><td><code>chat_exp</code></td><td>各XPから独立（2系統）</td></tr>
+          <tr><td><code>inchat</code></td><td>🎙️ VC/チャット/インチャット</td><td><code>chat_exp</code></td><td><code>vc_exp</code></td><td><code>inchat_exp</code>（独立）</td><td>各XPから独立（3系統）</td></tr>
         </tbody>
       </table></div>
       <ul>
         <li><strong>全体 (combined)</strong>:
-          <code>chat_exp</code> と <code>vc_exp</code> を
+          <code>chat_exp</code> と <code>inchat_exp</code> と <code>vc_exp</code> を
           <strong>合算</strong>して単一レベルを計算します。
           チャットとVCの両方の活動が同じレベルに貢献するシンプルな方式です。</li>
         <li><strong>VC/チャット (separate)</strong>:
-          チャットXP → <code>chat_exp</code>、
+          チャットXP → <code>chat_exp</code>（+inchat_exp）、
           VC XP → <code>vc_exp</code> として別々に記録し、
-          それぞれから独立したレベルを計算します。
-          チャットとVCで別々にレベルアップが可能です。</li>
+          それぞれから独立したレベルを計算します。</li>
         <li><strong>VC/チャット/インチャット (inchat)</strong>:
           separate と同様にチャット・VCで独立したレベルを持ちつつ、
           VCチャンネル内のテキストチャットやステージチャンネルでの
@@ -253,92 +245,51 @@
       そのため成長曲線の変更が過去のデータに即座に反映され、
       レベルがずれる心配はありません。</p>
 
+      <!-- ============================================================ -->
+      <!-- ランダムEXPシステム -->
+      <!-- ============================================================ -->
       <h2>ランダムEXPシステム</h2>
       <p>
         経験値の獲得量にバラつきを持たせられる<strong>ランダムEXP</strong>機能を
         搭載しています。4つのモードから選択可能です。
       </p>
-
       <div class="table-wrapper"><table>
-        <thead>
-          <tr>
-            <th>モード</th>
-            <th>名称</th>
-            <th>挙動</th>
-            <th>用途</th>
-          </tr>
-        </thead>
+        <thead><tr><th>モード</th><th>名称</th><th>挙動</th><th>用途</th></tr></thead>
         <tbody>
-          <tr>
-            <td>0</td>
-            <td>固定値</td>
-            <td>常に一定値（従来の設定値 × 倍率）</td>
-            <td>安定したXP配分</td>
-          </tr>
-          <tr>
-            <td>1</td>
-            <td>一様ランダム</td>
-            <td><code>random.uniform(最小, 最大)</code></td>
-            <td>シンプルなランダム</td>
-          </tr>
-          <tr>
-            <td>2</td>
-            <td>三角分布</td>
-            <td><code>random.triangular(最小, 最大)</code></td>
-            <td>中央値付近が出やすい</td>
-          </tr>
-          <tr>
-            <td>3</td>
-            <td>カスタム数式</td>
-            <td>ユーザー定義の式で計算</td>
-            <td>自由な設計</td>
-          </tr>
+          <tr><td>0</td><td>🎲 固定</td><td>常に一定値（設定値 × 倍率）</td><td>安定したXP配分</td></tr>
+          <tr><td>1</td><td>🎲 ランダム①</td><td>一様分布 random.randint(min, max)</td><td>シンプルなランダム</td></tr>
+          <tr><td>2</td><td>🎲 ランダム②</td><td>三角分布 random.triangular(min, max, min)</td><td>下限寄りの分布</td></tr>
+          <tr><td>3</td><td>🎯 カスタム数式</td><td>ユーザー定義の式で計算</td><td>自由な設計</td></tr>
         </tbody>
       </table></div>
 
       <h3>カスタム数式モード（モード3）</h3>
-      <p>
-        以下の変数が利用可能です：
-      </p>
+      <p>以下の変数が利用可能です：</p>
       <div class="table-wrapper"><table>
-        <thead>
-          <tr>
-            <th>変数</th>
-            <th>説明</th>
-          </tr>
-        </thead>
+        <thead><tr><th>変数</th><th>説明</th></tr></thead>
         <tbody>
-          <tr>
-            <td><code>lo</code></td>
-            <td>設定されている下限XP</td>
-          </tr>
-          <tr>
-            <td><code>hi</code></td>
-            <td>設定されている上限XP</td>
-          </tr>
-          <tr>
-            <td><code>R</code></td>
-            <td><code>random.random()</code> — 0～1のランダム値</td>
-          </tr>
+          <tr><td><code>lo</code></td><td>設定されている下限XP</td></tr>
+          <tr><td><code>hi</code></td><td>設定されている上限XP</td></tr>
+          <tr><td><code>R</code></td><td><code>random.random()</code> — 0～1のランダム値</td></tr>
         </tbody>
       </table></div>
       <p>設定例：</p>
-      <pre><code># デフォルト（一様ランダムと同じ挙動）
+      <pre><code># 一様ランダムと同じ挙動
 lo + int(R * (hi - lo + 1))
 
-# 正規分布風（Box-Muller法の簡易版）
+# 正規分布風
 int((lo + hi) / 2 + (R - 0.5) * (hi - lo))
 
 # 高確率で最大値近く
 int(hi * R ** 0.5)</code></pre>
 
+      <!-- ============================================================ -->
+      <!-- 拡張機能 -->
+      <!-- ============================================================ -->
       <h2>拡張機能</h2>
 
       <h3>📅 XPキャップ</h3>
-      <p>
-        1日・1週間あたりの獲得XPに上限を設定できます。
-        キャップを超えたXPは切り捨てられます。
-      </p>
+      <p>1日・1週間あたりの獲得XPに上限を設定できます。キャップを超えたXPは切り捨てられます。</p>
       <ul>
         <li><strong>日次上限</strong>: その日の0時からの合計獲得XPを制限</li>
         <li><strong>週次上限</strong>: 月曜0時からの合計獲得XPを制限</li>
@@ -346,9 +297,7 @@ int(hi * R ** 0.5)</code></pre>
       </ul>
 
       <h3>🚀 イベントブースト</h3>
-      <p>
-        特定の期間、XP獲得量に倍率を掛けられるイベント機能です。
-      </p>
+      <p>特定の期間、XP獲得量に倍率を掛けられるイベント機能です。</p>
       <ul>
         <li>チャット倍率 / VC倍率を個別に設定</li>
         <li>開始日時・終了日時を設定（期間限定ブースト）</li>
@@ -356,9 +305,7 @@ int(hi * R ** 0.5)</code></pre>
       </ul>
 
       <h3>🟢 有効期間</h3>
-      <p>
-        ランクシステムの計測自体を特定の期間だけ有効にできます。
-      </p>
+      <p>ランクシステムの計測自体を特定の期間だけ有効にできます。</p>
       <ul>
         <li><strong>開始日時</strong>のみ設定 → その日時以降のみ計測</li>
         <li><strong>終了日時</strong>のみ設定 → その日時までのみ計測</li>
@@ -366,6 +313,9 @@ int(hi * R ** 0.5)</code></pre>
         <li>有効期間外は一切XPが付与されません</li>
       </ul>
 
+      <!-- ============================================================ -->
+      <!-- チャンネルフィルター -->
+      <!-- ============================================================ -->
       <h3>#️⃣ チャンネルフィルター</h3>
       <p>
         特定のチャンネル・カテゴリをXP計測の対象・除外に指定できます。
@@ -373,146 +323,75 @@ int(hi * R ** 0.5)</code></pre>
       </p>
       <p>
         フィルターは<strong>ホワイトリスト（許可）</strong>と
-        <strong>ブラックリスト（拒否）</strong>の2つを
-        同時に設定できます。
+        <strong>ブラックリスト（拒否）</strong>の2つを同時に設定できます。
       </p>
       <div class="table-wrapper"><table>
-        <thead>
-          <tr>
-            <th>リスト</th>
-            <th>挙動</th>
-          </tr>
-        </thead>
+        <thead><tr><th>リスト</th><th>挙動</th></tr></thead>
         <tbody>
-          <tr>
-            <td>✅ ホワイトリスト</td>
-            <td>
-              設定されている場合、該当CH/カテゴリのみXP計測。
-              未設定（空）の場合は全CHが対象。
-            </td>
-          </tr>
-          <tr>
-            <td>❌ ブラックリスト</td>
-            <td>
-              該当CH/カテゴリをXP計測から除外。
-              ホワイトリストより優先（ホワイトにあってもBLなら除外）。
-            </td>
-          </tr>
+          <tr><td>✅ ホワイトリスト</td><td>設定されている場合、該当CH/カテゴリのみXP計測。未設定（空）の場合は全CHが対象。</td></tr>
+          <tr><td>❌ ブラックリスト</td><td>該当CH/カテゴリをXP計測から除外。ホワイトリストより優先。</td></tr>
         </tbody>
       </table></div>
-      <p>
-        テキストCH（TC）とVCでそれぞれ以下の4項目を設定できます：
-      </p>
+      <p>テキストCH（TC）とVCでそれぞれ以下の4項目を設定できます：</p>
       <ul>
         <li>✅ カテゴリWH（そのカテゴリ内の全CHが許可対象）</li>
         <li>✅ チャンネルWH（個別のCHを許可対象）</li>
         <li>❌ カテゴリBL（そのカテゴリ内の全CHを除外）</li>
         <li>❌ チャンネルBL（個別のCHを除外）</li>
       </ul>
-      <p>
-        設定は専用Modalで行います。Modal内の4つのChannelSelectで
-        それぞれWH/BLのカテゴリ・チャンネルを選択できます。
-      </p>
 
-      <h3>📊 期間ランキング</h3>
+      <!-- ============================================================ -->
+      <!-- ランキング -->
+      <!-- ============================================================ -->
+      <h2>📊 ランキング</h2>
       <p>
-        <code>/ranking</code> コマンドに <code>period</code> オプションを追加することで、
-        週間・月間のランキングを表示できます。
+        <code>/ranking</code> コマンドでサーバー内のXPランキングを表示できます。
       </p>
       <ul>
-        <li><strong>週間</strong>: ISO週単位（月曜～日曜）</li>
-        <li><strong>月間</strong>: 暦月単位（1日～月末）</li>
-        <li>指定なし: 全期間の累計ランキング</li>
+        <li>プリセット一覧がページネーションで表示される</li>
+        <li>✅ 選択ボタン → Modalで種別（全て/チャット/VC/インチャット）と期間（全期間/週間/月間）を設定</li>
+        <li><strong>0XPのユーザーは表示されません</strong></li>
+        <li>全期間の「全て」は chat_exp + inchat_exp + vc_exp の合計でソート</li>
       </ul>
 
+      <h3>期間ランキング</h3>
+      <ul>
+        <li><strong>週間</strong>: ISO週単位（月曜～日曜）。週替わりで自動リセット＆ログ出力（設定時）</li>
+        <li><strong>月間</strong>: 暦月単位（1日～月末）。月替わりで自動リセット＆ログ出力（設定時）</li>
+        <li>集計値は <strong>chat_exp + inchat_exp + vc_exp のその場加算</strong>で算出（DBカラム参照ではない）</li>
+      </ul>
+
+      <!-- ============================================================ -->
+      <!-- レベル・経験値の仕組み -->
+      <!-- ============================================================ -->
       <h2>レベル・経験値の仕組み</h2>
 
       <h3>成長テンプレート</h3>
       <p>
         4種類のテンプレートから選択できます。デフォルトは
-        <strong>Easy Start</strong>（初期が優しめ）です。
+        <strong>🌱 スムーズ成長</strong>（初期が優しめ）です。
       </p>
       <div class="table-wrapper"><table>
         <thead>
-          <tr>
-            <th>テンプレート</th>
-            <th>次レベルXP式</th>
-            <th>Lv.1→2</th>
-            <th>Lv.10→11</th>
-            <th>特徴</th>
-          </tr>
+          <tr><th>テンプレート</th><th>次レベルXP式</th><th>Lv.1→2</th><th>Lv.10→11</th><th>特徴</th></tr>
         </thead>
         <tbody>
-          <tr>
-            <td>Easy Start</td>
-            <td><code>5L² + 50L</code></td>
-            <td>55 XP</td>
-            <td>1,000 XP</td>
-            <td>初期がとても優しい</td>
-          </tr>
-          <tr>
-            <td>Standard</td>
-            <td><code>5L² + 50L + 100</code></td>
-            <td>155 XP</td>
-            <td>1,100 XP</td>
-            <td>旧デフォルト</td>
-          </tr>
-          <tr>
-            <td>Hard</td>
-            <td><code>10L² + 100L</code></td>
-            <td>110 XP</td>
-            <td>2,000 XP</td>
-            <td>全体的に厳しめ</td>
-          </tr>
-          <tr>
-            <td>Linear</td>
-            <td><code>100L + 50</code></td>
-            <td>150 XP</td>
-            <td>1,050 XP</td>
-            <td>線形成長</td>
-          </tr>
+          <tr><td>🌱 スムーズ成長</td><td><code>5L² + 50L</code></td><td>55 XP</td><td>1,000 XP</td><td>初期がとても優しい</td></tr>
+          <tr><td>⚖️ 現行（据え置き）</td><td><code>5L² + 50L + 100</code></td><td>155 XP</td><td>1,100 XP</td><td>旧デフォルト</td></tr>
+          <tr><td>📈 線形成長</td><td><code>30L + 20</code></td><td>50 XP</td><td>320 XP</td><td>安定した伸び</td></tr>
+          <tr><td>🍃 緩やか成長</td><td><code>3L² + 30L + 15</code></td><td>48 XP</td><td>630 XP</td><td>全体的に緩やか</td></tr>
         </tbody>
       </table></div>
 
       <div class="table-wrapper"><table>
         <thead>
-          <tr>
-            <th>レベル</th>
-            <th>Easy Start</th>
-            <th>Standard</th>
-            <th>Hard</th>
-            <th>Linear</th>
-          </tr>
+          <tr><th>レベル</th><th>🌱 スムーズ</th><th>⚖️ 現行</th><th>📈 線形</th><th>🍃 緩やか</th></tr>
         </thead>
         <tbody>
-          <tr>
-            <td>Lv.1 → Lv.2</td>
-            <td>55 XP</td>
-            <td>155 XP</td>
-            <td>110 XP</td>
-            <td>150 XP</td>
-          </tr>
-          <tr>
-            <td>Lv.5 → Lv.6</td>
-            <td>375 XP</td>
-            <td>475 XP</td>
-            <td>750 XP</td>
-            <td>550 XP</td>
-          </tr>
-          <tr>
-            <td>Lv.10 → Lv.11</td>
-            <td>1,000 XP</td>
-            <td>1,100 XP</td>
-            <td>2,000 XP</td>
-            <td>1,050 XP</td>
-          </tr>
-          <tr>
-            <td>Lv.50 → Lv.51</td>
-            <td>15,000 XP</td>
-            <td>15,100 XP</td>
-            <td>30,000 XP</td>
-            <td>5,050 XP</td>
-          </tr>
+          <tr><td>Lv.1 → Lv.2</td><td>55 XP</td><td>155 XP</td><td>50 XP</td><td>48 XP</td></tr>
+          <tr><td>Lv.5 → Lv.6</td><td>375 XP</td><td>475 XP</td><td>170 XP</td><td>240 XP</td></tr>
+          <tr><td>Lv.10 → Lv.11</td><td>1,000 XP</td><td>1,100 XP</td><td>320 XP</td><td>630 XP</td></tr>
+          <tr><td>Lv.50 → Lv.51</td><td>15,000 XP</td><td>15,100 XP</td><td>1,520 XP</td><td>9,030 XP</td></tr>
         </tbody>
       </table></div>
 
@@ -521,66 +400,41 @@ int(hi * R ** 0.5)</code></pre>
       <div class="chart-container">
         <canvas id="growthChart" width="860" height="500"></canvas>
         <div class="chart-legend">
-          <div class="chart-legend-item"><span class="chart-legend-line easy"></span> Easy Start</div>
-          <div class="chart-legend-item"><span class="chart-legend-line standard"></span> Standard</div>
-          <div class="chart-legend-item"><span class="chart-legend-line hard"></span> Hard</div>
-          <div class="chart-legend-item"><span class="chart-legend-line linear"></span> Linear</div>
+          <div class="chart-legend-item"><span class="chart-legend-line easy"></span> 🌱 スムーズ成長</div>
+          <div class="chart-legend-item"><span class="chart-legend-line standard"></span> ⚖️ 現行</div>
+          <div class="chart-legend-item"><span class="chart-legend-line hard"></span> 📈 線形成長</div>
+          <div class="chart-legend-item"><span class="chart-legend-line linear"></span> 🍃 緩やか成長</div>
         </div>
       </div>
 
       <h3>高度設定：カスタム数式</h3>
-      <p>
-        管理者は任意の数式で成長曲線を設計できます。
-        テンプレートにない独自の曲線も自由に設定可能です。
-      </p>
+      <p>管理者は任意の数式で成長曲線を設計できます。テンプレートにない独自の曲線も自由に設定可能です。</p>
 
       <h4>使用可能な構文</h4>
       <div class="table-wrapper"><table>
-        <thead>
-          <tr>
-            <th>要素</th>
-            <th>説明</th>
-            <th>例</th>
-          </tr>
-        </thead>
+        <thead><tr><th>要素</th><th>説明</th><th>例</th></tr></thead>
         <tbody>
-          <tr>
-            <td><code>L</code></td>
-            <td>現在のレベル変数</td>
-            <td><code>5 * L + 100</code></td>
-          </tr>
-          <tr>
-            <td><code>+ - * / // % **</code></td>
-            <td>四則演算・切り捨て除算・剰余・累乗</td>
-            <td><code>L ** 2</code></td>
-          </tr>
-          <tr>
-            <td><code>min max abs</code></td>
-            <td>最小・最大・絶対値</td>
-            <td><code>max(100, 50 * L)</code></td>
-          </tr>
-          <tr>
-            <td><code>pow int float round</code></td>
-            <td>累乗・整数化・浮動小数点化・丸め</td>
-            <td><code>pow(L, 2.5)</code></td>
-          </tr>
+          <tr><td><code>L</code></td><td>現在のレベル変数</td><td><code>5 * L + 100</code></td></tr>
+          <tr><td><code>+ - * / // % **</code></td><td>四則演算・切り捨て除算・剰余・累乗</td><td><code>L ** 2</code></td></tr>
+          <tr><td><code>min max abs</code></td><td>最小・最大・絶対値</td><td><code>max(100, 50 * L)</code></td></tr>
+          <tr><td><code>pow int float round</code></td><td>累乗・整数化・浮動小数点化・丸め</td><td><code>pow(L, 2.5)</code></td></tr>
         </tbody>
       </table></div>
 
       <h4>設定例</h4>
-      <pre><code># デフォルト（Easy Start）
+      <pre><code># デフォルト（スムーズ成長）
 5 * L ** 2 + 50 * L
 
-# Standard（旧デフォルト）
+# 現行（旧デフォルト）
 5 * L ** 2 + 50 * L + 100
 
-# 線形制（ゲームバランス向け）
-100 * L + 50
+# 線形成長
+30 * L + 20
 
-# 緩やか→急激（イベント向け）
+# イベント向け
 max(100, 50 * L ** 1.5)
 
-# 超長期サーバー向け（Lv.100↑が目標）
+# 超長期サーバー向け
 200 * L ** 1.8</code></pre>
 
       <div class="alert alert-info">
@@ -589,6 +443,9 @@ max(100, 50 * L ** 1.5)
         高度な用途で独自に設定したい場合のみ、累積XP式も入力できます。</p>
       </div>
 
+      <!-- ============================================================ -->
+      <!-- コマンド一覧 -->
+      <!-- ============================================================ -->
       <h2>コマンド一覧</h2>
 
       <div class="command-block">
@@ -597,10 +454,9 @@ max(100, 50 * L ** 1.5)
           自分または指定ユーザーのランクを表示します。<br>
           <strong>表示対象:</strong> ⭐ メイン設定されたプリセットのみ表示<br>
           メイン設定がない場合はエラーメッセージが表示されます。<br>
-          <strong>全体モード</strong>: chat_exp + vc_exp の合算レベル表示<br>
-          <strong>VC/チャットモード</strong>: チャットXP・VC XPを個別表示<br>
-          <strong>インチャットモード</strong>: 通常チャットとVC内チャットの
-          レベルを別々に表示
+          <strong>全体モード</strong>: chat_exp + inchat_exp + vc_exp の合算レベル表示<br>
+          <strong>VC/チャットモード</strong>: チャットXP・VC XPを個別表示（2系統）<br>
+          <strong>インチャットモード</strong>: 通常チャット・VC内チャット・VCの3系統を独立表示
         </div>
         <div class="cmd-meta"><span class="tag tag-user">全員</span></div>
       </div>
@@ -612,7 +468,8 @@ max(100, 50 * L ** 1.5)
           プリセット一覧がページネーションで表示され、
           ✅ 選択ボタンでランキングの種別と期間を設定して実行します。<br>
           種別: 全て / チャット / VC / インチャット<br>
-          期間: 週間 / 月間（省略時は全期間、Modal内で変更可能）
+          期間: 週間 / 月間（省略時は全期間、Modal内で変更可能）<br>
+          <strong>0XPのユーザーは表示されません。</strong>
         </div>
         <div class="cmd-meta"><span class="tag tag-user">全員</span></div>
       </div>
@@ -625,135 +482,63 @@ max(100, 50 * L ** 1.5)
         <div class="cmd-meta"><span class="tag tag-admin">管理者専用</span></div>
       </div>
 
+      <!-- ============================================================ -->
+      <!-- 設定パネル項目一覧 -->
+      <!-- ============================================================ -->
       <h2>設定パネル項目一覧</h2>
       <p>
         <code>/rank設定</code> で開く設定パネルでは、
         2つのSelectメニューとアクションボタンで設定を変更できます。<br>
-        <strong>左のSelect</strong>: 設定カテゴリを選択<br>
-        <strong>右のSelect</strong>: 各カテゴリ内の項目を選択<br>
+        <strong>上のSelect</strong>: 追加機能のON/OFF（複数選択可）<br>
+        <strong>下のSelect</strong>: 各項目の詳細設定<br>
         設定項目を選ぶとModalが開くか、直接値が切り替わります。
       </p>
       <p>以下が設定可能な全項目です：</p>
 
       <div class="table-wrapper"><table>
-        <thead>
-          <tr>
-            <th>項目</th>
-            <th>説明</th>
-          </tr>
-        </thead>
+        <thead><tr><th>項目</th><th>説明</th></tr></thead>
         <tbody>
-          <tr>
-            <td>🟢 有効/無効</td>
-            <td>プリセットのアクティブ状態を切り替え</td>
-          </tr>
-          <tr>
-            <td>📝 名前</td>
-            <td>プリセット名を設定（Modal）</td>
-          </tr>
-          <tr>
-            <td>⭐ メイン設定</td>
-            <td>このプリセットをメインに設定。ONにすると他プリセットのメインは自動OFFに</td>
-          </tr>
-          <tr>
-            <td>💬 チャット計測</td>
-            <td>チャットXPの計測ON/OFF</td>
-          </tr>
-          <tr>
-            <td>🎤 VC計測</td>
-            <td>VC XPの計測ON/OFF</td>
-          </tr>
-          <tr>
-            <td>🔀 XP集計モード</td>
-            <td>クリックで combined/separate/inchat を循環</td>
-          </tr>
-          <tr>
-            <td>🎲 ランダム切替</td>
-            <td>ランダムEXPモードを 0→1→2→3→0 で循環</td>
-          </tr>
-          <tr>
-            <td>⏱️ クールダウン</td>
-            <td>連続XP付与の間隔を設定（Modal）</td>
-          </tr>
-          <tr>
-            <td>📋 成長テンプレート</td>
-            <td>4種のテンプレートから選択（Select）</td>
-          </tr>
-          <tr>
-            <td>📈 数式設定</td>
-            <td>カスタム成長曲線の数式を設定（Modal）</td>
-          </tr>
-          <tr>
-            <td>📢 通知CH</td>
-            <td>レベルアップ通知の送信先CHを設定（Modal）</td>
-          </tr>
-          <tr>
-            <td>🔝 上限Lv</td>
-            <td>最大到達レベルを設定（Modal）</td>
-          </tr>
-          <tr>
-            <td>📋 ログ設定</td>
-            <td>ログ出力先をカテゴリ別に設定。下記参照</td>
-          </tr>
+          <tr><td>🟢 プリセット有効</td><td>プリセットのアクティブ状態を切り替え</td></tr>
+          <tr><td>📛 設定名変更</td><td>プリセット名を設定（Modal）</td></tr>
+          <tr><td>⭐ メイン設定</td><td>このプリセットをメインに設定。ONにすると他プリセットのメインは自動OFFに</td></tr>
+          <tr><td>🔀 XP集計モード</td><td>クリックで combined/separate/inchat を循環</td></tr>
+          <tr><td>💬🎤 XP統合設定</td><td>チャットXP・VC XP・ランダムモード・範囲・倍率を一括設定（Modal）</td></tr>
+          <tr><td>🎯 ランダム数式設定</td><td>カスタム乱数計算式の設定（Modal）</td></tr>
+          <tr><td>⏱️ クールダウン設定</td><td>チャットクールダウン秒数 + VC最小接続時間（分）を設定（Modal）</td></tr>
+          <tr><td>📋 成長テンプレート選択</td><td>4種のテンプレートから選択（Select）</td></tr>
+          <tr><td>📈 カスタム数式設定</td><td>カスタム成長曲線の数式を設定（Modal）</td></tr>
+          <tr><td>📢 通知CH設定</td><td>レベルアップ通知の送信先CHを設定（Modal）</td></tr>
+          <tr><td>🔝 上限Lv設定</td><td>最大到達レベルを設定（Modal）</td></tr>
+          <tr><td>📋 ログ機能設定</td><td>ログ出力先をカテゴリ別に設定（下記参照）</td></tr>
         </tbody>
       </table></div>
 
       <h3>拡張機能設定</h3>
       <p>
-        拡張機能は別のSelectメニューからアクセスします。
-        各機能のON/OFFと詳細設定が行えます。
+        拡張機能は上のSelectメニューからON/OFFを切り替えます。
+        ONにすると下のSelectに詳細設定項目が出現します。
       </p>
       <div class="table-wrapper"><table>
-        <thead>
-          <tr>
-            <th>機能</th>
-            <th>説明</th>
-          </tr>
-        </thead>
+        <thead><tr><th>機能</th><th>説明</th></tr></thead>
         <tbody>
-          <tr>
-            <td>#️⃣ チャットWH/BL設定</td>
-            <td>テキストCH/カテゴリの許可/拒否を設定（Modal）</td>
-          </tr>
-          <tr>
-            <td>🎤 VC WH/BL設定</td>
-            <td>VC CH/カテゴリの許可/拒否を設定（Modal）</td>
-          </tr>
-          <tr>
-            <td>📅 XPキャップ設定</td>
-            <td>日次・週次の獲得XP上限を設定（Modal）</td>
-          </tr>
-          <tr>
-            <td>📝 ボーナス設定</td>
-            <td>文字数・添付・スタンプのボーナスXPを設定（Modal）</td>
-          </tr>
-          <tr>
-            <td>🎤 VC条件設定</td>
-            <td>VCの必要人数やロール制限を設定（Modal）</td>
-          </tr>
-          <tr>
-            <td>🚀 ブースト設定</td>
-            <td>イベントブーストのON/OFF・倍率・期間を設定（Modal）</td>
-          </tr>
-          <tr>
-            <td>🟢 有効期間</td>
-            <td>ランク計測の有効期間を設定（Modal）</td>
-          </tr>
-          <tr>
-            <td>🎭 ランクロール制御設定</td>
-            <td>レベル到達時のロール付与/剥奪を設定（Modal）</td>
-          </tr>
-          <tr>
-            <td>🎭 ランクロール高度制御設定</td>
-            <td>複数ロールの段階的付与など高度設定（Modal）</td>
-          </tr>
-          <tr>
-            <td>💬 カスタムメッセージ設定</td>
-            <td>レベルアップ時のカスタム通知メッセージを設定（Modal）</td>
-          </tr>
+          <tr><td>💬 チャット計測</td><td>チャットXPの計測ON/OFF</td></tr>
+          <tr><td>🎤 VC計測</td><td>VC XPの計測ON/OFF</td></tr>
+          <tr><td>#️⃣ チャットWH/BL設定</td><td>テキストCH/カテゴリの許可/拒否を設定（Modal）</td></tr>
+          <tr><td>🎤 VC WH/BL設定</td><td>VC CH/カテゴリの許可/拒否を設定（Modal）</td></tr>
+          <tr><td>📅 XPキャップ設定</td><td>日次・週次の獲得XP上限を設定（Modal）</td></tr>
+          <tr><td>📝 ボーナス設定</td><td>文字数・添付・スタンプのボーナスXPを設定（Modal）</td></tr>
+          <tr><td>🎤 VC/チャット条件設定</td><td>VC最小人数・VC/チャット/インチャットのロール要件を一括設定（Modal）</td></tr>
+          <tr><td>🚀 ブースト設定</td><td>イベントブーストのON/OFF・倍率・期間を設定（Modal）</td></tr>
+          <tr><td>🟢 有効期間</td><td>ランク計測の有効期間を設定（Modal）</td></tr>
+          <tr><td>🎭 ランクロール制御設定</td><td>レベル到達時のロール付与/剥奪を設定（Modal）</td></tr>
+          <tr><td>🎭 ランクロール高度制御設定</td><td>複数ロールの段階的付与など高度設定（Modal）</td></tr>
+          <tr><td>💬 カスタムメッセージ設定</td><td>レベルアップ時のカスタム通知メッセージを設定（Modal）</td></tr>
         </tbody>
       </table></div>
 
+      <!-- ============================================================ -->
+      <!-- メイン設定 -->
+      <!-- ============================================================ -->
       <h2>⭐ メイン設定</h2>
       <p>
         複数のプリセットを作成できるランクシステムでは、
@@ -772,6 +557,9 @@ max(100, 50 * L ** 1.5)
         </ul>
       </div>
 
+      <!-- ============================================================ -->
+      <!-- ログ設定 -->
+      <!-- ============================================================ -->
       <h2>📋 ログ設定</h2>
       <p>
         ランクシステムの各イベントを特定のチャンネルにログ出力できます。
@@ -782,75 +570,22 @@ max(100, 50 * L ** 1.5)
 
       <h3>ログカテゴリ一覧</h3>
       <div class="table-wrapper"><table>
-        <thead>
-          <tr>
-            <th>カテゴリ</th>
-            <th>設定項目</th>
-            <th>説明</th>
-          </tr>
-        </thead>
+        <thead><tr><th>カテゴリ</th><th>設定項目</th><th>説明</th></tr></thead>
         <tbody>
-          <tr>
-            <td rowspan="1">🌐 グローバル</td>
-            <td>グローバルCH</td>
-            <td>他カテゴリ未設定時のフォールバック先</td>
-          </tr>
-          <tr>
-            <td rowspan="3">📊 レベル</td>
-            <td>レベルアップ</td>
-            <td>レベルが上がったときのログ</td>
-          </tr>
-          <tr>
-            <td>レベルダウン</td>
-            <td>レベルが下がったときのログ</td>
-          </tr>
-          <tr>
-            <td>レベルキャップ</td>
-            <td>最大レベル到達時のログ</td>
-          </tr>
-          <tr>
-            <td rowspan="4">🎭 ロール</td>
-            <td>ロール付与</td>
-            <td>ランクロールが付与されたときのログ</td>
-          </tr>
-          <tr>
-            <td>ロール剥奪</td>
-            <td>ランクロールが剥奪されたときのログ</td>
-          </tr>
-          <tr>
-            <td>高度付与</td>
-            <td>高度制御によるロール付与のログ</td>
-          </tr>
-          <tr>
-            <td>高度剥奪</td>
-            <td>高度制御によるロール剥奪のログ</td>
-          </tr>
-          <tr>
-            <td rowspan="2">⚡ XP</td>
-            <td>XPキャップ</td>
-            <td>XPキャップに達したときのログ</td>
-          </tr>
-          <tr>
-            <td>VC条件</td>
-            <td>VC条件不適合でXP不付与のログ</td>
-          </tr>
-          <tr>
-            <td rowspan="4">⚙️ システム</td>
-            <td>プリセット切替</td>
-            <td>メイン設定が切り替えられたときのログ</td>
-          </tr>
-          <tr>
-            <td>設定変更</td>
-            <td>プリセット設定が変更されたときのログ</td>
-          </tr>
-          <tr>
-            <td>エラー</td>
-            <td>ランクシステム内部でエラーが発生したときのログ</td>
-          </tr>
-          <tr>
-            <td>警告</td>
-            <td>ランクシステムの警告事項のログ</td>
-          </tr>
+          <tr><td rowspan="1">🌐 グローバル</td><td>グローバルCH</td><td>他カテゴリ未設定時のフォールバック先</td></tr>
+          <tr><td rowspan="3">📊 レベル</td><td>レベルアップ</td><td>レベルが上がったときのログ</td></tr>
+          <tr><td>レベルダウン</td><td>レベルが下がったときのログ</td></tr>
+          <tr><td>レベルキャップ</td><td>最大レベル到達時のログ</td></tr>
+          <tr><td rowspan="4">🎭 ロール</td><td>ロール付与</td><td>ランクロールが付与されたときのログ</td></tr>
+          <tr><td>ロール剥奪</td><td>ランクロールが剥奪されたときのログ</td></tr>
+          <tr><td>高度付与</td><td>高度制御によるロール付与のログ</td></tr>
+          <tr><td>高度剥奪</td><td>高度制御によるロール剥奪のログ</td></tr>
+          <tr><td rowspan="2">⚡ XP</td><td>XPキャップ</td><td>XPキャップに達したときのログ</td></tr>
+          <tr><td>VC条件</td><td>VC条件不適合でXP不付与のログ</td></tr>
+          <tr><td rowspan="4">⚙️ システム</td><td>プリセット切替</td><td>メイン設定が切り替えられたときのログ</td></tr>
+          <tr><td>設定変更</td><td>プリセット設定が変更されたときのログ</td></tr>
+          <tr><td>エラー</td><td>ランクシステム内部でエラーが発生したときのログ</td></tr>
+          <tr><td>警告</td><td>ランクシステムの警告事項のログ</td></tr>
         </tbody>
       </table></div>
 
@@ -858,31 +593,46 @@ max(100, 50 * L ** 1.5)
       <ol>
         <li><code>/rank設定</code> を実行</li>
         <li>プリセットのエディタを開く</li>
-        <li>左のSelectで「📋 ログ設定」を選択</li>
-        <li>ログ設定Viewでカテゴリを選択</li>
-        <li>Modal内のChannelSelectで出力先チャンネルを選択（テキストCH / 公開スレッド / プライベートスレッドから選択可能）</li>
-        <li>未設定のカテゴリはグローバルCHにフォールバックします</li>
+        <li>下のSelectで「📋 ログ機能設定」を選択</li>
+        <li>ログ設定Viewでカテゴリを選択 → Modal内でChannelSelect</li>
+        <li>未設定のカテゴリはグローバルCHにフォールバック</li>
         <li>全て未設定の場合はログは出力されません</li>
       </ol>
-      <p>
-        Modal内のChannelSelectは <code>min_values=0</code> に設定されているため、
-        選択を全て解除（クリア）することでそのカテゴリの設定を無効化できます。
-      </p>
 
+      <!-- ============================================================ -->
+      <!-- ランク表示の例 -->
+      <!-- ============================================================ -->
       <h2>ランク表示の例</h2>
+
+      <h3>全体モード（combined）</h3>
       <pre><code>┌─────────────────────────────┐
 │  @ユーザー名 のランク         │
 ├─────────────────────────────┤
-│  Lv. 12  ━━━━━━━━━━░░░ 67%  │
-│  累積XP: 4,520 / 6,780      │
-│                             │
-│  💬 チャット: 2,100 XP      │
-│  🎤 VC: 2,420 XP            │
-│  📊 サーバー順位: #5位      │
-│  📅 週間順位: #3位          │
-│  📆 月間順位: #4位          │
+│  💬 Lv. 12 ━━━━━━━━━━░░░ 67% │
+│  累積XP: 4,520               │
+│  次のレベルまで: 2,260 XP     │
 └─────────────────────────────┘</code></pre>
 
+      <h3>インチャットモード（inchat・3系統）</h3>
+      <pre><code>┌─────────────────────────────┐
+│  @ユーザー名 のランク         │
+├─────────────────────────────┤
+│  💬 チャット Lv               │
+│  Lv.12 ━━━━━━━━━━░░░ 67%     │
+│  チャットXP: 2,100 XP         │
+│                              │
+│  🎤 VC/ステージ内 チャット Lv │
+│  Lv.5 ━━━━━░░░░░░░░░ 35%     │
+│  inchat XP: 520 XP           │
+│                              │
+│  🎤 VC Lv                    │
+│  Lv.8 ━━━━━━━━░░░░░ 55%      │
+│  VC XP: 1,880 XP             │
+└─────────────────────────────┘</code></pre>
+
+      <!-- ============================================================ -->
+      <!-- 注意事項 -->
+      <!-- ============================================================ -->
       <h2>注意事項</h2>
       <ul>
         <li>BotユーザーのメッセージはXP計測の対象外です</li>
@@ -891,148 +641,17 @@ max(100, 50 * L ** 1.5)
         <li>レベルアップ通知は設定したチャンネルに送信されます</li>
         <li>カスタム数式の結果が0以下になった場合、デフォルト式に戻ります</li>
         <li>XPキャップは日次リセット（0時）・週次リセット（月曜0時）でリセットされます</li>
-        <li>CHフィルターはCH ID・カテゴリIDの数値で指定します（キーワードでは指定できません）</li>
+        <li>CHフィルターはCH ID・カテゴリIDで指定します</li>
+        <li><strong>VC最小接続時間のデフォルトは1分</strong>です。1分未満のVC接続ではXPが付与されません。0に設定すると比例計算になります</li>
+        <li><strong>チャット/インチャット獲得ロール</strong>を設定すると、そのロールを持たないユーザーはXPを獲得できません</li>
+        <li><strong>ランキングではXPが0のユーザーは表示されません</strong></li>
+        <li><strong>期間ランキングの集計値</strong>はDBカラムではなく chat_exp + inchat_exp + vc_exp の加算で算出されます</li>
+        <li>レベルは保存されず、全てXPからその場計算されます。数式を変更しても過去データとの整合性は保たれます</li>
       </ul>
 
       <div data-include="include/footer"></div>
     </div>
   </main>
   <script src="../js/main.js"></script>
-  <script>
-    (function drawGrowthChart() {
-      const canvas = document.getElementById('growthChart');
-      if (!canvas) return;
-      const ctx = canvas.getContext('2d');
-      const W = canvas.width, H = canvas.height;
-
-      const pad = { top: 40, right: 40, bottom: 60, left: 80 };
-      const pw = W - pad.left - pad.right;
-      const ph = H - pad.top - pad.bottom;
-
-      // ---- compute cumulative XP ----
-      const maxLv = 50;
-      const templates = [
-        {
-          name: 'Easy Start', color: '#00e5ff',
-          next: (L) => 5 * L * L + 50 * L,
-        },
-        {
-          name: 'Standard', color: '#ffd700',
-          next: (L) => 5 * L * L + 50 * L + 100,
-        },
-        {
-          name: 'Hard', color: '#ff5252',
-          next: (L) => 10 * L * L + 100 * L,
-        },
-        {
-          name: 'Linear', color: '#00c875',
-          next: (L) => 100 * L + 50,
-        },
-      ];
-
-      const series = templates.map((t) => {
-        const pts = [];
-        let cum = 0;
-        for (let L = 1; L <= maxLv; L++) {
-          pts.push({ level: L, cumXP: cum });
-          cum += t.next(L);
-        }
-        return { ...t, points: pts };
-      });
-
-      const maxXP = Math.max(...series.map((s) => s.points[maxLv - 1].cumXP));
-      const yMax = Math.ceil(maxXP / 50000) * 50000; // round up to 50k
-
-      // ---- helpers ----
-      function xOf(level) { return pad.left + ((level - 1) / (maxLv - 1)) * pw; }
-      function yOf(xp) { return pad.top + ph - (xp / yMax) * ph; }
-
-      function fmt(n) {
-        if (n >= 10000) return (n / 10000).toFixed(1) + '万';
-        return n.toLocaleString();
-      }
-
-      // ---- background ----
-      ctx.fillStyle = '#111118';
-      ctx.fillRect(0, 0, W, H);
-
-      // ---- grid lines ----
-      ctx.strokeStyle = 'rgba(255,255,255,0.06)';
-      ctx.lineWidth = 1;
-      const ySteps = 5;
-      for (let i = 0; i <= ySteps; i++) {
-        const y = pad.top + (ph / ySteps) * i;
-        ctx.beginPath();
-        ctx.moveTo(pad.left, y); ctx.lineTo(W - pad.right, y);
-        ctx.stroke();
-      }
-      const xSteps = [1, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50];
-      xSteps.forEach((lv) => {
-        const x = xOf(lv);
-        ctx.beginPath();
-        ctx.moveTo(x, pad.top); ctx.lineTo(x, H - pad.bottom);
-        ctx.stroke();
-      });
-
-      // ---- axes ----
-      ctx.strokeStyle = 'rgba(255,255,255,0.2)';
-      ctx.lineWidth = 1.5;
-      ctx.beginPath();
-      ctx.moveTo(pad.left, pad.top); ctx.lineTo(pad.left, H - pad.bottom);
-      ctx.lineTo(W - pad.right, H - pad.bottom);
-      ctx.stroke();
-
-      // ---- Y labels ----
-      ctx.fillStyle = '#8888aa';
-      ctx.font = '12px "Noto Sans JP", sans-serif';
-      ctx.textAlign = 'right';
-      for (let i = 0; i <= ySteps; i++) {
-        const val = (yMax / ySteps) * (ySteps - i);
-        const y = pad.top + (ph / ySteps) * i;
-        ctx.fillText(fmt(val), pad.left - 10, y + 4);
-      }
-      // Y axis title
-      ctx.save();
-      ctx.translate(16, pad.top + ph / 2);
-      ctx.rotate(-Math.PI / 2);
-      ctx.textAlign = 'center';
-      ctx.fillStyle = '#555577';
-      ctx.font = '12px "Noto Sans JP", sans-serif';
-      ctx.fillText('累積XP', 0, 0);
-      ctx.restore();
-
-      // ---- X labels ----
-      ctx.textAlign = 'center';
-      ctx.fillStyle = '#8888aa';
-      xSteps.forEach((lv) => {
-        ctx.fillText('Lv.' + lv, xOf(lv), H - pad.bottom + 20);
-      });
-      // X axis title
-      ctx.fillStyle = '#555577';
-      ctx.fillText('レベル', pad.left + pw / 2, H - 6);
-
-      // ---- draw lines ----
-      series.forEach((s) => {
-        ctx.strokeStyle = s.color;
-        ctx.lineWidth = 2.5;
-        ctx.lineJoin = 'round';
-        ctx.beginPath();
-        let first = true;
-        s.points.forEach((p) => {
-          const x = xOf(p.level), y = yOf(p.cumXP);
-          if (first) { ctx.moveTo(x, y); first = false; }
-          else ctx.lineTo(x, y);
-        });
-        ctx.stroke();
-
-        // glow
-        ctx.strokeStyle = s.color + '44';
-        ctx.lineWidth = 6;
-        ctx.stroke();
-      });
-
-      // ---- hover tooltip? skip for simplicity ----
-    })();
-  </script>
 </body>
 </html>
