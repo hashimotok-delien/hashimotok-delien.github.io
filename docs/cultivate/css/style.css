@@ -969,7 +969,7 @@ tr:hover td {
 .chart-container canvas {
   display: block;
   width: 100%;
-  height: auto;
+  height: 500px !important;
 }
 
 .chart-legend {
@@ -994,10 +994,10 @@ tr:hover td {
   border-radius: 2px;
 }
 
-.chart-legend-line.easy { background: #00e5ff; }
-.chart-legend-line.standard { background: #ffd700; }
-.chart-legend-line.hard { background: #ff5252; }
-.chart-legend-line.linear { background: #00c875; }
+.chart-legend-line.easy { background: #4CAF50; }
+.chart-legend-line.standard { background: #FF9800; }
+.chart-legend-line.hard { background: #2196F3; }
+.chart-legend-line.linear { background: #9C27B0; }
 
 /* ===== Animations ===== */
 @keyframes fadeIn {

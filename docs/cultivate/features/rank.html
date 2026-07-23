@@ -70,7 +70,7 @@
           <tr><td>メッセージボーナス</td><td>文字数・添付・スタンプに応じたボーナスXP</td></tr>
           <tr><td>イベントブースト</td><td>期間限定でXP獲得量を増加</td></tr>
           <tr><td>有効期間</td><td>ランク計測を特定の期間だけ有効化</td></tr>
-          <tr><td>VC条件</td><td>最小人数・ロール要件（自分/同席者）</td></tr>
+          <tr><td>VC/チャット条件</td><td>VC最小人数・VC/チャット/インチャットのロール要件</td></tr>
           <tr><td>VC最小接続時間</td><td>指定分数未満のVC接続ではXP不付与（分単位、デフォルト1分）</td></tr>
           <tr><td>チャット/インチャットロール制限</td><td>特定ロール未所持でチャット・インチャットXP不付与</td></tr>
           <tr><td>VC切断時比例計算</td><td>接続秒数に比例したXP付与（端数も計算）</td></tr>
@@ -581,7 +581,7 @@ max(100, 50 * L ** 1.5)
           <tr><td>高度付与</td><td>高度制御によるロール付与のログ</td></tr>
           <tr><td>高度剥奪</td><td>高度制御によるロール剥奪のログ</td></tr>
           <tr><td rowspan="2">⚡ XP</td><td>XPキャップ</td><td>XPキャップに達したときのログ</td></tr>
-          <tr><td>VC条件</td><td>VC条件不適合でXP不付与のログ</td></tr>
+          <tr><td>VC/チャット条件</td><td>VC/チャット条件不適合でXP不付与のログ</td></tr>
           <tr><td rowspan="4">⚙️ システム</td><td>プリセット切替</td><td>メイン設定が切り替えられたときのログ</td></tr>
           <tr><td>設定変更</td><td>プリセット設定が変更されたときのログ</td></tr>
           <tr><td>エラー</td><td>ランクシステム内部でエラーが発生したときのログ</td></tr>
@@ -652,6 +652,117 @@ max(100, 50 * L ** 1.5)
       <div data-include="include/footer"></div>
     </div>
   </main>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+  <script>
+    (function() {
+      const canvas = document.getElementById('growthChart');
+      if (!canvas) return;
+
+      // ---- 成長曲線の計算 ----
+      // 各テンプレートの「次レベル必要XP」式から累積XPを計算
+      function nextXpSmooth(l)   { return 5 * l * l + 50 * l; }
+      function nextXpStandard(l) { return 5 * l * l + 50 * l + 100; }
+      function nextXpLinear(l)   { return 30 * l + 20; }
+      function nextXpGentle(l)   { return 3 * l * l + 30 * l + 15; }
+
+      function cumulative(fn, maxLv) {
+        const arr = [];
+        let sum = 0;
+        for (let lv = 1; lv <= maxLv; lv++) {
+          sum += fn(lv);
+          arr.push(sum);
+        }
+        return arr;
+      }
+
+      const maxLevel = 50;
+      const labels = Array.from({length: maxLevel}, (_, i) => i + 1);
+      const smoothData   = cumulative(nextXpSmooth,   maxLevel);
+      const standardData = cumulative(nextXpStandard, maxLevel);
+      const linearData   = cumulative(nextXpLinear,   maxLevel);
+      const gentleData   = cumulative(nextXpGentle,   maxLevel);
+
+      new Chart(canvas, {
+        type: 'line',
+        data: {
+          labels: labels,
+          datasets: [
+            {
+              label: '🌱 スムーズ成長',
+              data: smoothData,
+              borderColor: '#4CAF50',
+              backgroundColor: 'rgba(76,175,80,0.08)',
+              borderWidth: 2.5,
+              tension: 0.3,
+              pointRadius: 0,
+              fill: false
+            },
+            {
+              label: '⚖️ 現行（据え置き）',
+              data: standardData,
+              borderColor: '#FF9800',
+              backgroundColor: 'rgba(255,152,0,0.08)',
+              borderWidth: 2.5,
+              tension: 0.3,
+              pointRadius: 0,
+              fill: false
+            },
+            {
+              label: '📈 線形成長',
+              data: linearData,
+              borderColor: '#2196F3',
+              backgroundColor: 'rgba(33,150,243,0.08)',
+              borderWidth: 2.5,
+              tension: 0.3,
+              pointRadius: 0,
+              fill: false
+            },
+            {
+              label: '🍃 緩やか成長',
+              data: gentleData,
+              borderColor: '#9C27B0',
+              backgroundColor: 'rgba(156,39,176,0.08)',
+              borderWidth: 2.5,
+              tension: 0.3,
+              pointRadius: 0,
+              fill: false
+            }
+          ]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: {
+              display: false  // 凡例はHTML側の chart-legend で表示
+            },
+            tooltip: {
+              callbacks: {
+                label: function(ctx) {
+                  return ctx.dataset.label + ': ' + ctx.parsed.y.toLocaleString() + ' XP';
+                }
+              }
+            }
+          },
+          scales: {
+            x: {
+              title: { display: true, text: 'レベル', font: { size: 13 } },
+              grid: { color: 'rgba(200,200,200,0.15)' }
+            },
+            y: {
+              title: { display: true, text: '累積XP', font: { size: 13 } },
+              ticks: { callback: v => v.toLocaleString() },
+              grid: { color: 'rgba(200,200,200,0.15)' }
+            }
+          },
+          interaction: {
+            intersect: false,
+            mode: 'index'
+          }
+        }
+      });
+    })();
+  </script>
   <script src="../js/main.js"></script>
 </body>
 </html>
