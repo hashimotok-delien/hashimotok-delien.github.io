@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ウェルカムメッセージ - Cultivate ドキュメント</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body data-base="..">
+  <div data-include="include/sidebar"></div>
+
+  <main class="main-content">
+    <div data-include="include/topbar" data-title="ウェルカムメッセージ"></div>
+
+    <div class="content">
+      <div class="feature-hero">
+        <div class="feature-icon">👋</div>
+        <h1>ウェルカムメッセージ</h1>
+        <p>新規参加者に自動でメッセージとカード画像を送信</p>
+      </div>
+
+      <div class="alert alert-info">
+        <p><strong>💡 ウェルカムメッセージとは？</strong>
+        サーバーに新規ユーザーが参加した際に、設定したチャンネルへ
+        <strong>自動でメッセージを送信</strong>する機能です。
+        日中と深夜で内容を切り替えられ、アイコン入りの
+        カード画像を添付することもできます。</p>
+      </div>
+
+      <h2>概要</h2>
+      <p>
+        ウェルカムメッセージ機能は、メンバーがサーバーに参加したときに
+        あいさつメッセージを自動送信します。
+        設定した深夜時間帯（デフォルト: 22:00〜06:00）に参加した場合は
+        深夜用のメッセージに自動で切り替わります。
+      </p>
+      <ul>
+        <li>送信チャンネルは1つまで設定可能（未設定時は送信なし）</li>
+        <li>日中メッセージ / 深夜メッセージを個別に設定</li>
+        <li>メッセージを空欄にすると、その時間帯は送信されません</li>
+        <li>アイコン入りカード画像（PNG）の添付を ON/OFF できます</li>
+        <li>Bot アカウントの参加は対象外です</li>
+      </ul>
+
+      <h2>設定方法</h2>
+
+      <h3>設定パネルを開く</h3>
+      <ol class="steps">
+        <li>
+          <strong>コマンドを実行</strong>
+          <code>/ウェルカムメッセージ設定</code>
+        </li>
+        <li>
+          <strong>基本設定を行う</strong>
+          「⚙️ 基本設定」ボタンから送信チャンネル・メッセージ・深夜時間帯を設定
+        </li>
+        <li>
+          <strong>カード表示を設定（任意）</strong>
+          「🎴 カード設定」ボタンからカード画像の表示を ON/OFF
+        </li>
+      </ol>
+
+      <h2>設定項目</h2>
+
+      <div class="table-wrapper"><table>
+        <thead>
+          <tr>
+            <th>設定項目</th>
+            <th>必須</th>
+            <th>説明</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>送信チャンネル</td>
+            <td>任意</td>
+            <td>メッセージを送信するテキストチャンネル（1つだけ・未選択可）</td>
+          </tr>
+          <tr>
+            <td>日中メッセージ</td>
+            <td>任意</td>
+            <td>日中に参加した際のメッセージ（空欄時は送信しない）</td>
+          </tr>
+          <tr>
+            <td>深夜メッセージ</td>
+            <td>任意</td>
+            <td>深夜に参加した際のメッセージ（空欄時は送信しない）</td>
+          </tr>
+          <tr>
+            <td>深夜開始時間</td>
+            <td><strong>必須</strong></td>
+            <td>深夜時間帯の開始時刻（<code>HH:MM</code> 形式、例: 22:00）</td>
+          </tr>
+          <tr>
+            <td>深夜終了時間</td>
+            <td><strong>必須</strong></td>
+            <td>深夜時間帯の終了時刻（<code>HH:MM</code> 形式、例: 06:00）</td>
+          </tr>
+          <tr>
+            <td>カード表示</td>
+            <td>任意</td>
+            <td>アイコン入りカード画像（PNG）をメッセージに添付するか</td>
+          </tr>
+        </tbody>
+      </table></div>
+
+      <h3>メッセージに使えるプレースホルダー</h3>
+      <div class="table-wrapper"><table>
+        <thead>
+          <tr>
+            <th>プレースホルダー</th>
+            <th>置き換え内容</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>{usernickname}</code></td>
+            <td>参加者のサーバー内表示名</td>
+          </tr>
+          <tr>
+            <td><code>{username}</code></td>
+            <td>参加者のユーザー名</td>
+          </tr>
+          <tr>
+            <td><code>{usermention}</code></td>
+            <td>参加者へのメンション</td>
+          </tr>
+          <tr>
+            <td><code>{guildname}</code></td>
+            <td>サーバー名</td>
+          </tr>
+        </tbody>
+      </table></div>
+
+      <h2>カード画像</h2>
+      <p>
+        カード表示を ON にすると、参加者アイコンを丸く切り抜いて
+        背景画像に合成したカード画像（840×420px）が添付されます。
+        中央にアイコンと「ようこそ」+ 表示名が描画されます。
+      </p>
+      <ul>
+        <li>デフォルトの背景画像: <code>data/img/welcome_default_card.png</code></li>
+        <li>カードの文字は背景が明るい場合でも読めるよう黒文字＋白影で描画</li>
+        <li>テンプレート画像は将来のカスタマイズに対応予定</li>
+      </ul>
+
+      <h2>コマンド一覧</h2>
+
+      <div class="command-block">
+        <div class="cmd-name">/ウェルカムメッセージ設定</div>
+        <div class="cmd-desc">
+          ウェルカムメッセージの設定パネルを開きます。
+          基本設定（チャンネル・メッセージ・深夜時間帯）と
+          カード表示の設定が行えます。
+        </div>
+        <div class="cmd-meta"><span class="tag tag-admin">管理者専用</span></div>
+      </div>
+
+      <h2>注意事項</h2>
+      <ul>
+        <li>送信チャンネルが未設定の場合はメッセージは送信されません</li>
+        <li>日中・深夜メッセージが空欄の時間帯は送信されません（カード画像も添付されません）</li>
+        <li>深夜時間帯は日を跨ぐ設定（22:00〜06:00 など）にも対応しています</li>
+        <li>開始時刻と終了時刻が同じ場合は深夜時間帯なしとして扱われます</li>
+      </ul>
+
+      <div data-include="include/footer"></div>
+    </div>
+  </main>
+  <script src="../js/main.js"></script>
+</body>
+</html>

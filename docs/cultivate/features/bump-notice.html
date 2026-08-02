@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BUMP通知 - Cultivate ドキュメント</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body data-base="..">
+  <div data-include="include/sidebar"></div>
+
+  <main class="main-content">
+    <div data-include="include/topbar" data-title="BUMP通知"></div>
+
+    <div class="content">
+      <div class="feature-hero">
+        <div class="feature-icon">🔔</div>
+        <h1>BUMP通知</h1>
+        <p>DISBOARD / ディス速のBUMPを検知して自動通知</p>
+      </div>
+
+      <div class="alert alert-info">
+        <p><strong>💡 BUMP通知とは？</strong>
+        DISBOARD やディス速でサーバーが BUMP（宣伝）されたことを検知し、
+        お礼メッセージを自動送信する機能です。
+        さらに <strong>2時間後</strong> に「BUMPの時間だよ」と
+        次回の BUMP を促す通知も自動で行います。</p>
+      </div>
+
+      <h2>概要</h2>
+      <p>
+        設定したチャンネルで DISBOARD の <code>/bump</code> または
+        ディス速の <code>/up</code> が実行されると、実行結果の Embed を
+        検知して自動でメッセージを送信します。
+      </p>
+      <ul>
+        <li>DISBOARD / ディス速をそれぞれ個別に設定可能</li>
+        <li>日中・深夜でメッセージを自動切り替え</li>
+        <li>サーバーごとの累計BUMP回数をメッセージに反映</li>
+        <li>BUMPから2時間後に「BUMPの時間だよ」通知を自動送信</li>
+        <li>タイマー通知も日中・深夜で切り替え可能</li>
+        <li>タイマーメッセージを空欄にすると通知なし（タイマーは消化）</li>
+      </ul>
+
+      <h2>設定方法</h2>
+
+      <h3>設定パネルを開く</h3>
+      <ol class="steps">
+        <li>
+          <strong>コマンドを実行</strong>
+          <code>/bump通知設定</code>
+        </li>
+        <li>
+          <strong>サービスごとに設定</strong>
+          「📢 DISBOARD通知設定」「⚡ ディス速通知設定」ボタンから
+          検知チャンネル・メッセージ・深夜時間帯を設定
+        </li>
+        <li>
+          <strong>タイマー通知を設定（任意）</strong>
+          「⏰ タイマー設定」ボタンから2時間後通知のメッセージを設定
+        </li>
+      </ol>
+
+      <h2>設定項目</h2>
+
+      <div class="table-wrapper"><table>
+        <thead>
+          <tr>
+            <th>設定項目</th>
+            <th>必須</th>
+            <th>説明</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>BUMPチャンネル</td>
+            <td>任意</td>
+            <td>BUMPを検知するテキストチャンネル（未選択時は通知なし）</td>
+          </tr>
+          <tr>
+            <td>日中メッセージ</td>
+            <td>任意</td>
+            <td>BUMP検知時の日中メッセージ（未設定時はデフォルト）</td>
+          </tr>
+          <tr>
+            <td>深夜メッセージ</td>
+            <td>任意</td>
+            <td>BUMP検知時の深夜メッセージ（未設定時はデフォルト）</td>
+          </tr>
+          <tr>
+            <td>深夜開始時刻</td>
+            <td>任意</td>
+            <td>深夜時間帯の開始時刻（<code>HH:MM</code> 形式、デフォルト: 22:00）</td>
+          </tr>
+          <tr>
+            <td>深夜終了時刻</td>
+            <td>任意</td>
+            <td>深夜時間帯の終了時刻（<code>HH:MM</code> 形式、デフォルト: 06:00）</td>
+          </tr>
+          <tr>
+            <td>タイマー日中メッセージ</td>
+            <td>任意</td>
+            <td>2時間後の日中通知メッセージ（空欄時は通知しない）</td>
+          </tr>
+          <tr>
+            <td>タイマー深夜メッセージ</td>
+            <td>任意</td>
+            <td>2時間後の深夜通知メッセージ（空欄時は通知しない）</td>
+          </tr>
+        </tbody>
+      </table></div>
+
+      <p>
+        DISBOARD とディス速は<strong>それぞれ独立して設定</strong>できます。
+        一方のサービスだけ設定して使用することも可能です。
+      </p>
+
+      <h2>動作の流れ</h2>
+
+      <h3>BUMP検知時</h3>
+      <ol class="steps">
+        <li>
+          <strong>BUMPを検知</strong>
+          設定チャンネルで DISBOARD / ディス速の実行結果メッセージを検知
+        </li>
+        <li>
+          <strong>履歴を記録</strong>
+          実行ユーザー・実行日時・サービスをデータベースに記録し、
+          累計BUMP回数をカウント
+        </li>
+        <li>
+          <strong>お礼メッセージを送信</strong>
+          現在時刻に応じて日中/深夜メッセージを選択し、その場のチャンネルに送信
+        </li>
+        <li>
+          <strong>タイマーを登録</strong>
+          2時間後の「BUMPの時間だよ」通知タイマーを自動登録
+        </li>
+      </ol>
+
+      <h3>2時間後（タイマー通知）</h3>
+      <ol class="steps">
+        <li>
+          <strong>バックグラウンドで監視</strong>
+          1分間隔で通知時刻を過ぎたタイマーをチェック
+        </li>
+        <li>
+          <strong>通知を送信</strong>
+          時刻に応じて日中/深夜のタイマーメッセージを送信
+          （メッセージ未設定の場合は送信せずタイマーのみ消化）
+        </li>
+      </ol>
+
+      <h2>メッセージに使えるプレースホルダー</h2>
+      <div class="table-wrapper"><table>
+        <thead>
+          <tr>
+            <th>プレースホルダー</th>
+            <th>置き換え内容</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>{user}</code></td>
+            <td>BUMP実行ユーザーのメンション（タイマー通知で使用）</td>
+          </tr>
+          <tr>
+            <td><code>{member}</code></td>
+            <td>BUMP実行ユーザーの表示名</td>
+          </tr>
+          <tr>
+            <td><code>{count}</code></td>
+            <td>そのサーバーでの累計BUMP回数</td>
+          </tr>
+          <tr>
+            <td><code>{time}</code></td>
+            <td>次回BUMP可能時刻（<code>&lt;t:unix:t&gt;</code> 形式）</td>
+          </tr>
+          <tr>
+            <td><code>{usernickname}</code></td>
+            <td>BUMP実行ユーザーの表示名（デフォルトメッセージで使用）</td>
+          </tr>
+        </tbody>
+      </table></div>
+
+      <h3>デフォルトメッセージ（DISBOARD・日中）</h3>
+      <pre><code>### {usernickname}さんBUMPありがと！
+表示順があがったよ～！
+
+### BUMP回数が更新されました
+{count}回目のBUMP
+
+2時間後(&lt;t:{time}:t&gt;)にBUMP通知します。</code></pre>
+
+      <h3>デフォルトタイマーメッセージ（DISBOARD・日中）</h3>
+      <pre><code>{user} BUMPの時間だよ！
+&lt;/bump:947088344167366698&gt;を実行してね！</code></pre>
+
+      <h2>コマンド一覧</h2>
+
+      <div class="command-block">
+        <div class="cmd-name">/bump通知設定</div>
+        <div class="cmd-desc">
+          BUMP通知設定パネルを開きます。
+          DISBOARD / ディス速の検知チャンネル・メッセージ・
+          深夜時間帯・タイマー通知を設定できます。
+        </div>
+        <div class="cmd-meta"><span class="tag tag-admin">管理者専用</span></div>
+      </div>
+
+      <h2>注意事項</h2>
+      <ul>
+        <li>BUMPチャンネルが未設定の場合は検知・通知は行われません</li>
+        <li>検知チャンネルはサービスごとに1つまで設定できます</li>
+        <li>BUMPを実行したユーザーを特定できない場合は、メッセージは
+        ユーザーなし（<code>{user}</code> は「誰か」）で送信されます</li>
+        <li>タイマー通知のメッセージが空欄の場合は通知されませんが、
+        タイマー自体は消化されるため重複通知はありません</li>
+        <li>タイマー通知はBUMP実行チャンネル（検知チャンネル）に送信されます</li>
+        <li>Botの再起動後も未通知のタイマーは復元され、通知が継続されます</li>
+      </ul>
+
+      <div data-include="include/footer"></div>
+    </div>
+  </main>
+  <script src="../js/main.js"></script>
+</body>
+</html>
