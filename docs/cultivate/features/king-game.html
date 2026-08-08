@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>王様ゲーム - Cultivate ドキュメント</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body data-base="..">
+  <div data-include="include/sidebar"></div>
+
+  <main class="main-content">
+    <div data-include="include/topbar" data-title="王様ゲーム"></div>
+
+    <div class="content">
+      <div class="feature-hero">
+        <div class="feature-icon">👑</div>
+        <h1>王様ゲーム</h1>
+        <p>VCにいるメンバーから王様をランダム選出して遊べるゲーム</p>
+      </div>
+
+      <div class="alert alert-info">
+        <p><strong>💡 王様ゲームとは？</strong>
+        VC に参加中のメンバーからランダムで「王様」を選出する
+        ゲーム機能です。王様以外のメンバーには自動で
+        「家来」の番号が振られます。</p>
+      </div>
+
+      <h2>概要</h2>
+      <p>
+        <code>/王様</code> を実行すると、そのサーバーの VC に
+        参加中のメンバー（<a href="spectate-panel.html">見学・観戦</a>
+        タグの付いていないメンバー）からランダムで 1 人を選び、
+        王様パネルを表示します。
+      </p>
+      <ul>
+        <li>王様はランダムに選出され、プロフィール画像付きで表示</li>
+        <li>過去の王様は履歴として自動記録</li>
+        <li>王様以外の対象メンバーはシャッフルして家来番号を付与</li>
+        <li>ボタンは Bot の再起動後も動作（永続ビュー）</li>
+        <li>1サーバーで複数の王様パネルを並行運用可能</li>
+      </ul>
+
+      <h2>コマンド</h2>
+
+      <div class="command-block">
+        <div class="cmd-name">/王様</div>
+        <div class="cmd-desc">
+          VC にいる対象メンバーから王様をランダム選出し、
+          王様パネルを表示します。
+        </div>
+        <div class="cmd-meta"><span class="tag tag-user">ユーザー用</span></div>
+      </div>
+
+      <h2>王様パネルの表示</h2>
+
+      <h3>王様（embed 1）</h3>
+      <p>
+        タイトル「王様に選ばれたのは...」に、選出されたメンバーの
+        メンションとプロフィールリンク（保存済みプロフィールがある場合）、
+        プロフィール画像が表示されます。
+      </p>
+
+      <h3>過去の王様（embed 2）</h3>
+      <p>
+        これまでに王様として選ばれたメンバーの一覧が表示されます。
+        フッターには現在の対象人数に応じた
+        「家来番号：1番～〇番」が表示されます
+        （〇 = 対象人数 − 1）。
+      </p>
+
+      <h3>家来（embed 3）</h3>
+      <p>
+        「家来」ボタンを押すと表示されます。王様以外の対象メンバーが
+        シャッフルされ、<code>1番：@メンバー</code> の形式で
+        家来番号が振られます。
+      </p>
+
+      <h2>パネルのボタン</h2>
+      <div class="table-wrapper">
+      <table>
+        <thead>
+          <tr>
+            <th>ボタン</th>
+            <th>説明</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>🔄 再表示</td>
+            <td>現在の状態を保持したままパネルを新しいメッセージとして
+            再投稿します（元のメッセージは削除）</td>
+          </tr>
+          <tr>
+            <td>👑 王様選出</td>
+            <td>現在の王様を「過去の王様」に追加して、新しい王様を
+            ランダム選出します。家来リストはリセットされます</td>
+          </tr>
+          <tr>
+            <td>🏠 家来</td>
+            <td>王様以外の対象メンバー全員にランダムな家来番号を振り、
+            家来リストを表示します</td>
+          </tr>
+        </tbody>
+      </table>
+      </div>
+
+      <h2>王様選出のルール</h2>
+      <ul>
+        <li>見学・観戦タグの付いていない VC 参加メンバーが対象</li>
+        <li>過去に王様になったメンバーは選出対象から除外されます</li>
+        <li>全員が王様経験済みになった場合は履歴をリセットし、
+        全員が再度対象になります</li>
+        <li>対象メンバーがいない場合はエラーメッセージを表示します</li>
+      </ul>
+
+      <h2>再起動・複数パネルについて</h2>
+      <p>
+        王様パネルのボタンは<strong>永続ビュー</strong>として実装されており、
+        Bot の再起動後も過去に送信したパネルのボタンがそのまま動作します。
+        ゲームの状態（現在の王様・過去の王様・家来）は embed の
+        メンションから復元されるため、DB やメモリに依存せず、
+        同じサーバー内で複数の王様パネルを同時に運用できます。
+      </p>
+
+      <h2>関連機能</h2>
+      <p>
+        ゲームへの参加 / 不参加の切り替えは
+        <a href="spectate-panel.html">見学パネル</a> から行えます。
+        見学・観戦タグの付いたメンバーは王様の選出対象から
+        除外されます。
+      </p>
+
+      <div data-include="include/footer"></div>
+    </div>
+  </main>
+  <script src="../js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ダイス - Cultivate ドキュメント</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body data-base="..">
+  <div data-include="include/sidebar"></div>
+
+  <main class="main-content">
+    <div data-include="include/topbar" data-title="ダイス"></div>
+
+    <div class="content">
+      <div class="feature-hero">
+        <div class="feature-icon">🎲</div>
+        <h1>ダイス</h1>
+        <p>サイコロを振って結果を表示するコマンド</p>
+      </div>
+
+      <div class="alert alert-info">
+        <p><strong>💡 ダイスとは？</strong>
+        <code>/ダイス</code> でサイコロを振り、その結果を
+        チャンネルに表示する機能です。TRPG 風の
+        「<code>NdM</code>」形式で個数と面数を指定できます。</p>
+      </div>
+
+      <h2>概要</h2>
+      <ul>
+        <li><code>/ダイス [ダイスタイプ]</code> でサイコロを振る</li>
+        <li>引数を省略すると <code>1d6</code>（6面サイコロを1個）</li>
+        <li>1〜6 の目は専用のダイス絵文字で表示</li>
+        <li>7 以上の目や大きな値は数字で表示</li>
+      </ul>
+
+      <h2>コマンド</h2>
+
+      <div class="command-block">
+        <div class="cmd-name">/ダイス [&lt;ダイスタイプ&gt;]</div>
+        <div class="cmd-desc">
+          サイコロを振ります。ダイスタイプは「1d100」のような
+          形式で指定します（省略時は 1d6）。
+        </div>
+        <div class="cmd-meta"><span class="tag tag-user">ユーザー用</span></div>
+      </div>
+
+      <h2>ダイスタイプの指定方法</h2>
+      <p>
+        <code>個数</code> + <code>d</code> + <code>面数</code> の
+        形式で指定します。個数分のダイスを振り、それぞれの目を
+        合計せずに個別に表示します。
+      </p>
+      <div class="table-wrapper">
+      <table>
+        <thead>
+          <tr>
+            <th>指定例</th>
+            <th>意味</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>1d6</code></td>
+            <td>6面サイコロを1個（デフォルト）</td>
+          </tr>
+          <tr>
+            <td><code>1d100</code></td>
+            <td>100面サイコロを1個（1〜100 のいずれか）</td>
+          </tr>
+          <tr>
+            <td><code>2d6</code></td>
+            <td>6面サイコロを2個（目は個別に表示）</td>
+          </tr>
+          <tr>
+            <td><code>3d20</code></td>
+            <td>20面サイコロを3個</td>
+          </tr>
+        </tbody>
+      </table>
+      </div>
+
+      <div class="alert alert-info">
+        <p><strong>💡 ヒント:</strong> 全角数字・全角英字も自動で
+        半角に変換して解釈されます。</p>
+      </div>
+
+      <div class="alert alert-warning">
+        <p><strong>⚠️ 注意:</strong> 個数・面数は 1 以上の整数である
+        必要があります。<code>0d6</code> や <code>1d0</code>、
+        <code>abc</code> のような不正な形式はエラーになります。</p>
+      </div>
+
+      <h2>表示について</h2>
+      <ul>
+        <li>1〜6 の目はダイス絵文字（⚀⚁⚂⚃⚄⚅）で表示されます</li>
+        <li>6 個以内の場合は見やすいように見出しサイズで表示されます</li>
+        <li>7 以上の面数のダイス（例: 1d100）の目は数字で表示されます</li>
+      </ul>
+
+      <div data-include="include/footer"></div>
+    </div>
+  </main>
+  <script src="../js/main.js"></script>
+</body>
+</html>
