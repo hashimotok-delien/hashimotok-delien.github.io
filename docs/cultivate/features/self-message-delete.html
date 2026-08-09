@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>自己メッセージ削除 - Cultivate ドキュメント</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body data-base="..">
+  <div data-include="include/sidebar"></div>
+
+  <main class="main-content">
+    <div data-include="include/topbar" data-title="自己メッセージ削除"></div>
+
+    <div class="content">
+      <div class="feature-hero">
+        <div class="feature-icon">🗑️</div>
+        <h1>自己メッセージ削除</h1>
+        <p>実行したチャンネル内の自分のメッセージを一括削除</p>
+      </div>
+
+      <div class="alert alert-info">
+        <p><strong>💡 自己メッセージ削除とは？</strong>
+        コマンドを実行したチャンネル内にある<strong>自分が投稿した
+        メッセージ</strong>を一括で削除できる機能です。
+        テキストチャンネル・スレッド・VC のインチャなど、
+        どのチャンネルでも利用できます。</p>
+      </div>
+
+      <h2>概要</h2>
+      <p>
+        <code>/自己メッセージ削除</code> を実行すると、そのチャンネル内の
+        自分が投稿したメッセージをすべて削除します。
+        権限がなくても<strong>誰でも実行可能</strong>です。
+      </p>
+      <ul>
+        <li>実行チャンネル内の自分のメッセージをまとめて削除</li>
+        <li>他のユーザーのメッセージは削除されません</li>
+        <li>削除できるのは自分が投稿したメッセージのみ</li>
+        <li>誰でも実行可能（権限不要）</li>
+      </ul>
+
+      <h2>コマンド</h2>
+
+      <div class="command-block">
+        <div class="cmd-name">/自己メッセージ削除</div>
+        <div class="cmd-desc">
+          実行したチャンネル内の自分のメッセージを一括削除します。
+        </div>
+        <div class="cmd-meta"><span class="tag tag-user">ユーザー用</span></div>
+      </div>
+
+      <h2>使い方</h2>
+      <ol class="steps">
+        <li>
+          <strong>削除したいチャンネルを開く</strong>
+          テキストチャンネル・スレッド・VC のインチャなど、
+          削除対象のメッセージがあるチャンネルに移動します
+        </li>
+        <li>
+          <strong>コマンドを実行</strong>
+          <code>/自己メッセージ削除</code> を実行します
+        </li>
+        <li>
+          <strong>完了</strong>
+          削除が完了すると、削除したメッセージ数が表示されます
+        </li>
+      </ol>
+
+      <h2>動作の詳細</h2>
+      <ul>
+        <li>削除対象は<strong>自分のメッセージのみ</strong>。
+        他のユーザーのメッセージには影響しません</li>
+        <li>実行結果はエフェメラル（自分にだけ見える）で表示されます</li>
+        <li>削除中にエラーが発生した場合は、その旨が通知されます</li>
+        <li>Bot にメッセージ削除権限がない場合はエラーになります</li>
+      </ul>
+
+      <div class="alert alert-warning">
+        <p><strong>⚠️ 注意:</strong> 削除したメッセージは元に戻せません。
+        大切な内容が含まれるチャンネルで実行する際はご注意ください。</p>
+      </div>
+
+      <h2>関連機能</h2>
+      <p>
+        チャンネル内の<strong>全メッセージ</strong>を自動で削除したい場合は、
+        <a href="inchat-clean.html">インチャ掃除</a> をご利用ください。
+        VC / ステージチャンネルが空になったタイミングで、
+        チャンネル内のメッセージを自動削除します（管理者設定）。
+      </p>
+
+      <div data-include="include/footer"></div>
+    </div>
+  </main>
+  <script src="../js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>タイマー - Cultivate ドキュメント</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body data-base="..">
+  <div data-include="include/sidebar"></div>
+
+  <main class="main-content">
+    <div data-include="include/topbar" data-title="タイマー"></div>
+
+    <div class="content">
+      <div class="feature-hero">
+        <div class="feature-icon">⏰</div>
+        <h1>タイマー</h1>
+        <p>指定した時間をカウントして、終了時にメンション通知</p>
+      </div>
+
+      <div class="alert alert-info">
+        <p><strong>💡 タイマーとは？</strong>
+        指定した時間を計測し、カウントアップ（終了）時に
+        実行したユーザーへ<strong>メンション通知</strong>する機能です。
+        タイマーは DB に保存されるため、<strong>Bot の再起動後も
+        動作し続けます</strong>。</p>
+      </div>
+
+      <h2>概要</h2>
+      <ul>
+        <li><code>/タイマー &lt;time&gt;</code> でタイマーを開始</li>
+        <li>終了時刻になるとメンション付きで通知</li>
+        <li>1秒間隔のチェックで正確に判定</li>
+        <li>再起動で通知できなかった場合は復帰後に遅延通知</li>
+      </ul>
+
+      <h2>コマンド</h2>
+
+      <div class="command-block">
+        <div class="cmd-name">/タイマー &lt;time&gt;</div>
+        <div class="cmd-desc">
+          時間を指定してタイマーを開始します。
+          開始メッセージには時間と終了時刻が表示されます。
+        </div>
+        <div class="cmd-meta"><span class="tag tag-user">ユーザー用</span></div>
+      </div>
+
+      <h2>時間の指定方法</h2>
+
+      <h3>秒数のみ</h3>
+      <p>数字だけを指定すると「秒」として扱われます。</p>
+      <div class="table-wrapper">
+      <table>
+        <thead>
+          <tr>
+            <th>指定例</th>
+            <th>意味</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>180</code></td>
+            <td>180秒（3分）</td>
+          </tr>
+          <tr>
+            <td><code>3600</code></td>
+            <td>3600秒（1時間）</td>
+          </tr>
+        </tbody>
+      </table>
+      </div>
+
+      <h3>〇h〇m〇s形式</h3>
+      <p>
+        <code>h</code> / <code>m</code> / <code>s</code> を組み合わせて
+        指定できます。<code>h → m → s</code> の順で記述し、
+        各単位は<strong>省略可能</strong>です。
+      </p>
+      <div class="table-wrapper">
+      <table>
+        <thead>
+          <tr>
+            <th>指定例</th>
+            <th>意味</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>1h1m1s</code></td>
+            <td>1時間1分1秒（3661秒）</td>
+          </tr>
+          <tr>
+            <td><code>1h5s</code></td>
+            <td>1時間5秒（3605秒）</td>
+          </tr>
+          <tr>
+            <td><code>5m</code></td>
+            <td>5分（300秒）</td>
+          </tr>
+          <tr>
+            <td><code>30s</code></td>
+            <td>30秒</td>
+          </tr>
+          <tr>
+            <td><code>2h</code></td>
+            <td>2時間（7200秒）</td>
+          </tr>
+        </tbody>
+      </table>
+      </div>
+
+      <div class="alert alert-info">
+        <p><strong>💡 ヒント:</strong> 全角数字・全角英字も自動で
+        半角に変換して解釈されます。<code>０</code> や
+        <code>ａｂｃ</code> のような入力でも大丈夫です。</p>
+      </div>
+
+      <div class="alert alert-warning">
+        <p><strong>⚠️ 注意:</strong> 単位を混ぜた曖昧な指定
+        （例: <code>1h30</code>）や <code>0</code> 以下の値、
+        無効な文字列はエラーになります。
+        「1以上の整数」もしくは「〇h〇m〇s形式」で指定してください。</p>
+      </div>
+
+      <h2>通知の仕組み</h2>
+
+      <h3>カウントアップ時の通知</h3>
+      <p>終了時刻になると、コマンドを実行したチャンネルに
+      メンション付きで通知されます。</p>
+      <pre><code>@ユーザー タイマーが終了しました！
+（1h5s）</code></pre>
+
+      <h3>正確な判定（1秒チェック）</h3>
+      <ul>
+        <li>1秒間隔のタスクで終了時刻を細かくチェックします</li>
+        <li>終了時刻は<strong>ミリ秒精度</strong>で保持されるため、
+        タイムアップより<strong>前に</strong>通知されることはありません</li>
+        <li>1秒未満の端数が切り捨てられる場合も、切り捨てた分の時間を
+        確実に経過したことを確認してから通知します</li>
+      </ul>
+
+      <h3>再起動後の遅延通知</h3>
+      <p>
+        タイマーは DB に保存されるため、Bot の再起動中に終了時刻を
+        迎えた場合でもタイマーは失われません。再起動完了後に
+        <strong>コマンド実行チャンネル</strong>で遅延通知が送信されます。
+        その際は通知が遅れた旨も併せて表示されます。
+      </p>
+      <pre><code>@ユーザー タイマーが終了しました！
+（1h5s）
+※再起動などの影響で通知が遅れました</code></pre>
+      <ul>
+        <li>コマンド実行チャンネルが存在しない場合は通知されません
+        （タイマー自体は消化されます）</li>
+        <li>通知の送信に失敗した場合は、成功するまで再試行されます</li>
+      </ul>
+
+      <div data-include="include/footer"></div>
+    </div>
+  </main>
+  <script src="../js/main.js"></script>
+</body>
+</html>
