@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cultivate Premium プラン - Cultivate</title>
+  <meta name="description" content="Cultivate のプレミアムプラン。シルバー・ゴールド・ダイヤモンドの3プランから、あなたのサーバーに合ったプランを選択できます。">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="logo" href="index.html">🌱 Cultivate <span>Premium</span></a>
+      <nav class="header-nav">
+        <a href="https://hmk.delien.xyz/cultivate.html">ドキュメント</a>
+        <a href="https://discord.gg/AmMkFhhD2D">サポートサーバー</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- ===== ヒーロー ===== -->
+    <section class="hero">
+      <div class="hero-icon">💎</div>
+      <h1>Cultivate Premium</h1>
+      <p>アナリティクスなどのプレミアム機能を、あなたのサーバーで。</p>
+      <p class="hero-note">
+        契約は Discord の <code>/プレミアム管理</code> から行います。
+        決済には Stripe を使用します。
+      </p>
+    </section>
+
+    <!-- ===== プラン一覧 ===== -->
+    <section class="section">
+      <h2>プラン一覧</h2>
+      <p class="section-lead">
+        3つのプランから選択できます。プランごとにプレミアム機能を
+        有効化できるサーバー数が異なります。
+      </p>
+
+      <div class="plan-grid">
+        <!-- シルバー -->
+        <article class="plan-card silver">
+          <div class="plan-emblem">🥈</div>
+          <div class="plan-name">シルバー</div>
+          <div class="plan-servers">1サーバーまで有効化</div>
+          <div class="plan-price">¥500<span>/月</span></div>
+          <div class="plan-tax">（税込）</div>
+          <ul class="plan-features">
+            <li>プレミアム機能を利用可能</li>
+            <li>アナリティクス（チャット/VC統計）</li>
+            <li>有効化サーバー 1つ</li>
+          </ul>
+          <a class="btn btn-block" href="#howto">Discordで契約する</a>
+        </article>
+
+        <!-- ゴールド（おすすめ） -->
+        <article class="plan-card gold popular">
+          <div class="plan-emblem">🥇</div>
+          <div class="plan-name">ゴールド</div>
+          <div class="plan-servers">3サーバーまで有効化</div>
+          <div class="plan-price">¥750<span>/月</span></div>
+          <div class="plan-tax">（税込）</div>
+          <ul class="plan-features">
+            <li>シルバーの全特典</li>
+            <li>有効化サーバー 3つ</li>
+            <li>複数サーバー運用に最適</li>
+          </ul>
+          <a class="btn btn-block" href="#howto">Discordで契約する</a>
+        </article>
+
+        <!-- ダイヤモンド -->
+        <article class="plan-card diamond">
+          <div class="plan-emblem">💎</div>
+          <div class="plan-name">ダイヤモンド</div>
+          <div class="plan-servers">5サーバーまで有効化</div>
+          <div class="plan-price">¥1,000<span>/月</span></div>
+          <div class="plan-tax">（税込）</div>
+          <ul class="plan-features">
+            <li>ゴールドの全特典</li>
+            <li>有効化サーバー 5つ</li>
+            <li>大規模コミュニティ向け</li>
+          </ul>
+          <a class="btn btn-block" href="#howto">Discordで契約する</a>
+        </article>
+      </div>
+    </section>
+
+    <!-- ===== 機能比較 ===== -->
+    <section class="section">
+      <h2>機能比較</h2>
+      <div class="table-wrapper">
+        <table>
+          <thead>
+            <tr>
+              <th>項目</th>
+              <th>🥈 シルバー</th>
+              <th>🥇 ゴールド</th>
+              <th>💎 ダイヤモンド</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>月額料金（税込）</td>
+              <td>¥500</td>
+              <td>¥750</td>
+              <td>¥1,000</td>
+            </tr>
+            <tr>
+              <td>有効化できるサーバー数</td>
+              <td>1</td>
+              <td>3</td>
+              <td>5</td>
+            </tr>
+            <tr>
+              <td>プレミアム機能（アナリティクス等）</td>
+              <td><span class="yes">✔</span></td>
+              <td><span class="yes">✔</span></td>
+              <td><span class="yes">✔</span></td>
+            </tr>
+            <tr>
+              <td>解約・プラン変更</td>
+              <td><span class="yes">✔</span></td>
+              <td><span class="yes">✔</span></td>
+              <td><span class="yes">✔</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- ===== 契約の流れ ===== -->
+    <section class="section" id="howto">
+      <h2>契約の流れ</h2>
+      <ol class="steps">
+        <li>
+          <strong>Discord で <code>/プレミアム管理</code> を実行</strong>
+          <p>契約したい Discord サーバー内でコマンドを実行し、パネルを開きます。</p>
+        </li>
+        <li>
+          <strong>プランを選択して契約</strong>
+          <p>パネルの「プランを契約する」から希望のプランを選び、Stripe の決済画面で支払います。</p>
+        </li>
+        <li>
+          <strong>サーバーを有効化</strong>
+          <p>決済後、パネルから「サーバーを有効化」を選択すると、そのサーバーでプレミアム機能が使えるようになります。</p>
+        </li>
+      </ol>
+
+      <div class="alert alert-info">
+        <p>
+          <strong>💡 ヒント:</strong> 契約状況は <strong>5分ごとに自動同期</strong> されます。
+          パネルの「🔄 同期」ボタンを押すと、すぐに最新の状態へ更新できます。
+        </p>
+      </div>
+    </section>
+
+    <!-- ===== FAQ ===== -->
+    <section class="section">
+      <h2>よくある質問</h2>
+      <div class="table-wrapper">
+        <table>
+          <thead>
+            <tr>
+              <th>質問</th>
+              <th>回答</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>決済方法は？</td>
+              <td>Stripe によるクレジットカード決済です（月額サブスクリプション）。</td>
+            </tr>
+            <tr>
+              <td>サーバーを増やしたい</td>
+              <td>上位プランへ変更すれば、有効化できるサーバー数が増えます。</td>
+            </tr>
+            <tr>
+              <td>解約はどうすれば？</td>
+              <td><code>/プレミアム管理</code> のパネルから「契約をキャンセル」を実行してください。</td>
+            </tr>
+            <tr>
+              <td>反映までどれくらい？</td>
+              <td>自動同期は5分ごとです。「🔄 同期」ボタンで即時反映できます。</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="alert alert-warning">
+        <p>
+          <strong>⚠️ 注意:</strong> ご不明な点がある場合は
+          <a href="https://discord.gg/AmMkFhhD2D" target="_blank">サポートサーバー</a> までお問い合わせください。
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>© 2026 <a href="https://hmk.delien.xyz/">けい</a> — Cultivate Bot</p>
+  </footer>
+
+</body>
+</html>
