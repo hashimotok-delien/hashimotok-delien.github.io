@@ -449,20 +449,22 @@ max(100, 50 * L ** 1.5)
       <h2>コマンド一覧</h2>
 
       <div class="command-block">
-        <div class="cmd-name">/rank [@ユーザー]</div>
+        <div class="cmd-name">/ランク [@ユーザー]</div>
         <div class="cmd-desc">
           自分または指定ユーザーのランクを表示します。<br>
+          <strong>画像式のランクカード</strong>で表示されます（1100×420）。<br>
           <strong>表示対象:</strong> ⭐ メイン設定されたプリセットのみ表示<br>
           メイン設定がない場合はエラーメッセージが表示されます。<br>
-          <strong>全体モード</strong>: chat_exp + inchat_exp + vc_exp の合算レベル表示<br>
-          <strong>VC/チャットモード</strong>: チャットXP・VC XPを個別表示（2系統）<br>
-          <strong>インチャットモード</strong>: 通常チャット・VC内チャット・VCの3系統を独立表示
+          <strong>全体モード</strong>: chat_exp + inchat_exp + vc_exp の合算レベル表示（メーター1本）<br>
+          <strong>VC/チャットモード</strong>: チャットXP・VC XPを個別表示（メーター2本）<br>
+          <strong>インチャットモード</strong>: 通常チャット・VC内チャット・VCの3系統を独立表示（メーター3本）<br>
+          <strong>カスタマイズ:</strong> 追加機能「🎴 ランクカード設定」でカラーや表示を変更可能（設定しなくても画像で表示）
         </div>
         <div class="cmd-meta"><span class="tag tag-user">全員</span></div>
       </div>
 
       <div class="command-block">
-        <div class="cmd-name">/ranking [period]</div>
+        <div class="cmd-name">/ランキング [period]</div>
         <div class="cmd-desc">
           サーバー内のXPランキングTOP10を表示します。<br>
           プリセット一覧がページネーションで表示され、
@@ -475,7 +477,7 @@ max(100, 50 * L ** 1.5)
       </div>
 
       <div class="command-block">
-        <div class="cmd-name">/rank設定</div>
+        <div class="cmd-name">/ランク設定</div>
         <div class="cmd-desc">
           ランクシステムの設定パネルを開きます
         </div>
@@ -487,7 +489,7 @@ max(100, 50 * L ** 1.5)
       <!-- ============================================================ -->
       <h2>設定パネル項目一覧</h2>
       <p>
-        <code>/rank設定</code> で開く設定パネルでは、
+        <code>/ランク設定</code> で開く設定パネルでは、
         2つのSelectメニューとアクションボタンで設定を変更できます。<br>
         <strong>上のSelect</strong>: 追加機能のON/OFF（複数選択可）<br>
         <strong>下のSelect</strong>: 各項目の詳細設定<br>
@@ -540,6 +542,7 @@ max(100, 50 * L ** 1.5)
           <tr><td>🎭 ランクロール制御設定</td><td>レベル到達時のロール付与/剥奪を設定（Modal）</td></tr>
           <tr><td>🎭 ランクロール高度制御設定</td><td>複数ロールの段階的付与など高度設定（Modal）</td></tr>
           <tr><td>💬 カスタムメッセージ設定</td><td>レベルアップ時のカスタム通知メッセージを設定（Modal）</td></tr>
+          <tr><td>🎴 ランクカード設定</td><td>ランクカードのカラーコード指定・次レベル必要経験値の表示/非表示を設定（Modal）。設定しなくても `/ランク` は画像式で表示されます</td></tr>
         </tbody>
       </table></div>
 
@@ -610,32 +613,33 @@ max(100, 50 * L ** 1.5)
       <!-- ランク表示の例 -->
       <!-- ============================================================ -->
       <h2>ランク表示の例</h2>
+      <p>
+        <code>/ランク</code> を実行すると、以下のような
+        <strong>画像式のランクカード</strong>が表示されます。
+        XP集計モードに応じてメーターの本数が変化します。
+      </p>
 
-      <h3>全体モード（combined）</h3>
-      <pre><code>┌─────────────────────────────┐
-│  @ユーザー名 のランク         │
-├─────────────────────────────┤
-│  💬 Lv. 12 ━━━━━━━━━━░░░ 67% │
-│  累積XP: 4,520               │
-│  次のレベルまで: 2,260 XP     │
-└─────────────────────────────┘</code></pre>
+      <h3>全体モード（combined・メーター1本）</h3>
+      <p><img src="../img/rank_card_combined.png" alt="ランクカード（全体モード）" style="max-width:100%;border:1px solid #ccc;border-radius:8px;"></p>
 
-      <h3>インチャットモード（inchat・3系統）</h3>
-      <pre><code>┌─────────────────────────────┐
-│  @ユーザー名 のランク         │
-├─────────────────────────────┤
-│  💬 チャット Lv               │
-│  Lv.12 ━━━━━━━━━━░░░ 67%     │
-│  チャットXP: 2,100 XP         │
-│                              │
-│  🎤 VC/ステージ内 チャット Lv │
-│  Lv.5 ━━━━━░░░░░░░░░ 35%     │
-│  inchat XP: 520 XP           │
-│                              │
-│  🎤 VC Lv                    │
-│  Lv.8 ━━━━━━━━░░░░░ 55%      │
-│  VC XP: 1,880 XP             │
-└─────────────────────────────┘</code></pre>
+      <h3>VC/チャットモード（separate・メーター2本）</h3>
+      <p><img src="../img/rank_card_separate.png" alt="ランクカード（VC/チャットモード）" style="max-width:100%;border:1px solid #ccc;border-radius:8px;"></p>
+
+      <h3>インチャットモード（inchat・メーター3本）</h3>
+      <p><img src="../img/rank_card_inchat.png" alt="ランクカード（インチャットモード）" style="max-width:100%;border:1px solid #ccc;border-radius:8px;"></p>
+
+      <div class="alert alert-info">
+        <p><strong>💡 ランクカードの内容:</strong></p>
+        <ul>
+          <li><strong>左上</strong>: 丸抜きアイコン＋カラーリング（色はランクカード設定で変更可能）</li>
+          <li><strong>中央上部</strong>: 表示名・ユーザー名</li>
+          <li><strong>アイコン下</strong>: 全体レベル（LVL＋数字）</li>
+          <li><strong>各メーター直上</strong>: 系統別の順位・合計EXP</li>
+          <li><strong>各メーター左側</strong>: 系統別のレベル（LVL＋数字）</li>
+          <li><strong>メーター内</strong>: 現在Lv内XP / 次Lv必要XP（進捗%）</li>
+          <li>背景画像は <code>data/img/rank_default_card.png</code> に置くことでカスタマイズ可能（無い場合は単色背景）</li>
+        </ul>
+      </div>
 
       <!-- ============================================================ -->
       <!-- 注意事項 -->
