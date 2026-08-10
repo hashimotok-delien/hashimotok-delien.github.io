@@ -542,7 +542,7 @@ max(100, 50 * L ** 1.5)
           <tr><td>🎭 ランクロール制御設定</td><td>レベル到達時のロール付与/剥奪を設定（Modal）</td></tr>
           <tr><td>🎭 ランクロール高度制御設定</td><td>複数ロールの段階的付与など高度設定（Modal）</td></tr>
           <tr><td>💬 カスタムメッセージ設定</td><td>レベルアップ時のカスタム通知メッセージを設定（Modal）</td></tr>
-          <tr><td>🎴 ランクカード設定</td><td>ランクカードのカラーコード指定・次レベル必要経験値の表示/非表示を設定（Modal）。設定しなくても `/ランク` は画像式で表示されます</td></tr>
+          <tr><td>🎴 ランクカード設定</td><td>ランクカードのカラーコード指定・順位/合計経験値/現在経験値/次レベル必要経験値の表示/非表示を設定（Modal）。設定しなくても `/ランク` は画像式で表示されます</td></tr>
         </tbody>
       </table></div>
 
@@ -639,6 +639,17 @@ max(100, 50 * L ** 1.5)
           <li><strong>各メーター左側</strong>: 系統別のレベル（LVL＋数字）</li>
           <li><strong>メーター内</strong>: 現在Lv内XP / 次Lv必要XP（進捗%）</li>
           <li>背景画像は <code>data/img/rank_default_card.png</code> に置くことでカスタマイズ可能（無い場合は単色背景）</li>
+        </ul>
+      </div>
+
+      <div class="alert alert-warning">
+        <p><strong>🎴 表示の隠し方（ランクカード設定）:</strong></p>
+        <ul>
+          <li><strong>順位を隠す</strong>: 各メーター直上の順位表示自体を非表示にします</li>
+          <li><strong>合計経験値を隠す</strong>: 各メーター直上の合計EXP表示自体を非表示にします</li>
+          <li><strong>現在経験値を隠す</strong>: メーター内の現在Lv内XPを <code>???</code> にします</li>
+          <li><strong>次レベル必要経験値を隠す</strong>: メーター内の次Lv必要XPを <code>???</code> にします</li>
+          <li><strong>現在経験値と次レベル必要経験値の両方を隠す</strong>: メーター内は進捗%（例: <code>45%</code>）のみ表示されます</li>
         </ul>
       </div>
 
