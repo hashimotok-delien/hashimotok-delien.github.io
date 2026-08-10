@@ -145,7 +145,10 @@
         <li>デフォルトの背景画像: <code>data/img/welcome_default_card.png</code></li>
         <li>カードの文字は背景が明るい場合でも読めるよう黒文字＋白影で描画</li>
         <li>表示名の絵文字はカラーで描画（<code>data/fonts/NotoColorEmoji.ttf</code>）</li>
-        <li>日本語フォントに無い文字（Yi文字「꒳」など）は <code>data/fonts/MSYI.TTF</code> / <code>NotoSansYi-Regular.ttf</code> で補完描画</li>
+        <li>日本語フォントに無い文字（Yi文字「꒳」など）は、ランクカードと同じ補完フォント群から文字ごとに最適なフォントを自動選択して描画
+          （<code>MSYI.TTF</code> / <code>NotoSansYi-Regular.ttf</code> / <code>NotoSansSymbols*</code> / <code>NotoSansMath-Regular.ttf</code> / <code>NotoSansBengali-Regular.ttf</code> / <code>NotoSans-Regular.ttf</code>）
+        </li>
+        <li>「🐈‍⬛」のようなZWJ合成絵文字もカラーで描画可能</li>
         <li>テンプレート画像は将来のカスタマイズに対応予定</li>
       </ul>
 
