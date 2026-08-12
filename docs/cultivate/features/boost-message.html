@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ブーストメッセージ - Cultivate ドキュメント</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body data-base="..">
+  <div data-include="include/sidebar"></div>
+
+  <main class="main-content">
+    <div data-include="include/topbar" data-title="ブーストメッセージ"></div>
+
+    <div class="content">
+      <div class="feature-hero">
+        <div class="feature-icon">🚀</div>
+        <h1>ブーストメッセージ</h1>
+        <p>サーバーメンバーのブーストを自動でお祝い</p>
+      </div>
+
+      <div class="alert alert-info">
+        <p><strong>💡 ブーストメッセージとは？</strong>
+        サーバーメンバーが Nitro ブーストした際に、設定したチャンネルへ
+        <strong>自動でメッセージを送信</strong>する機能です。
+        日中と深夜で内容を切り替えられ、アイコン入りの
+        カード画像を添付することもできます。</p>
+      </div>
+
+      <h2>概要</h2>
+      <p>
+        ブーストメッセージ機能は、メンバーがサーバーをブーストしたときに
+        お祝いメッセージを自動送信します。
+        設定した深夜時間帯（デフォルト: 22:00〜06:00）にブーストした場合は
+        深夜用のメッセージに自動で切り替わります。
+      </p>
+      <ul>
+        <li>送信チャンネルは1つまで設定可能（未設定時は送信なし）</li>
+        <li>ブーストメッセージ / 深夜メッセージを個別に設定</li>
+        <li>メッセージを空欄にすると、その時間帯は送信されません</li>
+        <li>アイコン入りカード画像（PNG）の添付を ON/OFF できます</li>
+        <li>ブースト中の人が追加でブーストした場合も検知して送信します</li>
+        <li>サーバーのブースト数が増えた（レベルアップ）際の通知も設定できます</li>
+        <li>Bot アカウントのブーストは対象外です</li>
+      </ul>
+
+      <h2>設定方法</h2>
+
+      <h3>設定パネルを開く</h3>
+      <ol class="steps">
+        <li>
+          <strong>コマンドを実行</strong>
+          <code>/ブーストメッセージ設定</code>
+        </li>
+        <li>
+          <strong>基本設定を行う</strong>
+          「⚙️ 基本設定」ボタンから送信チャンネル・メッセージ・深夜時間帯を設定
+        </li>
+        <li>
+          <strong>通知・カード設定（任意）</strong>
+          「🎛️ 通知・カード設定」ボタンからブースト数増加通知とカード表示を ON/OFF
+        </li>
+      </ol>
+
+      <h2>設定項目</h2>
+
+      <div class="table-wrapper"><table>
+        <thead>
+          <tr>
+            <th>設定項目</th>
+            <th>必須</th>
+            <th>説明</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>送信チャンネル</td>
+            <td>任意</td>
+            <td>メッセージを送信するテキストチャンネル（1つだけ・未選択可）</td>
+          </tr>
+          <tr>
+            <td>ブーストメッセージ</td>
+            <td>任意</td>
+            <td>ブーストした際のメッセージ（空欄時は送信しない）</td>
+          </tr>
+          <tr>
+            <td>深夜メッセージ</td>
+            <td>任意</td>
+            <td>深夜にブーストした際のメッセージ（空欄時は送信しない）</td>
+          </tr>
+          <tr>
+            <td>深夜開始時間</td>
+            <td><strong>必須</strong></td>
+            <td>深夜時間帯の開始時刻（<code>HH:MM</code> 形式、例: 22:00）</td>
+          </tr>
+          <tr>
+            <td>深夜終了時間</td>
+            <td><strong>必須</strong></td>
+            <td>深夜時間帯の終了時刻（<code>HH:MM</code> 形式、例: 06:00）</td>
+          </tr>
+          <tr>
+            <td>ブースト数増加通知</td>
+            <td>任意</td>
+            <td>サーバーのブースト数が増えた（レベルアップ）時に通知するか</td>
+          </tr>
+          <tr>
+            <td>カード表示</td>
+            <td>任意</td>
+            <td>アイコン入りカード画像（PNG）をメッセージに添付するか</td>
+          </tr>
+        </tbody>
+      </table></div>
+
+      <h3>メッセージに使えるプレースホルダー</h3>
+      <div class="table-wrapper"><table>
+        <thead>
+          <tr>
+            <th>プレースホルダー</th>
+            <th>置き換え内容</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>{usernickname}</code></td>
+            <td>ブーストしたメンバーのサーバー内表示名</td>
+          </tr>
+          <tr>
+            <td><code>{username}</code></td>
+            <td>ブーストしたメンバーのユーザー名</td>
+          </tr>
+          <tr>
+            <td><code>{usermention}</code></td>
+            <td>ブーストしたメンバーへのメンション</td>
+          </tr>
+          <tr>
+            <td><code>{guildname}</code></td>
+            <td>サーバー名</td>
+          </tr>
+          <tr>
+            <td><code>{boostcount}</code></td>
+            <td>現在のサーバーのブースト数</td>
+          </tr>
+        </tbody>
+      </table></div>
+
+      <h2>カード画像</h2>
+      <p>
+        カード表示を ON にすると、ブーストしたメンバーのアイコンを丸く切り抜いて
+        背景画像に合成したカード画像（840×420px）が添付されます。
+        中央にアイコンと「🎉 ブーストありがとう！」+ 表示名、
+        現在のブースト数が描画されます。
+      </p>
+      <ul>
+        <li>ブーストをイメージした紫の背景とピンクのアイコン枠で描画</li>
+        <li>表示名が長い場合はカード幅に収まるよう自動で縮小</li>
+        <li>ブースト数はカード下部に「現在 N ブースト」と表示</li>
+      </ul>
+
+      <h2>検知の仕組み</h2>
+      <p>
+        ブーストは以下の2つのイベントから検知されます。
+      </p>
+      <ul>
+        <li>
+          <strong>メンバー更新</strong>: メンバーの <code>premium_since</code> が変化した場合に検知。
+          新規ブースト（None → 開始）だけでなく、ブースト中の人が追加で
+          ブーストした場合（日時が更新）も検知します。
+        </li>
+        <li>
+          <strong>サーバー更新</strong>: サーバーのブースト数が増えた場合に検知。
+          直近5分以内にブーストしたメンバーを走査して、メンバー更新で
+          拾えなかったケースの保険として送信します。
+        </li>
+      </ul>
+      <p>
+        両方のイベントで同じブーストを検知しても、<strong>60秒間の
+        cooldown</strong>によりメッセージは1回だけ送信されます。
+      </p>
+
+      <h2>コマンド一覧</h2>
+
+      <div class="command-block">
+        <div class="cmd-name">/ブーストメッセージ設定</div>
+        <div class="cmd-desc">
+          ブーストメッセージの設定パネルを開きます。
+          基本設定（チャンネル・メッセージ・深夜時間帯）と
+          通知・カード設定が行えます。
+        </div>
+        <div class="cmd-meta"><span class="tag tag-admin">管理者専用</span></div>
+      </div>
+
+      <h2>注意事項</h2>
+      <ul>
+        <li>送信チャンネルが未設定の場合はメッセージは送信されません</li>
+        <li>ブースト・深夜メッセージが空欄の時間帯は送信されません（カード画像も添付されません）</li>
+        <li>深夜時間帯は日を跨ぐ設定（22:00〜06:00 など）にも対応しています</li>
+        <li>開始時刻と終了時刻が同じ場合は深夜時間帯なしとして扱われます</li>
+        <li>ブースト数を増やす際は上から「サーバーブースト」メニューから行います（本機能は検知・通知のみ行います）</li>
+      </ul>
+
+      <div data-include="include/footer"></div>
+    </div>
+  </main>
+  <script src="../js/main.js"></script>
+</body>
+</html>
