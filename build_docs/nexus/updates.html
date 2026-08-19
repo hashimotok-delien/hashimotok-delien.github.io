@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>更新履歴 - ねくさす⋆˚ʚɞ ドキュメント</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-base=".">
+  <div data-include="include/sidebar"></div>
+
+  <main class="main-content">
+    <div data-include="include/topbar" data-title="更新履歴"></div>
+
+    <div class="content">
+      <div class="feature-hero">
+        <div class="feature-icon">📋</div>
+        <h1>更新履歴</h1>
+        <p>ねくさす⋆˚ʚɞ のアップデート情報</p>
+      </div>
+
+      <!-- ========================================================= -->
+      <!-- フィルター -->
+      <!-- ========================================================= -->
+
+      <div class="filter-bar">
+        <span class="filter-label">🔍 絞り込み：</span>
+        <button class="filter-tag active" data-filter="all">すべて</button>
+        <button class="filter-tag" data-filter="feature">
+          <span class="tag tag-feature">新機能 / 機能改善</span>
+        </button>
+        <button class="filter-tag" data-filter="bug">
+          <span class="tag tag-bug">バグ修正</span>
+        </button>
+        <button class="filter-tag" data-filter="rank">
+          <span class="tag tag-rank">ランク</span>
+        </button>
+        <button class="filter-tag" data-filter="profile">
+          <span class="tag tag-profile">プロフィール</span>
+        </button>
+        <button class="filter-tag" data-filter="info">
+          <span class="tag tag-info">システム</span>
+        </button>
+      </div>
+
+      <!-- ========================================================= -->
+      <!-- v1.0.0 — 初回リリース -->
+      <!-- ========================================================= -->
+
+      <div class="update-version">
+        <div class="version-badge">v1.0.0</div>
+        <p class="version-date">2026年8月</p>
+      </div>
+
+      <div class="update-card" data-tags="feature rank profile info">
+        <div class="update-icon">🌙</div>
+        <div class="update-body">
+          <div class="update-title">
+            v1.0.0 — ねくさす⋆˚ʚɞ 初回リリース
+            <span class="update-date">2026/08/18</span>
+            <span class="tag tag-feature">新機能</span>
+          </div>
+          <ul>
+            <li>
+              <strong>📸 プロフィール保存</strong> —
+              メッセージリンクからプロフィールを保存・再表示
+              <span class="tag tag-profile">プロフィール</span>
+            </li>
+            <li>
+              <strong>🌐 マイプロフ（鯖間プロフ）</strong> —
+              他鯖のプロフ引用・DM保存・パネル設置によるボタン操作
+              <span class="tag tag-profile">プロフィール</span>
+            </li>
+            <li>
+              <strong>💬 交流計測</strong> —
+              VC 同席記録に基づく交流人数の計測とランキング表示
+              <span class="tag tag-feature">新機能</span>
+            </li>
+            <li>
+              <strong>🏆 ランクシステム（VC専用）</strong> —
+              VC 滞在時間に応じた XP 獲得・レベルアップ
+              <span class="tag tag-rank">ランク</span>
+            </li>
+            <li>
+              <strong>⚙️ 設定パネル</strong> —
+              コマンド接頭辞の変更などの一元管理パネル
+              <span class="tag tag-info">システム</span>
+            </li>
+            <li>
+              <strong>🖥️ サーバー管理</strong> —
+              導入サーバー一覧の表示・退出管理
+              <span class="tag tag-info">システム</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- ========================================================= -->
+      <!-- 開発準備期 -->
+      <!-- ========================================================= -->
+
+      <div class="update-version">
+        <div class="version-badge">🏗️ 開発準備期</div>
+        <p class="version-date">2026年上半期</p>
+      </div>
+
+      <div class="update-card" data-tags="wip">
+        <div class="update-icon">🚀</div>
+        <div class="update-body">
+          <div class="update-title">
+            共同開発プロジェクト 〜 ねくさす⋆˚ʚɞ 誕生
+            <span class="update-date">2026/01 〜 2026/08</span>
+            <span class="tag tag-wip">開発中</span>
+          </div>
+          <ul>
+            <li>
+              2026年1月 — ねくさす⋆˚ʚɞ プロジェクト始動
+            </li>
+            <li>
+              <strong>VC交流計測機能</strong> の設計・開発
+            </li>
+            <li>
+              <strong>鯖間プロフ取得機能</strong> の設計・開発
+            </li>
+            <li>
+              <strong>VCランクシステム</strong> の設計・開発
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- ========================================================= -->
+      <!-- 凡例 -->
+      <!-- ========================================================= -->
+
+      <div class="legend-box">
+        <strong>🏷️ タグ凡例</strong>
+        <span class="tag tag-feature">新機能 / 機能改善</span>
+        <span class="tag tag-bug">バグ修正</span>
+        <span class="tag tag-rank">ランク</span>
+        <span class="tag tag-profile">プロフィール</span>
+        <span class="tag tag-info">システム</span>
+      </div>
+
+      <div data-include="include/footer"></div>
+    </div>
+  </main>
+  <script src="js/main.js"></script>
+</body>
+</html>

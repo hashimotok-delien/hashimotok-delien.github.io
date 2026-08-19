@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>導入方法 - ねくさす⋆˚ʚɞ ドキュメント</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-base=".">
+  <div data-include="include/sidebar"></div>
+
+  <main class="main-content">
+    <div data-include="include/topbar" data-title="導入方法"></div>
+
+    <div class="content">
+      <h1>🚀 導入方法</h1>
+      <p>
+        ねくさす⋆˚ʚɞ をサーバーに導入する手順を説明します。
+      </p>
+
+      <h2>導入の流れ</h2>
+      <ol class="steps">
+        <li>
+          <strong>サポートサーバーに参加</strong>
+          下記のリンクからサポートサーバーに参加してください。
+          <br>
+          <a href="https://discord.gg/AmMkFhhD2D" class="btn btn-outline" style="margin-top: 8px;" target="_blank">サポートサーバーへ</a>
+        </li>
+        <li>
+          <strong>ルールを確認・同意</strong>
+          サポートサーバー内のルールを確認し、同意してください。
+        </li>
+        <li>
+          <strong>導入チケットを送信</strong>
+          サポートサーバー内のチケットシステムから導入リクエストを送信してください。
+          導入にはサーバーの管理者権限が必要です。
+        </li>
+        <li>
+          <strong>Bot が参加</strong>
+          チケット処理後、Bot があなたのサーバーに参加します。
+        </li>
+      </ol>
+
+      <div class="alert alert-info">
+        <p><strong>💡 注意:</strong> ねくさす⋆˚ʚɞ は界隈サーバー専用の無料配布 Bot です。導入にはサーバー管理者権限が必要です。</p>
+      </div>
+
+      <h2>初期設定</h2>
+      <p>Bot が参加したら、以下の設定を行ってください。</p>
+
+      <h3>1. プロフィール機能の設定</h3>
+      <p>
+        管理者権限を持つアカウントで、以下のコマンドを実行します。
+      </p>
+      <pre><code>/プロフ設定</code></pre>
+      <p>
+        プロフィール保存機能の設定パネルが表示されます。プロフチャンネルの設定や、操作可能ロールの設定を行います。
+      </p>
+
+      <h3>2. マイプロフ（鯖間プロフ）の設定</h3>
+      <p>マイプロフ機能を利用する場合は、以下のコマンドを実行します。</p>
+      <pre><code>/マイプロフ設定</code></pre>
+      <p>
+        プロフ送信方法（DM / スレッド）や、鯖間取得・保存の可否をプリセット単位で設定できます。
+        設定後は <code>/マイプロフパネル設置</code> でパネルをチャンネルに設置します。
+      </p>
+
+      <h3>3. 交流計測の設定</h3>
+      <p>VC 交流計測を利用する場合は、以下のコマンドを実行します。</p>
+      <pre><code>/交流計測設定</code></pre>
+      <p>
+        計測対象の VC チャンネル・カテゴリや記録条件をプリセット単位で設定できます。
+      </p>
+
+      <h3>4. ランクシステムの設定</h3>
+      <p>VC ランクシステムを利用する場合は、以下のコマンドを実行します。</p>
+      <pre><code>/ランク設定</code></pre>
+      <p>
+        プリセットを作成し、VC の計測条件・成長曲線・レベルアップ通知などを設定します。
+      </p>
+
+      <div class="card-grid" style="margin-top: 32px;">
+        <div class="card">
+          <h3>📸 プロフィール</h3>
+          <p>プロフの保存・再表示、鯖間プロフ取得を設定します。</p>
+        </div>
+        <div class="card">
+          <h3>💬 交流計測</h3>
+          <p>VC での交流人数を計測・ランキング化します。</p>
+        </div>
+        <div class="card">
+          <h3>🏆 ランクシステム</h3>
+          <p>VC 滞在時間に応じたレベルアップを設定します。</p>
+          <a href="features/rank.html">設定方法 →</a>
+        </div>
+      </div>
+
+      <div data-include="include/footer"></div>
+    </div>
+  </main>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
