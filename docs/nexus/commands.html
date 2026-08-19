@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>コマンド一覧 - ねくさす⋆˚ʚɞ ドキュメント</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-base=".">
+  <div data-include="include/sidebar"></div>
+
+  <main class="main-content">
+    <div data-include="include/topbar" data-title="コマンド一覧"></div>
+
+    <div class="content">
+      <h1>📜 コマンド一覧</h1>
+      <p>
+        ねくさす⋆˚ʚɞ で使用できる全コマンドの一覧です。
+        <span class="tag tag-admin">管理者専用</span>
+        <span class="tag tag-user">ユーザー用</span>
+      </p>
+
+      <h2>コマンド</h2>
+
+      <h3>🔧 設定・管理</h3>
+
+      <div class="command-block">
+        <div class="cmd-name">/設定パネル</div>
+        <div class="cmd-desc">設定用パネルを表示します。コマンド接頭辞の変更などが行えます。</div>
+        <div class="cmd-meta"><span class="tag tag-admin">管理者専用</span></div>
+      </div>
+
+      <div class="command-block">
+        <div class="cmd-name">/bot管理</div>
+        <div class="cmd-desc">Bot の管理コマンド。導入サーバー一覧の表示や退出などが行えます。</div>
+        <div class="cmd-meta"><span class="tag tag-admin">Bot所有者専用</span></div>
+      </div>
+
+      <h3>📸 プロフィール保存</h3>
+
+      <div class="command-block">
+        <div class="cmd-name">/プロフ設定</div>
+        <div class="cmd-desc">プロフィール保存機能の設定パネルを開きます。プロフチャンネルの設定や、操作可能ロールの設定ができます。</div>
+        <div class="cmd-meta"><span class="tag tag-admin">管理者専用</span></div>
+      </div>
+
+      <h3>🌐 マイプロフ（鯖間プロフ）</h3>
+
+      <div class="command-block">
+        <div class="cmd-name">/マイプロフ設定</div>
+        <div class="cmd-desc">マイプロフ機能の設定パネルを開きます。プロフ送信方法（DM / スレッド）や、鯖間取得・保存の許可などをプリセット単位で設定できます。</div>
+        <div class="cmd-meta"><span class="tag tag-admin">管理者専用</span></div>
+      </div>
+
+      <div class="command-block">
+        <div class="cmd-name">/マイプロフパネル設置</div>
+        <div class="cmd-desc">マイプロフパネルを現在のチャンネルに設置します。パネルから「他鯖取得」「保存取得」「保存」が操作できます。</div>
+        <div class="cmd-meta"><span class="tag tag-admin">管理者専用</span></div>
+      </div>
+
+      <h3>💬 交流計測</h3>
+
+      <div class="command-block">
+        <div class="cmd-name">/交流計測設定</div>
+        <div class="cmd-desc">VC 交流計測機能の設定パネルを開きます。有効な VC / カテゴリの指定や、記録条件をプリセット単位で設定できます。</div>
+        <div class="cmd-meta"><span class="tag tag-admin">管理者専用</span></div>
+      </div>
+
+      <div class="command-block">
+        <div class="cmd-name">/交流計測ランキング</div>
+        <div class="cmd-desc">交流計測ランキングのパネルを表示します。総合・異性間・同性間など、プリセットされたランキングを確認できます。</div>
+        <div class="cmd-meta"><span class="tag tag-user">ユーザー用</span></div>
+      </div>
+
+      <div class="command-block">
+        <div class="cmd-name">/交流計測記録パネル</div>
+        <div class="cmd-desc">交流計測記録パネルを現在のチャンネルに設置します。ユーザーはパネルのボタンから自身の交流記録を確認できます。</div>
+        <div class="cmd-meta"><span class="tag tag-admin">管理者専用</span></div>
+      </div>
+
+      <h3>🏆 ランクシステム</h3>
+
+      <div class="command-block">
+        <div class="cmd-name">/ランク [@ユーザー]</div>
+        <div class="cmd-desc">
+          自分または指定ユーザーのランクを表示します。
+          <strong>画像式のランクカード</strong>で表示されます。
+          表示対象は <strong>⭐ メイン設定</strong>されたプリセットです。
+        </div>
+        <div class="cmd-meta"><span class="tag tag-user">ユーザー用</span></div>
+      </div>
+
+      <div class="command-block">
+        <div class="cmd-name">/ランキング [期間]</div>
+        <div class="cmd-desc">
+          サーバー内の VC XP ランキング TOP10 を表示します。
+          期間は「週間」「月間」を指定できます（省略時は全期間）。
+        </div>
+        <div class="cmd-meta"><span class="tag tag-user">ユーザー用</span></div>
+      </div>
+
+      <div class="command-block">
+        <div class="cmd-name">/ランク設定</div>
+        <div class="cmd-desc">ランクシステムの設定パネルを開きます。プリセットの作成・編集・削除ができます。</div>
+        <div class="cmd-meta"><span class="tag tag-admin">管理者専用</span></div>
+      </div>
+
+      <div data-include="include/footer"></div>
+    </div>
+  </main>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
