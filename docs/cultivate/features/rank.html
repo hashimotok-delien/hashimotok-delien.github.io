@@ -377,7 +377,7 @@ int(hi * R ** 0.5)</code></pre>
         </thead>
         <tbody>
           <tr><td>🌱 スムーズ成長</td><td><code>5L² + 50L</code></td><td>55 XP</td><td>1,000 XP</td><td>初期がとても優しい</td></tr>
-          <tr><td>⚖️ 現行（据え置き）</td><td><code>5L² + 50L + 100</code></td><td>155 XP</td><td>1,100 XP</td><td>旧デフォルト</td></tr>
+          <tr><td>⚖️ 序盤ハードル+スムーズ成長</td><td><code>5L² + 50L + 100</code></td><td>155 XP</td><td>1,100 XP</td><td>旧デフォルト</td></tr>
           <tr><td>📈 線形成長</td><td><code>30L + 20</code></td><td>50 XP</td><td>320 XP</td><td>安定した伸び</td></tr>
           <tr><td>🍃 緩やか成長</td><td><code>3L² + 30L + 15</code></td><td>48 XP</td><td>630 XP</td><td>全体的に緩やか</td></tr>
         </tbody>
@@ -385,7 +385,7 @@ int(hi * R ** 0.5)</code></pre>
 
       <div class="table-wrapper"><table>
         <thead>
-          <tr><th>レベル</th><th>🌱 スムーズ</th><th>⚖️ 現行</th><th>📈 線形</th><th>🍃 緩やか</th></tr>
+          <tr><th>レベル</th><th>🌱 スムーズ成長</th><th>⚖️ 序盤ハードル+スムーズ成長</th><th>📈 線形成長</th><th>🍃 緩やか成長</th></tr>
         </thead>
         <tbody>
           <tr><td>Lv.1 → Lv.2</td><td>55 XP</td><td>155 XP</td><td>50 XP</td><td>48 XP</td></tr>
@@ -401,7 +401,7 @@ int(hi * R ** 0.5)</code></pre>
         <canvas id="growthChart" width="860" height="500"></canvas>
         <div class="chart-legend">
           <div class="chart-legend-item"><span class="chart-legend-line easy"></span> 🌱 スムーズ成長</div>
-          <div class="chart-legend-item"><span class="chart-legend-line standard"></span> ⚖️ 現行</div>
+          <div class="chart-legend-item"><span class="chart-legend-line standard"></span> ⚖️ 序盤ハードル+スムーズ成長</div>
           <div class="chart-legend-item"><span class="chart-legend-line hard"></span> 📈 線形成長</div>
           <div class="chart-legend-item"><span class="chart-legend-line linear"></span> 🍃 緩やか成長</div>
         </div>
@@ -425,7 +425,7 @@ int(hi * R ** 0.5)</code></pre>
       <pre><code># デフォルト（スムーズ成長）
 5 * L ** 2 + 50 * L
 
-# 現行（旧デフォルト）
+# 序盤ハードル+スムーズ成長
 5 * L ** 2 + 50 * L + 100
 
 # 線形成長
@@ -730,7 +730,7 @@ max(100, 50 * L ** 1.5)
               fill: false
             },
             {
-              label: '⚖️ 現行（据え置き）',
+              label: '⚖️ 序盤ハードル+スムーズ成長',
               data: standardData,
               borderColor: '#FF9800',
               backgroundColor: 'rgba(255,152,0,0.08)',
