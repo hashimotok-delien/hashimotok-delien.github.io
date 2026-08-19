@@ -345,7 +345,7 @@ int(hi * R ** 0.5)</code></pre>
       <!-- ============================================================ -->
       <h2>📊 ランキング</h2>
       <p>
-        <code>/ranking</code> コマンドでサーバー内のXPランキングを表示できます。
+        <code>/ランキング</code> コマンドでサーバー内のXPランキングを表示できます。
       </p>
       <ul>
         <li>プリセット一覧がページネーションで表示される</li>
@@ -553,17 +553,17 @@ max(100, 50 * L ** 1.5)
       <p>
         複数のプリセットを作成できるランクシステムでは、
         <strong>メイン設定</strong>機能で
-        <code>/rank</code> コマンドの表示対象を1つに絞れます。
+        <code>/ランク</code> コマンドの表示対象を1つに絞れます。
       </p>
       <div class="alert alert-info">
         <p><strong>💡 仕組み:</strong></p>
         <ul>
           <li>各プリセットのエディタ項目から「⭐ メイン設定」をONにできます</li>
           <li>メインをONにすると、他の全プリセットのメイン設定が自動的にOFFになります</li>
-          <li><code>/rank</code> コマンドはメイン設定されたプリセットのみ表示します</li>
-          <li>メイン設定が1つもない場合、<code>/rank</code> はエラーメッセージを表示します</li>
+          <li><code>/ランク</code> コマンドはメイン設定されたプリセットのみ表示します</li>
+          <li>メイン設定が1つもない場合、<code>/ランク</code> はエラーメッセージを表示します</li>
           <li>設定パネル上ではメイン設定のプリセットに ⭐ アイコンが表示されます</li>
-          <li><code>/ranking</code> やXP計測はメイン設定に関係なく全プリセットが動作します</li>
+          <li><code>/ランキング</code> やXP計測はメイン設定に関係なく全プリセットが動作します</li>
         </ul>
       </div>
 
@@ -601,7 +601,7 @@ max(100, 50 * L ** 1.5)
 
       <h3>設定方法</h3>
       <ol>
-        <li><code>/rank設定</code> を実行</li>
+        <li><code>/ランク設定</code> を実行</li>
         <li>プリセットのエディタを開く</li>
         <li>下のSelectで「📋 ログ機能設定」を選択</li>
         <li>ログ設定Viewでカテゴリを選択 → Modal内でChannelSelect</li>
@@ -620,13 +620,13 @@ max(100, 50 * L ** 1.5)
       </p>
 
       <h3>全体モード（combined・メーター1本）</h3>
-      <p><img src="../img/rank_card_combined.png" alt="ランクカード（全体モード）" style="max-width:100%;border:1px solid #ccc;border-radius:8px;"></p>
+      <p><img src="../img/ランク_card_combined.png" alt="ランクカード（全体モード）" style="max-width:100%;border:1px solid #ccc;border-radius:8px;"></p>
 
       <h3>VC/チャットモード（separate・メーター2本）</h3>
-      <p><img src="../img/rank_card_separate.png" alt="ランクカード（VC/チャットモード）" style="max-width:100%;border:1px solid #ccc;border-radius:8px;"></p>
+      <p><img src="../img/ランク_card_separate.png" alt="ランクカード（VC/チャットモード）" style="max-width:100%;border:1px solid #ccc;border-radius:8px;"></p>
 
       <h3>インチャットモード（inchat・メーター3本）</h3>
-      <p><img src="../img/rank_card_inchat.png" alt="ランクカード（インチャットモード）" style="max-width:100%;border:1px solid #ccc;border-radius:8px;"></p>
+      <p><img src="../img/ランク_card_inchat.png" alt="ランクカード（インチャットモード）" style="max-width:100%;border:1px solid #ccc;border-radius:8px;"></p>
 
       <div class="alert alert-info">
         <p><strong>💡 ランクカードの内容:</strong></p>
@@ -647,7 +647,7 @@ max(100, 50 * L ** 1.5)
           <li><strong>各メーター直上</strong>: 系統別の順位・合計EXP</li>
           <li><strong>各メーター左側</strong>: 系統別のレベル（LVL＋数字）</li>
           <li><strong>メーター内</strong>: 現在Lv内XP / 次Lv必要XP（進捗%）</li>
-          <li>背景画像は <code>data/img/rank_default_card.png</code> に置くことでカスタマイズ可能（無い場合は単色背景）</li>
+          <li>背景画像は <code>data/img/ランク_default_card.png</code> に置くことでカスタマイズ可能（無い場合は単色背景）</li>
         </ul>
       </div>
 
