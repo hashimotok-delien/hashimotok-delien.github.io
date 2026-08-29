@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>既知の不具合 - Cultivate ドキュメント</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-base=".">
+  <div data-include="include/sidebar"></div>
+
+  <main class="main-content">
+    <div data-include="include/topbar" data-title="既知の不具合"></div>
+
+    <div class="content">
+      <h1>⚠️ 既知の不具合</h1>
+      <p>現在確認されている既知の不具合と、その回避策・対応状況をまとめています。</p>
+
+      <div class="alert alert-warning">
+        <p><strong>💡 注意:</strong> このページの内容は予告なく変更される場合があります。不具合に遭遇した場合はサポートサーバーまでご報告ください。</p>
+      </div>
+
+      <h2>🎯 プロフ審査</h2>
+
+      <h3>プロフ審査設定の有効/無効が即座に切り替わらない</h3>
+      <table class="table-wrapper">
+        <tbody>
+          <tr>
+            <th style="width: 120px;">対象機能</th>
+            <td>プロフ審査</td>
+          </tr>
+          <tr>
+            <th>影響</th>
+            <td>低</td>
+          </tr>
+          <tr>
+            <th>対応状況</th>
+            <td>調査中</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="alert alert-danger">
+        <p><strong>🔧 不具合内容:</strong></p>
+        <ul>
+          <li>プロフ審査設定の「有効/無効」トグルを切り替えても、審査機能の動作に反映されるまでに時間がかかる場合があります。</li>
+          <li>設定画面の表示（Embed）は即座に切り替わりますが、実際の審査処理に反映されるタイミングが遅れることがあります。</li>
+        </ul>
+      </div>
+
+      <div class="alert alert-info">
+        <p><strong>🛡️ 回避策:</strong></p>
+        <ul>
+          <li>Bot を再起動すると、設定が反映されます。</li>
+          <li>再起動は、1日に1回ほど行っておりますので設定の反映をお待ちください。</li>
+          <li>今すぐ審査を停止したい場合は、プロフ元チャンネルを使用していないTCに設定してください。</li>
+        </ul>
+      </div>
+
+      <div data-include="include/footer"></div>
+    </div>
+  </main>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
