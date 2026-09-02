@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>カテゴリ名自動設定 - Cultivate ドキュメント</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body data-base="..">
+  <div data-include="include/sidebar"></div>
+
+  <main class="main-content">
+    <div data-include="include/topbar" data-title="カテゴリ名設定"></div>
+
+    <div class="content">
+      <div class="feature-hero">
+        <div class="feature-icon">📂</div>
+        <h1>カテゴリ名設定</h1>
+        <p>カテゴリ名にチャンネル数を自動反映</p>
+      </div>
+
+      <div class="alert alert-info">
+        <p><strong>💡 カテゴリ名設定とは？</strong>
+        カテゴリ内のチャンネル数をカテゴリ名に自動反映する機能です。
+        テンプレート内の <code>{size}</code> がチャンネル数に置き換わり、
+        <strong>5分に一度</strong>自動更新されます。</p>
+      </div>
+
+      <h2>概要</h2>
+      <p>
+        カテゴリ名設定は、指定したカテゴリの名前を
+        設定したテンプレートに従って自動更新します。
+        チャンネルが追加・削除されると、5分以内に
+        カテゴリ名のチャンネル数が最新の値に更新されます。
+      </p>
+
+      <h2>機能一覧</h2>
+      <div class="table-wrapper"><table>
+        <thead>
+          <tr>
+            <th>機能</th>
+            <th>説明</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>プリセット管理</td>
+            <td>複数のカテゴリ名設定（プリセット）を管理</td>
+          </tr>
+          <tr>
+            <td>自動更新</td>
+            <td>5分間隔でカテゴリ名を自動更新</td>
+          </tr>
+          <tr>
+            <td>チャンネル数自動反映</td>
+            <td>テンプレート内の <code>{size}</code> をチャンネル数に置換</td>
+          </tr>
+          <tr>
+            <td>レート制限回避</td>
+            <td>Discord APIの429エラー発生時は30分クールダウン</td>
+          </tr>
+        </tbody>
+      </table></div>
+
+      <h2>プリセット機能</h2>
+      <p>
+        複数のカテゴリ名設定（プリセット）を作成できます。
+        各プリセットには以下の設定項目があります。
+      </p>
+      <ul>
+        <li><strong>設定名</strong>: プリセット名（管理用）</li>
+        <li><strong>対象カテゴリ</strong>: 名前を更新するカテゴリ（1つのみ）</li>
+        <li><strong>カテゴリ名テンプレート</strong>: カテゴリ名のフォーマット
+        （<code>{size}</code> はチャンネル数に置換）</li>
+      </ul>
+
+      <h2>設定の流れ</h2>
+
+      <h3>1. プリセット一覧</h3>
+      <p>
+        <code>/カテゴリ名設定</code> を実行するとプリセット一覧が表示されます。
+        1ページに1プリセットずつ表示され、以下のボタンで管理します。
+      </p>
+      <ul>
+        <li><strong>➕ 新規作成</strong>: 新しいプリセットを作成</li>
+        <li><strong>✏️ 編集</strong>: 表示中のプリセットを編集</li>
+        <li><strong>🗑️ 削除</strong>: 表示中のプリセットを削除（YES/NO確認あり）</li>
+      </ul>
+
+      <h3>2. 新規作成</h3>
+      <p>
+        「➕ 新規作成」を押すと以下のModalが表示されます。
+      </p>
+      <ul>
+        <li><strong>設定名</strong>: プリセット名（任意）</li>
+        <li><strong>カテゴリ選択</strong>: 対象カテゴリ（必須）</li>
+      </ul>
+      <div class="alert alert-warning">
+        <p><strong>⚠️ 注意:</strong>
+        設定名を空欄にすると、選択したカテゴリの名前が
+        設定名として使用されます。</p>
+      </div>
+
+      <h3>3. 編集画面</h3>
+      <p>
+        新規作成後・「✏️ 編集」ボタンで編集画面が開きます。
+        編集画面は以下の2つの設定ボタンを持ちます。
+      </p>
+      <ul>
+        <li><strong>📝 基本設定</strong>: 設定名と対象カテゴリを変更
+        （カテゴリは1つのみ選択可能）</li>
+        <li><strong>🏷️ カテゴリ名設定</strong>: カテゴリ名テンプレートを入力</li>
+        <li><strong>💾 保存</strong>: 変更を確定</li>
+        <li><strong>↩️ 戻る</strong>: プリセット一覧へ戻る</li>
+      </ul>
+
+      <h2>テンプレートについて</h2>
+      <p>
+        カテゴリ名のテンプレートでは、<code>{size}</code> が
+        <strong>カテゴリ内のチャンネル数</strong>に置き換えられます。
+      </p>
+      <div class="table-wrapper"><table>
+        <thead>
+          <tr>
+            <th>テンプレート</th>
+            <th>チャンネル数が5の場合</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>メイン({size})</code></td>
+            <td><code>メイン(5)</code></td>
+          </tr>
+          <tr>
+            <td><code>チャンネル数: {size}</code></td>
+            <td><code>チャンネル数: 5</code></td>
+          </tr>
+        </tbody>
+      </table></div>
+      <div class="alert alert-warning">
+        <p><strong>⚠️ 注意:</strong>
+        <code>{size}</code> がテンプレートに含まれていない場合は
+      </div>
+
+      <h2>コマンド一覧</h2>
+
+      <div class="command-block">
+        <div class="cmd-name">/カテゴリ名設定</div>
+        <div class="cmd-desc">
+          カテゴリ名設定パネルを開きます。
+          プリセットの作成・編集・削除が行えます。
+        </div>
+        <div class="cmd-meta"><span class="tag tag-admin">管理者専用</span></div>
+      </div>
+
+      <h2>注意事項</h2>
+      <ul>
+        <li>カテゴリ名の更新は5分間隔で行われます（即時反映ではありません）</li>
+        <li>Discord APIのレート制限（429）が発生した場合、該当カテゴリは30分間更新が停止します</li>
+        <li>対象カテゴリはBotが名前を変更できる権限を持つ必要があります</li>
+        <li>1サーバーにつき最大20個まで設定可能です</li>
+      </ul>
+
+      <div data-include="include/footer"></div>
+    </div>
+  </main>
+  <script src="../js/main.js"></script>
+</body>
+</html>
