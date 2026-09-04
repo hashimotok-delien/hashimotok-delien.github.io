@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DM/フレンド許可取り - Cultivate ドキュメント</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body data-base="..">
+  <div data-include="include/sidebar"></div>
+
+  <main class="main-content">
+    <div data-include="include/topbar" data-title="DM/フレンド許可取り"></div>
+
+    <div class="content">
+      <div class="feature-hero">
+        <div class="feature-icon">🤝</div>
+        <h1>DM/フレンド許可取り</h1>
+        <p>DM・フレンド申請をパネルからワンクリックで受け付け、承認状況を一覧管理</p>
+      </div>
+
+      <h2>概要</h2>
+      <p>
+        DM/フレンド許可取り機能は、サーバーメンバーからの
+        <strong>DM・フレンド申請</strong> をパネルボタンで受け付け、
+        申請者の許可状況（許可済み / 未承認 / 送信済み）を一覧で確認できる機能です。
+      </p>
+      <p>
+        申請種別は <strong>DM / フレンド / 鯖内DM / 鯖内フレンド</strong> の4種類。
+        申請時に「一言」を添えることができ、承認時の通知文・許可取り時の
+        案内文もテンプレートとして自由に設定できます。
+      </p>
+
+      <div class="alert alert-info">
+        <p><strong>💡 ユースケース:</strong> 界隈サーバーで「DM許可」「フレンド許可」を
+        募りたい場合に活用できます。パネルに各申請ボタンを設置し、申請者は
+        ボタンを押して種別と一言を入力するだけで申請完了です。</p>
+      </div>
+
+      <h2>機能詳細</h2>
+
+      <h3>DM/フレンド許可設定</h3>
+      <p>
+        「どの種別の申請を受け付けるか」「誰が申請できるか」をまとめた設定です。
+        1サーバーに複数作成でき、パネルに紐付けられます。
+      </p>
+      <ul>
+        <li><strong>種別:</strong> DM / フレンド / 鯖内DM / 鯖内フレンド を複数選択</li>
+        <li><strong>許可ロール / 不許可ロール:</strong> 申請できるメンバーをロールで制限</li>
+        <li><strong>許可取りテンプレ文:</strong> 申請時に送られる案内文</li>
+        <li><strong>承認テンプレ文:</strong> 承認時に送られる通知文</li>
+      </ul>
+
+      <h3>許可 / 不許可ロール判定</h3>
+      <p>
+        許可ロール・不許可ロールを設定することで、申請できるメンバーを制限できます。
+        判定は以下の通りです。
+      </p>
+      <div class="table-wrapper"><table>
+        <thead>
+          <tr>
+            <th>許可ロール</th>
+            <th>不許可ロール</th>
+            <th>判定</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>未設定</td>
+            <td>未設定</td>
+            <td><strong>全員</strong> が申請可能</td>
+          </tr>
+          <tr>
+            <td>設定あり</td>
+            <td>未設定</td>
+            <td>許可ロールを <strong>いずれか1つ</strong> 保持している人のみ</td>
+          </tr>
+          <tr>
+            <td>未設定</td>
+            <td>設定あり</td>
+            <td>不許可ロールを <strong>いずれも保持していない</strong> 人のみ</td>
+          </tr>
+          <tr>
+            <td>設定あり</td>
+            <td>設定あり</td>
+            <td><strong>不許可ロール優先</strong>（不許可ロール保持者は申請不可）</td>
+          </tr>
+        </tbody>
+      </table></div>
+
+      <h3>DM/フレンド許可パネル</h3>
+      <p>
+        パネルは Embed + ボタンで構成され、任意のチャンネルに設置できます。
+      </p>
+      <ul>
+        <li><strong>パネル設定:</strong> Embed の色（<code>#RRGGBB</code>）と説明文を設定</li>
+        <li><strong>ボタン設定:</strong> 「確認」ボタンと各許可設定の申請ボタンを配置。
+        ボタンごとに色（緑・赤・青・グレー）・絵文字・ラベルを設定可能</li>
+        <li><strong>テンプレ文設定:</strong> 「確認」「デフォルト」および紐付けた許可設定ごとに
+        許可取りテンプレ文・承認テンプレ文を設定</li>
+        <li><strong>設置:</strong> 送信先チャンネルを選択してパネルを送信。
+        送信後も「🔄 パネル更新」で内容を更新可能</li>
+      </ul>
+
+      <h3>確認ボタン（状態一覧のDM送信）</h3>
+      <p>
+        パネルの「確認」ボタンを押すと、申請者の DM に現在の申請状況が
+        Embed 形式で送信されます。一覧はページ送りに対応しており、
+        申請が増えてもすべて確認できます。
+      </p>
+      <ul>
+        <li><strong>許可済みDM / 許可済みフレンド</strong>（鯖内版を含む）</li>
+        <li>未承認DM / 未承認フレンド（鯖内版を含む）</li>
+        <li>送信済みDM / 送信済みフレンド（鯖内版を含む）</li>
+      </ul>
+
+      <h2>設定手順</h2>
+
+      <ol class="steps">
+        <li>
+          <strong>DM/フレンド許可設定を作成</strong>
+          <code>/dmフレンド許可設定</code> を実行（管理者専用）し、
+          「➕ 新規作成」から設定名と種別（DM / フレンド / 鯖内DM / 鯖内フレンド）を選択
+        </li>
+        <li>
+          <strong>許可ロールを設定（任意）</strong>
+          編集画面の「✅ 許可ロール設定」で許可・不許可ロールを設定
+        </li>
+        <li>
+          <strong>テンプレ文を設定（任意）</strong>
+          「📝 テンプレ文設定」で許可取り時・承認時の文面を設定
+        </li>
+        <li>
+          <strong>保存</strong>
+          「💾 保存」で設定を確定
+        </li>
+        <li>
+          <strong>パネル設定を作成</strong>
+          <code>/dmフレンド許可パネル設定</code> を実行し、
+          「➕ 新規作成」から設定名と紐付ける許可設定を選択
+        </li>
+        <li>
+          <strong>パネルをカスタマイズ</strong>
+          「🖼️ パネル設定」（色・説明文）「🔘 ボタン設定」（ボタン色・絵文字・ラベル）
+          「📝 テンプレ文設定」で内容を調整
+        </li>
+        <li>
+          <strong>パネルを設置</strong>
+          「📍 設置」で送信先チャンネルを選択して送信
+        </li>
+        <li>
+          <strong>保存</strong>
+          忘れずに「💾 保存」をクリック
+        </li>
+      </ol>
+
+      <h2>ユーザーの操作フロー</h2>
+
+      <ol class="steps">
+        <li>
+          <strong>申請ボタンをクリック</strong>
+          設置されたパネルの申請ボタン（例: 「📝 許可申請#1」）を押す
+        </li>
+        <li>
+          <strong>種別と一言を入力</strong>
+          表示されるモーダルで種別（DM / フレンド / 鯖内DM / 鯖内フレンド）を選択し、
+          必要に応じて一言を入力して送信
+        </li>
+        <li>
+          <strong>申請完了</strong>
+          「✅ 許可申請を受け付けました。」と表示され、申請が記録されます
+        </li>
+        <li>
+          <strong>状況を確認</strong>
+          パネルの「✅ 確認」ボタンを押すと、DM に現在の申請状況一覧が届きます
+        </li>
+      </ol>
+
+      <h2>コマンド</h2>
+
+      <div class="command-block">
+        <div class="cmd-name">/dmフレンド許可設定</div>
+        <div class="cmd-desc">DM/フレンド許可設定のプリセットを管理します（新規作成・編集・削除）</div>
+        <div class="cmd-meta"><span class="tag tag-admin">管理者専用</span></div>
+      </div>
+
+      <div class="command-block">
+        <div class="cmd-name">/dmフレンド許可パネル設定</div>
+        <div class="cmd-desc">DM/フレンド許可パネル設定のプリセットを管理・設置します</div>
+        <div class="cmd-meta"><span class="tag tag-admin">管理者専用</span></div>
+      </div>
+
+      <h2>設定項目一覧</h2>
+      <div class="table-wrapper"><table>
+        <thead>
+          <tr>
+            <th>項目</th>
+            <th>説明</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>設定名</td>
+            <td>管理用の設定名（ユーザーには非表示）</td>
+          </tr>
+          <tr>
+            <td>種別</td>
+            <td>DM / フレンド / 鯖内DM / 鯖内フレンド（複数選択可）</td>
+          </tr>
+          <tr>
+            <td>許可ロール</td>
+            <td>申請を許可するロール（未設定なら全員）</td>
+          </tr>
+          <tr>
+            <td>不許可ロール</td>
+            <td>申請を拒否するロール（未設定なら制限なし）</td>
+          </tr>
+          <tr>
+            <td>許可取りテンプレ文</td>
+            <td>申請時に送られる案内文（変数: <code>{type}</code> <code>{profile_link}</code> <code>{comment}</code>）</td>
+          </tr>
+          <tr>
+            <td>承認テンプレ文</td>
+            <td>承認時に送られる通知文（変数: <code>{nickname}</code> <code>{profile_link}</code> <code>{type}</code>）</td>
+          </tr>
+          <tr>
+            <td>Embed 色</td>
+            <td>パネルのアクセントカラー（#RRGGBB 形式）</td>
+          </tr>
+          <tr>
+            <td>Embed 説明文</td>
+            <td>パネルに表示する説明文</td>
+          </tr>
+          <tr>
+            <td>ボタン色 / 絵文字 / ラベル</td>
+            <td>各申請ボタン・確認ボタンの見た目（ボタンごとに設定）</td>
+          </tr>
+        </tbody>
+      </table></div>
+
+      <h2>テンプレート変数</h2>
+      <div class="table-wrapper"><table>
+        <thead>
+          <tr>
+            <th>変数</th>
+            <th>説明</th>
+            <th>使用可能なテンプレ</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>{type}</code></td>
+            <td>申請種別（DM / フレンド / 鯖内DM / 鯖内フレンド）</td>
+            <td>許可取り / 承認</td>
+          </tr>
+          <tr>
+            <td><code>{profile_link}</code></td>
+            <td>申請者のプロフィールリンク</td>
+            <td>許可取り / 承認</td>
+          </tr>
+          <tr>
+            <td><code>{comment}</code></td>
+            <td>申請時の一言</td>
+            <td>許可取り</td>
+          </tr>
+          <tr>
+            <td><code>{nickname}</code></td>
+            <td>申請者の表示名</td>
+            <td>承認</td>
+          </tr>
+        </tbody>
+      </table></div>
+
+      <div class="alert alert-info">
+        <p><strong>💡 デフォルトテンプレート:</strong> 「デフォルト」には初期値として
+        以下の文面が設定されています。各許可設定のテンプレ文は、デフォルトを
+        基準に個別に上書きできます。</p>
+        <pre><code>【種別】{type}
+【プロフィール】{profile_link}
+【一言】{comment}
+-----
+[{nickname}]({profile_link})さんへの{type}許可申請が承認されました。
+-----</code></pre>
+      </div>
+
+      <h2>注意事項</h2>
+      <div class="alert alert-warning">
+        <p><strong>⚠️ 注意:</strong></p>
+        <ul>
+          <li>申請記録はサーバーごと・パネルごとに保存されます</li>
+          <li>確認ボタンの状態一覧は、押した本人の DM にのみ送信されます（DM を
+          許可していない場合は送信できません）</li>
+          <li>プロフィールリンクは、パネルが設置されているサーバーに
+          プロフィールがある場合はそのリンクが優先表示されます</li>
+          <li>プリセット数には上限があります（許可設定: 無料5 / プレミアム20、
+          パネル設定: 無料3 / プレミアム10）</li>
+        </ul>
+      </div>
+
+      <div data-include="include/footer"></div>
+    </div>
+  </main>
+  <script src="../js/main.js"></script>
+</body>
+</html>
