@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>でりえんカレンダー - Cultivate ドキュメント</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body data-base="..">
+  <div data-include="include/sidebar"></div>
+
+  <main class="main-content">
+    <div data-include="include/topbar" data-title="でりえんカレンダー"></div>
+
+    <div class="content">
+      <div class="feature-hero">
+        <div class="feature-icon">📅</div>
+        <h1>でりえんカレンダー</h1>
+        <p>DeLien Calender の予定をDiscordへ自動通知</p>
+      </div>
+
+      <div class="alert alert-info">
+        <p><strong>💡 でりえんカレンダーとは？</strong>
+        <a href="https://calendar.delien.xyz/">DeLien Calender</a> に
+        登録した予定の作成・編集・削除・開始前リマインドを
+        指定したチャンネルへ自動で投稿する機能です。
+        予定の取得はBotが<strong>約30秒ごと</strong>に行います。</p>
+      </div>
+
+      <h2>概要</h2>
+      <p>
+        でりえんカレンダー連携は、DeLien Calender の Web API（v1）を
+        利用して予定の通知をDiscordへ配信します。
+        通知先のチャンネルは<strong>サーバーごと</strong>に、
+        通知する内容（対象イベント・リマインド時刻・メンション）は
+        <strong>カレンダーごと</strong>に設定できます。
+      </p>
+      <p>
+        APIトークンは<strong>ユーザー単位（全サーバー共通）</strong>で
+        保存されるため、一度登録すれば
+        同じアカウントで管理しているサーバーすべてで利用できます。
+        カレンダー所有者がサーバーで共有したあとは、
+        そのサーバーの<strong>管理者であれば誰でも</strong>
+        設定を変更できます。
+      </p>
+
+      <h2>機能一覧</h2>
+      <div class="table-wrapper"><table>
+        <thead>
+          <tr>
+            <th>機能</th>
+            <th>説明</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>トークン管理</td>
+            <td>DeLien Calender のAPIトークンを登録・削除（暗号化して保存／登録した本人のみ表示）</td>
+          </tr>
+          <tr>
+            <td>予定の自動通知</td>
+            <td>予定作成・編集・削除・開始前リマインドを指定チャンネルへ投稿</td>
+          </tr>
+          <tr>
+            <td>サーバーごとの通知先</td>
+            <td>カレンダーごとに投稿先チャンネルと有効・無効を設定</td>
+          </tr>
+          <tr>
+            <td>共有設定の共同管理</td>
+            <td>カレンダー所有者が共有したあとは、そのサーバーの管理者なら誰でも設定を変更</td>
+          </tr>
+          <tr>
+            <td>投稿者設定</td>
+            <td>Webhook投稿の表示名・アイコンをサーバーごとに変更</td>
+          </tr>
+          <tr>
+            <td>予定一覧</td>
+            <td><code>/でりえんカレンダー</code> で予定を期間指定して表示</td>
+          </tr>
+        </tbody>
+      </table></div>
+
+      <h2>使い方</h2>
+
+      <h3>1. APIトークンを発行する</h3>
+      <p>
+        <a href="https://calendar.delien.xyz/api_tokens.php">DeLien Calender
+        の管理画面</a>でAPIトークンを発行します。
+        トークンは<strong>カレンダーの所有者（作成者）のみ</strong>が
+        発行できます。発行時に一度だけ表示されるので、
+        コピーしておいてください。
+      </p>
+
+      <h3>2. トークンを登録する</h3>
+      <p>
+        <code>/でりえんカレンダー設定</code> を実行し、
+        「🔑 トークン登録」からAPIトークンを入力します。
+        登録したトークンは全サーバー共通で、
+        <strong>登録した本人だけが表示・管理できます</strong>
+        （他の管理者にはトークンの状態も表示されません）。
+      </p>
+
+      <h3>3. サーバーでカレンダーを共有する</h3>
+      <p>
+        「カレンダー設定」から、共有するカレンダーの
+        <strong>送信先チャンネル</strong>を設定し、
+        通知を<strong>有効</strong>にします。
+        送信先を設定していないカレンダーはそのサーバーへ
+        通知されません。
+      </p>
+
+      <h3>4. 以降は管理者なら誰でも設定を変更できる</h3>
+      <p>
+        共有したあとは、そのサーバーの管理者であれば
+        <strong>誰でも</strong>送信先チャンネル・有効／無効・
+        投稿者などを変更できます。
+        設定の変更はカレンダー所有者のトークンでAPIへ同期されるため、
+        変更した人がトークンを持っている必要はありません。
+      </p>
+
+      <h3>設定画面の操作</h3>
+      <p>メインパネル:</p>
+      <ul>
+        <li><strong>カレンダー設定</strong>: カレンダーごとの通知設定を開く</li>
+        <li><strong>🔑 トークン登録 / トークン再登録</strong>: 自分のトークンを登録・差し替え</li>
+        <li><strong>トークン削除</strong>: 自分のトークンを削除</li>
+      </ul>
+      <p>カレンダー設定ページ（全ページ共通の操作）:</p>
+      <ul>
+        <li><strong>前へ / 次へ</strong>: カレンダーを切り替え</li>
+        <li><strong>通知イベント</strong>（セレクト）: 通知するイベントを選択（カレンダー共通）</li>
+        <li><strong>送信先チャンネル</strong>: 通知先を選択（サーバーごと）</li>
+        <li><strong>メンション/リマインド</strong>: メンション本文と何分前に通知するか（カレンダー共通）</li>
+        <li><strong>投稿者設定</strong>: Webhook投稿の表示名とアイコン（サーバーごと）</li>
+        <li><strong>通知: 有効 / 通知: 無効</strong>: そのサーバーでの通知の切り替え</li>
+        <li><strong>設定を削除</strong>: そのサーバーの共有設定を削除</li>
+        <li><strong>戻る</strong>: メインパネルへ戻る</li>
+      </ul>
+      <div class="alert alert-warning">
+        <p><strong>⚠️ 注意:</strong>
+        トークンが失効している場合は 401 が返り、
+        自動的に「失効」として記録されます。
+        新しいトークンを登録し直してください。</p>
+      </div>
+
+      <h2>トークンをリセットしたとき</h2>
+      <p>
+        「トークン削除」ではトークンのみを削除し、
+        <strong>各サーバーの共有設定（送信先チャンネル・有効設定・
+        投稿者設定）は保持されます</strong>。
+        同じアカウントでトークンを再登録すると、
+        各サーバーで操作することなく元の設定のまま通知が再開します。
+      </p>
+
+      <h2>設定のスコープ</h2>
+      <p>
+        APIの購読はトークン単位で置き換わるため、
+        通知の中身はカレンダー共通、送信先はサーバーごとになります。
+      </p>
+      <div class="table-wrapper"><table>
+        <thead>
+          <tr>
+            <th>設定項目</th>
+            <th>スコープ</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>通知イベント / リマインド分数 / メンション</td>
+            <td>カレンダー共通（同じカレンダーを使う全サーバーに反映）</td>
+          </tr>
+          <tr>
+            <td>送信先チャンネル / 有効・無効 / 投稿者名・アイコン</td>
+            <td>サーバーごと</td>
+          </tr>
+        </tbody>
+      </table></div>
+
+      <h2>投稿方法</h2>
+      <p>
+        投稿はサーバー内に作成される
+        <strong>「DeLien Calendar」という名前のWebhook</strong>から行われます
+        （既定の表示名は <code>DeLien Calendar</code>、
+        アイコンはサービスアイコン）。
+        投稿者設定を変更すると、その名前・アイコンで投稿されます。
+      </p>
+      <p>
+        Webhookを作成できない場合は、Botの通常メッセージとして
+        投稿されます。
+      </p>
+
+      <h2>予定一覧コマンド</h2>
+      <p>
+        <code>/でりえんカレンダー</code> で予定の一覧を表示します。
+        カレンダーは入力候補から選べます。
+      </p>
+      <div class="table-wrapper"><table>
+        <thead>
+          <tr>
+            <th>期間</th>
+            <th>表示範囲</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>今週</td>
+            <td>今週はじめから今週末まで</td>
+          </tr>
+          <tr>
+            <td>今月</td>
+            <td>今月1日から月末まで</td>
+          </tr>
+          <tr>
+            <td>今後30日</td>
+            <td>今日から30日後まで（既定）</td>
+          </tr>
+          <tr>
+            <td>過去30日</td>
+            <td>30日前から今日まで</td>
+          </tr>
+        </tbody>
+      </table></div>
+
+      <h2>コマンド一覧</h2>
+
+      <div class="command-block">
+        <div class="cmd-name">/でりえんカレンダー設定</div>
+        <div class="cmd-desc">
+          APIトークンの登録・削除と、カレンダーごとの
+          通知設定を管理します。
+        </div>
+        <div class="cmd-meta"><span class="tag tag-admin">管理者専用</span></div>
+      </div>
+
+      <div class="command-block">
+        <div class="cmd-name">/でりえんカレンダー</div>
+        <div class="cmd-desc">
+          カレンダーの予定一覧を表示します。
+          <code>カレンダー</code>・<code>期間</code> を指定できます。
+        </div>
+        <div class="cmd-meta"><span class="tag tag-feature">全ユーザー</span></div>
+      </div>
+
+      <h2>注意事項</h2>
+      <ul>
+        <li>APIトークンはカレンダーの所有者のみ発行できます</li>
+        <li>トークンを登録した本人だけがトークンの状態を確認・変更できます（他の管理者には表示されません）</li>
+        <li>購読の登録はカレンダーの所有者であるアカウントでのみ行えます（所有者以外は拒否されます）</li>
+        <li>予定の取得は約30秒間隔です（登録から通知まで最大30秒ほどかかります）</li>
+        <li>予定が削除された場合も、削除の通知がそのまま投稿されます</li>
+        <li>「設定を削除」でサーバーの共有を解除すると、そのサーバーへの通知は停止します（カレンダー共通設定は残ります）</li>
+        <li>Webhookは投稿先チャンネルごとに作成されるため、Botに「Webhookの管理」権限が必要です</li>
+      </ul>
+
+      <div data-include="include/footer"></div>
+    </div>
+  </main>
+  <script src="../js/main.js"></script>
+</body>
+</html>
