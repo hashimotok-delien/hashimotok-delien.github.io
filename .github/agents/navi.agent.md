@@ -45,7 +45,7 @@ user-invocable: true
 ```
 hashimotok_web/
 ├── index.html              # ポートフォリオトップページ
-├── cultivate.html          # Cultivate 公式サイト
+├── ./cultivate/          # Cultivate 公式サイト
 ├── news.json               # ニュースフィード
 ├── blogs/                  # Jekyll ブログ
 │   ├── _config.yml
