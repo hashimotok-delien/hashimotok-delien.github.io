@@ -5,6 +5,8 @@ on:
       - lolipop
     paths:
       - 'docs/**' # docsフォルダ内のファイル変更時のみ実行
+    paths-ignore: # ★ このセクションを追加・修正
+      - 'public/docs/**'  # docs フォルダ内の全ての変更を無視
 jobs:
   ftp-deploy:
     runs-on: ubuntu-latest
