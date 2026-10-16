@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>インチャ掃除 - Cultivate ドキュメント</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body data-base="..">
+  <div data-include="include/sidebar"></div>
+
+  <main class="main-content">
+    <div data-include="include/topbar" data-title="インチャ掃除"></div>
+
+    <div class="content">
+      <div class="feature-hero">
+        <div class="feature-icon">🧹</div>
+        <h1>インチャ掃除</h1>
+        <p>VC が空になったらチャンネル内のメッセージを自動削除</p>
+      </div>
+
+      <div class="alert alert-info">
+        <p><strong>💡 インチャ掃除とは？</strong>
+        VC / ステージチャンネルから<strong>全員が退出した</strong>タイミングで、
+        そのチャンネル内のメッセージを自動的に削除する機能です。
+        インチャ（VC 内チャット）に溜まったプロフィールや雑談を、
+        誰もいなくなったタイミングで自動的にキレイにできます。</p>
+      </div>
+
+      <h2>概要</h2>
+      <p>
+        <code>/インチャ掃除設定</code> で作成した設定プリセットに従って、
+        対象チャンネルの人数が 0 になったらチャンネル内のメッセージを
+        一括削除します。設定は複数作成でき、チャンネルごとに
+        異なる条件を割り当てられます。
+      </p>
+      <ul>
+        <li>対象チャンネルは複数選択可能（VC / ステージ）</li>
+        <li>削除前に遅延時間を設定可能（デフォルト 0 秒）</li>
+        <li>「空」の判定に Bot を含めるか切り替え可能</li>
+        <li>設定は DB に保存され、Bot の再起動後も保持</li>
+        <li>起動時にすでに空のチャンネルも自動で掃除</li>
+      </ul>
+
+      <h2>コマンド</h2>
+
+      <div class="command-block">
+        <div class="cmd-name">/インチャ掃除設定</div>
+        <div class="cmd-desc">
+          インチャ掃除の設定プリセット一覧を表示します。
+          新規作成・編集・削除ができます。
+        </div>
+        <div class="cmd-meta"><span class="tag tag-admin">管理者専用</span></div>
+      </div>
+
+      <h2>設定方法</h2>
+
+      <h3>設定一覧を開く</h3>
+      <p>
+        <code>/インチャ掃除設定</code> を実行すると、現在登録されている
+        設定プリセットの一覧が表示されます。<br>
+        <em>このコマンドは管理者権限を持つメンバーのみ実行可能です。</em>
+      </p>
+
+      <h3>新規作成</h3>
+      <ol class="steps">
+        <li>
+          <strong>「➕ 新規作成」を押す</strong>
+          新しい設定プリセットが作成され、編集パネルが表示されます
+        </li>
+        <li>
+          <strong>「⚙️ 基本設定」を押す</strong>
+          基本設定モーダルが開くので、各項目を入力します
+        </li>
+        <li>
+          <strong>「🟢 有効化」を押す</strong>
+          設定を有効にすると自動削除が動作します
+        </li>
+      </ol>
+
+      <h2>基本設定の項目</h2>
+      <p>
+        基本設定は <strong>1 つのモーダル</strong>でまとめて
+        設定できます（Component v2 対応）。
+      </p>
+      <div class="table-wrapper">
+      <table>
+        <thead>
+          <tr>
+            <th>設定項目</th>
+            <th>説明</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>📝 設定名</td>
+            <td>プリセットの名前（管理用・必須）</td>
+          </tr>
+          <tr>
+            <td>📌 対象チャンネル</td>
+            <td>
+              掃除するチャンネルを選択（<strong>VC / ステージ</strong>・
+              複数選択可・未選択可）
+            </td>
+          </tr>
+          <tr>
+            <td>🤖 空条件の人数にBotを含む</td>
+            <td>
+              チェックボックス。OFF（デフォルト）の場合は
+              Bot だけが残っていても「空」と判定。
+              ON の場合は Bot がいる間は掃除しない
+            </td>
+          </tr>
+          <tr>
+            <td>⏱️ 削除遅延秒数</td>
+            <td>
+              人数が 0 になってから削除するまでの待機秒数
+              （デフォルト 0 秒・0 以上の整数）
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      </div>
+
+      <h2>編集パネルの操作</h2>
+      <div class="table-wrapper">
+      <table>
+        <thead>
+          <tr>
+            <th>ボタン</th>
+            <th>説明</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>⚙️ 基本設定</td>
+            <td>基本設定モーダルを開いて項目を編集します</td>
+          </tr>
+          <tr>
+            <td>🔴 無効化 / 🟢 有効化</td>
+            <td>設定の有効・無効を切り替えます</td>
+          </tr>
+          <tr>
+            <td>◀️ 戻る</td>
+            <td>設定一覧に戻ります</td>
+          </tr>
+        </tbody>
+      </table>
+      </div>
+
+      <h2>自動削除の動作</h2>
+      <ol class="steps">
+        <li>
+          <strong>退出を検知</strong>
+          対象チャンネルから誰かが退出（または別チャンネルへ移動）すると、
+          空かどうかをチェックします
+        </li>
+        <li>
+          <strong>空の判定</strong>
+          対象チャンネルの人数が 0（または Bot を除いて 0）なら
+          掃除を開始します
+        </li>
+        <li>
+          <strong>遅延待機</strong>
+          削除遅延秒数が設定されている場合はその間待機し、
+          再度空かどうかを確認してから削除します
+          （間に人が入った場合はキャンセル）
+        </li>
+        <li>
+          <strong>メッセージ削除</strong>
+          チャンネル内の全メッセージを一括削除します
+        </li>
+      </ol>
+
+      <div class="alert alert-warning">
+        <p><strong>⚠️ 注意:</strong> 削除したメッセージは元に戻せません。
+        重要な内容が残っている可能性があるチャンネルを対象にする場合は、
+        削除遅延秒数を設定して誤削除を防ぐことを推奨します。</p>
+      </div>
+
+      <h2>関連機能</h2>
+      <p>
+        チャンネル内の<strong>自分のメッセージだけ</strong>を削除したい場合は、
+        <a href="self-message-delete.html">自己メッセージ削除</a> をご利用ください。
+        こちらは誰でも実行できます。
+      </p>
+
+      <div data-include="include/footer"></div>
+    </div>
+  </main>
+  <script src="../js/main.js"></script>
+</body>
+</html>

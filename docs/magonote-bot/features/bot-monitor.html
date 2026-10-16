@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bot監視設定 - まごの手 ドキュメント</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body data-base="..">
+  <div data-include="include/sidebar"></div>
+
+  <main class="main-content">
+    <div data-include="include/topbar" data-title="Bot監視設定"></div>
+
+    <div class="content">
+      <div class="feature-hero">
+        <div class="feature-icon">📡</div>
+        <h1>Bot監視設定</h1>
+        <p>24時間稼働Botのメッセージを監視し、停止を検知して通知</p>
+      </div>
+
+      <h2>概要</h2>
+      <p>
+        Bot監視設定機能は、24時間稼働している音楽Botなどのメッセージを監視し、
+        一定時間メッセージがなかった場合に指定チャンネルへ通知を送信するシステムです。
+        複数の監視設定を作成でき、それぞれ異なるBotや監視条件を設定できます。
+      </p>
+
+      <div class="alert alert-info">
+        <p><strong>💡 ユースケース:</strong> 24時間稼働の音楽Botや各種ユーティリティBotのダウンをいち早く検知し、迅速な対応を可能にします。</p>
+      </div>
+
+      <h2>使い方</h2>
+
+      <h3>コマンド</h3>
+      <pre><code>/bot監視設定</code></pre>
+      <p>管理者専用コマンドです。監視設定の一覧が表示され、新規作成・編集・削除が行えます。</p>
+
+      <h3>監視設定の項目</h3>
+
+      <table>
+        <thead>
+          <tr>
+            <th>項目</th>
+            <th>説明</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>設定名</td>
+            <td>監視設定の名前（管理用）</td>
+          </tr>
+          <tr>
+            <td>監視対象Bot</td>
+            <td>監視するBotメンバーを選択</td>
+          </tr>
+          <tr>
+            <td>監視チャンネル</td>
+            <td>Botのメッセージを監視するチャンネル</td>
+          </tr>
+          <tr>
+            <td>タイムアウト</td>
+            <td>何分メッセージがなければ通知するか（分）</td>
+          </tr>
+          <tr>
+            <td>通知メッセージ</td>
+            <td>通知時に送信するメッセージ（カスタム可能）</td>
+          </tr>
+          <tr>
+            <td>通知先チャンネル</td>
+            <td>通知を送信するチャンネル</td>
+          </tr>
+          <tr>
+            <td>有効/無効</td>
+            <td>監視のON/OFF</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3>編集パネルのボタン</h3>
+
+      <table>
+        <thead>
+          <tr>
+            <th>ボタン</th>
+            <th>機能</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="tag" style="background:#5865f2;color:#fff;">⚙️ 設定</span></td>
+            <td>基本設定（設定名・タイムアウト・通知メッセージ・監視チャンネル・通知先チャンネル）をモーダルで編集</td>
+          </tr>
+          <tr>
+            <td><span class="tag" style="background:#5865f2;color:#fff;">🤖 Bot選択</span></td>
+            <td>監視対象のBotをセレクトメニューから選択（最大50台対応）</td>
+          </tr>
+          <tr>
+            <td><span class="tag" style="background:#2ecc71;color:#000;">▶️ ON/OFF</span></td>
+            <td>監視の有効/無効を切り替え</td>
+          </tr>
+          <tr>
+            <td><span class="tag" style="background:#e74c3c;color:#fff;">🗑️ 削除</span></td>
+            <td>一覧画面から監視設定を削除</td>
+          </tr>
+          <tr>
+            <td><span class="tag" style="background:#2ecc71;color:#000;">➕ 新規作成</span></td>
+            <td>一覧画面で新しい監視設定を作成</td>
+          </tr>
+          <tr>
+            <td><span class="tag" style="background:#2ecc71;color:#000;">💾 保存</span></td>
+            <td>編集した内容を保存</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h2>仕組み</h2>
+      <p>
+        監視を有効にすると、Botは定期的（約30秒間隔）に監視対象チャンネルの
+        最新メッセージを確認します。監視対象Botの最終メッセージから
+        設定したタイムアウト時間が経過している場合、通知先チャンネルに
+        アラートを送信します。通知は同じ監視IDに対して最低5分間隔で送信され、
+        過剰な通知を防止します。
+      </p>
+
+      <h2>注意事項</h2>
+      <ul>
+        <li>監視には対象Botがメッセージを送信できるチャンネルを指定してください</li>
+        <li>監視対象Bot・監視チャンネル・通知先チャンネルの全てが設定されていないと監視を有効にできません</li>
+        <li>データベース（MySQL）への接続が必要です</li>
+        <li>Botの再起動後も設定は維持されます</li>
+      </ul>
+
+      <div data-include="include/footer"></div>
+    </div>
+  </main>
+
+  <script src="../js/main.js"></script>
+</body>
+</html>

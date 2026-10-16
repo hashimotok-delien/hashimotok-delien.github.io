@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>見学パネル - Cultivate ドキュメント</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body data-base="..">
+  <div data-include="include/sidebar"></div>
+
+  <main class="main-content">
+    <div data-include="include/topbar" data-title="見学パネル"></div>
+
+    <div class="content">
+      <div class="feature-hero">
+        <div class="feature-icon">👀</div>
+        <h1>見学パネル</h1>
+        <p>表示名に「見学」「観戦」タグを付けて参加状態を切り替え</p>
+      </div>
+
+      <div class="alert alert-info">
+        <p><strong>💡 見学パネルとは？</strong>
+        <a href="king-game.html">王様ゲーム</a> への参加 / 不参加を
+        自分のニックネームの先頭に付けるタグで切り替えられるようにする
+        パネルです。「見学」「観戦」タグが付いたメンバーは
+        王様の選出対象から除外されます。</p>
+      </div>
+
+      <h2>概要</h2>
+      <p>
+        <code>/見学パネル</code> を実行すると、以下のボタンを持つ
+        パネルが表示されます。
+      </p>
+      <div class="table-wrapper">
+      <table>
+        <thead>
+          <tr>
+            <th>ボタン</th>
+            <th>動作</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>🟢 見学</td>
+            <td>表示名の先頭に「見学」を付けます。
+            既に「見学」が付いている場合は変更しません。
+            「観戦」が付いている場合は除去して「見学」に置き換えます</td>
+          </tr>
+          <tr>
+            <td>🔵 観戦</td>
+            <td>表示名の先頭に「観戦」を付けます。
+            既に「観戦」が付いている場合は変更しません。
+            「見学」が付いている場合は除去して「観戦」に置き換えます</td>
+          </tr>
+          <tr>
+            <td>⚪ リセット</td>
+            <td>「見学」「観戦」タグを表示名から削除します。
+            タグが付いていない場合は何も変更しません</td>
+          </tr>
+          <tr>
+            <td>🔴 閉じる</td>
+            <td>パネルのメッセージ自体を削除します</td>
+          </tr>
+        </tbody>
+      </table>
+      </div>
+
+      <h2>コマンド</h2>
+
+      <div class="command-block">
+        <div class="cmd-name">/見学パネル</div>
+        <div class="cmd-desc">
+          見学・観戦タグを切り替えるパネルを表示します。
+          実行したチャンネルにパネルが設置されます。
+        </div>
+        <div class="cmd-meta"><span class="tag tag-user">ユーザー用</span></div>
+      </div>
+
+      <h2>タグの動作詳細</h2>
+      <h3>タグの付き方</h3>
+      <ul>
+        <li>タグはニックネーム（表示名）の<strong>先頭</strong>に付きます
+        （例: <code>見学たろう</code>）</li>
+        <li>ニックネームを設定していない場合も、サーバーニックネームとして
+        タグ付きの名前が設定されます</li>
+        <li>タグの付け替え時は、別のタグが先頭以外に含まれている場合も
+        自動で除去されます</li>
+      </ul>
+
+      <h3>リセット時の挙動</h3>
+      <ul>
+        <li>タグを除去した結果が元のユーザー名と一致する場合は、
+        サーバーニックネームを解除します（元の名前を復元）</li>
+        <li>タグが付いていない状態でリセットを押しても
+        エラーにはならず、その旨が通知されます</li>
+      </ul>
+
+      <div class="alert alert-warning">
+        <p><strong>⚠️ 注意:</strong> タグの付け外しには
+        <strong>ニックネームの変更権限</strong>が必要です。
+        Bot に権限がない場合や、変更回数制限（レート制限）に
+        達した場合はエラーメッセージが表示されます。</p>
+      </div>
+
+      <h2>再起動について</h2>
+      <p>
+        パネルのボタンは<strong>永続ビュー</strong>として実装されており、
+        Bot の再起動後も動作します。過去に設置したパネルを
+        そのまま使い続けることができます。
+      </p>
+
+      <h2>関連機能</h2>
+      <p>
+        タグを付けたメンバーは
+        <a href="king-game.html">王様ゲーム</a> の選出対象から除外されます。
+        ゲームを遊びたいときは「リセット」でタグを外してください。
+      </p>
+
+      <div data-include="include/footer"></div>
+    </div>
+  </main>
+  <script src="../js/main.js"></script>
+</body>
+</html>

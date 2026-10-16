@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>投稿者設定 - Cultivate ドキュメント</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body data-base="..">
+  <div data-include="include/sidebar"></div>
+
+  <main class="main-content">
+    <div data-include="include/topbar" data-title="投稿者設定"></div>
+
+    <div class="content">
+      <div class="feature-hero">
+        <div class="feature-icon">👤</div>
+        <h1>投稿者設定</h1>
+        <p>Webhook 投稿時の表示名・アイコンをプリセットとして一元管理</p>
+      </div>
+
+      <div class="alert alert-info">
+        <p><strong>💡 投稿者設定とは？</strong>
+         吊下げメッセージや予約投稿など、Webhook を使用して投稿する際の
+         <strong>表示名・アイコン</strong> をプリセットとして保存できる機能です。
+         事前に投稿者を作っておけば、名前やアイコンを変更したいときに
+         各設定を個別に触ることなく<strong>一括で反映</strong>できます。</p>
+      </div>
+
+      <h2>概要</h2>
+      <p>
+        投稿者設定機能は、Webhook 投稿時の投稿者情報（表示名・アイコン）を
+        サーバーごとにプリセットとして管理するシステムです。
+        吊り下げメッセージや予約投稿の編集画面でプリセットを選択するだけで、
+        その投稿者名・アイコンが自動で適用されます。
+      </p>
+      <p>
+        プリセットを編集すると、そのプリセットを使用している
+        吊り下げ・予約投稿すべてに変更が反映されるため、
+        「アイコンを変更したいけど、設定した場所が多すぎて…」といった
+        手間を解消できます。
+      </p>
+
+      <h2>使い方</h2>
+
+      <h3>スラッシュコマンド</h3>
+      <p>管理者権限を持つメンバーは以下のコマンドを実行します：</p>
+      <pre><code>/投稿者設定</code></pre>
+      <p>投稿者プリセットの一覧パネルが表示されます。</p>
+
+      <h3>プリセットの作成</h3>
+      <ol class="steps">
+        <li>
+          <strong>一覧パネルを開く</strong>
+          <code>/投稿者設定</code> を実行し、「➕ 新規作成」ボタンをクリック
+        </li>
+        <li>
+          <strong>各項目を入力</strong>
+          設定画面で以下の項目を入力します
+        </li>
+        <li>
+          <strong>保存</strong>
+          忘れずに「💾 保存」をクリック
+        </li>
+      </ol>
+
+      <h2>設定項目</h2>
+      <div class="table-wrapper"><table>
+        <thead>
+          <tr>
+            <th>項目</th>
+            <th>必須</th>
+            <th>説明</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>🆔 ID</td>
+            <td>必須</td>
+            <td>プリセットを識別するための ID（重複禁止・変更可能）</td>
+          </tr>
+          <tr>
+            <td>📛 設定名</td>
+            <td>必須</td>
+            <td>管理用のプリセット名（例: 公式BOT通知）</td>
+          </tr>
+          <tr>
+            <td>👤 表示名</td>
+            <td>任意</td>
+            <td>Webhook 投稿時に表示される名前（省略時は Bot 名）</td>
+          </tr>
+          <tr>
+            <td>🔗 アイコンURL</td>
+            <td>任意</td>
+            <td>Webhook 投稿時に表示されるアイコンの URL</td>
+          </tr>
+          <tr>
+            <td>📤 画像ファイル</td>
+            <td>任意</td>
+            <td>アイコンを画像ファイルから直接アップロード（アイコンURLと併用可）</td>
+          </tr>
+        </tbody>
+      </table></div>
+
+      <h2>管理画面の操作</h2>
+      <div class="table-wrapper"><table>
+        <thead>
+          <tr>
+            <th>ボタン</th>
+            <th>説明</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>➕ 新規作成</td>
+            <td>新しい投稿者プリセットを作成</td>
+          </tr>
+          <tr>
+            <td>✏️ 編集</td>
+            <td>選択中のプリセットの設定画面を開く</td>
+          </tr>
+          <tr>
+            <td>🗑️ 削除</td>
+            <td>プリセットを削除（削除セレクターから選択）</td>
+          </tr>
+          <tr>
+            <td>💾 保存</td>
+            <td>変更内容を保存</td>
+          </tr>
+          <tr>
+            <td>🔙 戻る</td>
+            <td>一覧パネルに戻る（未保存の変更がある場合は自動保存）</td>
+          </tr>
+        </tbody>
+      </table></div>
+
+      <div class="alert alert-warning">
+        <p><strong>⚠️ 制限:</strong> プリセットは<strong>1サーバーにつき最大24件</strong>
+        まで作成できます。</p>
+      </div>
+
+      <h2>使用できる機能</h2>
+      <p>作成した投稿者プリセットは、以下の機能の「👤 投稿者設定」から選択できます：</p>
+      <div class="table-wrapper"><table>
+        <thead>
+          <tr>
+            <th>機能</th>
+            <th>説明</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>📌 吊下げメッセージ</td>
+            <td>吊り下げの編集 → 「👤 投稿者設定」でプリセットを選択可能</td>
+          </tr>
+          <tr>
+            <td>📅 予約投稿</td>
+            <td>予約投稿の編集 → 「👤 投稿者設定」でプリセットを選択可能</td>
+          </tr>
+        </tbody>
+      </table></div>
+      <p>
+        プリセットを選択した場合、個別設定の名前・アイコンを入力する必要はありません。
+        プリセット未選択の場合は従来どおり手動で名前・アイコンを設定できます。
+      </p>
+
+      <div class="alert alert-success">
+        <p><strong>💡 活用例:</strong> 「公式BOT」「お知らせ」「イベント告知」など
+        用途ごとにプリセットを作っておけば、アイコンを差し替えたいときも
+        プリセットを1回編集するだけで全機能に反映されます。</p>
+      </div>
+
+      <div data-include="include/footer"></div>
+    </div>
+  </main>
+  <script src="../js/main.js"></script>
+</body>
+</html>
