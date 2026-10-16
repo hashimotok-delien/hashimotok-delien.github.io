@@ -3,6 +3,8 @@ on:
   push:
     branches:
       - lolipop
+    paths:
+      - 'public/**' # publicフォルダ内のファイル変更時のみ実行
 jobs:
   ftp-deploy:
     runs-on: ubuntu-latest
