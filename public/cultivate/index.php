@@ -288,7 +288,7 @@ h2{
 </section>
 
 <div style="position:fixed; top:20px; left:20px;">
-  <a href="./" class="btn">← 戻る</a>
+  <a href="../" class="btn">← 戻る</a>
 </div>
 
 <div class="fixed-cta">
