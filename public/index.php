@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>けい🤖 Portfolio</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Noto+Sans+JP&display=swap" rel="stylesheet">
+
+<link rel="icon" type="image/png" sizes="32x32" href="favicon.png">
+<link rel="icon" type="image/png" sizes="16x16" href="favicon.png">
+<link rel="shortcut icon" href="favicon.ico">
+<link rel="apple-touch-icon" href="favicon.png">
+
+<style>
+body{
+  margin:0;
+  font-family:'Noto Sans JP',sans-serif;
+  background:#0a0a0f;
+  color:#e0e0e0;
+  overflow-x:hidden;
+  opacity:0;
+  transition:0.6s;
+}
+
+body.fade-in{
+  opacity:1;
+}
+
+/* 背景 */
+body::before{
+  content:"";
+  position:fixed;
+  width:200%;height:200%;
+  background:
+    linear-gradient(rgba(0,229,255,0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,229,255,0.05) 1px, transparent 1px);
+  background-size:40px 40px;
+  animation:gridMove 20s linear infinite;
+  z-index:-1;
+  pointer-events:none;
+}
+
+@keyframes gridMove{
+  to{transform:translate(-40px,-40px);}
+}
+
+body::after {
+  content: "";
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background:
+    radial-gradient(circle at 20% 30%, rgba(0,229,255,0.15) 2px, transparent 3px),
+    radial-gradient(circle at 70% 60%, rgba(0,229,255,0.15) 2px, transparent 3px);
+  background-size: 200px 200px;
+  animation: nodeMove 20s linear infinite;
+  pointer-events: none;
+  z-index: -1;
+}
+
+@keyframes nodeMove {
+  from { transform: translate(0,0); }
+  to { transform: translate(-100px,-100px); }
+}
+
+body.fade-out{
+  opacity:0;
+  transition:0.5s;
+}
+
+#loader{
+  position:fixed;
+  width:100%;
+  height:100%;
+  background:#0a0a0f;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  z-index:99999;
+}
+
+.loader-text{
+  font-family:'Orbitron';
+  font-size:2rem;
+  color:#00e5ff;
+  letter-spacing:3px;
+  animation:glitch 1.2s infinite;
+}
+
+@keyframes glitch{
+  0%{opacity:1;}
+  50%{opacity:0.4; transform:translateX(2px);}
+  100%{opacity:1;}
+}
+
+/* header */
+header{
+  height:100vh;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+}
+
+header {
+  gap: 15px;
+}
+
+header img{
+  width:120px;
+  border-radius:50%;
+  animation:float 4s infinite;
+}
+
+@keyframes float{
+  50%{transform:translateY(-10px);}
+}
+
+h1{
+  font-family:'Orbitron';
+  font-size:2.8rem;
+  text-shadow:0 0 15px #00e5ff;
+}
+
+.tagline{
+  color:#00e5ff;
+  margin-bottom:15px;
+}
+
+.scroll{
+  margin-top:40px;
+  opacity:0.6;
+  animation:fade 2s infinite;
+}
+
+@keyframes fade{
+  50%{opacity:1;transform:translateY(10px);}
+}
+
+/* セクション */
+section{
+  max-width:1000px;
+  margin:auto;
+  padding:100px 20px;
+  opacity:0;
+  transform:translateY(40px);
+  transition:0.8s;
+}
+
+section:nth-child(odd){
+  transform: translateY(60px);
+}
+
+section:nth-child(even){
+  transform: translateY(100px);
+}
+
+section.active{
+  opacity:1;
+  transform:none;
+}
+
+h2{
+  border-left:4px solid #00e5ff;
+  padding-left:10px;
+}
+
+/* カード */
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+  gap:20px;
+}
+
+.card {
+  position: relative;
+  overflow: hidden;
+}
+
+.card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(120deg, transparent, rgba(0,229,255,0.3), transparent);
+  opacity: 0;
+  transition: 0.4s;
+  pointer-events: none;
+}
+
+.card:hover::before {
+  opacity: 1;
+}
+
+.card:hover {
+  transform: translateY(-8px) scale(1.03);
+  box-shadow: 0 0 30px rgba(0,229,255,0.5);
+}
+
+/* メインプロジェクト強調 */
+.main{
+  border:2px solid #00e5ff;
+  transform:scale(1.05);
+}
+
+/* ボタン */
+.btn{
+  display:inline-block;
+  margin-top:10px;
+  padding:10px 15px;
+  background:#00e5ff;
+  color:#000;
+  border-radius:8px;
+  text-decoration:none;
+  font-weight:bold;
+}
+
+.btn:hover{
+  box-shadow:0 0 15px #00e5ff;
+}
+
+/* skills */
+.skills span{
+  background:#00e5ff;
+  color:#000;
+  padding:5px 10px;
+  margin:5px;
+  border-radius:8px;
+  display:inline-block;
+}
+
+/* Cultivate強調セクション */
+.highlight{
+  text-align:center;
+}
+
+.highlight .card {
+  border: 2px solid #00e5ff;
+  box-shadow: 0 0 40px rgba(0,229,255,0.3);
+}
+
+/* 固定CTA */
+.fixed-cta{
+  position:fixed;
+  bottom:20px;
+  right:20px;
+  z-index:999;
+}
+
+#progress-bar{
+  position:fixed;
+  top:0;
+  left:0;
+  height:3px;
+  width:0%;
+  background:#00e5ff;
+  z-index:9999;
+  box-shadow:0 0 10px #00e5ff;
+}
+
+#page-transition{
+  position:fixed;
+  width:100%;
+  height:100%;
+  top:0;
+  left:0;
+  background:#0a0a0f; /* 初期は黒 */
+  transform:scaleY(0);
+  transform-origin:bottom;
+  z-index:99999;
+  filter: blur(10px);
+  pointer-events:none;
+  transition: transform 0.5s ease, filter 0.5s ease;
+}
+</style>
+</head>
+
+<body>
+<div id="loader">
+  <div class="loader-text">Kei Dev</div>
+</div>
+<div id="page-transition"></div>
+<div id="progress-bar"></div>
+
+<header>
+  <img src="./assets/img/kei_icon.gif" alt="けい🤖">
+  <h1>けい🤖</h1>
+
+  <div class="tagline" id="typing"></div>
+
+  <p>Discord Botで“運営を仕組み化”するエンジニア</p>
+  
+  <a href="./cultivate/" class="btn">Cultivateを見る</a>
+
+  <div class="scroll">↓ Scroll ↓</div>
+</header>
+
+<!-- 🔥 Cultivate最優先 -->
+<section class="highlight">
+  <h2>🚀 Featured</h2>
+
+  <div class="card">
+    <h3>𝓒𝓾𝓵𝓽𝓲𝓿𝓪𝓽𝓮</h3>
+    <p>これ1つで“運営が回る”界隈サーバーを構築</p>
+    <a class="btn" href="./cultivate/">詳細を見る</a>
+  </div>
+</section>
+
+<section>
+  <h2>👤 Profile</h2>
+
+  <div class="card">
+    Discord Botエンジニア / 鯖主<br>
+    大型イベントBot貸出3件 / 出店2件
+  </div>
+
+  <div class="card skills">
+    <h3>💻 Skills</h3>
+    <span>Python</span><span>Java</span><span>PHP</span>
+    <span>HTML</span><span>CSS</span>
+    <span>JavaScript</span><span>SQL</span>
+  </div>
+</section>
+
+<section>
+  <h2>🚀 Projects</h2>
+
+  <div class="grid">
+    <div class="card main">
+      <h3>𝓒𝓾𝓵𝓽𝓲𝓿𝓪𝓽𝓮</h3>
+      <p>運営自動化Bot</p>
+      <a class="btn" href="./cultivate/">見る</a>
+    </div>
+
+    <div class="card">
+      <h3>𝓐𝓬𝓽𝓲𝓿𝓪𝓽𝓮</h3>
+      <p>イベ鯖専用Bot</p>
+    </div>
+
+    <div class="card">
+      <h3>兄弟Bot</h3>
+      <p>VCイベント自動化</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2>🔗 Links</h2>
+
+  <div class="card">
+    <a class="btn" href="https://x.com/hashimotok0808" target="_blank">X</a>
+    <a class="btn" href="https://github.com/hashimotok-delien/" target="_blank">GitHub</a>
+  </div>
+</section>
+
+<div class="fixed-cta">
+  <a href="./cultivate/" class="btn">Cultivate</a>
+</div>
+
+<script>
+// タイピング
+const text = "使えないなら作ってしまえDiscord Bot";
+let i = 0;
+
+function startTyping() {
+  i = 0;
+  document.getElementById("typing").innerHTML = "";
+
+  function typing() {
+    if (i < text.length) {
+      document.getElementById("typing").innerHTML += text.charAt(i);
+      i++;
+      setTimeout(typing, 50);
+    }
+  }
+
+  typing();
+}
+
+// スクロール表示
+const sections=document.querySelectorAll("section");
+const observer=new IntersectionObserver(e=>{
+ e.forEach(el=>{
+  if(el.isIntersecting) el.target.classList.add("active");
+ });
+});
+sections.forEach(s=>observer.observe(s));
+
+// マウス追従グロー
+document.querySelectorAll(".card").forEach(card=>{
+  card.addEventListener("mousemove", e=>{
+    const rect = card.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+
+    card.style.background = `
+      radial-gradient(circle at ${x}px ${y}px,
+      rgba(0,229,255,0.15),
+      rgba(18,18,26,0.8) 40%)
+    `;
+  });
+
+  card.addEventListener("mouseleave", ()=>{
+    card.style.background = "rgba(18,18,26,0.8)";
+  });
+});
+
+// 読み込み
+window.addEventListener("load", ()=>{
+  const skip = sessionStorage.getItem("skipLoader");
+
+  if(skip === "true"){
+    // ローディングスキップ
+    document.getElementById("loader").style.display = "none";
+
+    sessionStorage.removeItem("skipLoader");
+
+    startTyping(); // ←忘れずに
+    return;
+  }
+
+  // 通常ローディング
+  setTimeout(()=>{
+    const loader = document.getElementById("loader");
+    loader.style.opacity = "0";
+
+    setTimeout(()=>{
+      loader.style.display = "none";
+      setTimeout(startTyping, 300);
+    },500);
+
+  },1500);
+
+});
+
+// ページ移動
+document.querySelectorAll("a").forEach(link=>{
+  link.addEventListener("click", function(e){
+    const href = this.getAttribute("href");
+
+    if(href && !href.startsWith("#") && !this.target){
+      e.preventDefault();
+
+      const overlay = document.getElementById("page-transition");
+
+      // 🔥 行き先ごとの色
+      if(href.includes("cultivate")){
+        overlay.style.background =
+          "radial-gradient(circle at 20% 20%, rgba(0, 229, 255, 0.15), transparent), " +
+          "radial-gradient(circle at 80% 80%, rgba(0, 229, 255, 0.1), transparent)";
+        
+        sessionStorage.setItem("transitionDir", "forward");
+
+      } else {
+        overlay.style.background = "#0a0a0f";
+        
+        sessionStorage.setItem("transitionDir", "back");
+      }
+
+      overlay.style.pointerEvents = "auto";
+      overlay.style.transformOrigin = "bottom";
+      overlay.style.transform = "scaleY(1)";
+
+      setTimeout(()=>{
+        window.location = href;
+      },500);
+    }
+  });
+});
+window.addEventListener("pageshow", ()=>{
+  document.body.classList.add("fade-in");
+});
+
+// プログレスバー
+window.addEventListener("scroll", ()=>{
+  const scroll = window.scrollY;
+  const height = document.body.scrollHeight - window.innerHeight;
+  const percent = (scroll / height) * 100;
+  document.getElementById("progress-bar").style.width = percent + "%";
+});
+
+window.addEventListener("scroll", ()=>{
+  document.body.style.backgroundPositionY = window.scrollY * 0.3 + "px";
+});
+
+const header = document.querySelector("header");
+
+document.addEventListener("mousemove", e=>{
+  const x = (e.clientX / window.innerWidth - 0.5) * 10;
+  const y = (e.clientY / window.innerHeight - 0.5) * 10;
+
+  header.style.transform = `rotateX(${ -y }deg) rotateY(${ x }deg)`;
+});
+</script>
+
+</body>
+</html>

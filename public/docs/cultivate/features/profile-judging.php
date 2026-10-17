@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>プロフ審査 - Cultivate ドキュメント</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css?v=<?= @filemtime(__DIR__ . '/../css/style.css') ?: time() ?>">
+</head>
+<body data-base="..">
+  <div data-include="include/sidebar"></div>
+
+  <main class="main-content">
+    <div data-include="include/topbar" data-title="プロフ審査"></div>
+
+    <div class="content">
+      <div class="feature-hero">
+        <div class="feature-icon">🧑‍⚖️</div>
+        <h1>プロフ審査機能</h1>
+        <p>メンバーのプロフィールをコミュニティで審査・評価</p>
+      </div>
+
+      <h2>概要</h2>
+      <p>
+        プロフ審査機能は、メンバーが投稿した自己紹介（プロフィール）を専用チャンネルに転送し、
+        サーバー内の他のメンバーが評価・投票できる審査システムです。
+        「知っているか」「おすすめできるか」「NG か」などをフォームから回答でき、
+        結果は自動集計されてスレッドで管理されます。
+      </p>
+      <p>
+        審査結果に基づいて、コミュニティの健全な交流を促進することができます。
+      </p>
+
+      <div class="alert alert-info">
+        <p><strong>💡 対象:</strong> 審査の設定・管理は管理者が行います。審査への投票はサーバーメンバー誰でも可能です（ロール制限も設定可）。</p>
+      </div>
+
+      <h2>導入手順</h2>
+      <ol class="steps">
+        <li>
+          <strong>設定パネルを開く</strong>
+          <code>/設定パネル</code> を実行し、<strong>プロフィール設定</strong> → <strong>プロフ審査設定</strong> をクリック
+        </li>
+        <li>
+          <strong>新規作成</strong>
+          「➕新規作成」ボタンから審査設定を作成します
+        </li>
+        <li>
+          <strong>各項目を設定</strong>
+          以下の設定項目を必要に応じて構成します
+        </li>
+      </ol>
+
+      <h2>設定項目</h2>
+
+      <h3>基本設定</h3>
+      <div class="table-wrapper"><table>
+        <thead>
+          <tr>
+            <th>項目</th>
+            <th>説明</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>名前</td>
+            <td>審査設定の名前（管理用）</td>
+          </tr>
+          <tr>
+            <td>有効/無効</td>
+            <td>審査機能の ON/OFF</td>
+          </tr>
+          <tr>
+            <td>プロフ投稿チャンネル</td>
+            <td>メンバーがプロフィールを投稿するチャンネル（複数設定可）</td>
+          </tr>
+          <tr>
+            <td>転送先チャンネル</td>
+            <td>投稿されたプロフィールを転送し、審査を行うチャンネル</td>
+          </tr>
+        </tbody>
+      </table></div>
+
+      <h3>ロールフィルター</h3>
+      <div class="table-wrapper"><table>
+        <thead>
+          <tr>
+            <th>項目</th>
+            <th>説明</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>投稿対象ロール</td>
+            <td>設定したロールを持つメンバーのみプロフ投稿が可能になります（未設定なら全員）</td>
+          </tr>
+          <tr>
+            <td>投稿非対象ロール</td>
+            <td>設定したロールを持つメンバーはプロフ投稿の対象外になります</td>
+          </tr>
+          <tr>
+            <td>通知メンションロール</td>
+            <td>新規審査時にメンションするロール</td>
+          </tr>
+        </tbody>
+      </table></div>
+
+      <h3>審査フォーム設定</h3>
+      <div class="table-wrapper"><table>
+        <thead>
+          <tr>
+            <th>項目</th>
+            <th>説明</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>知っていますか？</td>
+            <td>「関わったことがある/ない」のラジオボタン（表示 ON/OFF 可、回答の必須/任意 可、文言カスタマイズ可）</td>
+          </tr>
+          <tr>
+            <td>おすすめ度</td>
+            <td>「おすすめできる/どちらでも/おすすめしない」のラジオボタン（表示 ON/OFF 可、回答の必須/任意 可、文言カスタマイズ可）</td>
+          </tr>
+          <tr>
+            <td>紹介フラグ</td>
+            <td>「この方を紹介しました」チェックボックス（表示 ON/OFF 可）</td>
+          </tr>
+          <tr>
+            <td>NG フラグ</td>
+            <td>「NGです」チェックボックス（表示 ON/OFF 可）</td>
+          </tr>
+          <tr>
+            <td>コメント</td>
+            <td>自由記述テキスト（表示 ON/OFF 可、入力の必須/任意 可、プレースホルダーカスタマイズ可）</td>
+          </tr>
+        </tbody>
+      </table></div>
+
+      <div class="alert alert-info">
+        <p><strong>💡 ポイント:</strong>「知っていますか？」「おすすめ度」
+        「コメント」は、各項目の<strong>「編集」ボタンから開く編集画面</strong>で
+        <strong>回答の必須／任意</strong>を切り替えられます。
+        任意にすると未回答のままでも審査を送信できます
+        （未回答は集計の選択肢別カウントには含まれません）。</p>
+        <p>選択肢を持つ質問では、編集画面が
+        <strong>1ページ1選択肢のページング式</strong>になり、
+        「質問事項編集」「選択肢追加」は全ページ共通、
+        「選択肢編集」「選択肢削除」は
+        <strong>表示中のページの選択肢</strong>を操作します。
+        ラベルや説明を編集しても集計結果は維持されます
+        （<strong>削除して作り直した選択肢は別の集計</strong>になります）。</p>
+      </div>
+
+      <h3>締切設定</h3>
+      <div class="table-wrapper"><table>
+        <thead>
+          <tr>
+            <th>項目</th>
+            <th>説明</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>締切日数</td>
+            <td>投稿から何日後に審査を自動締め切りするか（デフォルト: 3日）</td>
+          </tr>
+          <tr>
+            <td>締切時刻</td>
+            <td>締切となる時刻（HH:MM）</td>
+          </tr>
+        </tbody>
+      </table></div>
+
+      <h2>審査の流れ</h2>
+      <ol class="steps">
+        <li>
+          <strong>メンバーがプロフを投稿</strong>
+          設定された投稿チャンネルに自己紹介メッセージを送信します
+        </li>
+        <li>
+          <strong>自動転送 &amp; スレッド作成</strong>
+          Bot が転送先チャンネルにメッセージを転送し、プライベートスレッドを作成します
+        </li>
+        <li>
+          <strong>メンバーが投票</strong>
+          転送されたメッセージの「投票する」ボタンからフォームを開き、評価を入力します
+        </li>
+        <li>
+          <strong>結果集計</strong>
+          プライベートスレッドで投票結果が自動集計・表示されます
+        </li>
+        <li>
+          <strong>自動締切</strong>
+          設定された日数後に審査が自動で締め切られます
+        </li>
+      </ol>
+
+      <h2>テンプレートチェックとの連携</h2>
+      <p>
+        プロフ審査と<a href="profile-template-check">テンプレートチェック</a>の
+        両方が有効になっているチャンネルでは、投稿されたメッセージは
+        まずテンプレートチェックで検証され、
+        <strong>合格した場合のみプロフ審査が開始</strong>されます。
+      </p>
+      <ol class="steps">
+        <li>
+          <strong>メンバーがプロフを投稿</strong>
+          投稿チャンネルに自己紹介メッセージを送信します
+        </li>
+        <li>
+          <strong>テンプレートチェック</strong>
+          テンプレートに沿っているか自動検証されます
+        </li>
+        <li>
+          <strong>合格時のみ審査開始</strong>
+          テンプレートに合格したメッセージだけが転送され、
+          審査が開始されます（不合格の場合は審査されません）
+        </li>
+        <li>
+          <strong>メンバーが投票</strong>
+          転送されたメッセージの「投票する」ボタンからフォームを開き、評価を入力します
+        </li>
+      </ol>
+      <div class="alert alert-info">
+        <p><strong>💡 ポイント:</strong> テンプレートチェックが有効でない
+        チャンネルでは従来どおり、投稿されたメッセージがそのまま審査対象になります。</p>
+      </div>
+
+      <h2 id="auto-forward">自動転送と手動転送</h2>
+      <p>
+        デフォルトではプロフ投稿チャンネルにメッセージが投稿されると
+        <strong>自動で審査転送</strong>されます。
+        設定の「転送先・連携設定」にある
+        <strong>「自動転送を行わない」</strong>チェックボックスをONにすると、
+        自動転送を停止し、<strong>手動転送のみ</strong>になります。
+      </p>
+      <div class="table-wrapper"><table>
+        <thead>
+          <tr>
+            <th>設定</th>
+            <th>投稿時の動作</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>自動転送ON（デフォルト）</td>
+            <td>投稿されたメッセージを自動で転送し審査を開始します</td>
+          </tr>
+          <tr>
+            <td>自動転送OFF</td>
+            <td>自動では転送されません。管理者がコンテキストメニューから手動転送します</td>
+          </tr>
+        </tbody>
+      </table></div>
+      <div class="alert alert-info">
+        <p><strong>💡 ポイント:</strong> 自動転送OFFはサーバーごとの設定で、
+        既存設定には自動転送ONがデフォルトで適用されます（現行運用に影響しません）。</p>
+      </div>
+
+      <h2>コンテキストメニュー</h2>
+      <p>
+        メッセージを右クリック（長押し）→ 「アプリ」→ 「プロフ審査登録」を選択することで、
+        既存のメッセージをプロフ審査に登録したり、審査中のメッセージを最新の内容に更新したりできます。
+        自動転送OFFに設定している場合でも、この操作から手動で転送できます。
+      </p>
+      <div class="table-wrapper"><table>
+        <thead>
+          <tr>
+            <th>操作</th>
+            <th>説明</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>プロフ審査登録</td>
+            <td>選択したメッセージを新規に審査登録します（Bot のメッセージは登録不可）</td>
+          </tr>
+          <tr>
+            <td>プロフ審査更新</td>
+            <td>既に審査中のメッセージの内容を最新に更新します</td>
+          </tr>
+        </tbody>
+      </table></div>
+
+      <h3>元メッセージの編集への追従</h3>
+      <p>
+        審査中に<strong>元メッセージが編集された場合、転送先のメッセージも自動で更新</strong>されます。
+        投稿内容を修正したときも、転送メッセージと審査結果の内容が最新の状態に保たれます。
+        コンテキストメニューの「プロフ審査更新」を使わなくても、
+        元メッセージを編集するだけで反映されます。
+      </p>
+
+      <div class="alert alert-warning">
+        <p><strong>⚠️ 注意:</strong> 審査設定はサーバーごとに独立しています。設定が存在しない状態でコンテキストメニューから登録しようとするとエラーになります。先に設定パネルから設定を作成してください。</p>
+      </div>
+
+      <div data-include="include/footer"></div>
+    </div>
+  </main>
+  <script src="../js/main.js?v=<?= @filemtime(__DIR__ . '/../js/main.js') ?: time() ?>"></script>
+</body>
+</html>

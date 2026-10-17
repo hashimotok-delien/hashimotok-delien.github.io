@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DM/フレンド許可取り - Cultivate ドキュメント</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css?v=<?= @filemtime(__DIR__ . '/../css/style.css') ?: time() ?>">
+</head>
+<body data-base="..">
+  <div data-include="include/sidebar"></div>
+
+  <main class="main-content">
+    <div data-include="include/topbar" data-title="DM/フレンド許可取り"></div>
+
+    <div class="content">
+      <div class="feature-hero">
+        <div class="feature-icon">🤝</div>
+        <h1>DM/フレンド許可取り</h1>
+        <p>チャットで「DMいいですか？」と聞く手間をBot化。相手を指定してDMで許可を取り、結果を記録・管理</p>
+      </div>
+
+      <h2>概要</h2>
+      <p>
+        DM/フレンド許可取り機能は、<strong>メンバーを指定してその相手にDMで許可を取る</strong>
+        システムです。これまでチャットで「DMいいですか？」「フレンドいいですか？」と
+        手動で聞いていた行為を、Botが代行します。
+      </p>
+      <p>
+        申請者はパネルのボタンを押し、<strong>相手（受信者）を選択</strong>して一言を添えるだけで、
+        受信者のDMに承認/却下ボタン付きの申請が届きます。受信者の返答は送信者に自動通知され、
+        記録（送信・承認・却下の日時）が自動で蓄積されます。
+      </p>
+      <p>
+        申請種別は <strong>DM / フレンド / 鯖内DM / 鯖内フレンド</strong> の4種類に固定です。
+      </p>
+
+      <div class="alert alert-info">
+        <p><strong>💡 ユースケース:</strong> 界隈サーバーで「この人とDMつなぎたい」
+        「フレンド申請していいか聞きたい」という場面で活用できます。パネルに各申請ボタンを設置し、
+        申請者は相手を選んで送信するだけ。相手はDM内のボタンで承認/却下できます。</p>
+      </div>
+
+      <h2>機能詳細</h2>
+
+      <h3>DM/フレンド許可設定（固定4種別）</h3>
+      <p>
+        許可設定は <strong>DM / フレンド / 鯖内DM / 鯖内フレンド</strong> の4種別に固定です。
+        新規作成・削除はできません。それぞれに対して「誰が申請できるか」とテンプレ文を設定します。
+      </p>
+      <ul>
+        <li><strong>種別:</strong> DM / フレンド / 鯖内DM / 鯖内フレンド（固定・変更不可）</li>
+        <li><strong>許可ロール / 不許可ロール:</strong> 申請できるメンバーをロールで制限</li>
+        <li><strong>許可取りテンプレ文:</strong> 受信者のDMに送られる案内文</li>
+        <li><strong>承認テンプレ文:</strong> 承認時に送信者へ送られる通知文</li>
+      </ul>
+
+      <h3>許可 / 不許可ロール判定</h3>
+      <p>
+        許可ロール・不許可ロールを設定することで、申請できるメンバーを制限できます。
+        判定は以下の通りです。
+      </p>
+      <div class="table-wrapper"><table>
+        <thead>
+          <tr>
+            <th>許可ロール</th>
+            <th>不許可ロール</th>
+            <th>判定</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>未設定</td>
+            <td>未設定</td>
+            <td><strong>全員</strong> が申請可能</td>
+          </tr>
+          <tr>
+            <td>設定あり</td>
+            <td>未設定</td>
+            <td>許可ロールを <strong>いずれか1つ</strong> 保持している人のみ</td>
+          </tr>
+          <tr>
+            <td>未設定</td>
+            <td>設定あり</td>
+            <td>不許可ロールを <strong>いずれも保持していない</strong> 人のみ</td>
+          </tr>
+          <tr>
+            <td>設定あり</td>
+            <td>設定あり</td>
+            <td><strong>不許可ロール優先</strong>（不許可ロール保持者は申請不可）</td>
+          </tr>
+        </tbody>
+      </table></div>
+
+      <h3>DM/フレンド許可パネル</h3>
+      <p>
+        パネルは Embed + ボタンで構成され、任意のチャンネルに設置できます。
+      </p>
+      <ul>
+        <li><strong>パネル設定:</strong> Embed の色（<code>#RRGGBB</code>）と説明文を設定</li>
+        <li><strong>ボタン設定:</strong> 「確認」ボタンと各許可種別の申請ボタンを配置。
+        ボタンごとに色（緑・赤・青・グレー）・絵文字・ラベルを設定可能</li>
+        <li><strong>テンプレ文設定:</strong> 「確認」「デフォルト」および紐付けた許可種別ごとに
+        許可取りテンプレ文・承認テンプレ文を設定</li>
+        <li><strong>基本設定:</strong> 許可種別選択（DM / フレンド / 鯖内DM / 鯖内フレンド）、
+        通知方法（DM / DM→スレッド / スレッド）、
+        スレッド通知用TC、ログ通知TC（運営用）、自動連動申請オプションを設定</li>
+        <li><strong>タイプラベル設定:</strong> パネル上の表示名を
+        DM / フレンド / 鯖内DM / 鯖内フレンド のそれぞれでカスタマイズ</li>
+        <li><strong>設置:</strong> 送信先チャンネルを選択してパネルを送信。
+        送信後も「🔄 パネル更新」で内容を更新可能</li>
+      </ul>
+
+      <h3>基本設定（許可種別・通知方法・ログ通知・自動連動申請）</h3>
+      <p>
+        パネル設定の「⚙️ 基本設定」（最初のボタン）から、紐付ける許可種別と
+        申請の届き方・付随機能を設定できます。
+      </p>
+      <ul>
+        <li><strong>許可種別:</strong> DM / フレンド / 鯖内DM / 鯖内フレンド の中から
+        パネルに紐付ける種別を複数選択できます（最大4種別）</li>
+        <li><strong>通知方法:</strong>
+          <ul>
+            <li><strong>DM:</strong> 受信者と送信者のDMに申請・通知を送信（既定）</li>
+            <li><strong>DM→スレッド:</strong> DMにも届けつつ、スレッド通知用TCにも申請を展開</li>
+            <li><strong>スレッド:</strong> スレッド通知用TCにスレッドを自動生成して通知
+            （未設定ならパネル設置TC。スレッド内に設置したパネルは親TCが使用されます）</li>
+          </ul>
+        </li>
+        <li><strong>スレッド通知用TC:</strong> スレッドを作成するチャンネルを指定。
+        未選択の場合はパネルを設置したチャンネル（スレッド内設置時は親TC）が使われます</li>
+        <li><strong>ログ通知TC（運営用）:</strong> 承認・却下・取り消しの履歴を通知する
+       チャンネルを指定。未選択の場合はログを残しません。<br>
+        <span class="alert alert-info" style="display:inline-block;padding:4px 8px;font-size:0.9em;">
+        🔒 ログTCに残るのは <strong>鯖内DM・鯖内フレンド</strong> のみです。
+        DM・フレンド（全サーバー共通）の開通情報は、他サーバーで開通した事実が
+        このサーバーに漏れるのを防ぐためログTCには出さず、当事者への DM 通知のみで
+        通知されます。</span></li>
+        <li><strong>その他オプション:</strong>
+          <ul>
+            <li><strong>フレンド申請時にDM開通申請も行う:</strong> フレンド申請の際、
+            相手とのDMが未開通ならDM開通申請を同時に送信します</li>
+            <li><strong>鯖内フレンド申請時に鯖内DM開通申請も行う:</strong> 鯖内フレンド申請の際、
+            鯖内DMが未開通なら鯖内DM開通申請を同時に送信します</li>
+          </ul>
+        </li>
+      </ul>
+      <p>
+        「開通済み」の判定は、相手との間で<strong>申請を送り、承認された</strong>場合に
+        成立します（送信済み・却下済み・未送信では開通扱いになりません）。逆向き
+        （相手から送られてきて自分が承認）でも開通済みと判定されます。
+      </p>
+      <p>
+        申請ボタンで相手を選択した時点で開通済みかどうかを判定し、
+        <strong>既に開通済みの相手には申請を送信できません</strong>。
+        その場合は「相手は既に◯◯が開通済みのため、申請は不要です」と表示され、
+        申請メッセージは送られません。
+      </p>
+
+      <h3>タイプラベル設定</h3>
+      <p>
+        パネル設定の「🏷️ タイプラベル設定」から、以下の4つのラベルを自由に変更できます。
+        既定値は <strong>DM / フレンド / 鯖内DM / 鯖内フレンド</strong> です。
+      </p>
+      <div class="table-wrapper"><table>
+        <thead>
+          <tr>
+            <th>キー</th>
+            <th>既定ラベル</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>dm</code></td>
+            <td>DM</td>
+          </tr>
+          <tr>
+            <td><code>friend</code></td>
+            <td>フレンド</td>
+          </tr>
+          <tr>
+            <td><code>guild_dm</code></td>
+            <td>鯖内DM</td>
+          </tr>
+          <tr>
+            <td><code>guild_friend</code></td>
+            <td>鯖内フレンド</td>
+          </tr>
+        </tbody>
+      </table></div>
+      <p>
+        設定したラベルは、パネルのボタンラベル・申請種別一覧・テンプレ変数
+        <code>{type}</code>・通知メッセージ内の「DM」「フレンド」等の表記に反映されます
+        （未設定の場合は既定ラベルが使われます）。
+      </p>
+
+      <h3>確認ボタン（自分が送った申請の一覧）</h3>
+      <p>
+        パネルの「確認」ボタンを押すと、<strong>そのボタンを押した本人が送信した申請</strong>の
+        状況が Embed 形式で送信されます。申請があるカテゴリのみが送信され、
+        <strong>データが無い種別は最後に「ℹ️ データの無い種別」としてまとめて表示</strong>されます
+        （送信数が削減されます）。15件を超えるカテゴリは複数Embedに分割されます。
+      </p>
+      <p>
+        通知先はパネル設定に応じます:
+      </p>
+      <ul>
+        <li><strong>DM / フレンド種別が設定されている場合:</strong>
+        情報漏洩防止のため、<strong>一律で送信者の DM に送信</strong>します
+        （スレッドやサーバー内チャンネルには出さない）</li>
+        <li><strong>鯖内DM / 鯖内フレンドのみの場合:</strong>
+        基本設定の通知方法に従います。「DM」= 送信者DM、「DM→スレッド」= DM + スレッド、「スレッド」=
+        スレッド通知用TC（未設定ならパネル設置TC/親TC）にスレッドを建てて送信</li>
+      </ul>
+      <ul>
+        <li><strong>✅ 承認済み</strong>：DM / 鯖内DM / フレンド / 鯖内フレンド</li>
+        <li><strong>⏳ 送信済み</strong>：DM / 鯖内DM / フレンド / 鯖内フレンド</li>
+        <li><strong>❌ 却下済み</strong>：DM / 鯖内DM / フレンド / 鯖内フレンド</li>
+      </ul>
+      <p>
+        各行は <code>[受信者名](プロフィールリンク)（名前/送信日時/承認日時）</code> 形式で表示され、
+        DM・フレンドの許可済みにはサーバー名も表示されます。
+      </p>
+
+      <h2>設定手順</h2>
+
+      <ol class="steps">
+        <li>
+          <strong>DM/フレンド許可設定を確認</strong>
+          <code>/dmフレンド許可設定</code> を実行（管理者専用）すると、
+          DM / フレンド / 鯖内DM / 鯖内フレンド の4種別が自動で表示されます
+        </li>
+        <li>
+          <strong>許可ロールを設定（任意）</strong>
+          各種別の「✏️ 編集」→「✅ 許可ロール設定」で許可・不許可ロールを設定
+        </li>
+        <li>
+          <strong>テンプレ文を設定（任意）</strong>
+          「📝 テンプレ文設定」で許可取り時・承認時の文面を設定
+        </li>
+        <li>
+          <strong>保存</strong>
+          「💾 保存」で設定を確定
+        </li>
+        <li>
+          <strong>パネル設定を作成</strong>
+          <code>/dmフレンド許可パネル設定</code> を実行し、
+          「➕ 新規作成」から設定名と紐付ける許可種別を選択
+        </li>
+        <li>
+          <strong>許可種別を調整（任意）</strong>
+          「⚙️ 基本設定」の許可種別で、パネルに紐付ける種別を変更できます
+        </li>
+        <li>
+          <strong>パネルをカスタマイズ</strong>
+          「⚙️ 基本設定」（許可種別・通知方法・ログTC・自動連動）
+          「🖼️ パネル設定」（色・説明文）「🔘 ボタン設定」（ボタン色・絵文字・ラベル）
+          「📝 テンプレ文設定」「🏷️ タイプラベル設定」で内容を調整
+        </li>
+        <li>
+          <strong>パネルを設置</strong>
+          「📍 設置」で送信先チャンネルを選択して送信
+        </li>
+        <li>
+          <strong>保存</strong>
+          忘れずに「💾 保存」をクリック
+        </li>
+      </ol>
+
+      <h2>ユーザーの操作フロー</h2>
+
+      <h3>送信者（許可を取りたい人）</h3>
+      <ol class="steps">
+        <li>
+          <strong>申請ボタンをクリック</strong>
+          設置されたパネルの申請ボタン（例: 「💬 DM許可」「🤝 フレンド許可」）を押す
+        </li>
+        <li>
+          <strong>相手を選択して一言を入力</strong>
+          表示されるモーダルで「相手（受信者）」を選択し、必要に応じて一言を入力して送信
+        </li>
+        <li>
+          <strong>送信完了</strong>
+          「📤 許可申請を送信しました。」と表示され、受信者のDMに申請（黄色いEmbed）が届きます
+        </li>
+        <li>
+          <strong>送信者にも通知</strong>
+          自分のDMに「📤 送信しました」通知（黄色いEmbed、✏️ 編集 / 🗑️ 取り消しボタン付き）が届きます
+        </li>
+        <li>
+          <strong>承認/却下で通知メッセージが変化</strong>
+          相手が承認/却下すると、申請・通知のメッセージがその場で編集され、
+          承認（緑）/却下（赤）の色に変わって結果と日時が追記されます。
+          ボタンも無効化され、それ以降の編集・取り消しはできません
+        </li>
+        <li>
+          <strong>状況を確認</strong>
+          パネルの「✅ 確認」ボタンを押すと、自分が送った申請の一覧が DM に届きます
+        </li>
+      </ol>
+
+      <h3>受信者（許可を求められた人）</h3>
+      <ol class="steps">
+        <li>
+          <strong>申請を受け取る</strong>
+          黄色いEmbedに承認/却下ボタン付きの許可取りメッセージが届きます
+        </li>
+        <li>
+          <strong>承認または却下</strong>
+          「✅ 承認」または「❌ 却下」ボタンを押すだけで完了。メッセージは緑/赤に変わり、
+          承認日時/却下日時が追記されてボタンが無効化されます。
+          結果は送信者の通知メッセージにも反映されます
+        </li>
+      </ol>
+
+      <h2>コマンド</h2>
+
+      <div class="command-block">
+        <div class="cmd-name">/dmフレンド許可設定</div>
+        <div class="cmd-desc">DM/フレンド許可設定（固定4種別）の許可ロール・テンプレ文を設定します</div>
+        <div class="cmd-meta"><span class="tag tag-admin">管理者専用</span></div>
+      </div>
+
+      <div class="command-block">
+        <div class="cmd-name">/dmフレンド許可パネル設定</div>
+        <div class="cmd-desc">DM/フレンド許可パネル設定のプリセットを管理・設置します</div>
+        <div class="cmd-meta"><span class="tag tag-admin">管理者専用</span></div>
+      </div>
+
+      <h2>設定項目一覧</h2>
+      <div class="table-wrapper"><table>
+        <thead>
+          <tr>
+            <th>項目</th>
+            <th>説明</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>許可種別</td>
+            <td>DM / フレンド / 鯖内DM / 鯖内フレンド（固定4種別。
+            パネルには「⚙️ 基本設定」で複数紐付け可能）</td>
+          </tr>
+          <tr>
+            <td>許可ロール</td>
+            <td>申請を許可するロール（未設定なら全員）</td>
+          </tr>
+          <tr>
+            <td>不許可ロール</td>
+            <td>申請を拒否するロール（未設定なら制限なし）</td>
+          </tr>
+          <tr>
+            <td>許可取りテンプレ文</td>
+            <td>受信者に送られる案内文（変数: <code>{type}</code> <code>{sender_name}</code> <code>{profile_link}</code> <code>{comment}</code>）</td>
+          </tr>
+          <tr>
+            <td>承認テンプレ文</td>
+            <td>承認時に送られる通知文（変数: <code>{nickname}</code> <code>{profile_link}</code> <code>{type}</code>）</td>
+          </tr>
+          <tr>
+            <td>Embed 色</td>
+            <td>パネルのアクセントカラー（#RRGGBB 形式）</td>
+          </tr>
+          <tr>
+            <td>Embed 説明文</td>
+            <td>パネルに表示する説明文</td>
+          </tr>
+          <tr>
+            <td>ボタン色 / 絵文字 / ラベル</td>
+            <td>各申請ボタン・確認ボタンの見た目（ボタンごとに設定）</td>
+          </tr>
+          <tr>
+            <td>通知方法</td>
+            <td>DM / DM→スレッド / スレッド（スレッドの場合はスレッド通知用TCに自動生成）</td>
+          </tr>
+          <tr>
+            <td>スレッド通知用TC</td>
+            <td>スレッドを作成するチャンネル（未選択ならパネル設置TC）</td>
+          </tr>
+          <tr>
+            <td>ログ通知TC（運営用）</td>
+            <td>承認・却下・取り消しの履歴を通知（未選択ならログなし）。
+            記録対象は鯖内DM・鯖内フレンドのみ。DM・フレンドはDM通知に強制</td>
+          </tr>
+          <tr>
+            <td>自動連動申請</td>
+            <td>フレンド申請時にDM開通申請 / 鯖内フレンド申請時に鯖内DM開通申請を同時送信</td>
+          </tr>
+          <tr>
+            <td>タイプラベル</td>
+            <td>DM / フレンド / 鯖内DM / 鯖内フレンド の表示名をカスタマイズ</td>
+          </tr>
+        </tbody>
+      </table></div>
+
+      <h2>テンプレート変数</h2>
+      <div class="table-wrapper"><table>
+        <thead>
+          <tr>
+            <th>変数</th>
+            <th>説明</th>
+            <th>使用可能なテンプレ</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>{type}</code></td>
+            <td>申請種別の表示名（タイプラベル設定で変更可能）</td>
+            <td>許可取り / 承認</td>
+          </tr>
+          <tr>
+            <td><code>{sender_name}</code></td>
+            <td>送信者（申請した人）の表示名</td>
+            <td>許可取り</td>
+          </tr>
+          <tr>
+            <td><code>{profile_link}</code></td>
+            <td>送信者（申請した人）のプロフィールリンク</td>
+            <td>許可取り / 承認</td>
+          </tr>
+          <tr>
+            <td><code>{comment}</code></td>
+            <td>申請時に添えた一言</td>
+            <td>許可取り</td>
+          </tr>
+          <tr>
+            <td><code>{nickname}</code></td>
+            <td>送信者（申請した人）の表示名</td>
+            <td>承認</td>
+          </tr>
+        </tbody>
+      </table></div>
+
+      <div class="alert alert-info">
+        <p><strong>💡 デフォルトテンプレート:</strong> 「デフォルト」には初期値として
+        以下の文面が設定されています。各許可種別のテンプレ文は、デフォルトを
+        基準に個別に上書きできます。</p>
+        <pre><code>【種別】{type}
+【送信者】{sender_name}
+【プロフィール】{profile_link}
+【一言】{comment}
+-----
+[{nickname}]({profile_link})さんから
+{type}許可の申請が届いています。
+-----</code></pre>
+      </div>
+
+      <h2>注意事項</h2>
+      <div class="alert alert-warning">
+        <p><strong>⚠️ 注意:</strong></p>
+        <ul>
+          <li>許可設定は DM / フレンド / 鯖内DM / 鯖内フレンド の4種別に固定されており、
+          新規作成・削除はできません</li>
+          <li>申請記録はサーバーごと・パネルごとに保存され、送信・承認・却下の日時が保持されます</li>
+          <li>送信後も、送信者DMの「✏️ 編集」で一言を変更、「🗑️ 取り消し」で申請を取り下げられます
+          （取り消し時は送信済みメッセージがグレーに「取り消し済み」表示へ編集され、受信者にも通知されます）</li>
+          <li>承認済み・却下済みの申請の編集・取り消しはできません（通知メッセージも緑/赤に変わってボタンが無効化されます）</li>
+          <li>確認ボタンの状態一覧は本人が送信した申請のみ表示されます。
+          DM / フレンド種別を含むパネルでは必ず本人の DM に送信され、
+          鯖内種別のみのパネルでは基本設定の通知方法に従います。
+          一覧はボタン付きではないため、送信後に追加された申請を表示するには
+          再度確認ボタンを押してください</li>
+          <li>スレッド通知でスレッドを作成する際、パネル設置時のボタンがそのままスレッド内に送信されます。
+          通知方法が「スレッド」の場合、送信者への通知も受信者と同じスレッドに届きます</li>
+          <li>自動連動申請は相手との間で「承認済み」の申請が1件も無い場合にのみ実行されます。
+          逆向き（相手から送られて自分が承認）の承認でも開通済みと判定されます</li>
+          <li>プロフィールリンクは、パネルが設置されているサーバーに
+          プロフィールがある場合はそのリンクが優先表示されます</li>
+          <li>パネル設定のプリセット数には上限があります（無料3 / プレミアム10）</li>
+        </ul>
+      </div>
+
+      <div data-include="include/footer"></div>
+    </div>
+  </main>
+  <script src="../js/main.js?v=<?= @filemtime(__DIR__ . '/../js/main.js') ?: time() ?>"></script>
+</body>
+</html>

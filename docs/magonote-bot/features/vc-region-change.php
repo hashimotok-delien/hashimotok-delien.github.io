@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>定期VCリージョン変更 - まごの手 ドキュメント</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css?v=<?= @filemtime(__DIR__ . '/../css/style.css') ?: time() ?>">
+</head>
+<body data-base="..">
+  <div data-include="include/sidebar"></div>
+
+  <main class="main-content">
+    <div data-include="include/topbar" data-title="定期VCリージョン変更"></div>
+
+    <div class="content">
+      <div class="feature-hero">
+        <div class="feature-icon">🌐</div>
+        <h1>定期VCリージョン変更</h1>
+        <p>VCのリージョンをスケジュールに従って自動変更</p>
+      </div>
+
+      <h2>概要</h2>
+      <p>
+        定期VCリージョン変更機能は、指定した VC のリージョン（地域）を
+        一定間隔ごとに一時的に切り替え、設定した秒数後に自動的に元のリージョンに
+        戻すシステム機能です（ブリップ方式）。
+      </p>
+      <p>
+        Divo などの BGM Bot を長時間流していると音が途切れる現象が発生することがあります。
+        リージョンを一瞬切り替えて戻すことで、VC の経路をリフレッシュし
+        音声の再接続を促す効果が期待できます。
+      </p>
+      <p>
+        この機能はシステム Cog として動作し、Bot 起動時に自動的に読み込まれます。
+        データベース（MySQL）に設定を保存し、30秒間隔のループでスケジュールをチェックします。
+      </p>
+
+      <div class="alert info">
+        <strong>🔐 管理者専用</strong>
+        <span>この機能の設定・管理はサーバー管理者のみ実行できます。</span>
+      </div>
+
+      <h2>コマンド</h2>
+
+      <div class="command-block">
+        <div class="cmd-name">/vcリージョン変更設定</div>
+        <div class="cmd-desc">VCリージョン変更のスケジュール一覧を表示・管理するパネルを開きます。</div>
+        <div class="cmd-meta">
+          <span class="tag tag-admin">管理者</span>
+        </div>
+      </div>
+
+      <h2>使い方</h2>
+
+      <h3>1. スケジュールを作成</h3>
+      <p>
+        <code>/vcリージョン変更設定</code> を実行し、「➕ 新規作成」ボタンで新しいスケジュールを作成します。
+        複数のスケジュールを保存でき、それぞれ独立した設定を持てます。
+      </p>
+
+      <h3>2. 基本設定をする</h3>
+      <p>
+        スケジュール一覧で「✏️ 編集」を押すと詳細設定パネルが開きます。
+        「⚙️ 基本設定」ボタンから以下の項目を設定します。
+      </p>
+      <ul>
+        <li><strong>設定名</strong> — スケジュールの名前（管理用）</li>
+        <li><strong>変更前リージョン</strong> — 有効化時に最初に適用するリージョン（任意）</li>
+        <li><strong>対象カテゴリ</strong> — カテゴリ内の全 VC が対象（複数選択可）</li>
+        <li><strong>対象VC</strong> — 個別の VC を指定（複数選択可）</li>
+      </ul>
+
+      <h3>3. 切り替え設定をする</h3>
+      <p>
+        「🔄 切り替え設定」ボタンから、以下の項目を設定します。
+      </p>
+
+      <div class="alert info">
+        <strong>💡 動作イメージ</strong>
+        <span>
+          設定時間①（分）ごとに「香港に切り替え → 設定時間②（秒）待機
+          → 自動で元のリージョンに戻す」を繰り返します。
+        </span>
+      </div>
+
+      <h4>設定項目</h4>
+      <table>
+        <thead>
+          <tr>
+            <th>項目</th>
+            <th>説明</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>切り替え先</strong></td>
+            <td>一時的に切り替えるリージョン（日本／香港／米国西部 など）</td>
+          </tr>
+          <tr>
+            <td><strong>戻し先</strong></td>
+            <td>
+              切り替え後に戻すリージョン。<br>
+              「元のリージョン」を選ぶと基本設定の「変更前リージョン」の値が使われます。<br>
+              個別のリージョンを直接指定することもできます。
+            </td>
+          </tr>
+          <tr>
+            <td><strong>間隔（分）</strong></td>
+            <td>ブリップを実行する間隔（分）</td>
+          </tr>
+          <tr>
+            <td><strong>保持時間（秒）</strong></td>
+            <td>切り替え先リージョンを維持する秒数</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3>4. 有効化</h3>
+      <p>
+        「▶️ ON/OFF」ボタンでスケジュールを有効化します。
+        有効にすると 30秒間隔のループが設定をチェックし、
+        間隔時間が経過するたびにブリップ（切り替え → 保持 → 戻し）が自動実行されます。
+      </p>
+
+      <div class="alert info">
+        <strong>💡 初回有効化時</strong>
+        <span>「変更前リージョン」が設定されている場合、最初にそのリージョンが適用されてからスケジュールが開始されます。</span>
+      </div>
+
+      <h2>ボタン一覧</h2>
+
+      <table>
+        <thead>
+          <tr>
+            <th>ボタン</th>
+            <th>説明</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>➕ 新規作成</td>
+            <td>新しいスケジュールを作成</td>
+          </tr>
+          <tr>
+            <td>✏️ 編集</td>
+            <td>スケジュールの詳細設定パネルを開く</td>
+          </tr>
+          <tr>
+            <td>🗑️ 削除</td>
+            <td>スケジュールを削除（確認セレクターあり）</td>
+          </tr>
+          <tr>
+            <td>⚙️ 基本設定</td>
+            <td>設定名・対象カテゴリ/VC・変更前リージョンを設定</td>
+          </tr>
+          <tr>
+            <td>🔄 切り替え設定</td>
+            <td>切り替え先／戻し先／間隔（分）／保持時間（秒）を設定</td>
+          </tr>
+          <tr>
+            <td>▶️ 今すぐ実行</td>
+            <td>ブリップ（切り替え → 待機 → 戻し）を1回だけ即時実行</td>
+          </tr>
+          <tr>
+            <td>🔄 リセット</td>
+            <td>最終変更時刻をクリア（次回ループで即座にブリップ実行）</td>
+          </tr>
+          <tr>
+            <td>▶️ ON/OFF</td>
+            <td>スケジュールの有効/無効を切り替え</td>
+          </tr>
+          <tr>
+            <td>💾 保存</td>
+            <td>変更内容をデータベースに保存（未保存の変更がある場合のみ有効）</td>
+          </tr>
+          <tr>
+            <td>🔙 戻る</td>
+            <td>スケジュール一覧パネルに戻る</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h2>設定可能なリージョン</h2>
+
+      <table>
+        <thead>
+          <tr>
+            <th>リージョンキー</th>
+            <th>表示名</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td><code>japan</code></td><td>日本</td></tr>
+          <tr><td><code>hongkong</code></td><td>香港</td></tr>
+          <tr><td><code>singapore</code></td><td>シンガポール</td></tr>
+          <tr><td><code>south-korea</code></td><td>韓国</td></tr>
+          <tr><td><code>sydney</code></td><td>シドニー</td></tr>
+          <tr><td><code>india</code></td><td>インド</td></tr>
+          <tr><td><code>dubai</code></td><td>ドバイ</td></tr>
+          <tr><td><code>turkey</code></td><td>トルコ</td></tr>
+          <tr><td><code>russia</code></td><td>ロシア</td></tr>
+          <tr><td><code>sweden</code></td><td>スウェーデン</td></tr>
+          <tr><td><code>poland</code></td><td>ポーランド</td></tr>
+          <tr><td><code>frankfurt</code></td><td>フランクフルト</td></tr>
+          <tr><td><code>amsterdam</code></td><td>アムステルダム</td></tr>
+          <tr><td><code>rotterdam</code></td><td>ロッテルダム</td></tr>
+          <tr><td><code>london</code></td><td>ロンドン</td></tr>
+          <tr><td><code>spain</code></td><td>スペイン</td></tr>
+          <tr><td><code>milan</code></td><td>ミラノ</td></tr>
+          <tr><td><code>europe</code></td><td>ヨーロッパ</td></tr>
+          <tr><td><code>brazil</code></td><td>ブラジル</td></tr>
+          <tr><td><code>southafrica</code></td><td>南アフリカ</td></tr>
+          <tr><td><code>us-central</code></td><td>米国中部</td></tr>
+          <tr><td><code>us-east</code></td><td>米国東部</td></tr>
+          <tr><td><code>us-south</code></td><td>米国南部</td></tr>
+          <tr><td><code>us-west</code></td><td>米国西部</td></tr>
+        </tbody>
+      </table>
+
+      <h2>自動実行の仕組み</h2>
+      <p>
+        この機能は Bot 起動時に <strong>30秒間隔</strong> のループタスクを開始します。
+        ループの処理フローは以下の通りです。
+      </p>
+      <ol>
+        <li>全ギルドの全スケジュールをチェック</li>
+        <li>無効なスケジュールはスキップ</li>
+        <li>既にブリップ実行中のスケジュールはスキップ（重複防止）</li>
+        <li>最終変更時刻からの経過時間が設定間隔（分）を超えているか確認</li>
+        <li>超えている場合、非同期タスクでブリップを実行：
+          <ol>
+            <li>切り替え先リージョンを全対象 VC に適用（各 VC 間 0.3秒インターバル）</li>
+            <li>保持時間（秒）だけ待機</li>
+            <li>戻し先リージョンを全対象 VC に適用</li>
+          </ol>
+        </li>
+        <li>ブリップ実行中、他のスケジュールのチェックは継続</li>
+        <li>設定された通知チャンネルに切替・復帰の通知を送信（設定されている場合）</li>
+      </ol>
+      <p>
+        <strong>通知メッセージ例:</strong>
+      </p>
+      <div class="code-block">
+        <pre><code>🔄 VC切替 (`スケジュール1`)
+リージョンを「香港」に変更しました
+（10秒後に戻します）
+🔄 VC復帰 (`スケジュール1`)
+リージョンを「元のリージョン」に戻しました</code></pre>
+      </div>
+
+      <h2>データベース</h2>
+      <p>
+        設定は MySQL の <code>vc_region_schedules</code> テーブルに保存されます。
+        テーブル構造は以下の通りです。
+      </p>
+      <table>
+        <thead>
+          <tr>
+            <th>カラム名</th>
+            <th>型</th>
+            <th>説明</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>guild_id</code></td>
+            <td>BIGINT</td>
+            <td>サーバーID（主キー）</td>
+          </tr>
+          <tr>
+            <td><code>schedule_id</code></td>
+            <td>INT</td>
+            <td>スケジュールID（主キー）</td>
+          </tr>
+          <tr>
+            <td><code>settings_json</code></td>
+            <td>JSON</td>
+            <td>設定内容（全項目をJSONで保存）</td>
+          </tr>
+          <tr>
+            <td><code>updated_at</code></td>
+            <td>TIMESTAMP</td>
+            <td>最終更新日時（自動更新）</td>
+          </tr>
+        </tbody>
+      </table>
+      <p>
+        <code>settings_json</code> には以下のようなデータが保存されます：
+      </p>
+      <div class="code-block">
+        <pre><code>{
+  "name": "Divo対策",
+  "enabled": true,
+  "target_category_ids": [123456789],
+  "target_vc_ids": [],
+  "initial_region": null,
+  "target_region": "hongkong",
+  "return_region": "__original__",
+  "interval_minutes": 60,
+  "hold_seconds": 10,
+  "last_changed_at": "2026-07-17T20:00:00+09:00"
+}</code></pre>
+      </div>
+
+      <div data-include="include/footer"></div>
+    </div>
+  </main>
+
+  <script src="../js/main.js?v=<?= @filemtime(__DIR__ . '/../js/main.js') ?: time() ?>"></script>
+</body>
+</html>

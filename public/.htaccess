@@ -1,0 +1,32 @@
+# =========================================================
+#  hmk.delien.xyz
+#   - 拡張子なし URL でアクセスできるようにする
+#       /foo.php  -> /foo
+#       /foo.html -> /foo
+#       /foo/index.php -> /foo/
+#   - /docs/ 配下は docs.delien.xyz へ移管（301）
+# =========================================================
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteBase /
+
+  # --- /docs/... は docs.delien.xyz へ恒久転送 ---
+  RewriteRule ^docs$ https://docs.delien.xyz/ [R=301,L,NE]
+  RewriteRule ^docs/(.*)$ https://docs.delien.xyz/$1 [R=301,L,NE]
+
+  # --- /foo/index.php, /foo/index.html -> /foo/ ---
+  RewriteCond %{THE_REQUEST} \s/+(.*/)?index\.(?:php|html)[\s?] [NC]
+  RewriteRule ^ /%1 [R=301,L,NE]
+
+  # --- /foo.php, /foo.html -> /foo ---
+  RewriteCond %{THE_REQUEST} \s/+(.+?)\.(?:php|html)[\s?] [NC]
+  RewriteRule ^ /%1 [R=301,L,NE]
+
+  # --- /foo -> /foo.php（内部処理） ---
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteCond %{REQUEST_FILENAME}\.php -f
+  RewriteRule ^(.+)$ $1.php [L]
+</IfModule>
+
+DirectoryIndex index.php index.html

@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>まごの手 ドキュメント</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css?v=<?= @filemtime(__DIR__ . '/css/style.css') ?: time() ?>">
+</head>
+<body data-base=".">
+
+  <div data-include="include/sidebar"></div>
+
+  <!-- Main Content -->
+  <main class="main-content">
+    <div data-include="include/topbar" data-title="トップ"></div>
+
+    <div class="content">
+      <!-- Hero -->
+      <div class="feature-hero">
+        <div class="feature-icon">🖐️</div>
+        <h1>まごの手 ドキュメント</h1>
+        <p>Discordサーバー運営を支える多機能Bot</p>
+        <a href="getting-started" class="btn" style="margin-top: 20px;">導入する</a>
+      </div>
+
+      <!-- About -->
+      <h2>まごの手 とは</h2>
+      <p>
+        「まごの手」（Magonote）は、Discord サーバーの運営を自動化・効率化するために開発された多機能 Bot です。
+        ながらバッチ、VC 管理、ロール管理、メッセージ管理、自動リアクションなど、
+        サーバー運営に必要な機能を1つにまとめて提供します。
+      </p>
+      <p>
+        バージョン <strong>1.3.0</strong> ／ モジュール: <strong>discord.py</strong>
+      </p>
+
+      <!-- Features Grid -->
+      <h2>機能一覧</h2>
+      <div class="card-grid">
+
+        <div class="card">
+          <h3>🏷️ ながらバッチ</h3>
+          <p>VC参加中に「作業中」「ゲーム中」などの状態をニックネームに表示。サーバーネームの一発リセットも可能。</p>
+          <a href="features/nagara">詳しく見る →</a>
+        </div>
+
+        <div class="card">
+          <h3>🈵 満室機能</h3>
+          <p>VCルーム名に🈵を付けたり外したり。満室であることをひと目で把握できます。</p>
+          <a href="features/full-room">詳しく見る →</a>
+        </div>
+
+        <div class="card">
+          <h3>🚪 ノックパネル</h3>
+          <p>VCへの入室リクエスト（ノック）を送信し、相手の許可を得てから入室できる安全な仕組み。</p>
+          <a href="features/knock-panel">詳しく見る →</a>
+        </div>
+
+        <div class="card">
+          <h3>🎛️ VC操作パネル</h3>
+          <p>VCのルーム名変更、人数制限、ステータス変更などをボタン一つで操作。</p>
+          <a href="features/vc-edit-panel">詳しく見る →</a>
+        </div>
+
+        <div class="card">
+          <h3>🌐 定期VCリージョン変更</h3>
+          <p>VCのリージョンをスケジュールに従って自動変更。複数リージョンを巡回可能。</p>
+          <a href="features/vc-region-change">詳しく見る →</a>
+        </div>
+
+        <div class="card">
+          <h3>✅ 取得ロール確認</h3>
+          <p>自分に付与されているロール一覧をエフェメラルメッセージで表示。</p>
+          <a href="features/role-check">詳しく見る →</a>
+        </div>
+
+        <div class="card">
+          <h3>🔍 ロールフィルター</h3>
+          <p>性別ロールのフィルタリングパネルを作成。メンバーのロール管理を効率化。</p>
+          <a href="features/role-filter">詳しく見る →</a>
+        </div>
+
+        <div class="card">
+          <h3>😊 自動リアクション</h3>
+          <p>特定チャンネルへの投稿に自動でリアクションを追加。コミュニケーションを活性化。</p>
+          <a href="features/auto-reaction">詳しく見る →</a>
+        </div>
+
+        <div class="card">
+          <h3>📊 リアクション計測</h3>
+          <p>チャンネルのメッセージに対するリアクションを集計し、ランキング表示。</p>
+          <a href="features/reaction-measure">詳しく見る →</a>
+        </div>
+
+        <div class="card">
+          <h3>🎲 ランダム転載</h3>
+          <p>指定チャンネルからランダムにメッセージを転載表示。過去の会話を掘り起こせます。</p>
+          <a href="features/random-message">詳しく見る →</a>
+        </div>
+
+        <div class="card">
+          <h3>⌨️ キーワードロール</h3>
+          <p>特定のキーワードを含む投稿をしたメンバーに自動でロールを付与・剥奪。</p>
+          <a href="features/keyword-role">詳しく見る →</a>
+        </div>
+
+        <div class="card">
+          <h3>🗑️ メッセージ一括削除</h3>
+          <p>指定した2つのメッセージIDの間のメッセージを一括削除。</p>
+          <a href="features/purge">詳しく見る →</a>
+        </div>
+
+        <div class="card">
+          <h3>📂 カテゴリメンバー管理</h3>
+          <p>カテゴリ単位でメンバーの閲覧・接続権限を管理するパネル。</p>
+          <a href="features/category-member">詳しく見る →</a>
+        </div>
+
+        <div class="card">
+          <h3>👢 自動キック</h3>
+          <p>指定したロールを持たないメンバーを一括でキック。サーバー整理に。</p>
+          <a href="features/auto-kick">詳しく見る →</a>
+        </div>
+
+        <div class="card">
+          <h3>🧵 スレッド管理</h3>
+          <p>スレッド作成時に自動で削除・名称変更・招待ボタンを設置。</p>
+          <a href="features/thread-management">詳しく見る →</a>
+        </div>
+
+        <div class="card">
+          <h3>📋 定型文テンプレート</h3>
+          <p>定型文をコンテキストメニューからワンクリックで送信。メンバーへの連絡を効率化。</p>
+          <a href="features/template-menu">詳しく見る →</a>
+        </div>
+
+        <div class="card">
+          <h3>📡 Bot監視設定</h3>
+          <p>24時間稼働のBotメッセージを監視し、停止を検知して指定チャンネルに通知。</p>
+          <a href="features/bot-monitor">詳しく見る →</a>
+        </div>
+
+      </div>
+
+      <!-- Support -->
+      <h2>サポート</h2>
+      <p>
+        ご質問や不具合の報告は、サポートサーバーまでお気軽にお越しください。
+      </p>
+      <a href="https://discord.gg/AmMkFhhD2D" class="btn btn-outline" target="_blank">💬 サポートサーバーに参加</a>
+
+      <div data-include="include/footer"></div>
+    </div>
+  </main>
+
+  <script src="js/main.js?v=<?= @filemtime(__DIR__ . '/js/main.js') ?: time() ?>"></script>
+</body>
+</html>
