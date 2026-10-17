@@ -184,7 +184,7 @@
       <h2>関連機能</h2>
       <p>
         チャンネル内の<strong>自分のメッセージだけ</strong>を削除したい場合は、
-        <a href="self-message-delete.php">自己メッセージ削除</a> をご利用ください。
+        <a href="self-message-delete">自己メッセージ削除</a> をご利用ください。
         こちらは誰でも実行できます。
       </p>
 

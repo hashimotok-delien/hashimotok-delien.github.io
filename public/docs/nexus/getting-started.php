@@ -77,7 +77,7 @@
         <div class="card">
           <h3>🏆 ランクシステム</h3>
           <p>VC 滞在時間に応じたレベルアップを設定します。</p>
-          <a href="features/rank.php">設定方法 →</a>
+          <a href="features/rank">設定方法 →</a>
         </div>
       </div>
 

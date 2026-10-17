@@ -134,24 +134,24 @@
 
         <h3 style="margin-top: 24px;">主な機能</h3>
         <div class="feature-list">
-          <a href="cultivate/features/sticky.php">📌 吊下げメッセージ</a>
-          <a href="cultivate/features/back-2shot.php">🔒 裏2shot</a>
-          <a href="cultivate/features/settings.php">⚙️ 設定パネル</a>
-          <a href="cultivate/features/sleep.php">💤 寝落ち送り</a>
-          <a href="cultivate/features/vc-control.php">🎤 VC制御</a>
-          <a href="cultivate/features/role-check.php">🛂 必須ロール確認</a>
-          <a href="cultivate/features/auto-reaction.php">😊 自動リアクション</a>
-          <a href="cultivate/features/category-sync.php">📋 カテゴリ権限同期</a>
-          <a href="cultivate/features/profile.php">🖼️ プロフィール</a>
-          <a href="cultivate/features/reaction.php">❤️ プロフリアクション</a>
-          <a href="cultivate/features/spoiler-check.php">🔞 スポイラー判定</a>
-          <a href="cultivate/features/mbti.php">🧠 MBTI機能</a>
+          <a href="cultivate/features/sticky">📌 吊下げメッセージ</a>
+          <a href="cultivate/features/back-2shot">🔒 裏2shot</a>
+          <a href="cultivate/features/settings">⚙️ 設定パネル</a>
+          <a href="cultivate/features/sleep">💤 寝落ち送り</a>
+          <a href="cultivate/features/vc-control">🎤 VC制御</a>
+          <a href="cultivate/features/role-check">🛂 必須ロール確認</a>
+          <a href="cultivate/features/auto-reaction">😊 自動リアクション</a>
+          <a href="cultivate/features/category-sync">📋 カテゴリ権限同期</a>
+          <a href="cultivate/features/profile">🖼️ プロフィール</a>
+          <a href="cultivate/features/reaction">❤️ プロフリアクション</a>
+          <a href="cultivate/features/spoiler-check">🔞 スポイラー判定</a>
+          <a href="cultivate/features/mbti">🧠 MBTI機能</a>
         </div>
 
         <div style="margin-top: 16px; display: flex; gap: 10px; flex-wrap: wrap;">
-          <a href="cultivate/getting-started.php" class="btn">🚀 導入方法</a>
-          <a href="cultivate/commands.php" class="btn">📜 コマンド一覧</a>
-          <a href="cultivate/faq.php" class="btn">❓ FAQ</a>
+          <a href="cultivate/getting-started" class="btn">🚀 導入方法</a>
+          <a href="cultivate/commands" class="btn">📜 コマンド一覧</a>
+          <a href="cultivate/faq" class="btn">❓ FAQ</a>
         </div>
       </div>
 

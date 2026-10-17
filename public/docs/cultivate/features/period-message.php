@@ -71,7 +71,7 @@
           </tr>
           <tr>
             <td>投稿者プリセット</td>
-            <td><a href="author-settings.php">投稿者設定</a>
+            <td><a href="author-settings">投稿者設定</a>
             （<code>/投稿者設定</code>）で作成した投稿者を選択して投稿</td>
           </tr>
           <tr>
@@ -139,7 +139,7 @@
           </tr>
           <tr>
             <td>投稿者プリセット</td>
-            <td><a href="author-settings.php">投稿者設定</a>
+            <td><a href="author-settings">投稿者設定</a>
               のプリセットを選択（選択時は名前・アイコン入力不要）</td>
           </tr>
           <tr>
@@ -207,7 +207,7 @@
       <h2>投稿者設定（プリセット連携）</h2>
       <p>
         編集画面の「👤 投稿者設定」ボタンから、
-        <a href="author-settings.php">投稿者設定</a>
+        <a href="author-settings">投稿者設定</a>
         （<code>/投稿者設定</code>）で作成した投稿者プリセットを
         選択できます。プリセットを選択すると、そのプリセットに
         設定された表示名・アイコンが自動で適用され、

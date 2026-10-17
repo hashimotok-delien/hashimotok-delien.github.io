@@ -23,7 +23,7 @@
         <div class="feature-icon">🌙</div>
         <h1>ねくさす⋆˚ʚɞ ドキュメント</h1>
         <p>界隈サーバーでの交流を、もっと楽しく。</p>
-        <a href="getting-started.php" class="btn" style="margin-top: 20px;">導入する</a>
+        <a href="getting-started" class="btn" style="margin-top: 20px;">導入する</a>
       </div>
 
       <!-- About -->
@@ -36,7 +36,7 @@
       <p>
         バージョン <strong>1.0.0</strong> ／ モジュール: <strong>discord.py</strong>
         <span style="display: inline-block; margin-left: 16px;">
-          <a href="updates.php" style="font-size: 0.9rem;">📋 更新履歴を見る</a>
+          <a href="updates" style="font-size: 0.9rem;">📋 更新履歴を見る</a>
         </span>
       </p>
 
@@ -62,7 +62,7 @@
         <div class="card">
           <h3>🏆 ランクシステム</h3>
           <p>VC 滞在時間に応じて XP を獲得しレベルアップ。ミュート勢も安心の設計で、数式自由設定・画像ランクカード対応。</p>
-          <a href="features/rank.php">詳しく見る →</a>
+          <a href="features/rank">詳しく見る →</a>
         </div>
 
         <div class="card">

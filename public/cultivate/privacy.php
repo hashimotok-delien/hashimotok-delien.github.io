@@ -103,8 +103,8 @@
     <div class="header-inner">
       <a class="logo" href="https://hmk.delien.xyz/cultivate/">🌱 Cultivate <span>Bot</span></a>
       <nav class="header-nav">
-        <!-- <a href="plans/index.php">プラン</a> -->
-        <a href="https://hmk.delien.xyz/docs/cultivate/">ドキュメント</a>
+        <!-- <a href="plans/">プラン</a> -->
+        <a href="https://docs.delien.xyz/cultivate/">ドキュメント</a>
         <a href="https://discord.gg/AmMkFhhD2D">サポートサーバー</a>
       </nav>
     </div>
@@ -123,7 +123,7 @@
       </p>
       <p>
         本ポリシーは、
-        <a href="terms.php">利用規約</a>
+        <a href="terms">利用規約</a>
         第8条（データの取扱い）に基づく個別規定として定めるものです。
         本ポリシーと利用規約の内容が異なる場合、利用者情報の取扱いについては
         本ポリシーの定めが優先して適用されます。

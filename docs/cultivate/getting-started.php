@@ -77,17 +77,17 @@
         <!-- <div class="card">
           <h3>👤 役職パネル</h3>
           <p>ユーザー自身がロールを選択できるパネルを設置します。</p>
-          <a href="features/role-panel.php">設定方法 →</a>
+          <a href="features/role-panel">設定方法 →</a>
         </div> -->
         <div class="card">
           <h3>🔒 裏2shot</h3>
           <p>性別ベースのプライベート VC を作成します。</p>
-          <a href="features/back-2shot.php">設定方法 →</a>
+          <a href="features/back-2shot">設定方法 →</a>
         </div>
         <div class="card">
           <h3>📌 吊下げメッセージ</h3>
           <p>チャンネルに固定メッセージを表示します。</p>
-          <a href="features/sticky.php">設定方法 →</a>
+          <a href="features/sticky">設定方法 →</a>
         </div>
       </div>
 

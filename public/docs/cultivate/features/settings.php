@@ -86,32 +86,32 @@
         <div class="card">
           <h3>💤 寝落ち送り</h3>
           <p>VC 寝落ちメンバーを自動的に専用 VC へ移動します。</p>
-          <a href="sleep.php">詳細を見る →</a>
+          <a href="sleep">詳細を見る →</a>
         </div>
         <div class="card">
           <h3>👥 Bot VC人数調整</h3>
           <p>Bot の入退室に合わせて VC の人数制限を調整します。</p>
-          <a href="vc-control.php">詳細を見る →</a>
+          <a href="vc-control">詳細を見る →</a>
         </div>
         <div class="card">
           <h3>🔞 スポイラー判定</h3>
           <p>指定チャンネルでスポイラーなし画像を自動削除します。</p>
-          <a href="spoiler-check.php">詳細を見る →</a>
+          <a href="spoiler-check">詳細を見る →</a>
         </div>
         <div class="card">
           <h3>🖼️ プロフィール設定</h3>
           <p>指定チャンネルへの投稿を自動プロフィール記録。VC 入室時に自動表示されます。</p>
-          <a href="profile.php">詳細を見る →</a>
+          <a href="profile">詳細を見る →</a>
         </div>
         <div class="card">
           <h3>⌨️ 接頭辞変更</h3>
           <p>コマンドの接頭辞をデフォルトの <code>!?</code> から変更できます。</p>
-          <a href="command-prefix.php">詳細を見る →</a>
+          <a href="command-prefix">詳細を見る →</a>
         </div>
         <div class="card">
           <h3>🧑‍⚖️ プロフ審査</h3>
           <p>メンバーのプロフィールをコミュニティで審査・評価できるシステムです。</p>
-          <a href="profile-judging.php">詳細を見る →</a>
+          <a href="profile-judging">詳細を見る →</a>
         </div>
       </div>
 

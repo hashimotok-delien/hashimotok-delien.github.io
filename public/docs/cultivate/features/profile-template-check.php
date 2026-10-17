@@ -434,7 +434,7 @@ Hello! I'm John.</code></pre>
         </tbody>
       </table></div>
       <p>
-        詳細は<a href="profile-judging.php">プロフ審査機能</a>の
+        詳細は<a href="profile-judging">プロフ審査機能</a>の
         「テンプレートチェックとの連携」も参照してください。
       </p>
 

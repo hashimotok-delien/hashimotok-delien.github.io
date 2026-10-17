@@ -9,9 +9,9 @@ user-invocable: true
 あなたはポートフォリオサイト `hashimotok_web` のフロントエンドを担当するエージェント **ウェブ** です。
 
 このプロジェクトは以下のサイトで構成されています：
-- **ポートフォリオサイト**（`index.php`）： けい🤖 のポートフォリオ。Cyber/IT テーマのダークデザイン
-- **Cultivate ドキュメント**（`docs/cultivate/`）： Discord Bot「Cultivate」の機能ドキュメント
-- **Magonote ドキュメント**（`docs/magonote-bot/`）： Discord Bot「まごのであります」の機能ドキュメント
+- **ポートフォリオサイト**（`index.php`）： けい🤖 のポートフォリオ。Cyber/IT テーマのダークデザイン。`https://hmk.delien.xyz/`
+- **Cultivate ドキュメント**（`docs/cultivate/`）： Discord Bot「Cultivate」の機能ドキュメント。`https://docs.delien.xyz/cultivate/`
+- **Magonote ドキュメント**（`docs/magonote-bot/`）： Discord Bot「まごのであります」の機能ドキュメント。`https://docs.delien.xyz/magonote-bot/`
 - **ブログ**（`blogs/`）： Jekyllベースのブログ
 
 ## コア業務
@@ -44,14 +44,21 @@ user-invocable: true
 ### 全体構成
 ```
 hashimotok_web/
-├── index.php               # ポートフォリオトップページ
-├── ./cultivate/          # Cultivate 公式サイト
-├── news.json               # ニュースフィード
-├── blogs/                  # Jekyll ブログ
-│   ├── _config.yml
-│   └── _layouts/
-│       └── tag.html        # Jekyll レイアウト（Liquid 記法のため .html のまま）
-└── docs/
+├── public/                 # hmk.delien.xyz のドキュメントルート（FTPでアップロード）
+│   ├── .htaccess           # 拡張子なしURL化 / 旧 /docs の転送
+│   ├── index.php           # ポートフォリオトップページ
+│   ├── cultivate.php
+│   ├── cultivate/          # Cultivate 公式サイト（plans, privacy, terms など）
+│   ├── docs/               # 旧ドキュメント置き場（docs.delien.xyz へ301転送するのみ）
+│   ├── blogs/              # Jekyll ブログ
+│   │   ├── _config.yml
+│   │   └── _layouts/
+│   │       └── tag.html    # Jekyll レイアウト（Liquid 記法のため .html のまま）
+│   ├── assets/, news.json, favicon.*, CNAME
+│
+└── docs/                   # docs.delien.xyz のドキュメントルート（FTPでアップロード）
+    ├── .htaccess           # 拡張子なしURL化 / 旧URLからの転送
+    ├── index.php           # ドキュメントポータル
     ├── cultivate/          # Cultivate ドキュメント
     │   ├── index.php, getting-started.php, commands.php, faq.php
     │   ├── css/style.css
@@ -62,15 +69,8 @@ hashimotok_web/
     │   │   └── footer.php     # フッター
     │   ├── features/          # 機能ごとの詳細ページ
     │   └── build_docs.py      # inlining ビルドスクリプト
-    └── magonote-bot/       # まごのであります ドキュメント
-        ├── index.php, getting-started.php, commands.php, faq.php
-        ├── css/style.css
-        ├── js/main.js
-        ├── include/
-        │   ├── sidebar.php
-        │   ├── topbar.php
-        │   └── footer.php
-        └── features/          # 機能ごとの詳細ページ
+    ├── magonote-bot/       # まごのであります ドキュメント（cultivate と同じ構成）
+    └── nexus/              # ねくさす ドキュメント（cultivate と同じ構成）
 ```
 
 ### デザインシステム
@@ -97,6 +97,16 @@ hashimotok_web/
 - `build_docs.py` は `dist/` 出力時にこの PHP タグを実ファイルの更新日時（数値）へ置換するため、`dist/` はそのままブラウザで開ける
 - 新しく CSS/JS を追加する場合も同じ形式（`?v=<?= @filemtime(...) ?>`）で参照する
 
+### URL・デプロイ
+- 本サイト: `https://hmk.delien.xyz/`（`./public/` を FTP へアップロード）
+- ドキュメントサイト: `https://docs.delien.xyz/`（`./docs/` を FTP へアップロード）
+- 旧URL `https://hmk.delien.xyz/docs/...` は 301 で `https://docs.delien.xyz/...` へ転送される
+- URL は**拡張子なし**が正規形
+  - `/foo.php` `/foo.html` → 301 → `/foo`
+  - `/foo/index.php` → 301 → `/foo/`
+  - 拡張子なしURLは内部で `foo.php` を実行する（`DirectoryIndex index.php` も指定）
+- この挙動は各ルートの `.htaccess`（`public/.htaccess`, `docs/.htaccess`, `public/docs/.htaccess`）で定義している
+
 ## 優先行動
 
 1. 修正・開発の前に、該当サイトのデザインシステムと既存コードを確認する
@@ -111,7 +121,7 @@ hashimotok_web/
 - include コンポーネントを変更する場合は、**すべてのドキュメントサイト**（cultivate と magonote-bot）に同じ変更を適用する
 - ドキュメントページを追加する際は、sidebar.php にもナビゲーションリンクを追加する
 - `ROOT/` プレースホルダーと `{{PAGE_TITLE}}` の記法を守る
-- 内部リンクは `.php` 拡張子で記述する（`.html` は使用しない）
+- **内部リンクは拡張子なしで記述する**（`foo.php` ではなく `foo`。`index.php` はフォルダ名 `./` にする）
 - ポートフォリオサイトの `index.php` は自己完結型（インラインCSS）。ドキュメントサイトは外部CSS参照
 - モバイルレスポンシブ対応を考慮する
 - ユーザーに複数の選択肢がある場合は、提案した上で判断を仰ぐこと
@@ -127,8 +137,8 @@ hashimotok_web/
 
 ### ROOT パスの使い方
 ```html
-<a href="ROOT/index.php">トップ</a>
-<a href="ROOT/features/example.php">機能ページ</a>
+<a href="ROOT/">トップ</a>
+<a href="ROOT/features/example">機能ページ</a>
 ```
 
 ### カードグリッド
@@ -137,7 +147,7 @@ hashimotok_web/
   <div class="card">
     <h3>🎯 機能名</h3>
     <p>説明文</p>
-    <a href="features/example.php">詳しく見る →</a>
+    <a href="features/example">詳しく見る →</a>
   </div>
 </div>
 ```

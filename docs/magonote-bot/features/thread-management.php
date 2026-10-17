@@ -71,7 +71,7 @@
       <h2>自動チャンネルメッセージ</h2>
       <p>
         スレッド作成時に、設定に基づいて自動メッセージを投稿することもできます。
-        詳細は <a href="auto-channel-message.php">自動チャンネルメッセージ</a> のページを参照してください。
+        詳細は <a href="auto-channel-message">自動チャンネルメッセージ</a> のページを参照してください。
       </p>
 
       <div data-include="include/footer"></div>

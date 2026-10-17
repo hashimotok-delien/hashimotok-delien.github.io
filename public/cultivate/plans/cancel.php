@@ -16,7 +16,7 @@
     <div class="header-inner">
       <a class="logo" href="../">🌱 Cultivate <span>Premium</span></a>
       <nav class="header-nav">
-        <a href="https://hmk.delien.xyz/docs/cultivate/">ドキュメント</a>
+        <a href="https://docs.delien.xyz/cultivate/">ドキュメント</a>
         <a href="https://discord.gg/AmMkFhhD2D">サポートサーバー</a>
       </nav>
     </div>
@@ -33,7 +33,7 @@
       </p>
 
       <div class="result-actions">
-        <a class="btn" href="index.php">プラン一覧に戻る</a>
+        <a class="btn" href="./">プラン一覧に戻る</a>
         <a class="btn btn-outline" href="https://discord.gg/AmMkFhhD2D" target="_blank">サポートサーバー</a>
       </div>
     </section>
@@ -51,7 +51,7 @@
   </main>
 
   <footer class="site-footer">
-    <p>© 2026 <a href="https://hmk.delien.xyz/">けい</a> — Cultivate Bot ／ <a href="../terms.php">利用規約</a></p>
+    <p>© 2026 <a href="https://hmk.delien.xyz/">けい</a> — Cultivate Bot ／ <a href="../terms">利用規約</a></p>
   </footer>
 
 </body>

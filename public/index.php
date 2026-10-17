@@ -19,25 +19,12 @@ body{
   background:#0a0a0f;
   color:#e0e0e0;
   overflow-x:hidden;
-  cursor:none;
   opacity:0;
   transition:0.6s;
 }
 
 body.fade-in{
   opacity:1;
-}
-
-/* カーソル */
-.cursor{
-  position:fixed;
-  width:18px;height:18px;
-  border-radius:50%;
-  background:#00e5ff;
-  pointer-events:none;
-  transform:translate(-50%,-50%);
-  z-index:9999;
-  box-shadow:0 0 15px #00e5ff;
 }
 
 /* 背景 */
@@ -296,8 +283,6 @@ h2{
 <div id="page-transition"></div>
 <div id="progress-bar"></div>
 
-<div class="cursor" id="cursor"></div>
-
 <header>
   <img src="./assets/img/kei_icon.gif" alt="けい🤖">
   <h1>けい🤖</h1>
@@ -374,13 +359,6 @@ h2{
 </div>
 
 <script>
-// カーソル
-const cursor = document.getElementById('cursor');
-document.addEventListener('mousemove', e=>{
-  cursor.style.left=e.clientX+'px';
-  cursor.style.top=e.clientY+'px';
-});
-
 // タイピング
 const text = "使えないなら作ってしまえDiscord Bot";
 let i = 0;

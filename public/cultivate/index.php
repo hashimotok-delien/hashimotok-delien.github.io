@@ -257,7 +257,7 @@ h2{
     <p>① サポートサーバー参加 → ② ルール同意 → ③ チケット送信</p>
     <div style="display:flex; gap:12px; flex-wrap:wrap; margin-top:6px;">
       <a href="https://discord.gg/AmMkFhhD2D" class="btn">サポートサーバーへ</a>
-      <a href="https://hmk.delien.xyz/docs/cultivate/" class="btn" style="background:linear-gradient(45deg,#7c4dff,#00e5ff);">📚 ドキュメントを見る</a>
+      <a href="https://docs.delien.xyz/cultivate/" class="btn" style="background:linear-gradient(45deg,#7c4dff,#00e5ff);">📚 ドキュメントを見る</a>
     </div>
   </div>
 </section>

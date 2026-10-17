@@ -103,8 +103,8 @@
     <div class="header-inner">
       <a class="logo" href="https://hmk.delien.xyz/cultivate/">🌱 Cultivate <span>Bot</span></a>
       <nav class="header-nav">
-        <!-- <a href="plans/index.php">プラン</a> -->
-        <a href="https://hmk.delien.xyz/docs/cultivate/">ドキュメント</a>
+        <!-- <a href="plans/">プラン</a> -->
+        <a href="https://docs.delien.xyz/cultivate/">ドキュメント</a>
         <a href="https://discord.gg/AmMkFhhD2D">サポートサーバー</a>
       </nav>
     </div>
@@ -246,7 +246,7 @@
           <li>プレミアムサービスは、本Bot内の
             コマンド（<code>/プレミアム管理</code>）を通じて契約・
             管理するものとします。プランおよび料金の詳細は
-            <a href="plans/index.php">プランページ</a>
+            <a href="plans/">プランページ</a>
             に記載のとおりです。</li>
           <li>プレミアムサービスはサーバー単位で有効化され、
             プランごとに有効化できるサーバー数に上限があります。</li>

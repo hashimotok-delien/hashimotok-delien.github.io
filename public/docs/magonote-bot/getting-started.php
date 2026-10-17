@@ -135,17 +135,17 @@ cd magonote-bot</code></pre>
         <div class="card">
           <h3>🏷️ ながらバッチ</h3>
           <p>VCでの活動状態をニックネームに表示。</p>
-          <a href="features/nagara.php">設定方法 →</a>
+          <a href="features/nagara">設定方法 →</a>
         </div>
         <div class="card">
           <h3>🚪 ノックパネル</h3>
           <p>VCへの安全な入室リクエスト機能。</p>
-          <a href="features/knock-panel.php">設定方法 →</a>
+          <a href="features/knock-panel">設定方法 →</a>
         </div>
         <div class="card">
           <h3>✅ 取得ロール確認</h3>
           <p>自分のロール一覧を表示。</p>
-          <a href="features/role-check.php">設定方法 →</a>
+          <a href="features/role-check">設定方法 →</a>
         </div>
       </div>
 
