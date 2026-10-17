@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   const loadPromises = Array.from(includeEls).map(async (el) => {
     const src = el.dataset.include;
     try {
-      const res = await fetch(`${basePath}/${src}.html`);
+      const res = await fetch(`${basePath}/${src}.php`);
       if (!res.ok) throw new Error(`HTTP ${res.status}`);
       let html = await res.text();
       // Replace placeholders

@@ -1,11 +1,12 @@
 #!/usr/bin/env python3
-"""docs_new の HTML ファイルに include をインライン化するビルドスクリプト。
+"""PHP ページの include をインライン化し、静的プレビュー用の dist/ を生成するビルドスクリプト。
 
 使い方:
-  cd docs_new
+  cd cultivate
   python build_docs.py
 
-出力先: docs_new/dist/ （元のファイルは変更しません）
+出力先: dist/ （元のファイルは変更しません）
+CSS/JS のキャッシュ破棄用 PHP タグは、dist/ 内の該当ファイルの更新日時（数値）に置換します。
 """
 
 import os
@@ -18,18 +19,34 @@ DIST_DIR = os.path.join(SCRIPT_DIR, "dist")
 SRC_DIRS = [SCRIPT_DIR, os.path.join(SCRIPT_DIR, "features")]
 
 
+MTIME_TAG_RE = re.compile(r"<\?= @filemtime\(__DIR__ \. '/([^']+)'\) \?: time\(\) \?>")
+
+
 def load_include(name: str) -> str:
-    """include/{name}.html を読み込む"""
-    path = os.path.join(INCLUDE_DIR, f"{name}.html")
+    """include/{name}.php を読み込む"""
+    path = os.path.join(INCLUDE_DIR, f"{name}.php")
     if not os.path.exists(path):
         print(f"  [WARN] include not found: {path}")
-        return f"<!-- include {name}.html not found -->"
+        return f"<!-- include {name}.php not found -->"
     with open(path, "r", encoding="utf-8") as f:
         return f.read()
 
 
+def resolve_cache_busting(html: str, dst_path: str) -> str:
+    """dist 出力では PHP タグを静的値に置換し、ブラウザで直接開けるようにする"""
+    page_dir = os.path.dirname(dst_path)
+
+    def repl(match):
+        target = os.path.normpath(os.path.join(page_dir, match.group(1)))
+        if os.path.exists(target):
+            return str(int(os.path.getmtime(target)))
+        return "0"
+
+    return MTIME_TAG_RE.sub(repl, html)
+
+
 def build_file(src_path: str, rel_dir: str):
-    """1つの HTML ファイルをビルドする"""
+    """1つの PHP ページをビルドする"""
     with open(src_path, "r", encoding="utf-8") as f:
         html = f.read()
 
@@ -65,6 +82,10 @@ def build_file(src_path: str, rel_dir: str):
     # 出力先パス
     rel_path = os.path.relpath(src_path, SCRIPT_DIR)
     dst_path = os.path.join(DIST_DIR, rel_path)
+
+    # PHP タグを静的値へ置換（dist をブラウザで直接開けるようにする）
+    html = resolve_cache_busting(html, dst_path)
+
     os.makedirs(os.path.dirname(dst_path), exist_ok=True)
 
     with open(dst_path, "w", encoding="utf-8") as f:
@@ -86,14 +107,14 @@ def main():
             shutil.copytree(src, dst)
             print(f"  ✓ copied {item}/")
 
-    # HTML ファイルをビルド
+    # PHP ページをビルド
     html_files = []
     for src_dir in SRC_DIRS:
         for f in sorted(os.listdir(src_dir)):
-            if f.endswith(".html"):
+            if f.endswith(".php"):
                 html_files.append(os.path.join(src_dir, f))
 
-    print(f"\nBuilding {len(html_files)} HTML files...\n")
+    print(f"\nBuilding {len(html_files)} PHP pages...\n")
     for fp in html_files:
         build_file(fp, ".." if "features" in fp else ".")
 

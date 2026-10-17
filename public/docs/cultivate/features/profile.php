@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>プロフィール - Cultivate ドキュメント</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css?v=<?= @filemtime(__DIR__ . '/../css/style.css') ?: time() ?>">
+</head>
+<body data-base="..">
+  <div data-include="include/sidebar"></div>
+
+  <main class="main-content">
+    <div data-include="include/topbar" data-title="プロフィール"></div>
+
+    <div class="content">
+      <div class="feature-hero">
+        <div class="feature-icon">🖼️</div>
+        <h1>プロフィール機能</h1>
+        <p>メッセージリンクからプロフィールを保存・表示</p>
+      </div>
+
+      <h2>概要</h2>
+      <p>
+        プロフィール機能は、自分のプロフィールメッセージを保存し、VC 内のインチャなどで再表示できる機能です。
+        これにより、VC に入るたびにプロフィールを送信する手間を省けます。
+      </p>
+
+      <h2>プロフィールチャンネル（自動記録）</h2>
+      <p>
+        管理者が<strong>設定パネル</strong>（<code>/設定パネル</code> → プロフィールv1設定）から
+        プロフィールチャンネルを登録すると、そのチャンネルに投稿されたメッセージが
+        自動的にプロフィールとして記録されます。
+      </p>
+
+      <h3>設定項目</h3>
+      <div class="table-wrapper"><table>
+        <thead>
+          <tr>
+            <th>項目</th>
+            <th>説明</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>プロフィールチャンネル登録</td>
+            <td>メッセージをプロフィールとして自動記録するチャンネルを設定します（複数可）</td>
+          </tr>
+          <tr>
+            <td>プロフィールロール紐づけ</td>
+            <td>チャンネルごとにプロフィールを記録できるロールを制限できます</td>
+          </tr>
+          <tr>
+            <td>VCプロフィール設定</td>
+            <td>VC 入室時に自動表示するプロフィールメッセージの内容や表示方法をカスタマイズします</td>
+          </tr>
+        </tbody>
+      </table></div>
+
+      <div class="alert alert-info">
+        <p><strong>💡 使い方:</strong> プロフィールチャンネルを設定するだけで、メンバーが投稿したメッセージが自動的にプロフィールとして記録され、VC 入室時に表示されるようになります。
+        手動で保存したい場合は <code>/プロフィール保存</code> コマンドも使用できます。</p>
+      </div>
+
+      <h2>コマンド</h2>
+
+      <h3>プロフィール保存</h3>
+      <pre><code>/プロフィール保存 &lt;url&gt;</code></pre>
+      <p>
+        保存したいプロフィールメッセージのリンクを指定して実行します。
+        保存したプロフィールは VC 入室時に自動表示されます。
+      </p>
+      <div class="table-wrapper"><table>
+        <thead>
+          <tr>
+            <th>引数</th>
+            <th>説明</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>url</td>
+            <td>保存するプロフィールメッセージのリンク（同サーバーのメッセージのみ）</td>
+          </tr>
+        </tbody>
+      </table></div>
+
+      <div class="alert alert-warning">
+        <p><strong>⚠️ 注意:</strong> 保存できるメッセージリンクは <strong>同じサーバー</strong> のもののみです。他サーバーのメッセージリンクは使用できません。</p>
+      </div>
+
+      <h3>プロフィール再表示</h3>
+      <pre><code>/プロフィール再表示</code></pre>
+      <p>
+        VC 内のインチャに保存されているプロフィールを全員分再表示します。
+        プロフィールが表示されなくなった場合などに使用します。
+      </p>
+
+      <div data-include="include/footer"></div>
+    </div>
+  </main>
+  <script src="../js/main.js?v=<?= @filemtime(__DIR__ . '/../js/main.js') ?: time() ?>"></script>
+</body>
+</html>

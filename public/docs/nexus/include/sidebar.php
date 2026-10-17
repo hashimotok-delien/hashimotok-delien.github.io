@@ -1,0 +1,34 @@
+<button class="mobile-menu-btn" id="mobile-menu-btn">☰</button>
+<div class="mobile-menu-overlay" id="menu-overlay"></div>
+
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-header">
+    <div class="logo">ねくさす⋆˚ʚɞ</div>
+    <div class="logo-sub">ドキュメント</div>
+  </div>
+  <nav class="sidebar-nav">
+    <div class="nav-section">はじめに</div>
+    <a href="ROOT/"><span class="nav-icon">🏠</span>トップ</a>
+    <a href="ROOT/getting-started.php"><span class="nav-icon">🚀</span>導入方法</a>
+    <a href="ROOT/commands.php"><span class="nav-icon">📜</span>コマンド一覧</a>
+    <a href="ROOT/faq.php"><span class="nav-icon">❓</span>FAQ</a>
+
+    <div class="nav-section">プロフィール系機能</div>
+    <!-- <a href="ROOT/features/profile.php"><span class="nav-icon">📸</span>プロフィール保存</a> -->
+    <!-- <a href="ROOT/features/my-profile.php"><span class="nav-icon">🌐</span>マイプロフ（鯖間）</a> -->
+
+    <div class="nav-section">VC系機能</div>
+    <!-- <a href="ROOT/features/vc-member.php"><span class="nav-icon">💬</span>交流計測</a> -->
+
+    <div class="nav-section">ランク系機能</div>
+    <a href="ROOT/features/rank.php"><span class="nav-icon">🏆</span>ランクシステム</a>
+
+    <div class="nav-section">管理系機能</div>
+    <!-- <a href="ROOT/features/settings.php"><span class="nav-icon">⚙️</span>設定パネル</a> -->
+    <!-- <a href="ROOT/features/bot-manage.php"><span class="nav-icon">🖥️</span>サーバー管理</a> -->
+
+    <div class="nav-section">その他</div>
+    <a href="ROOT/updates.php"><span class="nav-icon">📋</span>更新履歴</a>
+    <!-- <a href="ROOT/features/command-prefix.php"><span class="nav-icon">⌨️</span>接頭辞変更</a> -->
+  </nav>
+</aside>

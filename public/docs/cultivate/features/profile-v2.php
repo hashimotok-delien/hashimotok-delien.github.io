@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>プロフィール v2 - Cultivate ドキュメント</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css?v=<?= @filemtime(__DIR__ . '/../css/style.css') ?: time() ?>">
+</head>
+<body data-base="..">
+  <div data-include="include/sidebar"></div>
+
+  <main class="main-content">
+    <div data-include="include/topbar" data-title="プロフィール v2"></div>
+
+    <div class="content">
+      <div class="feature-hero">
+        <div class="feature-icon">🆕</div>
+        <h1>プロフィール v2</h1>
+        <p>カスタマイズ可能なプロフカードとVCインチャ表示の新世代プロフィールシステム</p>
+      </div>
+
+      <div class="alert alert-info">
+        <p><strong>💡 プロフィール v2 とは？</strong>
+        従来の v1 プロフィールを拡張し、<strong>カードデザインの自由なカスタマイズ</strong>、
+        <strong>プリセット管理</strong>、<strong>VCインチャプロフの複数設定</strong>を
+        可能にした新システムです。v1 からの移行機能も備えています。</p>
+      </div>
+
+      <h2>概要</h2>
+      <p>
+        プロフィール v2 は、サーバーごとに複数の<strong>プリセット（設定）</strong>を作成し、
+        それぞれに自由なカードデザイン（Embedのタイトル・説明・色・内容）を割り当てられるシステムです。
+        また、VC入室時に自動でプロフィールカードを表示する<strong>VCインチャプロフ</strong>も
+        複数設定を管理でき、VCやカテゴリごとに使用するプリセットを切り替えられます。
+      </p>
+
+      <div class="feature-grid">
+        <div class="feature-card-alt">
+          <div class="feature-card-alt-icon">📋</div>
+          <h3>プリセット管理</h3>
+          <p>複数のプロフィール設定を保存・切替可能。メイン設定にすれば一元管理も簡単。</p>
+        </div>
+        <div class="feature-card-alt">
+          <div class="feature-card-alt-icon">🎨</div>
+          <h3>カードデザイン</h3>
+          <p>Embedのタイトル・説明・色・内容を自由にカスタマイズ。プレースホルダーで動的表示。</p>
+        </div>
+        <div class="feature-card-alt">
+          <div class="feature-card-alt-icon">🔊</div>
+          <h3>VCインチャプロフ</h3>
+          <p>入室時に自動表示、退出時に自動削除。VCやカテゴリごとに設定を割り当て可能。</p>
+        </div>
+        <div class="feature-card-alt">
+          <div class="feature-card-alt-icon">🔄</div>
+          <h3>v1 移行対応</h3>
+          <p>既存の v1 設定をワンクリックで v2 に移行。v1 は自動無効化。</p>
+        </div>
+      </div>
+
+      <h2>セットアップ</h2>
+      <ol class="steps">
+        <li>
+          <strong>設定メニューを開く</strong>
+          <code>/プロフィールv2設定</code> を実行し、設定メニューを表示します。
+          管理者権限が必要です。
+        </li>
+        <li>
+          <strong>プリセットを作成</strong>
+          「📋 プリセット管理」→「➕ 新規作成」から新しいプリセットを作成します。
+          名前・対象チャンネル・カードデザインを設定できます。
+        </li>
+        <li>
+          <strong>VCインチャ設定（必要な場合）</strong>
+          「🔊 VCインチャプロフ管理」からVC入室時の自動表示設定を構成します。
+        </li>
+        <li>
+          <strong>v1 からの移行（既存ユーザー）</strong>
+          「🔄 v1から移行」を実行すると、v1 の設定を v2 のプリセットとして取り込みます。
+        </li>
+      </ol>
+
+      <!-- ============================================================ -->
+      <!-- プリセット管理 -->
+      <!-- ============================================================ -->
+      <h2>📋 プリセット管理</h2>
+      <p>
+        プリセットはプロフィールの<strong>設定のひとかたまり</strong>です。
+        1つのサーバーに複数のプリセットを作成でき、それぞれに異なる
+        カードデザインや対象チャンネルを設定できます。
+      </p>
+
+      <h3>プリセットの項目</h3>
+      <div class="table-wrapper"><table>
+        <thead>
+          <tr>
+            <th>項目</th>
+            <th>説明</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>設定名</td>
+            <td>プリセットの名前（管理用）</td>
+          </tr>
+          <tr>
+            <td>状態（有効/無効）</td>
+            <td>プリセットを有効にするかどうか</td>
+          </tr>
+          <tr>
+            <td>⭐ メイン設定</td>
+            <td>
+              ONにすると他のプリセットはすべて自動で無効になります。
+              1つのサーバーに1つだけ設定できます。
+            </td>
+          </tr>
+          <tr>
+            <td>対象チャンネル</td>
+            <td>
+              プロフィールとして自動保存するチャンネルを選択します。
+              ここで設定したチャンネルに投稿されたメッセージがプロフとして記録されます。
+            </td>
+          </tr>
+          <tr>
+            <td>カードデザイン</td>
+            <td>Embedのタイトル・説明・色・内容をカスタマイズします。</td>
+          </tr>
+        </tbody>
+      </table></div>
+
+      <h3>メイン設定について</h3>
+      <p>
+        「メイン設定」をONにすると、そのプリセットがそのサーバーの
+        <strong>主要なプロフィール設定</strong>として扱われます。
+        メイン設定をONにした時点で、他のすべてのプリセットは自動的に
+        メイン設定がOFFになります（排他的動作）。
+      </p>
+      <p>
+        対象チャンネルにメッセージが投稿されたとき、メイン設定がONの
+        プリセットが存在する場合はその設定に従ってプロフィールが保存されます。
+      </p>
+
+      <!-- ============================================================ -->
+      <!-- カードデザイン -->
+      <!-- ============================================================ -->
+      <h2>🎨 カードデザインのカスタマイズ</h2>
+      <p>
+        プリセットごとにプロフィールカード（Embed）のデザインを自由に設定できます。
+        編集画面では以下の項目を変更できます。
+      </p>
+
+      <h3>デザイン項目</h3>
+      <div class="table-wrapper"><table>
+        <thead>
+          <tr>
+            <th>項目</th>
+            <th>説明</th>
+            <th>デフォルト値</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Embedタイトル</td>
+            <td>カード上部に表示されるタイトル</td>
+            <td><code>{usernickname} のプロフィール</code></td>
+          </tr>
+          <tr>
+            <td>Embed説明</td>
+            <td>
+              タイトルの下に表示される説明文。
+              プロフィールURLのリンクを入れるのが一般的です。
+            </td>
+            <td>
+              <code>{usermention}\n**[プロフィールはコチラ]({profile_url})**</code>
+            </td>
+          </tr>
+          <tr>
+            <td>色モード</td>
+            <td>
+              「固定色」か「ロール基準」を選択。
+              ロール基準にすると、指定したロールの色がEmbed色として使われます。
+            </td>
+            <td>固定色（0x00BFFF）</td>
+          </tr>
+          <tr>
+            <td>Embed色</td>
+            <td>
+              固定色モード時の色を16進数カラーコードで指定
+            </td>
+            <td><code>#00BFFF</code></td>
+          </tr>
+          <tr>
+            <td>色参照ロール</td>
+            <td>
+              ロール基準モード時に参照するロールを複数選択。
+              メンバーが持っているロールの中で最上位の色が採用されます。
+            </td>
+            <td>—</td>
+          </tr>
+          <tr>
+            <td>Embed内容</td>
+            <td>
+              説明文の下に追加で表示するテキスト内容
+            </td>
+            <td>（空）</td>
+          </tr>
+        </tbody>
+      </table></div>
+
+      <h3>使用可能なプレースホルダー</h3>
+      <p>
+        タイトル・説明・内容には以下のプレースホルダーが使用できます。
+        実際の値に自動で置き換えられて表示されます。
+      </p>
+      <div class="table-wrapper"><table>
+        <thead>
+          <tr>
+            <th>プレースホルダー</th>
+            <th>置き換え内容</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>{user}</code></td>
+            <td>ユーザー名（グローバル名）</td>
+          </tr>
+          <tr>
+            <td><code>{usernickname}</code></td>
+            <td>サーバーでの表示名（ニックネーム）</td>
+          </tr>
+          <tr>
+            <td><code>{usermention}</code></td>
+            <td>メンション（@ユーザー）</td>
+          </tr>
+          <tr>
+            <td><code>{guild}</code></td>
+            <td>サーバー名</td>
+          </tr>
+          <tr>
+            <td><code>{profile_url}</code></td>
+            <td>プロフィールメッセージへのジャンプURL</td>
+          </tr>
+          <tr>
+            <td><code>{created_at}</code></td>
+            <td>プロフィールの登録日時</td>
+          </tr>
+          <tr>
+            <td><code>{updated_at}</code></td>
+            <td>プロフィールの更新日時</td>
+          </tr>
+          <tr>
+            <td><code>{setting_name}</code></td>
+            <td>使用中のプリセット名</td>
+          </tr>
+          <tr>
+            <td><code>{newline}</code></td>
+            <td>改行</td>
+          </tr>
+        </tbody>
+      </table></div>
+
+      <div class="alert alert-success">
+        <p><strong>💡 活用例:</strong><br>
+        <code>{usernickname} のプロフィール | {guild}</code><br>
+        と設定すると、「<em>なつき のプロフィール | Cultivate</em>」のように
+        動的に表示されます。</p>
+      </div>
+
+      <!-- ============================================================ -->
+      <!-- VCインチャプロフ -->
+      <!-- ============================================================ -->
+      <h2>🔊 VCインチャプロフィール</h2>
+      <p>
+        VC（ボイスチャンネル）に入室したときに、テキストチャンネル（インチャ）
+        に自動でプロフィールカードを表示する機能です。
+        退出時には自動で削除されます。
+      </p>
+
+      <h3>VCインチャ設定の項目</h3>
+      <div class="table-wrapper"><table>
+        <thead>
+          <tr>
+            <th>項目</th>
+            <th>説明</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>設定名</td>
+            <td>VC設定の名前（管理用）</td>
+          </tr>
+          <tr>
+            <td>状態（有効/無効）</td>
+            <td>このVC設定を有効にするかどうか</td>
+          </tr>
+          <tr>
+            <td>使用するプリセット</td>
+            <td>
+              このVC設定で使用するプロフィールプリセットを選択（複数可）。
+              最初に見つかったプロフが表示されます。
+            </td>
+          </tr>
+          <tr>
+            <td>有効VC（ホワイトリスト）</td>
+            <td>プロフを表示するVCを限定する場合に指定</td>
+          </tr>
+          <tr>
+            <td>除外VC（ブラックリスト）</td>
+            <td>特定のVCでは表示しない場合に指定</td>
+          </tr>
+          <tr>
+            <td>有効カテゴリ</td>
+            <td>特定のカテゴリ以下のVCのみ対象にする場合に指定</td>
+          </tr>
+          <tr>
+            <td>除外カテゴリ</td>
+            <td>特定のカテゴリ以下のVCを対象外にする場合に指定</td>
+          </tr>
+          <tr>
+            <td>Embed内容を表示</td>
+            <td>プロフカードのEmbed内容（content）を表示するかどうか</td>
+          </tr>
+          <tr>
+            <td>プロフなしメッセージ</td>
+            <td>
+              プロフィールが登録されていないメンバーに
+              「プロフがありません」というメッセージを表示するかどうか
+            </td>
+          </tr>
+        </tbody>
+      </table></div>
+
+      <h3>プロフなしメッセージのカスタマイズ</h3>
+      <p>
+        「プロフなしメッセージ」がONの場合、プロフィール未登録のメンバーに
+        表示するメッセージもカスタマイズできます。
+        通常のプリセットと同じプレースホルダーが使用可能です。
+      </p>
+      <div class="table-wrapper"><table>
+        <thead>
+          <tr>
+            <th>項目</th>
+            <th>説明</th>
+            <th>デフォルト値</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>タイトル</td>
+            <td>プロフなし時のEmbedタイトル</td>
+            <td><code>{usernickname} のプロフィール</code></td>
+          </tr>
+          <tr>
+            <td>説明</td>
+            <td>プロフなし時のEmbed説明</td>
+            <td><code>プロフィールが登録されていません。</code></td>
+          </tr>
+          <tr>
+            <td>色</td>
+            <td>プロフなし時のEmbed色</td>
+            <td><code>#E74C3C</code>（赤）</td>
+          </tr>
+          <tr>
+            <td>内容</td>
+            <td>プロフなし時の追加テキスト</td>
+            <td>（空）</td>
+          </tr>
+        </tbody>
+      </table></div>
+
+      <div class="alert alert-warning">
+        <p><strong>⚠️ 注意:</strong>
+        VCインチャプロフは <strong>VCと同じサーバー内のテキストチャンネル</strong>（インスタントチャンネル / インチャ）に表示されます。
+        インチャが存在しないVCでは機能しません。</p>
+      </div>
+
+      <!-- ============================================================ -->
+      <!-- v1 からの移行 -->
+      <!-- ============================================================ -->
+      <h2>🔄 v1 からの移行</h2>
+      <p>
+        既存の v1 プロフィール設定を使用している場合、
+        管理メニューから「🔄 v1から移行」を実行すると、
+        v1 の設定を v2 のプリセットとして取り込めます。
+      </p>
+
+      <h3>移行内容</h3>
+      <div class="table-wrapper"><table>
+        <thead>
+          <tr>
+            <th>v1 設定</th>
+            <th>v2 移行先</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>プロフィールチャンネル</td>
+            <td>プリセット「v1から移行」の対象チャンネル</td>
+          </tr>
+          <tr>
+            <td>VCプロフィール設定</td>
+            <td>VCインチャ設定「v1から移行(VC)」として移行</td>
+          </tr>
+          <tr>
+            <td>Embedデザイン設定</td>
+            <td>プリセットのカードデザインに反映</td>
+          </tr>
+        </tbody>
+      </table></div>
+
+      <div class="alert alert-info">
+        <p><strong>💡 移行について:</strong>
+        移行後も v1 の設定データは保持されますが、v1 の VCプロフィール機能は
+        自動で無効化されます。移行は<strong>手動</strong>で行う必要があります
+        （サーバー起動時の自動移行は行われません）。</p>
+      </div>
+
+      <!-- ============================================================ -->
+      <!-- コマンド一覧 -->
+      <!-- ============================================================ -->
+      <h2>📜 コマンド一覧</h2>
+
+      <h3>管理コマンド</h3>
+
+      <h4>プロフィールv2設定</h4>
+      <pre><code>/プロフィールv2設定</code></pre>
+      <p>
+        プロフィール v2 の設定メニューを開きます。
+        プリセット管理・VCインチャ管理・v1移行をこのメニューから行えます。
+      </p>
+      <div class="table-wrapper"><table>
+        <thead>
+          <tr>
+            <th>権限</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>管理者（Administrator）</td>
+          </tr>
+        </tbody>
+      </table></div>
+
+      <h3>ユーザーコマンド</h3>
+
+      <h4>プロフィールv2表示</h4>
+      <pre><code>/プロフィールv2表示 [メンバー]</code></pre>
+      <p>
+        指定したメンバーのプロフィールを表示します。
+        メンバーを省略した場合は自分自身のプロフィールが表示されます。
+      </p>
+      <div class="table-wrapper"><table>
+        <thead>
+          <tr>
+            <th>引数</th>
+            <th>説明</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>member（省略可）</td>
+            <td>プロフィールを表示するメンバー</td>
+          </tr>
+        </tbody>
+      </table></div>
+
+      <!-- ============================================================ -->
+      <!-- 設定画面 UI -->
+      <!-- ============================================================ -->
+      <h2>🖥️ 設定画面の構成</h2>
+      <p>
+        <code>/プロフィールv2設定</code> を実行すると、3つのボタンがある
+        メニュー画面が表示されます。
+      </p>
+
+      <h3>メニューボタン</h3>
+      <div class="table-wrapper"><table>
+        <thead>
+          <tr>
+            <th>ボタン</th>
+            <th>説明</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>📋 プリセット管理</td>
+            <td>
+              プロフィールのプリセット一覧を表示します。
+              各プリセットの編集・新規作成・削除が行えます。
+            </td>
+          </tr>
+          <tr>
+            <td>🔊 VCインチャプロフ管理</td>
+            <td>
+              VCインチャプロフの設定一覧を表示します。
+              各設定の編集・新規作成・削除が行えます。
+            </td>
+          </tr>
+          <tr>
+            <td>🔄 v1から移行</td>
+            <td>
+              既存の v1 プロフィール設定を v2 に移行します。
+            </td>
+          </tr>
+        </tbody>
+      </table></div>
+
+      <h3>プリセット編集画面</h3>
+      <p>
+        プリセット管理で「編集」を押すと、以下の項目を設定できる編集画面が開きます。
+      </p>
+
+      <h4>基本設定</h4>
+      <ul>
+        <li><strong>設定名</strong> — プリセットの名前を変更</li>
+        <li><strong>有効/無効</strong> — セレクトボックスで切替</li>
+        <li><strong>メイン設定</strong> — セレクトボックスでON/OFF切替（ONにすると他が自動OFF）</li>
+        <li><strong>対象チャンネル</strong> — チャンネルセレクトから複数選択</li>
+      </ul>
+
+      <h4>カードデザイン設定</h4>
+      <ul>
+        <li><strong>Embedタイトル</strong> — テキスト入力（プレースホルダー使用可）</li>
+        <li><strong>Embed説明</strong> — テキスト入力（プレースホルダー使用可）</li>
+        <li><strong>色モード</strong> — 「固定色」または「ロール基準」を選択</li>
+        <li><strong>Embed色</strong> — 固定色モード時の色コード入力</li>
+        <li><strong>色参照ロール</strong> — ロール基準モード時に参照するロールを選択</li>
+        <li><strong>Embed内容</strong> — 追加テキスト（プレースホルダー使用可）</li>
+      </ul>
+
+      <h3>VCインチャ設定の編集画面</h3>
+      <p>
+        VCインチャプロフ管理で「編集」を押すと、以下の項目を設定できます。
+      </p>
+      <ul>
+        <li><strong>設定名</strong> — VC設定の名前</li>
+        <li><strong>有効/無効</strong> — セレクトボックスで切替</li>
+        <li><strong>使用するプリセット</strong> — プリセット一覧から複数選択</li>
+        <li><strong>有効VC / 除外VC</strong> — VCセレクトから選択</li>
+        <li><strong>有効カテゴリ / 除外カテゴリ</strong> — カテゴリセレクトから選択</li>
+        <li><strong>プロフなしメッセージ表示</strong> — セレクトでON/OFF</li>
+        <li><strong>Embed内容表示</strong> — セレクトでON/OFF</li>
+        <li><strong>プロフなし時のタイトル・説明・色・内容</strong> — 個別にカスタマイズ</li>
+      </ul>
+
+      <!-- ============================================================ -->
+      <!-- 注意事項 -->
+      <!-- ============================================================ -->
+      <h2>⚠️ 注意事項</h2>
+      <ul>
+        <li>
+          <strong>データベース:</strong> プロフィール v2 は以下のテーブルを使用します。
+          手動で編集しないでください。
+          <ul>
+            <li><code>profile_v2cog_configs</code> — プリセット設定</li>
+            <li><code>profile_v2cog_profiles</code> — 保存されたプロフィールメッセージ</li>
+            <li><code>profile_v2cog_vc_inchat_configs</code> — VCインチャ設定</li>
+          </ul>
+        </li>
+        <li>
+          <strong>互換性:</strong> v1 システムとは独立して動作します。
+          v1 のプロフィールリンクは v2 では使用されません。
+        </li>
+        <li>
+          <strong>プロフ再表示:</strong> VCインチャプロフが表示されなくなった場合は
+          一度VCを出入りするか、v1 の <code>/プロフィール再表示</code> コマンドを
+          使用してください（v1 が有効な場合）。
+        </li>
+      </ul>
+
+      <div data-include="include/footer"></div>
+    </div>
+  </main>
+  <script src="../js/main.js?v=<?= @filemtime(__DIR__ . '/../js/main.js') ?: time() ?>"></script>
+</body>
+</html>
