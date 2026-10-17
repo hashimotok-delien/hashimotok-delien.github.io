@@ -2,10 +2,10 @@ name: lolipop
 on:
   push:
     branches:
-      - lolipop
-      - dev
+      - master
     paths:
       - 'docs/**' # docsフォルダ内のファイル変更時のみ実行
+      - '.github/workflows/lolipop_docs.yml' # このワークフロー自体の変更時も実行
     paths-ignore: # ★ このセクションを追加・修正
       - 'public/docs/**'  # docs フォルダ内の全ての変更を無視
 jobs:

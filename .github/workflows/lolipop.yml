@@ -2,9 +2,10 @@ name: lolipop
 on:
   push:
     branches:
-      - lolipop
+      - master
     paths:
       - 'public/**' # publicフォルダ内のファイル変更時のみ実行
+      - '.github/workflows/lolipop.yml' # このワークフロー自体の変更時も実行
 jobs:
   ftp-deploy:
     runs-on: ubuntu-latest
