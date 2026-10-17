@@ -303,6 +303,20 @@ Hello! I'm John.</code></pre>
         </tbody>
       </table></div>
 
+      <div class="alert alert-warning">
+        <p><strong>⚠️ ロールを付与・剥奪できない場合</strong>
+        次の場合はロール操作ができず、<strong>Bot のログに記録</strong>
+        されます（他のロールの処理は続行されます）。</p>
+        <ul>
+          <li>Bot の最上位ロールより<strong>上</strong>にあるロール
+          （Discord の権限上、付与・剥奪できません）</li>
+          <li>サーバーから<strong>削除済み</strong>のロールが設定されている</li>
+        </ul>
+        <p>ログの目印:
+        <code>テンプレチェック: ロール付与に失敗</code> /
+        <code>テンプレチェック: ロールが見つかりません</code></p>
+      </div>
+
       <h3>通知設定</h3>
       <div class="table-wrapper"><table>
         <thead>
