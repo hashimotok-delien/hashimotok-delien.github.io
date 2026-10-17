@@ -382,6 +382,20 @@
         <div class="cmd-meta"><span class="tag tag-admin">管理者専用</span></div>
       </div>
 
+      <h3>🦵 自動KICK</h3>
+
+      <div class="command-block">
+        <div class="cmd-name">/自動キック設定</div>
+        <div class="cmd-desc">自動KICKの設定パネルを開きます。有効 / 無効、経過日数、導入日時、必須ロール、免除ロール、DM通知、実行ログチャンネルを設定できます。</div>
+        <div class="cmd-meta"><span class="tag tag-admin">管理者専用</span></div>
+      </div>
+
+      <div class="command-block">
+        <div class="cmd-name">/メインサーバー退出時キック設定</div>
+        <div class="cmd-desc">サーバー連携しているメインサーバーから退出したメンバーを、このサーバー（サブサーバー）からKICKする設定を管理します。サーバー連携機能が必要です。</div>
+        <div class="cmd-meta"><span class="tag tag-admin">管理者専用</span></div>
+      </div>
+
       <h2>📋 共通管理コマンド</h2>
 
       <div class="command-block">

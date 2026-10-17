@@ -151,6 +151,54 @@
         </div>
       </div>
 
+      <div class="update-card" data-tags="feature info">
+        <div class="update-icon">🦵</div>
+        <div class="update-body">
+          <div class="update-title">
+            自動KICK機能を追加
+            <span class="update-date">2026/11/01</span>
+            <span class="tag tag-feature">新機能 / 機能改善</span>
+          </div>
+          <ul>
+            <li>
+              <code>/自動キック設定</code> コマンドで
+              自動KICK設定を管理できます
+              <span class="tag tag-feature">新機能</span>
+            </li>
+            <li>
+              参加から指定日数以上経過しても
+              必須ロール（いずれか）を所持していないメンバーを
+              自動でKICK
+              <span class="tag tag-feature">新機能</span>
+            </li>
+            <li>
+              導入日時を設定すると、導入前に参加していたメンバーは
+              導入日時から日数分後にKICK対象となり、
+              導入直後の一斉KICKを防げます
+              <span class="tag tag-feature">新機能</span>
+            </li>
+            <li>
+              <code>/メインサーバー退出時キック設定</code> で、
+              サーバー連携したメインサーバーから退出したメンバーを
+              サブサーバーから自動KICK（自動KICKとは設定・保存先が
+              独立／サーバー連携機能が必要）
+              <span class="tag tag-feature">新機能</span>
+            </li>
+            <li>
+              KICK前のDM通知・実行ログチャンネル・
+              対象者プレビューに対応
+              <span class="tag tag-feature">新機能</span>
+            </li>
+            <li>
+              必須ロールがサーバーから削除されている場合は
+              そのロールを判定から除外し、実在する必須ロールが
+              無い場合は判定をスキップ（全員KICKを防止）
+              <span class="tag tag-feature">新機能</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+
       <!-- ========================================================= -->
       <!-- v1.8.1 — 自動リアクション設定 -->
       <!-- ========================================================= -->

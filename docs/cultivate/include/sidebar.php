@@ -23,6 +23,7 @@
     <a href="<?= $ROOT ?? '.' ?>/features/sticky"><span class="nav-icon">📌</span>吊下げメッセージ</a>
     <a href="<?= $ROOT ?? '.' ?>/features/category-name"><span class="nav-icon">📂</span>カテゴリ名設定</a>
     <a href="<?= $ROOT ?? '.' ?>/features/role-check"><span class="nav-icon">🛂</span>必須ロール確認</a>
+    <a href="<?= $ROOT ?? '.' ?>/features/auto-kick"><span class="nav-icon">🦵</span>自動KICK</a>
     <a href="<?= $ROOT ?? '.' ?>/features/dm-friend-certification"><span class="nav-icon">🤝</span>DM/フレンド許可取り</a>
     <a href="<?= $ROOT ?? '.' ?>/features/author-settings"><span class="nav-icon">👤</span>投稿者設定</a>
     <!-- <a href="<?= $ROOT ?? '.' ?>/features/ch-role"><span class="nav-icon">📝</span>自動ロール付与</a> -->
