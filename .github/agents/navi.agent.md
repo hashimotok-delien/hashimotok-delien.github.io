@@ -82,11 +82,11 @@ hashimotok_web/
 - **CSS設計**: カスタムプロパティによる一元管理、`style.css` に集約
 
 ### ドキュメントの仕組み
-- include システム: `data-include` 属性で `include/*.php` を読み込む
-- `ROOT/` プレースホルダー: ビルド時に相対パスに変換
-- `{{PAGE_TITLE}}` プレースホルダー: ページタイトルに置換
-- ビルドスクリプト: `build_docs.py` で inlining → `dist/` に出力（静的プレビュー用）
-- `data-base` 属性: インクルード解決の基準パス
+- 各ページは先頭で `$ROOT`（サイトルートへの相対パス）と `$PAGE_TITLE` を定義し、PHP の `include` で `include/*.php` を**サーバーサイドで**読み込む（JS による読み込みは行わない）
+- `$ROOT`: `include/sidebar.php` のナビゲーションリンクで使用（例: `href="<?= $ROOT ?? '.' ?>/getting-started"`）
+- `$PAGE_TITLE`: `include/topbar.php` のページタイトルで使用（例: `<?= $PAGE_TITLE ?? '' ?>`）
+- include ファイルはサーバーサイド専用。`docs/.htaccess` で `include/` への直接アクセスを禁止している
+- ビルドスクリプト: `build_docs.py` で PHP include を inlining → `dist/` に出力（静的プレビュー用）
 
 ### キャッシュ破棄（CSS/JS）
 - 全ページは PHP（`.php`）。CSS/JS の読み込みには更新日時をクエリに付与し、ブラウザキャッシュを自動更新する
@@ -118,9 +118,9 @@ hashimotok_web/
 
 - アクセントカラー `#00e5ff` を守り、テーマカラーを勝手に変えない
 - カスタムプロパティを活用し、ハードコードされたカラー値を使わない
-- include コンポーネントを変更する場合は、**すべてのドキュメントサイト**（cultivate と magonote-bot）に同じ変更を適用する
+- include コンポーネントを変更する場合は、**すべてのドキュメントサイト**（cultivate / magonote-bot / nexus）に同じ変更を適用する
 - ドキュメントページを追加する際は、sidebar.php にもナビゲーションリンクを追加する
-- `ROOT/` プレースホルダーと `{{PAGE_TITLE}}` の記法を守る
+- include の記法（`$ROOT` / `$PAGE_TITLE` を使った PHP include）を守る
 - **内部リンクは拡張子なしで記述する**（`foo.php` ではなく `foo`。`index.php` はフォルダ名 `./` にする）
 - ポートフォリオサイトの `index.php` は自己完結型（インラインCSS）。ドキュメントサイトは外部CSS参照
 - モバイルレスポンシブ対応を考慮する
@@ -129,16 +129,27 @@ hashimotok_web/
 ## よく使うパターン
 
 ### インクルードの追加
-```html
-<div data-include="include/sidebar"></div>
-<div data-include="include/topbar" data-title="ページ名"></div>
-<div data-include="include/footer"></div>
+`<body>` 直後に `$ROOT` / `$PAGE_TITLE` を定義し、PHP の `include` で読み込む。
+
+**サイト直下のページ（`docs/<site>/foo.php`）:**
+```php
+<body>
+  <?php $ROOT = '.'; $PAGE_TITLE = 'ページ名'; ?>
+  <?php include __DIR__ . '/include/sidebar.php'; ?>
+
+  <main class="main-content">
+    <?php include __DIR__ . '/include/topbar.php'; ?>
+    ...
+    <?php include __DIR__ . '/include/footer.php'; ?>
+  </main>
 ```
 
-### ROOT パスの使い方
-```html
-<a href="ROOT/">トップ</a>
-<a href="ROOT/features/example">機能ページ</a>
+**features 配下のページ（`docs/<site>/features/foo.php`）** では、`$ROOT = '..'` とし、パスを `'/../include/...'` にする。
+
+### include パーツ内での `$ROOT` の使い方
+```php
+<a href="<?= $ROOT ?? '.' ?>/">トップ</a>
+<a href="<?= $ROOT ?? '.' ?>/features/example">機能ページ</a>
 ```
 
 ### カードグリッド
@@ -165,7 +176,7 @@ hashimotok_web/
 
 - PHP の構文が正しいことを確認する（`php -l <file>.php`）
 - CSS のカスタムプロパティ参照が正しいことを確認する
-- リンク切れがないか確認する（特に include 内の `ROOT/` パス。`.html` リンクが残っていないかも確認）
+- リンク切れがないか確認する（特に include 内の `$ROOT` パス。`.html` リンクが残っていないかも確認）
 - モバイル表示でのレイアウト崩れがないか確認する
 - 実際のブラウザで表示確認することを推奨する（ローカル確認は `php -S localhost:8000 -t docs/cultivate` など）
 

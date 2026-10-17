@@ -9,11 +9,12 @@
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../css/style.css?v=<?= @filemtime(__DIR__ . '/../css/style.css') ?: time() ?>">
 </head>
-<body data-base="..">
-  <div data-include="include/sidebar"></div>
+<body>
+  <?php $ROOT = '..'; $PAGE_TITLE = '自動リアクション'; ?>
+  <?php include __DIR__ . '/../include/sidebar.php'; ?>
 
   <main class="main-content">
-    <div data-include="include/topbar" data-title="自動リアクション"></div>
+    <?php include __DIR__ . '/../include/topbar.php'; ?>
 
     <div class="content">
       <div class="feature-hero">
@@ -158,7 +159,7 @@
         <li>既存メッセージへの一括付与には、Bot に「リアクションの追加」権限が必要です</li>
       </ul>
 
-      <div data-include="include/footer"></div>
+      <?php include __DIR__ . '/../include/footer.php'; ?>
     </div>
   </main>
   <script src="../js/main.js?v=<?= @filemtime(__DIR__ . '/../js/main.js') ?: time() ?>"></script>

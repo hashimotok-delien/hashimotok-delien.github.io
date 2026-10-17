@@ -9,11 +9,12 @@
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../css/style.css?v=<?= @filemtime(__DIR__ . '/../css/style.css') ?: time() ?>">
 </head>
-<body data-base="..">
-  <div data-include="include/sidebar"></div>
+<body>
+  <?php $ROOT = '..'; $PAGE_TITLE = '取得ロール確認'; ?>
+  <?php include __DIR__ . '/../include/sidebar.php'; ?>
 
   <main class="main-content">
-    <div data-include="include/topbar" data-title="取得ロール確認"></div>
+    <?php include __DIR__ . '/../include/topbar.php'; ?>
 
     <div class="content">
       <div class="feature-hero">
@@ -45,7 +46,7 @@
         <p><strong>💡 ヒント:</strong> 結果は自分にしか見えないエフェメラルメッセージで表示されるため、他のメンバーに見られる心配はありません。</p>
       </div>
 
-      <div data-include="include/footer"></div>
+      <?php include __DIR__ . '/../include/footer.php'; ?>
     </div>
   </main>
 

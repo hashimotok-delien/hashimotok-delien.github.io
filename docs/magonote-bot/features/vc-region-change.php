@@ -9,11 +9,12 @@
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../css/style.css?v=<?= @filemtime(__DIR__ . '/../css/style.css') ?: time() ?>">
 </head>
-<body data-base="..">
-  <div data-include="include/sidebar"></div>
+<body>
+  <?php $ROOT = '..'; $PAGE_TITLE = '定期VCリージョン変更'; ?>
+  <?php include __DIR__ . '/../include/sidebar.php'; ?>
 
   <main class="main-content">
-    <div data-include="include/topbar" data-title="定期VCリージョン変更"></div>
+    <?php include __DIR__ . '/../include/topbar.php'; ?>
 
     <div class="content">
       <div class="feature-hero">
@@ -305,7 +306,7 @@
 }</code></pre>
       </div>
 
-      <div data-include="include/footer"></div>
+      <?php include __DIR__ . '/../include/footer.php'; ?>
     </div>
   </main>
 

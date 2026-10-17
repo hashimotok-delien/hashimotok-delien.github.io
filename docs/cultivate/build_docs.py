@@ -6,6 +6,10 @@
   python build_docs.py
 
 出力先: dist/ （元のファイルは変更しません）
+
+各ページは PHP の include で共通パーツを読み込み、`$ROOT` / `$PAGE_TITLE` 変数で
+プレースホルダー（サイドバーの `ROOT/` とトップバーの `{{PAGE_TITLE}}`）を解決します。
+このスクリプトはその include を展開し、変数を実値に置換します。
 CSS/JS のキャッシュ破棄用 PHP タグは、dist/ 内の該当ファイルの更新日時（数値）に置換します。
 """
 
@@ -20,6 +24,16 @@ SRC_DIRS = [SCRIPT_DIR, os.path.join(SCRIPT_DIR, "features")]
 
 
 MTIME_TAG_RE = re.compile(r"<\?= @filemtime\(__DIR__ \. '/([^']+)'\) \?: time\(\) \?>")
+
+# ページ先頭で定義する変数ブロック
+PAGE_VARS_RE = re.compile(
+    r"<\?php\s+\$ROOT = '([^']*)';\s*\$PAGE_TITLE = '([^']*)';\s*\?>"
+)
+# <?php include __DIR__ . '/include/sidebar.php'; ?>
+INCLUDE_RE = re.compile(r"<\?php\s+include __DIR__ \. '[^']*?include/(\w+)\.php';\s*\?>")
+# include パーツ内の変数参照
+ROOT_TOKEN = "<?= $ROOT ?? '.' ?>"
+TITLE_TOKEN = "<?= $PAGE_TITLE ?? '' ?>"
 
 
 def load_include(name: str) -> str:
@@ -45,39 +59,25 @@ def resolve_cache_busting(html: str, dst_path: str) -> str:
     return MTIME_TAG_RE.sub(repl, html)
 
 
-def build_file(src_path: str, rel_dir: str):
+def build_file(src_path: str):
     """1つの PHP ページをビルドする"""
     with open(src_path, "r", encoding="utf-8") as f:
         html = f.read()
 
-    # data-include を処理
+    # ページ先頭の変数（$ROOT / $PAGE_TITLE）を取り出す
+    vars_match = PAGE_VARS_RE.search(html)
+    root = vars_match.group(1) if vars_match else "."
+    title = vars_match.group(2) if vars_match else ""
+    html = PAGE_VARS_RE.sub("", html, count=1)
+
+    # PHP include をインライン展開し、変数を実値に置換
     def replace_include(match):
-        el_attrs = match.group(1)  # data-include="..." data-title="..."
-
-        # data-include の値を抽出
-        include_match = re.search(r'data-include="([^"]+)"', el_attrs)
-        if not include_match:
-            return match.group(0)
-        include_name = include_match.group(1)
-        # data-include は "include/sidebar" 形式 → "sidebar" に変換
-        if include_name.startswith("include/"):
-            include_name = include_name[len("include/"):]
-
-        # data-title の値を抽出
-        title_match = re.search(r'data-title="([^"]*)"', el_attrs)
-        title = title_match.group(1) if title_match else ""
-
-        content = load_include(include_name)
-
-        # プレースホルダー置換
-        if title:
-            content = content.replace("{{PAGE_TITLE}}", title)
-        content = content.replace("ROOT/", rel_dir + "/")
-
+        content = load_include(match.group(1))
+        content = content.replace(ROOT_TOKEN, root)
+        content = content.replace(TITLE_TOKEN, title)
         return content
 
-    pattern = r'<div\s+([^>]*data-include="[^"]*"[^>]*)>\s*</div>'
-    html = re.sub(pattern, replace_include, html)
+    html = INCLUDE_RE.sub(replace_include, html)
 
     # 出力先パス
     rel_path = os.path.relpath(src_path, SCRIPT_DIR)
@@ -86,9 +86,13 @@ def build_file(src_path: str, rel_dir: str):
     # PHP タグを静的値へ置換（dist をブラウザで直接開けるようにする）
     html = resolve_cache_busting(html, dst_path)
 
+    # 未展開の PHP が残っていないか確認
+    if "<?php" in html or "<?=" in html:
+        print(f"  [WARN] 未展開の PHP タグが残っています: {rel_path}")
+
     os.makedirs(os.path.dirname(dst_path), exist_ok=True)
 
-    with open(dst_path, "w", encoding="utf-8") as f:
+    with open(dst_path, "w", encoding="utf-8", newline="") as f:
         f.write(html)
 
     print(f"  ✓ {rel_path}")
@@ -116,7 +120,7 @@ def main():
 
     print(f"\nBuilding {len(html_files)} PHP pages...\n")
     for fp in html_files:
-        build_file(fp, ".." if "features" in fp else ".")
+        build_file(fp)
 
     print(f"\n✅ 完了! 出力先: {DIST_DIR}")
     print("   dist/ フォルダをブラウザで開いてください。")

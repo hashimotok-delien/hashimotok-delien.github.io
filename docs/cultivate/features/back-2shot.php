@@ -9,11 +9,12 @@
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../css/style.css?v=<?= @filemtime(__DIR__ . '/../css/style.css') ?: time() ?>">
 </head>
-<body data-base="..">
-  <div data-include="include/sidebar"></div>
+<body>
+  <?php $ROOT = '..'; $PAGE_TITLE = '裏2shot'; ?>
+  <?php include __DIR__ . '/../include/sidebar.php'; ?>
 
   <main class="main-content">
-    <div data-include="include/topbar" data-title="裏2shot"></div>
+    <?php include __DIR__ . '/../include/topbar.php'; ?>
 
     <div class="content">
       <div class="feature-hero">
@@ -190,7 +191,7 @@
         <p><strong>⚠️ 注意:</strong> 正規表現を使った高度な VC 名設定は、正規表現にある程度慣れている方向けです。正規表現に関するサポートは行えない場合があります。</p>
       </div>
 
-      <div data-include="include/footer"></div>
+      <?php include __DIR__ . '/../include/footer.php'; ?>
     </div>
   </main>
   <script src="../js/main.js?v=<?= @filemtime(__DIR__ . '/../js/main.js') ?: time() ?>"></script>

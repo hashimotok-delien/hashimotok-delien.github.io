@@ -1,33 +1,6 @@
 // ===== ねくさす⋆˚ʚɞ Docs - Navigation & Interactions =====
 
-document.addEventListener('DOMContentLoaded', async () => {
-
-  // --- Load HTML includes ---
-  const basePath = document.body.dataset.base || '.';
-  const includeEls = document.querySelectorAll('[data-include]');
-
-  const loadPromises = Array.from(includeEls).map(async (el) => {
-    const src = el.dataset.include;
-    try {
-      const res = await fetch(`${basePath}/${src}.php`);
-      if (!res.ok) throw new Error(`HTTP ${res.status}`);
-      let html = await res.text();
-      // Replace placeholders
-      if (el.dataset.title) {
-        html = html.replace(/\{\{PAGE_TITLE\}\}/g, el.dataset.title);
-      }
-      html = html.replace(/ROOT\//g, basePath + '/');
-      el.outerHTML = html;
-    } catch (e) {
-      console.error(`Failed to load include: ${src}`, e);
-    }
-  });
-
-  await Promise.all(loadPromises);
-
-  // --- Initialize page after includes are loaded ---
-  initPage();
-});
+document.addEventListener('DOMContentLoaded', initPage);
 
 function initPage() {
   // --- Sidebar active link ---

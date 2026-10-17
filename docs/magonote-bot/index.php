@@ -9,13 +9,14 @@
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css?v=<?= @filemtime(__DIR__ . '/css/style.css') ?: time() ?>">
 </head>
-<body data-base=".">
+<body>
+  <?php $ROOT = '.'; $PAGE_TITLE = 'トップ'; ?>
 
-  <div data-include="include/sidebar"></div>
+  <?php include __DIR__ . '/include/sidebar.php'; ?>
 
   <!-- Main Content -->
   <main class="main-content">
-    <div data-include="include/topbar" data-title="トップ"></div>
+    <?php include __DIR__ . '/include/topbar.php'; ?>
 
     <div class="content">
       <!-- Hero -->
@@ -152,7 +153,7 @@
       </p>
       <a href="https://discord.gg/AmMkFhhD2D" class="btn btn-outline" target="_blank">💬 サポートサーバーに参加</a>
 
-      <div data-include="include/footer"></div>
+      <?php include __DIR__ . '/include/footer.php'; ?>
     </div>
   </main>
 
