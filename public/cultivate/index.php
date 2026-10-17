@@ -270,20 +270,20 @@ h2{
     <img src="https://i.gyazo.com/e0c11a218634a4916f0628257d88e2e1.png" style="width:100%; border-radius:12px; box-shadow:0 0 20px rgba(0,229,255,0.3);">
   </div>
 
-  <!-- <div class="card">
+  <div class="card">
     <p><strong>裏2shot利用パネル</strong>：ユーザーが簡単にVCを作成可能</p>
     <img src="https://i.gyazo.com/4871e0b066a3b3610bc1c88b2659b377.png" style="width:100%; border-radius:12px; box-shadow:0 0 20px rgba(0,229,255,0.3);">
-  </div> -->
+  </div>
 
-  <!-- <div class="card">
+  <div class="card">
     <p><strong>ワンクリックVC作成</strong>：ボタン操作だけで即VC生成</p>
     <img src="https://i.gyazo.com/73ed206a23601712579e4274185679e1.png" style="width:100%; border-radius:12px; box-shadow:0 0 20px rgba(0,229,255,0.3);">
-  </div> -->
+  </div>
 
-  <!-- <div class="card">
+  <div class="card">
     <p><strong>ノック機能</strong>：VC入室時に安全なコミュニケーション導線</p>
     <img src="https://i.gyazo.com/6fedd2bf417a17efaa972af1bf4ca17a.png" style="width:100%; border-radius:12px; box-shadow:0 0 20px rgba(0,229,255,0.3);">
-  </div> -->
+  </div>
 
 </section>
 
