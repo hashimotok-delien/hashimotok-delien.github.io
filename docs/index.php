@@ -107,14 +107,10 @@
     }
   </style>
 </head>
-<body data-base="cultivate">
-
-  <div data-include="include/sidebar"></div>
+<body>
 
   <!-- Main Content -->
-  <main class="main-content">
-    <div data-include="include/topbar" data-title="ドキュメントトップ"></div>
-
+  <main class="main-content" style="margin-left: 0;">
     <div class="content">
       <!-- Hero -->
       <div class="portal-hero">
