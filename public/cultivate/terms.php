@@ -99,16 +99,8 @@
 </head>
 <body>
 
-  <header class="site-header">
-    <div class="header-inner">
-      <a class="logo" href="https://hmk.delien.xyz/cultivate/">🌱 Cultivate <span>Bot</span></a>
-      <nav class="header-nav">
-        <!-- <a href="plans/">プラン</a> -->
-        <a href="https://docs.delien.xyz/cultivate/">ドキュメント</a>
-        <a href="https://discord.gg/AmMkFhhD2D">サポートサーバー</a>
-      </nav>
-    </div>
-  </header>
+  <?php $BASE = '.'; $LOGO_LABEL = 'Bot'; ?>
+  <?php include __DIR__ . '/include/header.php'; ?>
 
   <main>
     <div class="legal">
@@ -404,9 +396,7 @@
     </div>
   </main>
 
-  <footer class="site-footer">
-    <p>© 2026 <a href="https://hmk.delien.xyz/">けい</a> — Cultivate Bot</p>
-  </footer>
+  <?php include __DIR__ . '/include/footer.php'; ?>
 
 </body>
 </html>

@@ -12,15 +12,8 @@
 </head>
 <body>
 
-  <header class="site-header">
-    <div class="header-inner">
-      <a class="logo" href="../">🌱 Cultivate <span>Premium</span></a>
-      <nav class="header-nav">
-        <a href="https://docs.delien.xyz/cultivate/">ドキュメント</a>
-        <a href="https://discord.gg/AmMkFhhD2D">サポートサーバー</a>
-      </nav>
-    </div>
-  </header>
+  <?php $BASE = '..'; $LOGO_LABEL = 'Premium'; $SHOW_TERMS = true; ?>
+  <?php include __DIR__ . '/../include/header.php'; ?>
 
   <main>
     <!-- ===== ヒーロー ===== -->
@@ -200,9 +193,7 @@
     </section>
   </main>
 
-  <footer class="site-footer">
-    <p>© 2026 <a href="https://hmk.delien.xyz/">けい</a> — Cultivate Bot ／ <a href="../terms">利用規約</a></p>
-  </footer>
+  <?php include __DIR__ . '/../include/footer.php'; ?>
 
 </body>
 </html>

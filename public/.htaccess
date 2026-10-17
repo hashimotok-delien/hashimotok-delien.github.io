@@ -10,6 +10,9 @@
   RewriteEngine On
   RewriteBase /
 
+  # --- include/ はサーバーサイド専用（直接アクセスを禁止） ---
+  RewriteRule (^|/)include(/|$) - [F,L]
+
   # --- /docs/... は docs.delien.xyz へ恒久転送 ---
   RewriteRule ^docs$ https://docs.delien.xyz/ [R=301,L,NE]
   RewriteRule ^docs/(.*)$ https://docs.delien.xyz/$1 [R=301,L,NE]

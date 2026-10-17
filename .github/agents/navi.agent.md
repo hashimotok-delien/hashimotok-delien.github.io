@@ -88,6 +88,12 @@ hashimotok_web/
 - include ファイルはサーバーサイド専用。`docs/.htaccess` で `include/` への直接アクセスを禁止している
 - ビルドスクリプト: `build_docs.py` で PHP include を inlining → `dist/` に出力（静的プレビュー用）
 
+### Cultivate 公式サイト（`public/cultivate/`）の仕組み
+- `index.php`（ランディング）は自己完結型（インラインCSS）。それ以外のページ（`plans/*.php`, `privacy.php`, `terms.php`）は共通パーツを PHP の include で読み込む
+- `include/header.php` / `include/footer.php` を各ページから `include __DIR__ . '/include/header.php';` の形で読み込む
+- include 内では `$BASE`（Cultivate ルートへの相対パス。直下は `.`、`plans/` は `..`）と `$LOGO_LABEL`（`Bot` / `Premium`）、`$SHOW_TERMS`（true でフッターに利用規約リンク）を使う
+- include ファイルはサーバーサイド専用。`public/.htaccess` で `include/` への直接アクセスを禁止している
+
 ### キャッシュ破棄（CSS/JS）
 - 全ページは PHP（`.php`）。CSS/JS の読み込みには更新日時をクエリに付与し、ブラウザキャッシュを自動更新する
 ```html
